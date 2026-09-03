@@ -1,9 +1,9 @@
 ---
-title: Labo 21
+title: Labo 21 - Herhaling
 sidebar_position: 22
 ---
 
-# Labo 21
+# Labo 21 - Herhaling
 
 _Bron: Labo 21._
 

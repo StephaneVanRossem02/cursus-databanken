@@ -1,29 +1,29 @@
 import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
-// Doorlopende labo-reeks. `sub` = afwijkende titel uit het bronmateriaal.
+// Doorlopende labo-reeks. `sub` = hoofdstuk uit de cursus waar het labo bij hoort.
 const LABOS = [
-  {n: 1},
-  {n: 2},
-  {n: 3},
-  {n: 4},
-  {n: 5},
-  {n: 6},
-  {n: 7},
-  {n: 8},
-  {n: 9},
-  {n: 10},
-  {n: 11},
-  {n: 12, sub: 'Opdrachten views'},
-  {n: 13, sub: 'Opdrachten indexeren'},
-  {n: 14},
-  {n: 15},
-  {n: 16},
-  {n: 17},
-  {n: 18},
-  {n: 19},
-  {n: 20},
-  {n: 21},
+  {n: 1, sub: 'DDL'},
+  {n: 2, sub: 'DDL'},
+  {n: 3, sub: 'DDL'},
+  {n: 4, sub: 'DDL + SELECT'},
+  {n: 5, sub: 'SELECT'},
+  {n: 6, sub: 'Groeperen'},
+  {n: 7, sub: 'apTunes: normalisatie'},
+  {n: 8, sub: 'apTunes: joins'},
+  {n: 9, sub: 'JOINs'},
+  {n: 10, sub: 'JOINs'},
+  {n: 11, sub: 'JOINs (advanced)'},
+  {n: 12, sub: 'Views'},
+  {n: 13, sub: 'Indexeren'},
+  {n: 14, sub: 'Subqueries'},
+  {n: 15, sub: 'Views + stored programs'},
+  {n: 16, sub: 'Stored functions'},
+  {n: 17, sub: 'Stored procedures'},
+  {n: 18, sub: 'Herhaling (tennis)'},
+  {n: 19, sub: 'Cursors'},
+  {n: 20, sub: 'Triggers'},
+  {n: 21, sub: 'Herhaling'},
 ];
 
 const pad = (n) => String(n).padStart(2, '0');

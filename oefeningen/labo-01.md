@@ -1,9 +1,9 @@
 ---
-title: Labo 01
+title: Labo 01 - DDL
 sidebar_position: 2
 ---
 
-# Labo 01
+# Labo 01 - DDL
 
 _Bron: Labo 01._
 
@@ -19,6 +19,12 @@ Op DigitAP staan drie “debug scripts”. Deze bevatten allemaal enkele fouten.
 
 Zorg dat de files correct uitvoeren en dat je in de tabellen het gewenste resultaat kan zien.
 
+:::tip[Inleveren als]
+- `Databanken/Labo 1/01.01.sql`
+- `Databanken/Labo 1/01.02.sql`
+- `Databanken/Labo 1/01.03.sql`
+:::
+
 ## Oefening Labo 01 - 02
 
 Hieronder zie je een visuele voorstelling van twee tabellen:
@@ -29,9 +35,17 @@ Schrijf zelf de `CREATE`-instructie om de tabel `Boeken` aan te maken. Voer je c
 
 Sla je uiteindelijke script op onder Databanken/Labo 1/02.sql.
 
+:::tip[Inleveren als]
+`Databanken/Labo 1/02.sql`
+:::
+
 ## Oefening Labo 01 - 03
 
 Schrijf zelf de `CREATE`-instructie om een tabel `Kunstwerken` aan te maken. Een kunstwerk heeft een auteur (voorgesteld als maximum 100 tekens tekst), een titel (voorgesteld als maximum 100 tekens tekst) en een waarde (voorgesteld als kommagetal). Gebruik hoofdletters voor je kolomnamen en voer je code uit wanneer je klaar bent om ze te testen. Controleer de output van je script. Indien de instructie mis loopt, lees dan de foutmelding en probeer het probleem op te lossen. Sla je uiteindelijke script op onder Databanken/Labo 1/03.sql.
+
+:::tip[Inleveren als]
+`Databanken/Labo 1/03.sql`
+:::
 
 ## Oefening Labo 01-04
 
@@ -42,6 +56,10 @@ Schrijf zelf de `INSERT`-instructie om volgende kunstwerken toe te voegen aan de
 - Het kunstwerk _Mona Lisa_ van Leonardo Da Vinci, met een waarde van 2 miljoen.
 
 Voer je code uit wanneer je klaar bent om ze te testen. Controleer de output van je script. Indien de instructie mis loopt, lees dan de foutmelding en probeer het probleem op te lossen. Sla je uiteindelijke script op onder Databanken/Labo 1/04.sql.
+
+:::tip[Inleveren als]
+`Databanken/Labo 1/04.sql`
+:::
 
 ## Scripts
 

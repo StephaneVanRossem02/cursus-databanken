@@ -1,9 +1,9 @@
 ---
-title: Labo 02
+title: Labo 02 - DDL
 sidebar_position: 3
 ---
 
-# Labo 02
+# Labo 02 - DDL
 
 _Bron: Labo 02._
 
@@ -37,7 +37,7 @@ De derde tabel bevat informatie over huisdieren. Ze heet `Huisdieren`. Ze heeft 
 
 Zorg dat je code uitvoert en controleer dat je de tabellen (na refresh) ziet verschijnen. Sla alle instructies op in één script, genaamd Databanken/Labo 2/01.sql
 
-## Oefening Labo 02 - 01
+## Oefening Labo 02 - 02
 
 Plaats nu informatie in de tabellen van de vorige oefening:
 

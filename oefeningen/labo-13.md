@@ -1,9 +1,9 @@
 ---
-title: Labo 13
+title: Labo 13 - Indexeren
 sidebar_position: 14
 ---
 
-# Labo 13
+# Labo 13 - Indexeren
 
 _Bron: Opdrachten indexeren._
 

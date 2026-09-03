@@ -1,9 +1,9 @@
 ---
-title: Labo 12
+title: Labo 12 - Views
 sidebar_position: 13
 ---
 
-# Labo 12
+# Labo 12 - Views
 
 _Bron: Opdrachten views._
 

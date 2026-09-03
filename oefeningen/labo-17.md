@@ -1,9 +1,9 @@
 ---
-title: Labo 17
+title: Labo 17 - Stored procedures
 sidebar_position: 18
 ---
 
-# Labo 17
+# Labo 17 - Stored procedures
 
 _Bron: Labo 17._
 

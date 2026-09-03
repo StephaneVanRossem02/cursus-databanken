@@ -1,9 +1,9 @@
 ---
-title: Labo 15
+title: Labo 15 - Views + stored programs
 sidebar_position: 16
 ---
 
-# Labo 15
+# Labo 15 - Views + stored programs
 
 _Bron: Labo 15._
 

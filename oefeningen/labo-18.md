@@ -1,9 +1,9 @@
 ---
-title: Labo 18
+title: Labo 18 - Herhaling (tennis)
 sidebar_position: 19
 ---
 
-# Labo 18
+# Labo 18 - Herhaling (tennis)
 
 _Bron: Labo 18._
 

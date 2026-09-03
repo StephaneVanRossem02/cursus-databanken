@@ -1,9 +1,9 @@
 ---
-title: Labo 08
+title: "Labo 08 - apTunes: joins"
 sidebar_position: 9
 ---
 
-# Labo 08
+# Labo 08 - apTunes: joins
 
 _Bron: Labo 08._
 

@@ -1,9 +1,9 @@
 ---
-title: Labo 07
+title: "Labo 07 - apTunes: normalisatie"
 sidebar_position: 8
 ---
 
-# Labo 07
+# Labo 07 - apTunes: normalisatie
 
 _Bron: Labo 07._
 

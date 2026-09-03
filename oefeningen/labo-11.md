@@ -1,9 +1,9 @@
 ---
-title: Labo 11
+title: Labo 11 - JOINs (advanced)
 sidebar_position: 12
 ---
 
-# Labo 11
+# Labo 11 - JOINs (advanced)
 
 _Bron: Labo 11._
 

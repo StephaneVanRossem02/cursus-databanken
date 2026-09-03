@@ -1,9 +1,9 @@
 ---
-title: Labo 06
+title: Labo 06 - Groeperen
 sidebar_position: 7
 ---
 
-# Labo 06
+# Labo 06 - Groeperen
 
 _Bron: Labo 06._
 

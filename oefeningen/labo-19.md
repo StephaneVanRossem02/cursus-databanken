@@ -1,9 +1,9 @@
 ---
-title: Labo 19
+title: Labo 19 - Cursors
 sidebar_position: 20
 ---
 
-# Labo 19
+# Labo 19 - Cursors
 
 _Bron: Labo 19._
 

@@ -1,9 +1,9 @@
 ---
-title: Labo 20
+title: Labo 20 - Triggers
 sidebar_position: 21
 ---
 
-# Labo 20
+# Labo 20 - Triggers
 
 _Bron: Labo 20._
 

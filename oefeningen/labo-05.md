@@ -1,9 +1,9 @@
 ---
-title: Labo 05
+title: Labo 05 - SELECT
 sidebar_position: 6
 ---
 
-# Labo 05
+# Labo 05 - SELECT
 
 _Bron: Labo 05._
 

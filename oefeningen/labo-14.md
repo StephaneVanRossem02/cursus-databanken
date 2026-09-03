@@ -1,9 +1,9 @@
 ---
-title: Labo 14
+title: Labo 14 - Subqueries
 sidebar_position: 15
 ---
 
-# Labo 14
+# Labo 14 - Subqueries
 
 _Bron: Labo 14._
 

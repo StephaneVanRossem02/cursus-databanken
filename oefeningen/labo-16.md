@@ -1,9 +1,9 @@
 ---
-title: Labo 16
+title: Labo 16 - Stored functions
 sidebar_position: 17
 ---
 
-# Labo 16
+# Labo 16 - Stored functions
 
 _Bron: Labo 16._
 

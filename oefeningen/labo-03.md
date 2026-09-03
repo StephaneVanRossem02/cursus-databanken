@@ -1,9 +1,9 @@
 ---
-title: Labo 03
+title: Labo 03 - DDL
 sidebar_position: 4
 ---
 
-# Labo 03
+# Labo 03 - DDL
 
 _Bron: Labo 03._
 
