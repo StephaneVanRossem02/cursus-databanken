@@ -13,6 +13,9 @@ Dit labo werkt in twee fasen. Voer telkens het juiste script eerst uit.
 
 **Voor opdracht 1 tot en met 5** gebruik je onderstaand script:
 
+<details>
+<summary>Toon calibratiescript</summary>
+
 ```sql
 use ApDB;
 -- MySQL dump 10.13  Distrib 8.0.16, for Linux (x86_64)
@@ -319,6 +322,8 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 ```
+
+</details>
 
 **Vanaf opdracht 6** gebruik je een uitgebreide dataset. Download en voer dit script eerst uit:
 

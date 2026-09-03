@@ -17,6 +17,9 @@ Lees ook aandachtig de bijgeleverde beschrijving â€˜Beschrijving databases.pdfâ€
 
 Voer dit script eerst uit. Het maakt de databank en tabellen aan en vult ze met de voorbeelddata voor dit labo.
 
+<details>
+<summary>Toon calibratiescript</summary>
+
 ```sql
 DROP DATABASE IF EXISTS Tennis;
 CREATE DATABASE Tennis;
@@ -208,6 +211,8 @@ INSERT INTO BESTUURSLEDEN VALUES ( 27, '1993-01-01', '1993-12-31', 'Penningmeest
 INSERT INTO BESTUURSLEDEN VALUES ( 95, '1994-01-01', NULL, 'Penningmeester')
 ;
 ```
+
+</details>
 
 ## Opgave 1
 

@@ -11,6 +11,9 @@ _Bron: Labo 03._
 
 Voer dit script eerst uit. Het maakt de databank en tabellen aan en vult ze met de voorbeelddata voor dit labo.
 
+<details>
+<summary>Toon calibratiescript</summary>
+
 ```sql
 CREATE DATABASE IF NOT EXISTS DbLabo03;
 
@@ -56,6 +59,8 @@ values
 ('Ming', 'Hond', 11),
 ('Rambo', 'Kat', 16);
 ```
+
+</details>
 
 ## Oefening Labo 03-01
 

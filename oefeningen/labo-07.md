@@ -21,6 +21,9 @@ Download dit script en voer het eerst uit. Het maakt de databank en tabellen aan
 
 Democode uit de theorieles, ter naslag. Dit hoef je niet in te leveren.
 
+<details>
+<summary>Toon lesvoorbeeld</summary>
+
 ```sql
 -- Les 07
 
@@ -276,3 +279,5 @@ INSERT INTO Auteur(Voornaam, Familienaam)
 -- Scroll op de pagina naar “Normalisatie van de apTunes databank”
 -- Om te kunnen starten vanaf oefening 24, voer je eerst het calibratiescript van Labo 7 uit.
 ```
+
+</details>

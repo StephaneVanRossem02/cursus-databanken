@@ -35,6 +35,9 @@ Download dit script en voer het eerst uit. Het maakt de databank en tabellen aan
 
 Democode uit de theorieles, ter naslag. Dit hoef je niet in te leveren.
 
+<details>
+<summary>Toon lesvoorbeeld</summary>
+
 ```sql
 -- Cursors: een cursor is een object in MySQL dat toelaat om de rijen van een resultatenset één na één te behandelen.
 -- Demo 1
@@ -140,3 +143,5 @@ SELECT @genresList;
  
 SELECT 'regel1\nregel2\nregel3\n'
 ```
+
+</details>

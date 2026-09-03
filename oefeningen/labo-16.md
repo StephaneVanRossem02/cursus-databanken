@@ -38,6 +38,9 @@ Download dit script en voer het eerst uit. Het maakt de databank en tabellen aan
 
 Democode uit de theorieles, ter naslag. Dit hoef je niet in te leveren.
 
+<details>
+<summary>Toon lesvoorbeeld</summary>
+
 ```sql
 -- ------------------------
 -- Lesweek 08 - Les 16
@@ -222,3 +225,5 @@ DELIMITER ;
 
 -- Labo 16 (1 grote oefening met stored function en loop)
 ```
+
+</details>

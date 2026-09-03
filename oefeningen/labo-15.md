@@ -13,6 +13,9 @@ Noot: indien een stored procedure gevraagd wordt, slaag dan steeds het script op
 
 Voer dit script eerst uit. Het maakt de databank en tabellen aan en vult ze met de voorbeelddata voor dit labo.
 
+<details>
+<summary>Toon calibratiescript</summary>
+
 ```sql
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -119,6 +122,8 @@ UNLOCK TABLES;
 
 -- Dump completed on 2023-11-09 17:11:21
 ```
+
+</details>
 
 ## Opgave 1
 

@@ -11,6 +11,9 @@ _Bron: Labo 06._
 
 Voer dit script eerst uit. Het maakt de databank en tabellen aan en vult ze met de voorbeelddata voor dit labo.
 
+<details>
+<summary>Toon calibratiescript</summary>
+
 ```sql
 -- MySQL dump 10.13  Distrib 8.0.26, for Linux (x86_64)
 --
@@ -68,6 +71,8 @@ UNLOCK TABLES;
 
 -- Dump completed on 2022-11-06 17:38:49
 ```
+
+</details>
 
 ## Opdracht: visualisatie
 queries

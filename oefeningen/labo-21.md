@@ -68,6 +68,9 @@ Als voor een bepaalde speler nog geen wedstrijden in de database staan, toon dan
 
 Democode uit de theorieles, ter naslag. Dit hoef je niet in te leveren.
 
+<details>
+<summary>Toon lesvoorbeeld</summary>
+
 ```sql
 CREATE DATABASE IF NOT EXISTS dbles21;
 USE dbles21;
@@ -187,3 +190,5 @@ SET  SQL_SAFE_UPDATES = 1;
 
 -- Labo 20: triggers
 ```
+
+</details>
