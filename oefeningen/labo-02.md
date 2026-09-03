@@ -1,0 +1,88 @@
+---
+title: Labo 02
+sidebar_position: 3
+---
+
+# Labo 02
+
+_Bron: Labo 02._
+
+## Oefening Labo 02 - 01
+
+Maak eerst een map “Labo 2” in je map voor het vak “Databanken”.
+
+Maak in een nieuw script drie tabellen aan.
+
+De eerste tabel bevat informatie over liedjes. Ze heet `Liedjes`. Ze heeft vier kolommen:
+
+- `Artiest`
+- `Titel`
+- `AantalVerkocht`
+- `ReleaseJaar`
+
+Kies zelf het meest geschikte datatype voor elke kolom. Waar je tekst kiest, mag je altijd veronderstellen dat 100 karakters volstaan.
+
+De tweede tabel bevat informatie over geboortes. Ze heet `Geboortes`. Ze heeft vier kolommen:
+
+- `Voornaam`
+- `Familienaam`
+- `TijdstipGeboorte`
+- `GewichtInKilogram`
+
+De derde tabel bevat informatie over huisdieren. Ze heet `Huisdieren`. Ze heeft drie kolommen:
+
+- `Naam`
+- `Diersoort`
+- `Leeftijd`
+
+Zorg dat je code uitvoert en controleer dat je de tabellen (na refresh) ziet verschijnen. Sla alle instructies op in één script, genaamd Databanken/Labo 2/01.sql
+
+## Oefening Labo 02 - 01
+
+Plaats nu informatie in de tabellen van de vorige oefening:
+
+- In `Liedjes`:
+
+De artiest “Ghost” heeft 35000 exemplaren verkocht van het nummer “Call Me Little Sunshine”, dat is uitgekomen in 2021.
+- De artiest “Led Zeppelin” heeft 1000000 exemplaren verkocht van het nummer “Stairway to Heaven”, dat is uitgekomen in 1973.
+- De artiest “Jack Broadbent” heeft 1000 exemplaren verkocht van het nummer “Woman”, dat is uitgekomen in 2015.
+- De artiest “Larkin Poe” heeft 15000 exemplaren verkocht van het nummer “Tom Devil”, dat is uitgekomen in 2013.
+
+In `Geboortes`:
+
+- Adnane Lazaar is geboren om 8u, 11 minuten, 25 seconden op 13 juli 1973 en woog 4.1 kg.
+- Dilara El Farisi is geboren om 6u, 11 minuten, 13 seconden op 25 oktober 1999 en woog 3.7 kg.
+- Mehmet Cetinel is geboren om 15u, 58 minuten, 50 seconden op 1 april 1995 en woog 2.9 kg.
+- Thijs Verbeeck is geboren om 19u, 23 minuten, 12 seconden op 15 augustus 1990 en woog 2,7 kg.
+
+In `Huisdieren`:
+
+- Misty is een hond van 9 jaar oud.
+- Ming is een hond van 11 jaar oud.
+- Rambo is een kat van 16 jaar oud.
+
+Zorg dat je code uitvoert en controleer dat je de gegevens kan zien door op de knop naast de tabelnaam te klikken. Sla alle instructies op in één script, genaamd Databanken/Labo 2/02.sql.
+
+Als je te veel gegevens hebt, kan je altijd de tabellen droppen (via rechtermuisknop), opnieuw aanmaken via het vorige script en dit script opnieuw uitvoeren.
+
+## Oefening Labo 02 - 03
+
+Verwijder de tabel `Huisdieren`, inclusief alle data, enkel en alleen met een geschreven instructie. Noem je script Databanken/Labo 2/03.sql.
+
+## Oefening Labo 02 - 04
+
+Schrijf een instructie die de voornaam en familienaam laat zien van alle kindjes die een geboortegewicht hadden van minstens 3 kilogram. Andere kindjes worden niet getoond. De lichtste kindjes worden bovenaan getoond in de uitvoer, dus je krijgt:
+
+<table><thead><tr><th>Voornaam</th><th>Familienaam</th><th>GewichtInKilogram</th></tr></thead><tbody><tr><td>Dilara</td><td>El Farisi</td><td>3.7</td></tr><tr><td>Adnane</td><td>Lazaar</td><td>4.1</td></tr></tbody></table>
+
+Sla je script op als Databanken/Labo 2/04.sql.
+
+## Oefening Labo 02 - 05
+
+Laat alle liedjes zien, samen met hun artiest, van best naar minst goed verkocht. Liedjes met minder dan 5000 verkochte exemplaren moeten niet getoond worden.
+
+Je uitvoer zou als volgt moeten zijn:
+
+<table><thead><tr><th>Titel</th><th>Artiest</th><th>AantalVerkocht</th></tr></thead><tbody><tr><td>Stairway to Heaven</td><td>Led Zeppelin</td><td>1000000</td></tr><tr><td>Call Me Little Sunshine</td><td>Ghost</td><td>35000</td></tr><tr><td>Tom Devil</td><td>Larkin Poe</td><td>15000</td></tr></tbody></table>
+
+Sla je script op als Databanken/Labo 2/05.sql.

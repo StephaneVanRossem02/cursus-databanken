@@ -1,0 +1,158 @@
+/**
+ * Globale stijl voor de cursus Databanken.
+ * Bouwt voort op Infima (Docusaurus classic thema).
+ */
+
+/* Lettertype: systeem-UI stack, monospace voor code. */
+:root {
+  --ifm-font-family-base: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue',
+    Arial, sans-serif;
+  --ifm-font-family-monospace: 'Cascadia Code', 'JetBrains Mono', 'SFMono-Regular',
+    Menlo, Consolas, monospace;
+
+  /* Databank-blauw als primaire kleur. */
+  --ifm-color-primary: #2563eb;
+  --ifm-color-primary-dark: #1d4ed8;
+  --ifm-color-primary-darker: #1b46c2;
+  --ifm-color-primary-darkest: #1e40af;
+  --ifm-color-primary-light: #3b82f6;
+  --ifm-color-primary-lighter: #60a5fa;
+  --ifm-color-primary-lightest: #93c5fd;
+
+  --ifm-code-font-size: 92%;
+  --ifm-heading-font-weight: 700;
+  --ifm-navbar-shadow: 0 1px 0 rgba(15, 23, 42, 0.08);
+  --ifm-toc-border-color: transparent;
+  --docusaurus-highlighted-code-line-bg: rgba(37, 99, 235, 0.12);
+
+  --db-hero-from: #1e3a8a;
+  --db-hero-to: #2563eb;
+  --db-card-bg: #ffffff;
+  --db-card-border: rgba(15, 23, 42, 0.08);
+  --db-surface: #f8fafc;
+}
+
+/* Lichtere tinten voor leesbaarheid in donkere modus. */
+[data-theme='dark'] {
+  --ifm-color-primary: #60a5fa;
+  --ifm-color-primary-dark: #3b82f6;
+  --ifm-color-primary-darker: #2563eb;
+  --ifm-color-primary-darkest: #1d4ed8;
+  --ifm-color-primary-light: #93c5fd;
+  --ifm-color-primary-lighter: #bfdbfe;
+  --ifm-color-primary-lightest: #dbeafe;
+
+  --ifm-background-color: #0f172a;
+  --ifm-background-surface-color: #111c33;
+  --docusaurus-highlighted-code-line-bg: rgba(96, 165, 250, 0.18);
+
+  --db-hero-from: #0b1220;
+  --db-hero-to: #1e3a8a;
+  --db-card-bg: #111c33;
+  --db-card-border: rgba(148, 163, 184, 0.16);
+  --db-surface: #0b1220;
+}
+
+/* Navbar iets luchtiger. */
+.navbar {
+  backdrop-filter: saturate(1.4) blur(6px);
+}
+.navbar__title {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Koppen strakker. */
+.markdown h1:first-child {
+  --ifm-h1-font-size: 2.4rem;
+  letter-spacing: -0.02em;
+}
+.markdown h2 {
+  border-bottom: 1px solid var(--db-card-border);
+  padding-bottom: 0.3rem;
+}
+
+/* Codeblokken: zachtere hoeken en rand. */
+.theme-code-block,
+pre code {
+  border-radius: 10px;
+}
+div[class^='codeBlockContainer'] {
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+  border: 1px solid var(--db-card-border);
+}
+code {
+  border-radius: 5px;
+}
+
+/* Admonitions (info/tip/warning/danger) subtieler. */
+.theme-admonition {
+  border-radius: 10px;
+  border-left-width: 4px;
+}
+
+/* Tabellen met zebra en zachte randen. */
+.markdown table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.markdown table thead tr {
+  background: var(--ifm-color-primary);
+  color: #fff;
+}
+.markdown table thead th {
+  border-color: transparent;
+}
+.markdown table tbody tr:nth-child(2n) {
+  background: var(--db-surface);
+}
+
+/* Sidebar actieve link accentueren. */
+.menu__link--active:not(.menu__link--sublist) {
+  background: linear-gradient(
+    90deg,
+    rgba(37, 99, 235, 0.12),
+    rgba(37, 99, 235, 0)
+  );
+  font-weight: 600;
+}
+
+/* Paginanavigatie (vorige/volgende) als kaartjes. */
+.pagination-nav__link {
+  border-radius: 10px;
+  border-color: var(--db-card-border);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.pagination-nav__link:hover {
+  border-color: var(--ifm-color-primary);
+  transform: translateY(-2px);
+}
+
+/* Knoppen iets ronder. */
+.button {
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* ----------------------------------------------------------------------
+ * Labo-pagina's (oefeningen-instantie): eigen accent voor structuur.
+ * -------------------------------------------------------------------- */
+
+/* Sectiekoppen (Oefening / Scripts / Bestanden) met blauwe accentbalk. */
+.plugin-id-oefeningen .markdown h2 {
+  border-bottom: none;
+  margin-top: 2.75rem;
+  padding: 0.15rem 0 0.15rem 0.85rem;
+  border-left: 4px solid var(--ifm-color-primary);
+  border-radius: 3px;
+}
+
+/* "Bron: Labo XX." bovenaan als subtiel bijschrift. */
+.plugin-id-oefeningen .markdown h1 + p {
+  margin-top: -0.4rem;
+  color: var(--ifm-color-emphasis-600);
+  font-size: 0.95rem;
+}

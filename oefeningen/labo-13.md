@@ -1,0 +1,198 @@
+---
+title: Labo 13
+sidebar_position: 14
+---
+
+# Labo 13
+
+_Bron: Opdrachten indexeren._
+
+## Uitschakelen beperkingen
+
+Om in alle gevallen betrouwbare timings te krijgen, schakelen we een
+beperking op het aantal resultaten uit. Ga naar “Edit”, dan
+“Preferences” en zorg dat de limiet uit staat zoals op deze
+screenshot:
+
+_(Bijhorende afbeelding niet beschikbaar in het bronmateriaal.)_
+
+Schakel ook timeouts uit:
+
+_(Bijhorende afbeelding niet beschikbaar in het bronmateriaal.)_
+
+## Naamgeving indexen
+
+Noem je indexen steeds `Col1Col2Col3...Idx`, waarbij je
+`Col1`, `Col2`,… vervangt door de naam van de
+kolom die je indexeert. Zet de kolommen ook in de volgorde waarin je ze
+hebt geïndexeerd, dus een index op (eerst) `Voornaam` en dan
+`Familienaam` zou `VoornaamFamilienaamIdx`
+heten.
+
+## Vragen
+
+### Vraag 1
+
+Activeer eerst de database (met naam `aptunes`). Voor deze
+labosessie doe je dat **maar één keer**, niet in elk
+script. Dat komt omdat je alleen analyses kan krijgen voor scripts die
+uit één opdracht bestaan. Maak een gewone index op de kolom
+`Titel` van de tabel `Albums`. Noem je script dat
+dit doet `01.sql`.
+
+### Vraag 2
+
+Maak een gewone index op de combinatie van `Voornaam` en
+`Familienaam` van `Muzikanten`. In de combinatie
+noteer je eerst `Voornaam`. Noem je script dat dit doet
+`02.sql`.
+
+### Vraag 3
+
+Verwijder de index uit vraag 1 en 2. Noem je script dat dit doet
+`03.sql`.
+
+### Vraag 4
+
+Zoek, volgens de uitleg in de cursus, de ideale prefixlengte voor de
+kolommen `Voornaam` en `Familienaam` van de tabel
+`Muzikanten`. Noteer beide. Maak dan opnieuw een index op de
+combinatie van `Voornaam` en `Familienaam`, ieder
+met de ideale prefixlengte. Noem je script dat de index met de ideale
+prefixlengtes aanmaakt `04.sql`. Verwijder de index opnieuw
+met een script `05.sql`.
+
+### Algemene uitleg verdere
+vragen
+
+Je krijgt in elk van de volgende vragen een query en je moet een
+“ideale” index voor deze query zoeken. Lees hiervoor zeker het
+theoriegedeelte rond het opvolgen van trage queries!
+
+Voer per vraag eerst de gegeven query uit. Ga na het uitvoeren
+telkens de timing na opgemeten door de server (onder “Query Stats”).
+Noteer deze timing per script voor jezelf. Je hoeft de timings niet in
+te dienen (ze zullen verschillen naargelang je PC) maar je zal ze nodig
+hebben om na te gaan of je queries versnellen wanneer je indexen
+toevoegt.
+
+Pas daarna het algoritme voor een goede index toe (zie stap 3 op de
+theoriepagina). De code die de goede index maakt is wat je in elk deel
+moet opslaan.
+
+Voer in elke vraag de code uit om de goede index aan te maken en run
+de query opnieuw. Normaal zou het query execution plan er op zijn minst
+gunstiger moeten uitzien. Indien de omstandigheden goed zitten
+(voldoende data,…) kan je ook een verbetering waarnemen in
+uitvoeringstijd.
+
+Hieronder wordt gebruik gemaakt van twee tabellen omwille van
+`JOIN`, maar de `WHERE` wordt uitgevoerd voor het
+samenvoegen. Dus dat vertelt je op welke tabel je het algoritme best
+toepast. Als je `WHERE` kolommen uit beide tabellen
+controleert, maak je best een index op beide tabellen.
+
+### Vraag 5
+
+De te optimaliseren query is:
+
+```sql
+SELECT Titel, COUNT(*)
+FROM Liedjes GROUP BY Titel
+ORDER BY COUNT(*) DESC;
+```
+
+Je script noem je `06.sql`.
+
+#### Vraag 6
+
+De te optimaliseren query is:
+
+```sql
+SELECT Titel, COUNT(*)
+FROM Liedjes
+WHERE Lengte >= 120 AND Lengte 
+
+Je script noem je `07.sql`.
+
+#### Vraag 7
+
+```sql
+-- toont alle geldige combinaties van liedjestitels en genres
+select Titel, Naam
+from Liedjesgenres inner join Liedjes
+on Liedjesgenres.Liedjes_Id = Liedjes.Id
+inner join Genres
+on Liedjesgenres.Genres_Id = Genres.Id
+where Naam = 'Rock';
+```
+
+(Tip: normaal zou je hier **geen enkele** rode box meer
+mogen zien in je uitvoeringsdiagram. Je zal waarschijnlijk geen
+snelheidswinst zien.)
+
+Je script noem je `08.sql`.
+
+#### Vraag 8
+
+```sql
+-- toont combinaties van liedjes en bands
+-- doet dit enkel voor liedjestitels die beginnen met 'A'
+-- gaat van kort naar lang
+SELECT Titel, Naam, Lengte FROM Liedjes
+inner join Bands
+on Liedjes.Bands_Id = Bands.Id
+where Titel like 'Au%'
+order by Lengte;
+```
+
+Je script noem je `09.sql`.
+
+#### Vraag 9
+
+Deze vraag gaat over gebruikersbeheer. Maak een gebruiker
+`student` aan met wachtwoord `student`. Geef hem
+de rechten om volgende procedure uit te voeren:
+
+```sql
+USE `aptunes`;
+DROP procedure IF EXISTS `DoJoin`;
+
+DELIMITER $$
+USE `aptunes`$$
+CREATE PROCEDURE `DoJoin` ()
+BEGIN
+select *
+from Liedjes
+inner join Liedjesgenres
+on Liedjesgenres.Liedjes_Id = Liedjes.Id;
+END$$
+DELIMITER ;
+```
+
+Test of dit werkt door in te loggen als deze student en de stored
+procedure uit te voeren.
+
+#### Vraag 10
+
+Gebruik nu deze stored procedure:
+
+```sql
+USE `aptunes`;
+DROP procedure IF EXISTS `DoJoin2`;
+
+DELIMITER $$
+USE `aptunes`$$
+CREATE DEFINER=`root`@`%` PROCEDURE `DoJoin2` ()
+SQL SECURITY INVOKER
+BEGIN
+select *
+from Liedjes
+inner join Liedjesgenres
+on Liedjesgenres.Liedjes_Id = Liedjes.Id;
+END$$
+DELIMITER ;
+```
+
+Geef, zonder de procedure aan te passen, `student` de
+minimale rechten om het resultaat te kunnen produceren.

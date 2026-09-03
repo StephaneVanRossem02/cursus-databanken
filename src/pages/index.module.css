@@ -1,0 +1,62 @@
+/**
+ * Stijl voor de homepage-hero.
+ */
+
+.heroBanner {
+  padding: 5rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background: radial-gradient(
+      1200px 400px at 50% -10%,
+      rgba(147, 197, 253, 0.35),
+      transparent
+    ),
+    linear-gradient(135deg, var(--db-hero-from) 0%, var(--db-hero-to) 100%);
+}
+
+.heroTitle {
+  font-size: 3.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+}
+
+.heroSubtitle {
+  font-size: 1.35rem;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 3rem 1.5rem;
+  }
+  .heroTitle {
+    font-size: 2.4rem;
+  }
+  .heroSubtitle {
+    font-size: 1.15rem;
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Outline-knop leesbaar op de donkere hero. */
+.buttons :global(.button--outline) {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+.buttons :global(.button--outline:hover) {
+  color: var(--db-hero-to);
+  background: #fff;
+  border-color: #fff;
+}
