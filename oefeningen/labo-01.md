@@ -11,19 +11,46 @@ _Bron: Labo 01._
 
 Maak eerst een map “Databanken” met daarin een map “Labo 1”.
 
-Op DigitAP staan drie “debug scripts”. Deze bevatten allemaal enkele fouten. Corrigeer de fouten in elke file en sla de files op onder:
+Hieronder staan drie “debug scripts”. Deze bevatten allemaal enkele fouten. Corrigeer de fouten in elke file en sla de files op onder:
 
 - Databanken/Labo 1/01.01.sql
 - Databanken/Labo 1/01.02.sql
 - Databanken/Labo 1/01.03.sql
 
-Zorg dat de files correct uitvoeren en dat je in de tabellen het gewenste resultaat kan zien.
+**Labo_01-01.01__debug.sql**
 
-:::tip[Inleveren als]
-- `Databanken/Labo 1/01.01.sql`
-- `Databanken/Labo 1/01.02.sql`
-- `Databanken/Labo 1/01.03.sql`
-:::
+```sql
+use DbLabo01;
+drop table if exists Boeken;
+create table Boeken (Titel varchar(100), Uitgeverij varchar(100), Jaartal smallint unsigned);
+
+
+
+-- we willen uitdrukken dat het boek 50 jaar geleden is verschenen
+-- maar we willen het rekenwerk niet zelf doen!
+insert into Boeken (Titel, Uitgeverij, Jaartal) values (Fabels, Editions Minuit, '2021-50');
+```
+
+**Labo_01-01.02__debug.sql**
+
+```sql
+use DbLabo01;
+
+SeLeCT titel from boeken;
+```
+
+**Labo_01-01.03__debug.sql**
+
+```sql
+use DbLabo01;
+insert into boeken values ('De geschiedenis van Rock 'n Roll', 'De Hasque', 2011');
+drop table if exists Liedjes;
+CREATE TABLE Liedjes(Titel VARCHAR(100), Duurtijd int);
+-- het liedje duurt vijf minuten
+insert into liedjes values ('Ain't talkin' 'bout Love', 5 * 60);
+```
+
+Zorg dat de files correct uitvoeren en dat je in de tabellen het gewenste resultaat kan zien.
 
 ## Oefening Labo 01 - 02
 
@@ -60,39 +87,4 @@ Voer je code uit wanneer je klaar bent om ze te testen. Controleer de output van
 :::tip[Inleveren als]
 `Databanken/Labo 1/04.sql`
 :::
-
-## Scripts
-
-### Labo_01-01.01__debug.sql
-
-```sql
-use DbLabo01;
-drop table if exists Boeken;
-create table Boeken (Titel varchar(100), Uitgeverij varchar(100), Jaartal smallint unsigned);
-
-
-
--- we willen uitdrukken dat het boek 50 jaar geleden is verschenen
--- maar we willen het rekenwerk niet zelf doen!
-insert into Boeken (Titel, Uitgeverij, Jaartal) values (Fabels, Editions Minuit, '2021-50');
-```
-
-### Labo_01-01.02__debug.sql
-
-```sql
-use DbLabo01;
-
-SeLeCT titel from boeken;
-```
-
-### Labo_01-01.03__debug.sql
-
-```sql
-use DbLabo01;
-insert into boeken values ('De geschiedenis van Rock 'n Roll', 'De Hasque', 2011');
-drop table if exists Liedjes;
-CREATE TABLE Liedjes(Titel VARCHAR(100), Duurtijd int);
--- het liedje duurt vijf minuten
-insert into liedjes values ('Ain't talkin' 'bout Love', 5 * 60);
-```
 
