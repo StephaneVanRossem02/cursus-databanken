@@ -254,4 +254,113 @@ Schrijf de SQL-instructie die de eerder gecreÃ«erde stored procedure met naam â€
 
 ## Modeloplossingen
 
-[Labo 18 - modeloplossingen (PDF)](/downloads/oefeningen/labo-18/modeloplossingen/Labo_18_modeloplossingen.pdf)
+<details>
+<summary>Toon modeloplossingen</summary>
+
+```sql
+-- Labo 18 oef 1
+DROP VIEW IF EXISTS V_Spelers_per_Team;
+CREATE VIEW V_Spelers_per_Team
+AS
+SELECT teams.Divisie, COUNT(DISTINCT wedstrijden.SpelersNr) AS 'Aantal spelers'
+FROM teams INNER JOIN wedstrijden
+ON teams.TeamNr = wedstrijden.TeamNr
+GROUP BY teams.TeamNr, teams.Divisie;
+
+-- Labo 18 oef 2
+DROP VIEW V_Spelers_per_Team;
+
+-- Labo 18 oef 3
+CREATE VIEW V_Spelers_Wedstrijden
+AS
+SELECT s.*, COALESCE(w.WedstrijdNr, '-') AS WedstrijdNr,
+    COALESCE(w.TeamNr, '-') AS TeamNr,
+    COALESCE(w.Gewonnen, '-') AS Gewonnen,
+    COALESCE(w.Verloren, '-') AS Verloren
+FROM Spelers s LEFT OUTER JOIN Wedstrijden w
+ON s.SpelersNr = w.SpelersNr;
+
+-- Labo 18 oef 4
+DROP VIEW IF EXISTS V_Spelers_Boetes;
+CREATE VIEW V_Spelers_Boetes
+AS
+SELECT s.SpelersNr, s.Naam, COALESCE(SUM(b.Bedrag), 0) AS 'Totaal bedrag betaalde boetes'
+FROM Spelers s LEFT JOIN Boetes b
+ON s.SpelersNr = b.SpelersNr
+GROUP BY s.SpelersNr, s.Naam;
+
+-- Labo 18 oef 5
+SELECT *
+FROM V_Spelers_Boetes
+WHERE `Totaal bedrag betaalde boetes` > 80;
+
+-- Labo 18 oef 6
+RENAME TABLE V_Spelers_Boetes
+TO V_Spelers_TotaalbedragBoetesBetaald;
+
+-- Labo 18 oef 7
+USE `tennis`;
+DROP procedure IF EXISTS `SP_Toon_SpelerInfo`;
+
+DELIMITER $$
+USE `tennis`$$
+CREATE PROCEDURE SP_Toon_SpelerInfo (IN pSpelers_Id int)
+BEGIN
+    IF pSpelers_Id IS NOT NULL THEN
+        SELECT * FROM Spelers
+        WHERE SpelersNr = pSpelers_Id;
+    ELSE
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'U dient een spelersnummer op te geven.';
+    END IF;
+END$$
+
+DELIMITER ;
+
+-- Labo 18 oef 8
+USE `tennis`;
+DROP function IF EXISTS `Bestaat_Speler`;
+
+DELIMITER $$
+USE `tennis`$$
+CREATE FUNCTION Bestaat_Speler (pSpelers_Id int)
+RETURNS BOOL
+DETERMINISTIC
+BEGIN
+    IF pSpelers_Id IN (SELECT SpelersNr FROM Spelers) THEN
+        RETURN true;
+    ELSE
+        RETURN false;
+    END IF;
+
+/* Je kan dit ook korter schrijven, zonder een IF:
+    RETURN (pSpelers_Id IN (SELECT SpelersNr FROM Spelers));
+*/
+END$$
+
+DELIMITER ;
+
+-- Labo 18 oef 9
+USE `tennis`;
+DROP procedure IF EXISTS `SP_Toon_SpelerInfo`;
+
+DELIMITER $$
+USE `tennis`$$
+CREATE PROCEDURE SP_Toon_SpelerInfo(IN pSpelers_Id int)
+BEGIN
+    IF pSpelers_Id IS NULL THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT='U dient een spelersnummer op te geven.';
+    ELSEIF NOT Bestaat_Speler(pSpelers_Id) THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT='U dient een geldig spelersnummer op te geven.';
+    ELSE
+        SELECT * FROM Spelers
+        WHERE SpelersNr = pSpelers_Id;
+    END IF;
+END$$
+
+DELIMITER ;
+```
+
+</details>

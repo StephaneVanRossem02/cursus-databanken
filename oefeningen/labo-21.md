@@ -195,4 +195,183 @@ SET  SQL_SAFE_UPDATES = 1;
 
 ## Modeloplossingen
 
-[Labo 21 - modeloplossingen (PDF)](/downloads/oefeningen/labo-21/modeloplossingen/Labo_21_modeloplossingen.pdf)
+<details>
+<summary>Toon modeloplossingen</summary>
+
+```sql
+-- Labo 21 oef 1
+USE `tennis`;
+DROP function IF EXISTS `Aantal_Wedstrijden_Gespeeld`;
+
+DELIMITER $$
+USE `tennis`$$
+CREATE FUNCTION Aantal_Wedstrijden_Gespeeld (pSpelers_Id int)
+RETURNS INTEGER
+DETERMINISTIC
+BEGIN
+    DECLARE Aantal int;
+
+    SELECT COUNT(*)
+    INTO Aantal
+    FROM Wedstrijden
+    WHERE SpelersNr = pSpelers_Id;
+
+    RETURN Aantal;
+END$$
+
+DELIMITER ;
+
+-- Labo 21 oef 2
+USE `tennis`;
+DROP function IF EXISTS `Aantal_Wedstrijden_Gewonnen`;
+
+DELIMITER $$
+USE `tennis`$$
+CREATE FUNCTION Aantal_Wedstrijden_Gewonnen(pSpelers_Id int)
+RETURNS int
+DETERMINISTIC
+BEGIN
+    DECLARE Aantal_Gewonnen int;
+
+    SET Aantal_Gewonnen = (SELECT COUNT(*)
+    FROM Spelers INNER JOIN Wedstrijden
+    ON Spelers.SpelersNr = Wedstrijden.SpelersNr
+    WHERE Wedstrijden.SpelersNr = pSpelers_Id
+    AND Gewonnen > Verloren);
+
+    RETURN Aantal_Gewonnen;
+END$$
+
+DELIMITER ;
+
+-- Labo 21 oef 3
+USE `tennis`;
+DROP function IF EXISTS `Aantal_Boetes_Voor_Speler`;
+
+DELIMITER $$
+USE `tennis`$$
+CREATE FUNCTION Aantal_Boetes_Voor_Speler(pSpelers_Id int)
+RETURNS INTEGER
+DETERMINISTIC
+BEGIN
+    DECLARE Aantal int;
+
+    SELECT COUNT(*)
+    INTO Aantal
+    FROM Boetes
+    WHERE SpelersNr = pSpelers_Id;
+
+    RETURN Aantal;
+END$$
+
+DELIMITER ;
+
+-- Labo 21 oef 4
+SELECT SpelersNr, Naam, Aantal_Boetes_Voor_Speler(SpelersNr) AS 'Aantal boetes'
+FROM Spelers
+ORDER BY 2;
+
+-- Labo 21 oef 5
+USE `tennis`;
+DROP procedure IF EXISTS `SP_Get_Speler_Statistieken`;
+
+DELIMITER $$
+USE `tennis`$$
+CREATE PROCEDURE SP_Get_Speler_Statistieken(
+    IN pSpelers_Id int,
+    OUT pOutput_text VARCHAR(255))
+BEGIN
+    DECLARE naam_speler VARCHAR(15);
+    DECLARE aantal_wedstrijden int;
+    DECLARE aantal_boetes int;
+
+    SELECT Naam INTO naam_speler FROM Spelers WHERE SpelersNr = pSpelers_Id;
+    SET aantal_wedstrijden = Aantal_Wedstrijden_Gespeeld(pSpelers_Id);
+    SET aantal_boetes = Aantal_Boetes_Voor_Speler(pSpelers_Id);
+
+    SET pOutput_text = CONCAT('Speler ', naam_speler, ' heeft ',
+        aantal_wedstrijden, ' wedstrijd(en) gespeeld en ',
+        aantal_boetes,' boete(s) ontvangen.');
+END$$
+
+DELIMITER ;
+
+-- Labo 21 oef 6
+DROP VIEW IF EXISTS V_Spelers_Statistieken;
+CREATE VIEW V_Spelers_Statistieken
+AS
+SELECT Spelers.SpelersNr,
+    COUNT(wedstrijden.SpelersNr) AS 'Aantal wedstrijden gespeeld',
+    Aantal_Wedstrijden_Gewonnen(wedstrijden.SpelersNr) AS 'Aantal wedstrijden gewonnen',
+    COUNT(wedstrijden.SpelersNr) - Aantal_Wedstrijden_Gewonnen(wedstrijden.SpelersNr) AS 'Aantal wedstrijden verloren',
+    COUNT(Boetes.SpelersNr) AS 'Aantal boetes betaald',
+    COALESCE(SUM(Bedrag), 0) AS 'Bedrag boetes betaald'
+FROM Spelers LEFT JOIN Boetes
+ON Spelers.SpelersNr = Boetes.SpelersNr
+LEFT JOIN wedstrijden
+ON Spelers.SpelersNr = wedstrijden.SpelersNr
+GROUP BY Spelers.SpelersNr;
+
+-- Labo 21 oef 7
+SELECT s.Naam, s.Voorletters, v.`Aantal wedstrijden gespeeld`,
+    v.`Aantal wedstrijden gewonnen`, v.`Aantal wedstrijden verloren`,
+    v.`Aantal boetes betaald`, v.`Bedrag boetes betaald`
+FROM Spelers s INNER JOIN V_Spelers_Statistieken v
+ON s.SpelersNr = v.SpelersNr
+ORDER BY s.Naam;
+
+-- Labo 21 oef 8
+USE `tennis`;
+CREATE OR REPLACE VIEW V_Spelers_Statistieken
+AS
+SELECT Spelers.*,
+    COUNT(Wedstrijden.SpelersNr) AS 'Aantal wedstrijden gespeeld',
+    Aantal_Wedstrijden_Gewonnen(Wedstrijden.SpelersNr) AS 'Aantal wedstrijden gewonnen',
+    (COUNT(Wedstrijden.SpelersNr) - Aantal_Wedstrijden_Gewonnen(Wedstrijden.SpelersNr)) AS 'Aantal wedstrijden verloren',
+    COUNT(Boetes.SpelersNr) AS 'Aantal boetes betaald',
+    COALESCE(SUM(Boetes.Bedrag), 0) AS 'Bedrag boetes betaald'
+FROM Spelers LEFT JOIN Boetes
+ON Spelers.SpelersNr = Boetes.SpelersNr
+LEFT JOIN Wedstrijden
+ON Spelers.SpelersNr = Wedstrijden.SpelersNr
+GROUP BY Spelers.SpelersNr;
+
+-- Labo 21 oef 9
+USE `tennis`;
+DROP procedure IF EXISTS `SP_Bewaar_Wedstrijd`;
+
+DELIMITER $$
+USE `tennis`$$
+CREATE PROCEDURE SP_Bewaar_Wedstrijd (
+    IN pGameNr int,
+    IN pTeamNr int,
+    IN pSpelerNr int,
+    IN pGewonnen smallint,
+    IN pVerloren smallint)
+BEGIN
+    DECLARE game_exists BOOL;
+
+    IF pSpelerNr IS null OR NOT Bestaat_Speler(pSpelerNr) THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Je moet een geldige speler kiezen.';
+    ELSE
+        SET game_exists = (SELECT COUNT(*) FROM Wedstrijden WHERE WedstrijdNr = pGameNr);
+
+        IF NOT game_exists THEN
+            INSERT INTO Wedstrijden()
+            VALUES(pGameNr, pTeamNr, pSpelerNr, pGewonnen, pVerloren);
+        ELSE
+            UPDATE Wedstrijden
+            SET TeamNr = pTeamNr,
+                SpelersNr = pSpelerNr,
+                Gewonnen = pGewonnen,
+                Verloren = pVerloren
+            WHERE WedstrijdNr = pGameNr;
+        END IF;
+    END IF;
+END$$
+
+DELIMITER ;
+```
+
+</details>
