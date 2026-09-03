@@ -196,3 +196,54 @@ DELIMITER ;
 
 Geef, zonder de procedure aan te passen, `student` de
 minimale rechten om het resultaat te kunnen produceren.
+
+## Modeloplossingen
+
+<details>
+<summary>Toon modeloplossingen</summary>
+
+```sql
+use aptunes;
+
+-- script 1
+create index TitelIdx on Albums(Titel);
+
+-- script 2
+create index VoornaamFamilienaamIdx on Muzikanten(Voornaam, Familienaam);
+
+-- script 3
+drop index TitelIdx on Albums;
+drop index VoornaamFamilienaamIdx on Muzikanten;
+
+-- script 4
+create index VoornaamFamilienaamIdx on Muzikanten(Voornaam(9),Familienaam(9));
+
+-- script 5
+drop index VoornaamFamilienaamIdx on Muzikanten;
+
+-- onderstaande vragen staan los van elkaar!
+-- d.w.z. in script 7 doe je alsof de index van script 6 gedropt is,...
+
+-- script 6
+create index TitelIdx on Liedjes(Titel);
+
+-- script 7
+create index LengteIdx on Liedjes(Lengte);
+
+-- script 8
+create index NaamIdx on Genres(Naam);
+
+-- script 9
+create index TitelIdx on Liedjes(Titel);
+
+-- script 10
+create user student identified by 'student';
+grant execute on procedure DoJoin to student@'%';
+
+-- script 11
+grant execute on procedure DoJoin2 to student@'%';
+grant select on Liedjes to student@'%';
+grant select on Liedjesgenres to student@'%';
+```
+
+</details>

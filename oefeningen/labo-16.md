@@ -227,3 +227,50 @@ DELIMITER ;
 ```
 
 </details>
+
+## Modeloplossingen
+
+<details>
+<summary>Toon modeloplossingen</summary>
+
+```sql
+DELIMITER $$
+
+DROP FUNCTION IF EXISTS CheckPassword$$
+CREATE FUNCTION CheckPassword(paswoord VARCHAR(50))
+    RETURNS BOOLEAN
+    DETERMINISTIC
+BEGIN
+    DECLARE lengte INT DEFAULT LENGTH(paswoord);
+    DECLARE i INT DEFAULT 1;
+    DECLARE bevat_kleine_letter BOOLEAN DEFAULT FALSE;
+    DECLARE bevat_hoofdletter BOOLEAN DEFAULT FALSE;
+    DECLARE bevat_cijfer BOOLEAN DEFAULT FALSE;
+    DECLARE karakter VARCHAR(1);
+    
+    IF lengte < 8 THEN
+        RETURN FALSE;
+    ELSE
+        WHILE i <= lengte DO
+            SET karakter = SUBSTRING(paswoord, i, 1);
+
+            IF ASCII(karakter) BETWEEN 97 AND 122 THEN
+                SET bevat_kleine_letter = TRUE;  -- 'a' (97) tot 'z' (122)
+            ELSEIF ASCII(karakter) BETWEEN 65 AND 90 THEN
+                SET bevat_hoofdletter = TRUE;    -- 'A' (65) tot 'Z' (90)
+            ELSEIF ASCII(karakter) BETWEEN 48 AND 57 THEN
+                SET bevat_cijfer = TRUE;         -- '0' (48) tot '9' (57)
+            END IF;
+
+            SET i = i + 1;
+        END WHILE;
+
+        -- Controleer of aan alle voorwaarden is voldaan
+        RETURN bevat_kleine_letter AND bevat_hoofdletter AND bevat_cijfer;
+    END IF;
+END $$
+
+DELIMITER ;
+```
+
+</details>

@@ -100,3 +100,15 @@ De queries zijn:
 ## Bestanden
 
 - [handout-opdracht-queries-op-papier.pdf](/downloads/oefeningen/labo-06/handout-opdracht-queries-op-papier.pdf)
+
+## Modeloplossingen
+
+De modeloplossingen zijn de verwachte query-uitvoer (Excel):
+
+- [Query 1](/downloads/oefeningen/labo-06/modeloplossingen/query_1.xlsx)
+- [Query 2](/downloads/oefeningen/labo-06/modeloplossingen/query2.xlsx)
+- [Query 3](/downloads/oefeningen/labo-06/modeloplossingen/query3.xlsx)
+- [Query 4](/downloads/oefeningen/labo-06/modeloplossingen/query4.xlsx)
+- [Query 5](/downloads/oefeningen/labo-06/modeloplossingen/query_5.xlsx)
+- [Query 6](/downloads/oefeningen/labo-06/modeloplossingen/query_6.xlsx)
+- [Query 7](/downloads/oefeningen/labo-06/modeloplossingen/query_7.xlsx)

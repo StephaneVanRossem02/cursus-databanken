@@ -37,6 +37,38 @@ De derde tabel bevat informatie over huisdieren. Ze heet `Huisdieren`. Ze heeft 
 
 Zorg dat je code uitvoert en controleer dat je de tabellen (na refresh) ziet verschijnen. Sla alle instructies op in één script, genaamd Databanken/Labo 2/01.sql
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+CREATE DATABASE DbLabo02;
+USE DbLabo02;
+
+-- vraag 1
+create table Liedjes (
+Artiest varchar(100),
+Titel varchar(100),
+AantalVerkocht int,
+ReleaseJaar int
+);
+
+create table Geboortes (
+Voornaam varchar(100),
+Familienaam varchar(100),
+TijdstipGeboorte datetime,
+GewichtInKilogram float
+);
+
+create table Huisdieren (
+Naam varchar(100),
+Diersoort varchar(100),
+Leeftijd int
+);
+```
+
+</details>
+
 ## Oefening Labo 02 - 02
 
 Plaats nu informatie in de tabellen van de vorige oefening:
@@ -65,9 +97,49 @@ Zorg dat je code uitvoert en controleer dat je de gegevens kan zien door op de k
 
 Als je te veel gegevens hebt, kan je altijd de tabellen droppen (via rechtermuisknop), opnieuw aanmaken via het vorige script en dit script opnieuw uitvoeren.
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- vraag 2
+insert into Liedjes (Artiest, AantalVerkocht, Titel, ReleaseJaar)
+values
+("Ghost", 35000, "Call Me Little Sunshine", 2021),
+("Led Zeppelin", 1000000, "Stairway to Heaven", 1973),
+("Jack Broadbent", 1000, "Woman", 2015),
+("Larkin Poe", 15000, "Tom Devil", 2013);
+
+insert into Geboortes (Voornaam, Familienaam, TijdstipGeboorte, GewichtInKilogram)
+values
+("Adnane", "Lazaar", "1973-07-13 08:11:25", 4.1),
+("Dilara", "El Farisi", "1999-10-25 06:11:13", 3.7),
+("Mehmet", "Cetinel", "1995-04-01 15:58:50", 2.9),
+("Thijs", "Verbeeck", "1990-08-15 19:23:12", 2.7);
+
+insert into Huisdieren (Naam, Diersoort, Leeftijd)
+values
+('Misty', 'Hond', 9),
+('Ming', 'Hond', 11),
+('Rambo', 'Kat', 16);
+```
+
+</details>
+
 ## Oefening Labo 02 - 03
 
 Verwijder de tabel `Huisdieren`, inclusief alle data, enkel en alleen met een geschreven instructie. Noem je script Databanken/Labo 2/03.sql.
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- vraag 3
+drop table Huisdieren;
+```
+
+</details>
 
 ## Oefening Labo 02 - 04
 
@@ -76,6 +148,20 @@ Schrijf een instructie die de voornaam en familienaam laat zien van alle kindjes
 <table><thead><tr><th>Voornaam</th><th>Familienaam</th><th>GewichtInKilogram</th></tr></thead><tbody><tr><td>Dilara</td><td>El Farisi</td><td>3.7</td></tr><tr><td>Adnane</td><td>Lazaar</td><td>4.1</td></tr></tbody></table>
 
 Sla je script op als Databanken/Labo 2/04.sql.
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- vraag 4
+select Voornaam, Familienaam, GewichtInKilogram 
+from Geboortes 
+where GewichtInKilogram >= 3 
+order by GewichtInKilogram;
+```
+
+</details>
 
 ## Oefening Labo 02 - 05
 
@@ -86,3 +172,17 @@ Je uitvoer zou als volgt moeten zijn:
 <table><thead><tr><th>Titel</th><th>Artiest</th><th>AantalVerkocht</th></tr></thead><tbody><tr><td>Stairway to Heaven</td><td>Led Zeppelin</td><td>1000000</td></tr><tr><td>Call Me Little Sunshine</td><td>Ghost</td><td>35000</td></tr><tr><td>Tom Devil</td><td>Larkin Poe</td><td>15000</td></tr></tbody></table>
 
 Sla je script op als Databanken/Labo 2/05.sql.
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- vraag 5
+select Titel, Artiest, AantalVerkocht
+from Liedjes
+where AantalVerkocht >= 5000
+order by AantalVerkocht desc;
+```
+
+</details>

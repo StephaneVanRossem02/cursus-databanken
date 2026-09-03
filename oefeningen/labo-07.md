@@ -281,3 +281,82 @@ INSERT INTO Auteur(Voornaam, Familienaam)
 ```
 
 </details>
+
+## Modeloplossingen
+
+<details>
+<summary>Toon modeloplossingen</summary>
+
+```sql
+-- ===== aptunes__0024.sql =====
+use ApDB;
+/* Van waar nu "Naam" in plaats van "Artiest"?
+ * Dat komt omdat je de nieuwe tabel al "Artiesten" noemt.
+ * "Artiesten.Naam" heeft een duidelijkere betekenis dan "Artiesten.Artiest".
+ */
+create table Artiesten(
+Naam varchar(100) not null,
+Id int auto_increment primary key);
+
+
+-- ===== aptunes__0025.sql =====
+use ApDB;
+insert into Artiesten(Naam)
+(select distinct Artiest from Nummers);
+
+
+-- ===== aptunes__0026.sql =====
+use ApDB;
+alter table Nummers
+add column Artiesten_Id int,
+add constraint fk_Nummers_Artiesten foreign key (Artiesten_Id) references Artiesten(Id);
+
+
+-- ===== aptunes__0027.sql =====
+use ApDB;
+set sql_safe_updates = 0;
+update Nummers inner join Artiesten
+on Artiesten.Naam = Nummers.Artiest
+set Nummers.Artiesten_Id = Artiesten.Id;
+set sql_safe_updates = 1;
+
+
+-- ===== aptunes__0028.sql =====
+use ApDB;
+alter table Nummers
+drop column Artiest;
+alter table Nummers
+change Artiesten_Id Artiesten_Id int not null;
+/* eigenlijk kan dit ook in één instructie,
+ * maar dat behoort niet tot de leerstof
+ * dat zou zijn:
+ * alter table Nummers drop column Artiest, change Artiesten_Id Artiesten_Id int not null;
+ * kan zelfs nog korter, maar opnieuw: geen leerstof
+ * alter table Nummers drop column Artiest, modify Artiesten_Id int not null;
+ */
+
+
+-- ===== aptunes__0029.sql =====
+use ApDB;
+/* Hier noemen we de kolom "Titel" in plaats van "Album".
+ * Dat komt omdat de betekenis dan duidelijker is.
+ * "Albums.Album" zou niet zo veel zeggen als "Albums.Titel".
+ */
+create table Albums (Titel varchar(100) not null,
+Id int auto_increment primary key);
+
+
+-- ===== aptunes__0030.sql =====
+use ApDB;
+insert into Albums(Titel)
+(select distinct Album from Nummers);
+
+
+-- ===== aptunes__0031.sql =====
+use ApDB;
+alter table Albums
+add column Artiesten_Id int,
+add constraint fk_Albums_Artiesten foreign key (Artiesten_Id) references Artiesten(Id);
+```
+
+</details>

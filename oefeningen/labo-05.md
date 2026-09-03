@@ -17,13 +17,54 @@ Download dit script en voer het eerst uit. Het maakt de databank en tabellen aan
 
 Laat zien hoeveel liedjes er in het systeem staan. Het zouden er 3123 moeten zijn.
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+create database if not exists DbLabo05;
+
+use DbLabo05;
+
+-- Oefening 05-01
+select count(*) from Liedjes;
+```
+
+</details>
+
 ## Oefening 05-02
 
 Laat zien welk getal je krijgt als je alle royalties op nummers van Led Zeppelin optelt. Dat zou 4905 moeten zijn.
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening 05-02
+select sum(Royalties)
+from Liedjes
+where Artiest = 'Led Zeppelin';
+```
+
+</details>
+
 ## Oefening 05-03
 
 Laat zien hoeveel nummers in het systeem zijn uitgekomen voor 1990. Het zouden er 1804 moeten zijn. Nummers uitgekomen in 1990 horen hier dus niet bij.
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening 05-03
+select count(*)
+from Liedjes
+where ReleaseJaar < 1990;
+```
+
+</details>
 
 ## Oefening 05-04
 
@@ -35,6 +76,19 @@ Je zou moeten zien:
 
 De hoofding is hier aangepast met `AS`.
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening 05-04
+select count(*) as 'Aantal nummers'
+from Liedjes
+group by ReleaseJaar < 1990;
+```
+
+</details>
+
 ## Oefening 05-05
 
 Laat per genre zien hoeveel nummers er in het systeem zijn. Toon van kleinere naar grotere aantallen.
@@ -42,6 +96,20 @@ Laat per genre zien hoeveel nummers er in het systeem zijn. Toon van kleinere na
 Het resultaat zou moeten zijn:
 
 <table><thead><tr><th>Aantal</th><th>Genre</th></tr></thead><tbody><tr><td>20</td><td>Rap</td></tr><tr><td>30</td><td>Electro</td></tr><tr><td>47</td><td>Pop</td></tr><tr><td>94</td><td>Blues</td></tr><tr><td>126</td><td>Klassiek</td></tr><tr><td>129</td><td>Jazz</td></tr><tr><td>402</td><td>Metal</td></tr><tr><td>604</td><td>Wereldmuziek</td></tr><tr><td>1671</td><td>Rock</td></tr></tbody></table>
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening 05-05
+select count(*) as 'Aantal', Genre
+from Liedjes
+group by Genre
+order by count(*);
+```
+
+</details>
 
 ## Oefening 05-06
 
@@ -52,15 +120,56 @@ SELECT DISTINCT Artiest
 FROM Liedjes;
 ```
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening 05-06
+select Artiest
+from Liedjes
+group by Artiest;
+```
+
+</details>
+
 ## Oefening 05-07
 
 Toon het aantal artiesten in het systeem. Dit is 180.
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening 05-07
+select count(distinct Artiest) from Liedjes;
+```
+
+</details>
 
 ## Oefening 05-08
 
 Toon alle genres waarvan de nummers gemiddeld minstens 5 minuten duren, in volgorde van hun gemiddelde duurtijd. Het resultaat is (met aanpassing van de hoofdingen, die je zelf ook zou moeten doen):
 
 <table><thead><tr><th>Genre</th><th>Gemiddelde duurtijd</th></tr></thead><tbody><tr><td>Electro</td><td>302.5000</td></tr><tr><td>Metal</td><td>308.3781</td></tr><tr><td>Klassiek</td><td>1450.3254</td></tr></tbody></table>
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening 05-08
+select Genre, avg(Duurtijd) as 'Gemiddelde duurtijd'
+from Liedjes
+group by Genre
+-- op deze manier vermijd je 'Gemiddelde duurtijd' met spatie...
+having avg(Duurtijd) >= 5 * 60
+-- maar met backticks kan je ook spaties gebruiken in een alternatieve benaming in expressiecontext
+order by `Gemiddelde duurtijd`;
+```
+
+</details>
 
 ## Oefening 05-09
 
@@ -70,6 +179,21 @@ Het resultaat zou moeten zijn:
 
 <table><thead><tr><th>Decennium</th><th>Aantal nummers</th></tr></thead><tbody><tr><td>1960</td><td>474</td></tr><tr><td>1970</td><td>455</td></tr><tr><td>1980</td><td>451</td></tr><tr><td>1990</td><td>457</td></tr></tbody></table>
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening 05-09
+select truncate(ReleaseJaar,-1) as 'Decennium', count(*) as 'Aantal nummers'
+from Liedjes
+group by Decennium
+having count(*) >= 450
+order by Decennium;
+```
+
+</details>
+
 ## Oefening 05-10
 
 Het blijkt dat erg lange klassieke nummers niet erg winstgevend zijn. Toon daarom alfabetisch alle artiesten die klassieke nummers hebben, maar enkel als hun klassieke nummers ook gemiddeld langer dan 8 minuten duren.
@@ -77,6 +201,25 @@ Het blijkt dat erg lange klassieke nummers niet erg winstgevend zijn. Toon daaro
 Het resultaat is:
 
 <table><thead><tr><th>Artiest</th></tr></thead><tbody><tr><td>Chicago Symphony Orchestra &amp; Fritz Reiner</td></tr><tr><td>Emanuel Ax, Eugene Ormandy &amp; Philadelphia Orchestra</td></tr><tr><td>Felix Schmidt, London Symphony Orchestra &amp; Rafael Frühbeck de Burgos</td></tr><tr><td>Heroes</td></tr><tr><td>Leonard Bernstein &amp; New York Philharmonic</td></tr><tr><td>Lost</td></tr><tr><td>Mela Tenenbaum, Pro Musica Prague &amp; Richard Kapp</td></tr><tr><td>Richard Marlow &amp; The Choir of Trinity College, Cambridge</td></tr><tr><td>Scholars Baroque Ensemble</td></tr></tbody></table>
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening 05-10
+/* Dit is niet de enige optie.
+   Hier kan je ook WHERE Genre = 'Klassiek' gebruiken.
+   Dan wordt group by Artiest genoeg.
+   Dan is having ook niet meer nodig. */
+select Artiest
+from Liedjes
+group by Artiest, Genre
+having avg(Duurtijd) >= 8 * 60 and Genre = 'Klassiek'
+order by Artiest;
+```
+
+</details>
 
 ## Oefening 05-11
 
@@ -86,6 +229,21 @@ Deze albums zijn:
 
 <table><thead><tr><th>Album</th></tr></thead><tbody><tr><td>The Song Remains The Same (Disc 2)</td></tr><tr><td>The Song Remains The Same (Disc 1)</td></tr><tr><td>Presence</td></tr><tr><td>Physical Graffiti [Disc 2]</td></tr><tr><td>Led Zeppelin III</td></tr><tr><td>Led Zeppelin II</td></tr><tr><td>Led Zeppelin I</td></tr><tr><td>IV</td></tr><tr><td>In Through The Out Door</td></tr><tr><td>Greatest Hits</td></tr><tr><td>BBC Sessions [Disc 2] [Live]</td></tr><tr><td>BBC Sessions [Disc 1] [Live]</td></tr></tbody></table>
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening 05-11
+select Album
+from Liedjes
+group by Album
+having sum(Royalties) > 300 and group_concat(Genre) like '%rock%'
+order by Album desc;
+```
+
+</details>
+
 ## Oefening 05-12
 
 Toon per genre het hoogste aantal royalties dat één nummer heeft. Neem hierbij enkel de genres in beschouwing waarvan nummers gemiddeld 4 minuten of langer duren en negeer liedjes waarvoor de royalties niet ingevuld werden. Orden van laagste naar hoogste royalties.
@@ -93,3 +251,20 @@ Toon per genre het hoogste aantal royalties dat één nummer heeft. Neem hierbij
 Het antwoord:
 
 <table><thead><tr><th>Genre</th><th>Hoogste royalties</th></tr></thead><tbody><tr><td>Blues</td><td>38</td></tr><tr><td>Metal</td><td>49</td></tr><tr><td>Klassiek</td><td>102</td></tr><tr><td>Rock</td><td>193</td></tr></tbody></table>
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening 05-12
+-- merk op: max negeert null waarden
+-- dus produceert enkel null als elk liedje in een genre geen royalties heeft
+select Genre, max(Royalties) as 'Hoogste royalties' from Liedjes
+where Royalties is not null
+group by Genre
+having avg(Duurtijd) >= 4 * 60
+order by max(Royalties);
+```
+
+</details>

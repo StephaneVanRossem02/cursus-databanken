@@ -28,6 +28,22 @@ De eerste paar rijen zijn:
 
 <table><thead><tr><th>Titel</th><th>Artiest</th></tr></thead><tbody><tr><td>Clair de Lune</td><td>Claude Debussy</td></tr><tr><td>Suite bergamesqu</td><td>Claude Debussy</td></tr><tr><td>Stairway to Heaven</td><td>Led Zeppelin</td></tr><tr><td>When the Levee Breaks</td><td>Led Zeppelin</td></tr><tr><td>Little Sun</td><td>Blues Pills</td></tr></tbody></table>
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+USE DbLabo09;
+
+-- Oefening Labo 09-01
+select Liedjes.Titel, Artiesten.Naam
+from Liedjes 
+inner join Artiesten
+on Liedjes.Artiesten_Id = Artiesten.Id;
+```
+
+</details>
+
 ## Oefening 09-02
 
 
@@ -41,6 +57,21 @@ De eerste paar rijen zijn:
 
 
 <table><thead><tr><th>Titel</th><th>Artiest</th></tr></thead><tbody><tr><td>Amazing</td><td>Aerosmith</td></tr><tr><td>Angel</td><td>Aerosmith</td></tr><tr><td>All I Really Want</td><td>Alanis Morissette</td></tr><tr><td>Angela</td><td>Antônio Carlos Jobim</td></tr><tr><td>All For You</td><td>Black Label Society</td></tr></tbody></table>
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening Labo 09-02
+select Liedjes.Titel, Artiesten.Naam
+from Liedjes 
+inner join Artiesten
+on Liedjes.Artiesten_Id = Artiesten.Id
+where Liedjes.Titel like 'A%';
+```
+
+</details>
 
 ## Oefening 09-03
 
@@ -56,6 +87,20 @@ De eerste paar rijen zijn:
 
 <table><thead><tr><th>Titel</th><th>Artiest</th></tr></thead><tbody><tr><td>Verzameld werk van Debussy</td><td>Claude Debussy</td></tr><tr><td>Led Zeppelin IV</td><td>Led Zeppelin</td></tr><tr><td>BBC Sessions [Disc 1] [Live]</td><td>Led Zeppelin</td></tr><tr><td>Physical Graffiti [Disc 1]</td><td>Led Zeppelin</td></tr><tr><td>BBC Sessions [Disc 2] [Live]</td><td>Led Zeppelin</td></tr></tbody></table>
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening Labo 09-03
+select Albums.Titel, Artiesten.Naam
+from Albums 
+inner join Artiesten
+on Albums.Artiesten_Id = Artiesten.Id;
+```
+
+</details>
+
 ## Oefening 09-04
 
 
@@ -65,6 +110,21 @@ Toon met één instructie hoe veel liedjes Led Zeppelin heeft. Het is niet toege
 
 
 Het antwoord is 90.
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening Labo 09-04
+select count(*)
+from (Liedjes
+inner join Artiesten
+on Liedjes.Artiesten_Id = Artiesten.Id)
+where Artiesten.Naam = 'Led Zeppelin';
+```
+
+</details>
 
 ## Oefening 09-05
 
@@ -80,6 +140,20 @@ De eerste rijen van het resultaat:
 
 <table><thead><tr><th>Liedje</th><th>Album</th></tr></thead><tbody><tr><td>Clair de Lune</td><td>1</td></tr><tr><td>Suite bergamesqu</td><td>1</td></tr><tr><td>Stairway to Heaven</td><td>2</td></tr><tr><td>When the Levee Breaks</td><td>2</td></tr><tr><td>Little Sun</td><td>3</td></tr></tbody></table>
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening Labo 09-05
+select Liedjes.Titel, Albums_Id
+from (LiedjeOpAlbum
+inner join Liedjes
+on Liedjes_Id = Liedjes.Id);
+```
+
+</details>
+
 ## Oefening 09-06
 
 
@@ -93,3 +167,19 @@ De eerste rijen zijn:
 
 
 <table><thead><tr><th>Liedje</th><th>Album</th></tr></thead><tbody><tr><td>Clair de Lune</td><td>Verzameld werk van Debussy</td></tr><tr><td>Suite bergamesqu</td><td>Verzameld werk van Debussy</td></tr><tr><td>Stairway to Heaven</td><td>Led Zeppelin IV</td></tr><tr><td>When the Levee Breaks</td><td>Led Zeppelin IV</td></tr><tr><td>Little Sun</td><td>Blues Pills</td></tr></tbody></table>
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening Labo 09-06
+select Liedjes.Titel, Albums.Titel
+from LiedjeOpAlbum
+inner join Liedjes
+on Liedjes_Id = Liedjes.Id
+inner join Albums
+on Albums_Id = Albums.Id;
+```
+
+</details>

@@ -22,6 +22,24 @@ van elke gebruiker een getal zien staan. Noem je script `07.sql`.
 
 <table><thead><tr><th>Gebruikersnaam</th><th>Aantal albums</th></tr></thead><tbody><tr><td>musicfan111</td><td>151</td></tr><tr><td>tuneBoY5</td><td>164</td></tr><tr><td>drbeatz</td><td>164</td></tr><tr><td>trebletrouble</td><td>151</td></tr><tr><td>neverloudenough</td><td>164</td></tr></tbody></table>
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Labo 10
+USE DbLabo10;
+
+-- Oefening Labo 10-01
+SELECT Gebruikersnaam, count(*)
+FROM Gebruikers
+INNER JOIN GebruikerHeeftAlbum
+ON Gebruikers.Id = GebruikerHeeftAlbum.Gebruikers_Id
+GROUP BY Gebruikersnaam;
+```
+
+</details>
+
 ## Oefening Labo 10-02
 
 Toon alle combinaties van een gebruiker en een album in de collectie
@@ -31,6 +49,22 @@ een titel zien staan. Noem je script `08.sql`.
 De eerste paar rijen zijn (al kan jouw resultaatvolgorde variëren):
 
 <table><thead><tr><th>Gebruikersnaam</th><th>Album</th></tr></thead><tbody><tr><td>musicfan111</td><td>Live After Death</td></tr><tr><td>musicfan111</td><td>Live At Donington 1992 (Disc 1)</td></tr><tr><td>musicfan111</td><td>Live At Donington 1992 (Disc 2)</td></tr><tr><td>musicfan111</td><td>No Prayer For The Dying</td></tr></tbody></table>
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening Labo 10-02
+SELECT Gebruikersnaam, Albums.Titel
+FROM Gebruikers
+INNER JOIN GebruikerHeeftAlbum
+ON Gebruikers.Id = GebruikerHeeftAlbum.Gebruikers_Id
+INNER JOIN Albums
+ON Albums.Id = Albums_Id;
+```
+
+</details>
 
 ## Oefening Labo 10-03
 
@@ -46,6 +80,23 @@ Het resultaat:
 
 <table><thead><tr><th>Gebruikersnaam</th><th>Titel</th></tr></thead><tbody><tr><td>musicfan111</td><td>Eat The Rich</td></tr></tbody></table>
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening Labo 10-03
+SELECT Gebruikersnaam, Liedjes.Titel
+FROM Gebruikers
+INNER JOIN GebruikerHeeftLiedje
+ON Gebruikers.Id = GebruikerHeeftLiedje.Gebruikers_Id
+INNER JOIN Liedjes
+ON Liedjes.Id = Liedjes_Id
+WHERE Favoriet = 0;
+```
+
+</details>
+
 ## Oefening Labo 10-04
 
 Laat voor elke artiest het hoogste aantal royalties zien dat deze
@@ -55,6 +106,21 @@ Voorbeelduitvoer:
 
 <table><thead><tr><th>Artiest</th><th>Hoogste royalties</th></tr></thead><tbody><tr><td>Claude Debussy</td><td>4</td></tr><tr><td>Led Zeppelin</td><td>100</td></tr><tr><td>Blues Pills</td><td>18</td></tr><tr><td>Ghostface Killah</td><td>8</td></tr><tr><td>AC/DC</td><td>22</td></tr></tbody></table>
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening Labo 10-04
+SELECT Artiesten.Naam, max(Royalties)
+FROM Artiesten
+INNER JOIN Liedjes
+ON Liedjes.Artiesten_Id = Artiesten.Id
+GROUP BY Artiesten.Id;
+```
+
+</details>
+
 ## Oefening Labo 10-05
 
 Laat per album zien hoe lang het langste liedje op dat album duurt.
@@ -63,6 +129,22 @@ Noem je script `11.sql`.
 Gedeeltelijke uitvoer:
 
 <table><thead><tr><th>Albumtitel</th><th>Langste duurtijd</th></tr></thead><tbody><tr><td>Verzameld werk van Debussy</td><td>160</td></tr><tr><td>Led Zeppelin IV</td><td>420</td></tr><tr><td>Blues Pills</td><td>300</td></tr><tr><td>Lady in Gold</td><td>300</td></tr><tr><td>Supreme Clientele</td><td>99</td></tr></tbody></table>
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening Labo 10-05
+SELECT Albums.Titel, max(Duurtijd) FROM LiedjeOpAlbum
+INNER JOIN Albums
+ON Albums.Id = Albums_Id
+INNER JOIN Liedjes
+ON Liedjes.Id = Liedjes_Id
+GROUP BY Albums.Id;
+```
+
+</details>
 
 ## Oefening Labo 10-06
 
@@ -75,3 +157,19 @@ Toon hoe veel albums van elke artiest elke gebruiker heeft. Toon ze
 van grootste naar kleinste aantal.
 
 <table><thead><tr><th>Gebruikersnaam</th><th>Artiest</th><th>Aantal albums van deze artiest in de collectie</th></tr></thead><tbody><tr><td>tuneBoY5</td><td>Iron Maiden</td><td>21</td></tr><tr><td>trebletrouble</td><td>Iron Maiden</td><td>21</td></tr><tr><td>neverloudenough</td><td>Iron Maiden</td><td>21</td></tr><tr><td>neverloudenough</td><td>Led Zeppelin</td><td>14</td></tr><tr><td>musicfan111</td><td>Iron Maiden</td><td>13</td></tr></tbody></table>
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening Labo 10-06
+SELECT Gebruikersnaam, Artiesten.Naam, count(*) FROM GebruikerHeeftAlbum
+INNER JOIN Gebruikers ON Gebruikers.Id = Gebruikers_Id
+INNER JOIN Albums ON Albums_Id = Albums.Id
+INNER JOIN Artiesten ON Albums.Artiesten_Id = Artiesten.Id
+GROUP BY Gebruikersnaam, Artiesten.Naam
+ORDER BY count(*) desc;
+```
+
+</details>

@@ -140,6 +140,21 @@ Brussel    Yassin
 …          …
 ```
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- 1. VIEW 'Alle_Klanten'
+CREATE VIEW Alle_Klanten
+AS
+SELECT Gemeente, Naam
+FROM Klanten
+ORDER BY Gemeente, Naam;
+```
+
+</details>
+
 ## Opgave 2
 
 Maak een view ‘Alle_Klanten_Brussel_Antwerpen’ die zich op de vorige view baseert, maar enkel klanten uit Brussel en Antwerpen weerhoudt. Voorbeeld van output:
@@ -151,6 +166,21 @@ Antwerpen  Felix
 Brussel    Lina
 Brussel    Yassin
 ```
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- 2. VIEW 'Alle_Klanten_Brussel_Antwerpen'
+CREATE VIEW Alle_Klanten_Brussel_Antwerpen
+AS
+SELECT *
+FROM Alle_Klanten
+WHERE Gemeente IN ('Brussel', 'Antwerpen');
+```
+
+</details>
 
 ## Opgave 3
 
@@ -165,6 +195,24 @@ Elena                              3
 …
            …
 ```
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- 3. VIEW 'Aantal_Bestellingen_Per_Klant'
+CREATE VIEW Aantal_Bestellingen_Per_Klant
+AS
+SELECT Naam AS Klant, COUNT(*) AS 'Aantal bestellingen'
+FROM Klanten
+INNER JOIN Bestellingen
+ON Klanten.Id = Klanten_Id
+GROUP BY 1
+ORDER BY 1;
+```
+
+</details>
 
 ## Opgave 4
 
@@ -183,6 +231,21 @@ Maak een view ‘Klanten_Zonder_Bestellingen’ die hetzelfde doet als de vorige
 
                        …         …
 ```
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- 4. VIEW 'Klanten_Zonder_Bestellingen'
+CREATE VIEW Klanten_Zonder_Bestellingen
+AS
+SELECT Naam AS 'Klant', 0 AS 'Aantal bestellingen'
+FROM Klanten
+WHERE Id NOT IN (SELECT DISTINCT Klanten_Id FROM Bestellingen);
+```
+
+</details>
 
 ## Opgave 5
 
@@ -212,6 +275,24 @@ Voorbeeld van output:
                                  …
 ```
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- 5. VIEW 'Aantal_Bestellingen_Per_Klant_Alle'
+CREATE VIEW Aantal_Bestellingen_Per_Klant_Alle
+AS
+SELECT Klant, `Aantal bestellingen`
+FROM Aantal_Bestellingen_Per_Klant
+UNION ALL
+SELECT Klant, `Aantal bestellingen`
+FROM Klanten_Zonder_Bestellingen
+ORDER BY `Aantal bestellingen` DESC, Klant;
+```
+
+</details>
+
 ## Opgave 6
 
 Maak een view ‘Goede_Klanten’ die alle klanten toont met het aantal bestellingen dat ze ooit plaatsten, als dat er minstens 3 zijn. Voorbeeld van output:
@@ -223,11 +304,44 @@ Maak een view ‘Goede_Klanten’ die alle klanten toont met het aantal bestelli
                        Elena                             3
 ```
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- 6. VIEW 'Goede_Klanten'
+CREATE VIEW Goede_Klanten
+AS
+SELECT Klant, `Aantal bestellingen`
+FROM aantal_bestellingen_per_klant
+WHERE `Aantal bestellingen` >= 3;
+```
+
+</details>
+
 ## Opgave 7
 
 Maak een view ‘Alle_Bestellingen’ die voor elke klant zijn bestellingen toont (naam, gemeente, omschrijving van het product, en het aantal bestelde items van het product). Zorg ervoor dat je output er als volgt uitziet:
 
 Naam Gemeente ProductOmschrijving Aantal Amina Mechelen Camera 5 Amir Gent Boekenbon 2 Amir Gent Camera Amir Gent Sneaker 15 Amir Gent Sportabonnement 14 Aya Leuven Koptelefoon 16 … … … 3 …
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- 7. VIEW 'Alle_Bestellingen'
+CREATE VIEW Alle_Bestellingen
+AS
+SELECT Naam, Gemeente, ProductOmschrijving, Aantal
+FROM Klanten INNER JOIN Bestellingen
+ON Klanten.Id = Klanten_Id
+INNER JOIN Producten
+ON Producten_Id = Producten.Id
+ORDER BY 1, 3;
+```
+
+</details>
 
 ## Opgave 8
 
@@ -244,11 +358,50 @@ Elena  Antwerpen  Koptelefoon                    13
                                        …
 ```
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- 8. VIEW 'Alle_Grote_Bestellingen'
+CREATE VIEW Alle_Grote_Bestellingen
+AS
+SELECT *
+FROM Alle_Bestellingen
+WHERE Aantal > (SELECT AVG(Aantal) FROM bestellingen);
+```
+
+</details>
+
 ## Opgave 9
 
 Schrijf een stored procedure met de naam ‘zoek_klanten_op_naam’, waaraan je een zoekterm kan meesturen. De stored procedure toont een lijst van alle klanten waarvan de zoekterm in de naam voorkomt. Een voorbeeld van de output van het aanroepen van de SP met de zoekterm ‘na’:
 
 Id Naam Gemeente 2 Lina Brussel 4 Elena Antwerpen 8 Amina Mechelen 20 Lina Kortrijk 22 Nina Roeselare
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- 9. SP 'zoek_klanten_op_naam'
+DROP procedure IF EXISTS `zoek_klanten_op_naam`;
+
+DELIMITER $$
+USE `labo16`$$
+CREATE PROCEDURE `zoek_klanten_op_naam` (IN zoek_term VARCHAR(50))
+BEGIN
+	SELECT *
+    FROM klanten
+    WHERE Naam LIKE CONCAT('%', zoek_term, '%');
+END$$
+
+DELIMITER ;
+
+CALL PROCEDURE zoek_klanten_op_naam('na')
+```
+
+</details>
 
 ## Opgave 10
 
@@ -256,14 +409,97 @@ Schrijf een stored procedure met de naam ‘aantal_klanten’ die op het scherm 
 
 @aantal 25
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- 10. SP 'aantal_klanten'
+DROP procedure IF EXISTS `aantal_klanten`;
+
+DELIMITER $$
+USE `labo16`$$
+CREATE PROCEDURE `aantal_klanten` (OUT aantal int)
+BEGIN
+	SET aantal = (SELECT COUNT(*)
+			FROM klanten);
+-- dit kon ook opgelost worden met: INTO aantal
+END$$
+
+DELIMITER ;
+
+-- oproep SP voor opgave 2
+CALL aantal_klanten(@aantal);
+SELECT @aantal;
+```
+
+</details>
+
 ## Opgave 11
 
 Schrijf een stored procedure met de naam ‘klanten_met_minimaal_X_bestellingen’ waarmee je een aantal kan meesturen. Zorg ervoor dat er een lijst wordt getoond van klanten die minimaal het meegestuurde aantal bestellingen plaatsten. Een voorbeeld van de output van het aanroepen van de SP met de waarde 4:
 
 Klant Aantal bestellingen Amir 4 Yassin 6
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- 11. 'SP klanten_met_minimaal_X_bestellingen'
+DROP procedure IF EXISTS `klanten_met_minimaal_X_bestellingen`;
+
+DELIMITER $$
+USE `labo16`$$
+CREATE PROCEDURE `klanten_met_minimaal_X_bestellingen` (IN aantal int)
+BEGIN
+	SELECT Naam AS Klant, COUNT(*) AS `Aantal bestellingen`
+	FROM Klanten
+	INNER JOIN Bestellingen
+	ON Klanten.Id = Klanten_Id
+	GROUP BY Naam
+	HAVING `Aantal bestellingen` >= aantal
+	ORDER BY 1;
+END$$
+
+DELIMITER ;
+
+-- oproepen SP
+CALL klanten_met_minimaal_X_bestellingen(4);
+```
+
+</details>
+
 ## Opgave 12
 
 Schrijf een stored procedure met de naam ‘toplijst_best_verkochte_producten’ waarmee je een aantal kan meesturen. Er wordt een lijst getoond waarin per product het aantal verkochte items getoond wordt, gesorteerd op meest verkochte producten. Het meegestuurde aantal bepaalt hoeveel rijen de resultaten tabel maximaal mag tonen (tip: LIMIT). Een voorbeeld van de output van het aanroepen van de SP met de waarde 3:
 
 Product Aantal Sportabonnement 22 Camera 20 Sneaker 18
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- 12. SP 'toplijst_best_verkochte_producten'
+DROP procedure IF EXISTS `toplijst_best_verkochte_producten`;
+
+DELIMITER $$
+USE `labo16`$$
+CREATE PROCEDURE `toplijst_best_verkochte_producten` (IN aantal_in_top int)
+BEGIN
+	SELECT ProductOmschrijving AS Product, SUM(Aantal) AS Aantal
+	FROM Bestellingen INNER JOIN Producten
+	ON Producten_Id = Producten.Id
+	GROUP BY ProductOmschrijving
+	ORDER BY 2 DESC, 1
+	LIMIT aantal_in_top;
+END$$
+
+DELIMITER ;
+
+-- oproepen SP:
+CALL toplijst_best_verkochte_producten(3)
+```
+
+</details>

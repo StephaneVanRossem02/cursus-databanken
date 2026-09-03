@@ -192,3 +192,7 @@ SET  SQL_SAFE_UPDATES = 1;
 ```
 
 </details>
+
+## Modeloplossingen
+
+[Labo 21 - modeloplossingen (PDF)](/downloads/oefeningen/labo-21/modeloplossingen/Labo_21_modeloplossingen.pdf)

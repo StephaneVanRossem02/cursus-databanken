@@ -100,3 +100,201 @@ aantal.
 
 Deze nieuwe procedure maakt geen gebruik van
 `MockAlbumreleaseWithSuccess`. Je zal error handling moeten toepassen voor dubbele releases.
+
+## Modeloplossingen
+
+<details>
+<summary>Toon modeloplossingen</summary>
+
+```sql
+-- ===== 01.sql =====
+use aptunes;
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `MockAlbumreleases`$$
+
+CREATE PROCEDURE `MockAlbumreleases`(in extraReleases int)
+BEGIN
+	DECLARE counter int default 0;
+	DECLARE success bool default false;
+
+	REPEAT
+		CALL MockAlbumreleaseWithSuccess(success);
+		IF success THEN
+			SET counter = counter + 1;
+		END IF;
+	UNTIL counter = extraReleases
+	END REPEAT;
+END$$
+DELIMITER ;
+
+
+-- ===== 02.sql =====
+USE aptunes;
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `MockAlbumreleasesLoop`$$
+
+CREATE PROCEDURE `MockAlbumreleasesLoop`(IN extraReleases int)
+BEGIN
+	DECLARE counter int default 0;
+	DECLARE success bool;
+
+	add_loop: LOOP
+		IF counter = extraReleases THEN
+			LEAVE add_loop;
+		END IF;
+		CALL MockAlbumreleaseWithSuccess(success);
+		IF success THEN
+			SET counter = counter + 1;
+		END IF;
+	END LOOP;
+END$$
+DELIMITER ;
+
+
+-- ===== 03.sql =====
+USE aptunes;
+DELIMITER $$
+DROP FUNCTION IF EXISTS `PercentageOf`$$
+
+CREATE FUNCTION `PercentageOf`(percentage int, waarde double)
+RETURNS double
+DETERMINISTIC
+BEGIN
+	IF percentage IS NULL OR waarde IS NULL THEN
+		SIGNAL SQLSTATE '45000';
+	END IF;
+	RETURN waarde * percentage / 100;
+END$$
+DELIMITER ;
+
+
+-- ===== 04.sql =====
+USE aptunes;
+DELIMITER $$
+DROP FUNCTION IF EXISTS `RandUpTo`$$
+
+CREATE FUNCTION `RandUpTo`(upperBound int)
+RETURNS int
+BEGIN
+	IF upperBound IS NULL OR upperBound < 1 THEN
+		SIGNAL SQLSTATE '45000';
+	END IF;
+	RETURN FLOOR(1 + (RAND() * upperBound));
+END$$
+DELIMITER ;
+
+
+-- ===== 05.sql =====
+USE aptunes;
+DELIMITER $$
+DROP FUNCTION IF EXISTS `RandBetween`$$
+CREATE FUNCTION `RandBetween`(lower int, upper int)
+RETURNS int
+BEGIN
+	DECLARE difference int default 0;
+	DECLARE randomOffset int default 0;
+
+	IF lower IS NULL OR upper IS NULL or lower > upper THEN 
+		SIGNAL SQLSTATE '45000';
+	END IF;
+	SET difference = upper - lower; -- bv. 20-10: verschil is 10, 11 mogelijkheden
+	SET randomOffset = RandUpTo(difference + 1);
+	RETURN lower + randomOffset - 1;
+END$$
+DELIMITER ;
+
+
+-- ===== 06.sql =====
+USE aptunes;
+DELIMITER $$
+DROP FUNCTION IF EXISTS `ConvertFeetToMeters`$$
+CREATE FUNCTION `ConvertFeetToMeters`(feet int, inches int)
+RETURNS double
+DETERMINISTIC
+BEGIN
+	IF feet IS NULL OR inches IS NULL THEN
+		SIGNAL SQLSTATE '45000';
+	END IF;
+    RETURN ROUND(feet * 0.3048 + inches * 0.0254, 2);
+END$$
+DELIMITER ;
+
+
+-- ===== 07.sql =====
+USE aptunes;
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `DemonstrateHandlerOrder`$$
+CREATE PROCEDURE `DemonstrateHandlerOrder`()
+BEGIN
+	DECLARE randomNumber int;
+	DECLARE EXIT HANDLER FOR SQLSTATE '45002'
+		SELECT 'State 45002 opgevangen. Geen probleem.';
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
+		SELECT 'Een algemene fout opgevangen.';
+	SET randomNumber = RandUpTo(3);
+	IF randomNumber = 1 THEN
+		SIGNAL SQLSTATE '45001';
+	ELSEIF randomNumber = 2 THEN
+		SIGNAL SQLSTATE '45002';
+	ELSE
+		SIGNAL SQLSTATE '45003';
+	END IF;
+END$$
+DELIMITER ;
+
+
+-- ===== 08.sql =====
+USE aptunes;
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `DemonstrateHandlerOrder`$$
+CREATE PROCEDURE `DemonstrateHandlerOrder`()
+BEGIN
+	DECLARE randomNumber int;
+	DECLARE EXIT HANDLER FOR SQLSTATE '45002'
+		SELECT 'State 45002 opgevangen. Geen probleem.';
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
+		RESIGNAL SET MESSAGE_TEXT = 'Ik heb mijn best gedaan!';
+	SET randomNumber = RandUpTo(3);
+	IF randomNumber = 1 THEN
+		SIGNAL SQLSTATE '45001';
+	ELSEIF randomNumber = 2 THEN
+		SIGNAL SQLSTATE '45002';
+	ELSE
+		SIGNAL SQLSTATE '45003';
+	END IF;
+END$$
+DELIMITER ;
+
+
+-- ===== 09.sql =====
+USE `aptunes`;
+DROP PROCEDURE IF EXISTS `MockAlbumreleasesAlternative`;
+
+DELIMITER $$
+CREATE PROCEDURE `MockAlbumreleasesAlternative` (in maxNumber int)
+BEGIN
+	DECLARE addedNumber int;
+	DECLARE counter int default 0;
+	DECLARE randomAlbumId int;
+	DECLARE randomBandId int;
+
+	-- als er een dubbel wordt toegevoegd, moeten we het verhogen van de counter ongedaan maken
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+		SET counter = counter - 1;
+
+	SET addedNumber = RandUpTo(maxNumber);
+	add_loop: LOOP
+		-- als we klaar zijn, verlaten we de lus
+		IF counter = addedNumber THEN
+			LEAVE add_loop;
+		END IF;
+		SELECT Id FROM Albums ORDER BY RAND() LIMIT 1 INTO randomAlbumId;
+		SELECT Id FROM Bands ORDER BY RAND() LIMIT 1 INTO randomBandId;
+		INSERT INTO Albumreleases (Albums_Id, Bands_Id)
+		VALUES (randomAlbumId, randomBandId);
+		SET counter = counter + 1;
+	END LOOP;
+END$$
+```
+
+</details>

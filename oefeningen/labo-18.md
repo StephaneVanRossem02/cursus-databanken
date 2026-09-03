@@ -251,3 +251,7 @@ Schrijf de SQL-instructie die de stored function met naam “Bestaat_Speler” a
 ## Opgave 9
 
 Schrijf de SQL-instructie die de eerder gecreëerde stored procedure met naam “SP_Toon_SpelerInfo” opnieuw uitwerkt met de volgende uitbreiding: Als het spelersnummer leeg is, dan moet de procedure nog steeds een error signaleren met boodschap “U dient een spelersnummer op te geven.”. Indien wel een spelersnummer werd meegestuurd, maar dit nummer bestaat niet in de tabel met spelers, dan moet een error gegenereerd worden met volgende boodschap: “U dient een geldig spelersnummer op te geven.”. Tip: maak gebruik van je stored function Bestaat_Speler.
+
+## Modeloplossingen
+
+[Labo 18 - modeloplossingen (PDF)](/downloads/oefeningen/labo-18/modeloplossingen/Labo_18_modeloplossingen.pdf)

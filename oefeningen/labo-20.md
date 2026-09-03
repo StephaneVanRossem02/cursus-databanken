@@ -145,3 +145,46 @@ SELECT 'regel1\nregel2\nregel3\n'
 ```
 
 </details>
+
+## Modeloplossingen
+
+<details>
+<summary>Toon modeloplossingen</summary>
+
+```sql
+-- opgave 1
+CREATE TABLE LiedjesLogs (
+    Naam VARCHAR(100) NOT NULL,
+    Liedjes_Id INT NOT NULL,
+    Aanpassing ENUM('INSERT', 'UPDATE', 'DELETE'),
+    Tijdstip DATETIME NOT NULL
+);
+
+-- geen aanpassing delimiter nodig als we maar één statement hebben in de trigger
+CREATE TRIGGER log_insert_liedjes
+	AFTER INSERT ON Liedjes FOR EACH ROW 
+    INSERT INTO LiedjesLogs VALUES (USER(), NEW.Id, 'INSERT', NOW());
+
+-- merk op: we moeten hier ofwel het oude ofwel het nieuwe Id gebruiken
+-- deels om deze reden willen we normaal niet dat Id's na aanmaak nog wijzigen
+CREATE TRIGGER log_update_liedjes
+	AFTER UPDATE ON Liedjes FOR EACH ROW 
+    INSERT INTO LiedjesLogs VALUES(USER(), OLD.Id, 'UPDATE', NOW());
+
+CREATE TRIGGER log_delete_liedjes
+	AFTER DELETE ON Liedjes FOR EACH ROW 
+    INSERT INTO LiedjesLogs VALUES(USER(), OLD.Id, 'DELETE', NOW());
+
+-- opgave 2
+delimiter $$
+CREATE TRIGGER prevent_update_id
+	BEFORE UPDATE ON Liedjes FOR EACH ROW
+	BEGIN
+		IF OLD.Id != NEW.Id THEN
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = "Niet toegelaten Id te wijzigen na aanmaak.";
+		END IF;
+	END$$
+delimiter ;
+```
+
+</details>

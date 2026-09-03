@@ -161,3 +161,161 @@ instructie geslaagd is.
 release aan te maken, krijg je de boodschap “Release geslaagd!” in het
 datavenster van Workbench. Als het niet lukt, krijg je “Release kon niet
 worden toegevoegd!”
+
+## Modeloplossingen
+
+<details>
+<summary>Toon modeloplossingen</summary>
+
+```sql
+-- ===== 01.sql =====
+USE `aptunes`;
+DROP procedure IF EXISTS `GetLiedjes`;
+
+DELIMITER $$
+
+USE `aptunes`$$
+
+CREATE PROCEDURE `GetLiedjes` (IN word VARCHAR(50))
+BEGIN
+	SELECT Titel
+	FROM Liedjes
+	WHERE Titel LIKE CONCAT('%', word, '%');
+END$$
+
+DELIMITER ;
+
+
+-- ===== 02.sql =====
+USE `aptunes`;
+DROP procedure IF EXISTS `NumberOfGenres`;
+
+DELIMITER $$
+
+USE `aptunes`$$
+
+CREATE PROCEDURE `NumberOfGenres` (out result tinyint)
+BEGIN
+	SELECT COUNT(*)
+	FROM Genres
+	INTO result;
+END$$
+
+DELIMITER ;
+
+
+-- ===== 03.sql =====
+USE `aptunes`;
+DROP procedure IF EXISTS `CleanupOldMemberships`;
+
+DELIMITER $$
+
+USE `aptunes`$$
+
+CREATE PROCEDURE `CleanupOldMemberships` (IN endDate date, OUT numberCleaned int)
+BEGIN
+	SELECT COUNT(*)
+	FROM Lidmaatschappen
+	WHERE Einddatum < endDate
+	INTO numberCleaned;
+
+	DELETE FROM Lidmaatschappen
+	WHERE Einddatum < endDate;
+
+-- sommige studenten gebruikten de eerste select niet
+-- je mag ook doen: set numberCleaned = row_count()
+-- dat moet dan *na* de DELETE doen (en behoort niet tot de leerstof)
+END$$
+
+DELIMITER ;
+
+
+-- ===== 04.sql =====
+USE `aptunes`;
+DROP procedure IF EXISTS `CreateAndReleaseAlbum`;
+
+DELIMITER $$
+
+USE `aptunes`$$
+
+CREATE PROCEDURE `CreateAndReleaseAlbum` (IN titel varchar(100), IN bands_Id int)
+BEGIN
+	INSERT INTO Albums(Titel)
+	VALUES(titel);
+
+	INSERT INTO Albumreleases(Bands_Id, Albums_Id)
+	VALUES(bands_Id, last_insert_id());
+END$$
+
+DELIMITER ;
+
+
+-- ===== 05.sql =====
+DELIMITER $$
+
+CREATE PROCEDURE `MockAlbumrelease`()
+BEGIN
+	DECLARE randomAlbumId INT DEFAULT 0;
+	DECLARE randomBandId INT DEFAULT 0;
+    
+    SELECT Id FROM Bands ORDER BY rand() LIMIT 1 INTO randomBandId;
+    SELECT Id FROM Albums ORDER BY rand() LIMIT 1 INTO randomAlbumId;
+
+	IF (randomBandId, randomAlbumId) 
+		NOT IN (SELECT Bands_Id, Albums_Id FROM Albumreleases) 
+	THEN
+		INSERT INTO Albumreleases(Bands_Id, Albums_Id)
+		VALUES(randomBandId, randomAlbumId);
+	END IF;
+END$$
+
+DELIMITER ;
+
+
+-- ===== 06.sql =====
+DELIMITER $$
+
+CREATE PROCEDURE `MockAlbumreleaseWithSuccess`(OUT success BOOL)
+BEGIN
+	DECLARE randomAlbumId INT DEFAULT 0;
+	DECLARE randomBandId INT DEFAULT 0;
+    
+	SELECT Id FROM Bands ORDER BY rand() LIMIT 1 INTO randomBandId;
+    SELECT Id FROM Albums ORDER BY rand() LIMIT 1 INTO randomAlbumId;
+
+	IF (randomBandId, randomAlbumId) 
+		NOT IN (SELECT Bands_Id, Albums_Id FROM Albumreleases) 
+	THEN
+		INSERT INTO Albumreleases(Bands_Id, Albums_Id)
+		VALUES(randomBandId, randomAlbumId);
+		SET success = 1;
+	ELSE 
+		SET success = 0;
+	END IF;
+END$$
+
+DELIMITER ;
+
+
+-- ===== 07.sql =====
+USE `aptunes`;
+DROP procedure IF EXISTS `MockAlbumreleaseWithMessage`;
+
+DELIMITER $$
+USE `aptunes`$$
+
+CREATE PROCEDURE `MockAlbumreleaseWithMessage` ()
+BEGIN
+	DECLARE success bool;
+	CALL MockAlbumreleaseWithSuccess(success);
+	IF success THEN
+		SELECT 'Release toevoegen gelukt!';
+	ELSE
+		SELECT 'Release toevoegen niet gelukt!';
+	END IF;
+END$$
+
+DELIMITER ;
+```
+
+</details>

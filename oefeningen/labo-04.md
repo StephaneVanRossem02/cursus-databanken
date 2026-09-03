@@ -25,6 +25,33 @@ Plaats hierin volgende games (je mag veronderstellen dat de release telkens om m
 
 Sla alle instructies op in één script, genaamd 04-01.sql.
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+CREATE DATABASE IF NOT EXISTS DbLabo04;
+
+USE DbLabo04;
+
+-- Oefening 04.01
+DROP TABLE IF EXISTS Games;
+
+CREATE TABLE Games (
+	Titel VARCHAR(100) NOT NULL,
+    Releasedatum DATE NOT NULL,
+    Genre VARCHAR(20) NOT NULL,
+    Uitgever VARCHAR(100)
+);
+
+INSERT INTO Games VALUES
+('The Diofield Chronicle', '2022-09-22', 'strategy', 'Square Enix'),
+('Beacon Pines', '2022-09-22', 'adventure', NULL),
+('Mario vs. Rabbids: Sparks of Hope', '2022-10-21', 'strategy', 'Ubisoft');
+```
+
+</details>
+
 ## Oefening Labo 04-02
 
 Toon alle games met een uitgever.
@@ -34,6 +61,18 @@ Je krijgt:
 <table><thead><tr><th>Titel</th><th>Releasedatum</th><th>Genre</th><th>Uitgever</th></tr></thead><tbody><tr><td>The Diofield Chronicle</td><td>22 september 2022</td><td>strategy</td><td>Square Enix</td></tr><tr><td>Mario vs. Rabbids: Sparks of Hope</td><td>21 oktober 2022</td><td>strategy</td><td>Ubisoft</td></tr></tbody></table>
 
 Sla je instructie op in één script, genaamd 04-02.sql.
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening 04.02
+SELECT * FROM Games 
+WHERE Uitgever IS NOT NULL;
+```
+
+</details>
 
 ## Oefening Labo 04-03
 
@@ -45,6 +84,18 @@ Je krijgt:
 
 Sla je instructie op in één script, genaamd 04-03.sql.
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening 04.03
+SELECT * FROM Games 
+WHERE Uitgever IS NULL;
+```
+
+</details>
+
 ## Oefening Labo 04-04
 
 Pas de bestaande tabel Games aan zodat er ook een kolom is voor de ontwikkelaar (maximum 100 tekens). Voor “The Diofield Chronicle” is dit “Lancarse”. Voor “Beacon Pines” is het “Hiding Spot” en voor “Mario vs. Rabbids: Sparks of Hope” is het ook “Ubisoft”.
@@ -52,6 +103,27 @@ Pas de bestaande tabel Games aan zodat er ook een kolom is voor de ontwikkelaar 
 Zorg ervoor dat de ontwikkelaar altijd verplicht ingevuld moet zijn.
 
 Je hebt hier meerdere instructies nodig. Sla ze op in één script, genaamd 04-04.sql.
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening 04.04
+ALTER TABLE Games
+ADD COLUMN Ontwikkelaar VARCHAR(100) NOT NULL;
+
+SET sql_safe_updates = 0;
+UPDATE Games SET Ontwikkelaar = 'Lancarse' 
+WHERE Titel = 'The Diofield Chronicle';
+UPDATE Games SET Ontwikkelaar = 'Hiding Spot' 
+WHERE Titel = 'Beacon Pines';
+UPDATE Games SET Ontwikkelaar = 'Ubisoft' 
+WHERE Titel = 'Mario vs. Rabbids: Sparks of Hope';
+set sql_safe_updates = 1;
+```
+
+</details>
 
 ## Oefening Labo 04-05
 
@@ -62,6 +134,20 @@ Je krijgt dus:
 <table><thead><tr><th>Titel</th><th>Releasedatum</th><th>Genre</th><th>Uitgever</th></tr></thead><tbody><tr><td>The Diofield Chronicle</td><td>22 september 2022</td><td>strategy</td><td><em>ontbrekende waarde</em></td></tr><tr><td>Beacon Pines</td><td>22 september 2022</td><td>adventure</td><td><em>ontbrekende waarde</em></td></tr><tr><td>Mario vs. Rabbids: Sparks of Hope</td><td>21 oktober 2022</td><td>strategy</td><td>Ubisoft</td></tr></tbody></table>
 
 Sla de instructie(s) op in 04-05.sql.
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening 04.05
+SET sql_safe_updates = 0;
+UPDATE Games SET Uitgever = NULL 
+WHERE Uitgever = 'Square Enix';
+SET sql_safe_updates = 1;
+```
+
+</details>
 
 ## Oefening Labo 04-06
 
@@ -75,6 +161,20 @@ Toon alfabetisch de titel van alle liedjes zonder artiest en zonder album. Je zo
 
 Sla de instructie(s) op in 04-06.sql.
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening 04.06
+SELECT Titel FROM Liedjes 
+WHERE Artiest IS NULL
+AND Album IS NULL
+ORDER BY 1;
+```
+
+</details>
+
 ## Oefening Labo 04-07
 
 Wis alle liedjes uit het systeem die maximum 3 minuten duren en waarvoor geen album voorzien is.
@@ -83,8 +183,45 @@ Ter controle: een voorbeeld van zo’n liedje is “Take It Or Leave It” van �
 
 Sla op als 04-07.sql.
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening 04.07
+-- Controle vooraf
+SELECT COUNT(*) FROM Liedjes 
+WHERE Album IS NULL
+AND DuurtijdInSeconden <= 180;
+
+SET sql_safe_updates = 0;
+DELETE FROM Liedjes 
+WHERE Album IS NULL
+AND DuurtijdInSeconden <= 180;
+SET sql_safe_updates = 1;
+
+-- Controle nadien
+SELECT * FROM Liedjes 
+WHERE Album IS NULL
+AND DuurtijdInSeconden <= 180;
+```
+
+</details>
+
 ## Oefening Labo 04-08
 
 Verander de naam van de kolom `Royalties` naar `VergoedingArtiest`. Het soort data in deze kolom blijft ongewijzigd.
 
 Noem je file 04-08.sql.
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+-- Oefening 04.08
+ALTER TABLE Liedjes 
+CHANGE COLUMN Royalties VergoedingArtiest INT DEFAULT NULL;
+```
+
+</details>

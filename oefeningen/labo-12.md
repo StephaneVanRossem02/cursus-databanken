@@ -76,3 +76,124 @@ Voorbeelduitvoer van een `SELECT`:
 Noem je script om deze view aan te maken `5.sql`.
 **Het wordt aangeraden hierin hulpviews te definiëren om de taak
 beter behapbaar te maken!**
+
+## Modeloplossingen
+
+<details>
+<summary>Toon modeloplossingen</summary>
+
+```sql
+-- ===== 1.sql =====
+CREATE VIEW AuteursBoeken
+AS
+SELECT CONCAT(Voornaam, ' ', Familienaam) AS Auteur, Titel
+FROM Publicaties
+INNER JOIN Boeken
+ON Boeken_Id = Boeken.Id
+INNER JOIN Personen 
+ON Personen_Id = Personen.Id;
+
+
+-- ===== 2.sql =====
+SET sql_safe_updates = 0;
+UPDATE ApDB.AuteursBoeken
+SET Titel = 'Pet Cemetery'
+WHERE Titel = 'Pet Sematary';
+SET sql_safe_updates = 1;
+
+-- Een update werkt niet voor Steven / Stephen King omdat CONCAT gebruikt wordt
+-- Het systeem kan de aangeleverde naam niet eenduidig herleiden tot een kolom in de tabel Personen.
+-- Volgend statement zal dus NIET lukken.
+UPDATE AuteursBoeken
+SET Auteur = 'Steven King'
+WHERE Auteur = 'Stephen King';
+
+
+-- ===== 3A.sql =====
+ALTER VIEW AuteursBoeken
+AS
+SELECT CONCAT(Voornaam, ' ', Familienaam) AS Auteur,
+	Titel, Boeken_Id -- Boeken.Id as Boeken_Id is even goed, want Boeken_Id = Boeken.Id volgens JOIN
+FROM Publicaties
+INNER JOIN Boeken
+ON Boeken_Id = Boeken.Id
+INNER JOIN Personen
+ON Personen_Id = Personen.Id;
+
+
+-- ===== 3B.sql =====
+CREATE VIEW GemiddeldeRatings
+AS
+SELECT Boeken_Id, AVG(Rating) AS 'Rating'
+FROM Reviews
+GROUP BY Boeken_Id;
+
+
+-- ===== 3C.sql =====
+CREATE VIEW AuteursBoekenRatings
+AS
+SELECT Auteur, Titel, Rating
+FROM AuteursBoeken
+INNER JOIN GemiddeldeRatings
+ON AuteursBoeken.Boeken_Id = GemiddeldeRatings.Boeken_Id; -- let op: ditmaal geen ....Id = ..._Id
+
+
+-- ===== 4.sql =====
+CREATE VIEW TakenVerdeling
+AS
+SELECT Voornaam, COALESCE(Omschrijving, 'Geen taak toegewezen') AS Omschrijving
+FROM Leden LEFT join Taken
+ON Leden.Id = Taken.Leden_Id
+UNION ALL
+SELECT 'Geen lid toegewezen', Omschrijving
+FROM Leden RIGHT JOIN Taken
+ON Leden.Id = Taken.Leden_Id
+WHERE Leden_Id IS NULL;
+
+/* OF:
+SELECT Voornaam, COALESCE(Omschrijving, 'Geen taak toegewezen') AS Omschrijving
+FROM Leden LEFT join Taken
+ON Leden.Id = Taken.Leden_Id
+UNION ALL
+SELECT 'Geen lid toegewezen', Omschrijving
+FROM Taken
+WHERE Leden_Id IS NULL;
+*/
+
+
+-- ===== 5.sql =====
+CREATE VIEW GamesOpOndersteundePlatformen
+AS
+SELECT Titel, Naam
+FROM Releases INNER JOIN Games
+ON Releases.Games_Id = Games.Id
+INNER JOIN Platformen
+ON Releases.Platformen_Id = Platformen.Id;
+
+CREATE VIEW GamesZonderPlatform
+AS
+SELECT Titel
+FROM Games
+WHERE Games.Id NOT IN (SELECT Games_Id FROM Releases);
+
+CREATE VIEW PlatformenZonderGames
+AS
+SELECT Naam FROM Platformen
+WHERE Platformen.Id NOT IN (SELECT Platformen_Id FROM Releases);
+
+-- dit is niet de enige mogelijkheid
+-- je kan ook left en right join combineren
+-- maar in het geval van een veel-op-veel relatie is nogal een breinbreker
+CREATE VIEW GamesOpPlatformen
+AS
+SELECT Titel, Naam
+FROM GamesOpOndersteundePlatformen
+UNION ALL
+SELECT Titel, 'Platform niet meer ondersteund'
+FROM GamesZonderPlatform
+UNION ALL
+SELECT 'Geen games voor dit platform', Naam
+FROM PlatformenZonderGames;
+```
+
+</details>

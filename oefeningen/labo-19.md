@@ -118,3 +118,174 @@ Test een laatste keer je procedure.
 Download dit script en voer het eerst uit. Het maakt de databank en tabellen aan en vult ze met de voorbeelddata voor dit labo.
 
 - [Labo19_Calibratie.sql](/downloads/oefeningen/labo-19/Labo19_Calibratie.sql)
+
+## Modeloplossingen
+
+<details>
+<summary>Toon modeloplossingen</summary>
+
+```sql
+-- script 1
+USE `aptunes`;
+DROP procedure IF EXISTS `DangerousInsertAlbumreleases`;
+
+DELIMITER $$
+USE `aptunes`$$
+CREATE PROCEDURE `DangerousInsertAlbumreleases`()
+BEGIN
+	DECLARE Aantal TINYINT DEFAULT 0;
+	DECLARE success BOOL;
+	DECLARE willekeurigeUitkomst TINYINT DEFAULT 0;
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
+		BEGIN
+			ROLLBACK;
+			SELECT 'Stored procedure is beëindigd en alle wijzigingen zijn ongedaan gemaakt.';
+		END;
+
+	START TRANSACTION;
+
+	SELECT FLOOR(1 + RAND() * 3) INTO willekeurigeUitkomst;
+
+	MockLoop: LOOP
+		IF Aantal < 3 THEN
+			call aptunes.MockAlbumreleaseWithSuccess(success);
+			IF success = 1 THEN
+				SET Aantal = Aantal + 1;
+	IF Aantal = 2 AND willekeurigeUitkomst = 1 THEN
+		SIGNAL SQLSTATE '45000';
+	END IF;
+			END IF;
+		ELSE
+			LEAVE MockLoop;
+		END IF;
+	END LOOP;
+
+	-- enkel indien er geen error opgetreden is, zal een commit gebeuren.
+	COMMIT;
+END$$
+
+DELIMITER ;
+
+
+
+-- script 2
+USE `aptunes`;
+DROP procedure IF EXISTS `Welcome`;
+
+DELIMITER $$
+USE `aptunes`$$
+CREATE PROCEDURE Welcome ()
+begin
+	declare done bool default false;
+	declare huidigeNaam varchar(100);
+	declare bericht varchar(1000) default "Welkom bij APTunes! Wij hebben ";
+	declare GenreCursor cursor for
+		select Naam from Genres;
+	declare continue handler for not found
+		begin
+			set bericht = substring(bericht,1,char_length(bericht) - 2);
+			set done = true;
+		end;
+
+	open GenreCursor;
+	concatLoop: loop
+	  fetch GenreCursor into huidigeNaam;
+	  if done then
+		leave concatLoop;
+	  end if;
+	  set bericht = concat(bericht, huidigeNaam, ", ");
+	end loop;
+    
+    select bericht;
+end$$
+
+DELIMITER ;
+
+
+
+-- script 3
+USE `aptunes`;
+DROP procedure IF EXISTS `aptunes`.`AltWelcome`;
+;
+
+DELIMITER $$
+USE `aptunes`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AltWelcome`()
+begin
+declare done bool default false;
+declare huidigeNaam varchar(100);
+declare bericht varchar(1000) default "Welkom bij APTunes! Wij hebben de nieuwste nummers van ";
+declare BandCursor cursor for
+select Naam from Bands
+inner join Liedjes
+on Bands.Id = Bands_Id
+group by Bands.Id, Naam
+order by COUNT(*) DESC
+limit 3;
+-- kon ook zonder limit 3, met extra variabele counter
+declare continue handler for not found
+begin
+  set bericht = substring(bericht,1,char_length(bericht) - 2);
+  set done = true;
+end;
+
+open BandCursor;
+concatLoop: loop
+  fetch BandCursor into huidigeNaam;
+  if done
+    then leave concatLoop;
+  end if;
+  set bericht = concat(bericht, huidigeNaam, ", ");
+end loop;
+
+SELECT bericht;
+end$$
+
+DELIMITER ;
+;
+
+
+-- script 4
+DELIMITER $$
+CREATE PROCEDURE `ExportLidmaatschappen`(OUT csv text)
+BEGIN
+	declare huidigeVoornaam varchar(45);
+	declare huidigeFamilienaam varchar(45);
+	declare huidigeGeboortedatum date;
+	declare huidigeNaam varchar(100);
+	declare huidigeStartdatum date;
+	declare huidigeEinddatum date;
+	declare done bool default false;
+
+	declare CsvCursor cursor for
+		select Voornaam, Familienaam, Geboortedatum, Naam, Startdatum, Einddatum
+		from Bands inner join Lidmaatschappen on Bands.Id = Bands_Id
+		inner join Muzikanten on Muzikanten.Id = Muzikanten_Id;
+
+	declare continue handler for not found
+		begin
+		  set csv = substring(csv,1,char_length(csv) - 1);
+		  set done = true;
+		end;
+
+	set csv = "";
+
+	open CsvCursor;
+	concatLoop: loop
+	  fetch CsvCursor into huidigeVoornaam, huidigeFamilienaam, huidigeGeboortedatum, huidigeNaam, huidigeStartdatum, huidigeEinddatum;
+	  if done then
+		leave concatLoop;
+	  end if;
+	  set csv = concat(csv,
+					   '"', replace(huidigeVoornaam,'"', '""'),   '"', ",",
+					   '"', replace(huidigeFamilienaam,'"', '""'), '"', ",",
+					   huidigeGeboortedatum, ",",
+					   '"', replace(huidigeNaam,'"', '""'),    '"', ",",
+							huidigeStartdatum,                      ",",
+							coalesce(huidigeEinddatum,"NULL"),      "\n");
+	end loop;
+END$$
+DELIMITER ;
+```
+
+</details>

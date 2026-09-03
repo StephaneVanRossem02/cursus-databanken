@@ -426,3 +426,119 @@ Het formaat:
 
 Tip: gebruik een tijdelijke tabel om het jezelf makkelijker te
 maken.
+
+## Modeloplossingen
+
+<details>
+<summary>Toon modeloplossingen</summary>
+
+```sql
+-- Oefening Labo 11-01
+-- dit kan even goed als Leden right join Taken
+-- left en right join zijn elkaars spiegelbeeld
+-- als je de tabellen en het soort join wisselt, is het ook goed
+SELECT COALESCE(Voornaam, 'Taak niet toegewezen') AS 'Voornaam', Omschrijving
+FROM Taken LEFT JOIN Leden
+ON Taken.Leden_Id = Leden.Id;
+
+
+-- Oefening Labo 11-02
+SELECT Titel, COALESCE(Platformen.Naam, 'Platform niet meer ondersteund') AS 'Naam'
+FROM (Games LEFT JOIN Releases
+ON Releases.Games_Id = Games.Id)
+LEFT JOIN Platformen
+ON Releases.Platformen_Id = Platformen.Id;
+
+/*
+OF eerst een inner join met releases, en dan een right join met games, dit geeft hetzelfde resultaat
+select Titel, coalesce(Platformen.Naam, 'Platform niet meer ondersteund') as 'Naam'
+from Platformen inner join Releases
+on Releases.Platformen_Id = Platformen.Id
+right join Games
+on Releases.Games_Id = Games.Id;
+*/
+
+-- Oefening Labo 11-03
+SELECT Omschrijving
+FROM Taken
+WHERE Leden_Id IS NULL;
+
+/*
+kan ook:
+select Omschrijving
+from Taken
+left join Leden
+on Leden.Id = Leden_Id
+where Leden.Id is null;
+*/
+
+-- Oefening Labo 11-04
+SELECT DISTINCT Platformen.Naam
+FROM Releases INNER JOIN Platformen
+ON Platformen.Id = Platformen_Id;
+
+
+-- Oefening Labo 11-05
+SELECT Titel AS Titel, 'Geen platformen gekend' AS Naam
+FROM Games LEFT JOIN Releases
+ON Games.Id = Releases.Games_Id
+WHERE Platformen_Id IS NULL
+UNION ALL
+SELECT 'Geen games gekend' AS Titel, Platformen.Naam
+FROM Platformen LEFT JOIN Releases
+ON Platformen.Id = Releases.Platformen_Id
+WHERE Games_Id IS NULL;
+
+
+-- Oefening Labo 11-06
+SELECT DISTINCT Voornaam
+FROM studenten
+WHERE LENGTH(Voornaam) <
+	(SELECT AVG(LENGTH(Voornaam))
+	FROM studenten);
+
+
+/* OF:
+
+SET @AverageFirstNameLength = (SELECT AVG(LENGTH(Voornaam)) FROM Studenten);
+
+SELECT DISTINCT Voornaam
+FROM studenten
+WHERE length(Voornaam) < @AverageFirstNameLength;
+
+*/ 
+
+-- oefening Labo 11-07		
+SET @AverageGrade = (SELECT AVG(Cijfer) FROM Evaluaties);
+
+SELECT Id
+FROM Studenten
+INNER JOIN Evaluaties
+ON Evaluaties.Studenten_Id = Studenten.Id
+GROUP BY Studenten_Id
+HAVING AVG(Cijfer) > @AverageGrade;
+
+
+-- Oefening Labo 11-08
+SELECT Voornaam, Familienaam
+FROM Studenten
+WHERE Id IN
+(SELECT Studenten_Id
+ FROM VerenigingRollen);
+
+
+ -- Oefening Labo 11-09
+ CREATE TEMPORARY TABLE PersoonlijkeGemiddeldes(
+Gemiddelde DOUBLE,
+Studenten_Id int NOT NULL
+);
+
+INSERT INTO PersoonlijkeGemiddeldes
+(SELECT AVG(Cijfer), Studenten_Id FROM Evaluaties GROUP BY Studenten_Id);
+
+
+SELECT min(Gemiddelde)
+FROM PersoonlijkeGemiddeldes;
+```
+
+</details>
