@@ -35,7 +35,10 @@ const config = {
   // in prozatekst en SQL-codevoorbeelden de build niet breken.
   markdown: {
     format: 'detect',
+    mermaid: true,
   },
+
+  themes: ['@docusaurus/theme-mermaid'],
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you

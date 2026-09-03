@@ -14,7 +14,7 @@ Voer dit script eerst uit. Het maakt de databank en tabellen aan en vult ze met 
 <details>
 <summary>Toon calibratiescript</summary>
 
-```sql
+```
 -- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
 --
 -- Host: programming-emu.com    Database: ApDB
@@ -235,7 +235,58 @@ UNLOCK TABLES;
 ```
 
 </details>
-- [Labo_09.mwb](/downloads/oefeningen/labo-09/Labo_09.mwb)
+## Databankschema
+
+Onderstaand ER-diagram toont de tabellen van dit labo en hun relaties. Het volledige MySQL Workbench-model kan je [downloaden](/downloads/oefeningen/labo-09/Labo_09.mwb) en openen in MySQL Workbench.
+
+```mermaid
+erDiagram
+  Artiesten {
+    int Id PK
+    varchar Naam
+  }
+  Albums {
+    int Id PK
+    varchar Titel
+    int Artiesten_Id FK
+  }
+  Liedjes {
+    int Id PK
+    varchar Titel
+    smallint Duurtijd
+    varchar Genre
+    tinyint Royalties
+    int Artiesten_Id FK
+  }
+  Gebruikers {
+    int Id PK
+    varchar Gebruikersnaam
+    varchar HashVanWachtwoord
+  }
+  GebruikerHeeftAlbum {
+    int Gebruikers_Id FK
+    int Albums_Id FK
+    datetime DatumToevoeging
+  }
+  GebruikerHeeftLiedje {
+    int Gebruikers_Id FK
+    int Liedjes_Id FK
+    tinyint Favoriet
+  }
+  LiedjeOpAlbum {
+    int Liedjes_Id FK
+    int Albums_Id FK
+    tinyint Tracknummer
+  }
+  Artiesten ||--o{ Albums : "maakt"
+  Artiesten ||--o{ Liedjes : "maakt"
+  Gebruikers ||--o{ GebruikerHeeftAlbum : "bezit"
+  Albums ||--o{ GebruikerHeeftAlbum : "in"
+  Gebruikers ||--o{ GebruikerHeeftLiedje : "bezit"
+  Liedjes ||--o{ GebruikerHeeftLiedje : "in"
+  Albums ||--o{ LiedjeOpAlbum : "bevat"
+  Liedjes ||--o{ LiedjeOpAlbum : "op"
+```
 
 ## Oefening 09-01
 

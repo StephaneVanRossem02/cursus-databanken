@@ -14,7 +14,7 @@ Voer dit script eerst uit. Het maakt de databank en tabellen aan en vult ze met 
 <details>
 <summary>Toon calibratiescript</summary>
 
-```sql
+```
 -- MySQL dump 10.13  Distrib 8.0.23, for Linux (x86_64)
 --
 -- Host: 127.0.0.1    Database: ApDB

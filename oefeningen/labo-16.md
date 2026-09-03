@@ -35,7 +35,7 @@ Voer dit script eerst uit. Het maakt de databank en tabellen aan en vult ze met 
 <details>
 <summary>Toon calibratiescript</summary>
 
-```sql
+```
 DROP DATABASE IF EXISTS `dbles16`;
 CREATE DATABASE  IF NOT EXISTS `dbles16` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `dbles16`;
