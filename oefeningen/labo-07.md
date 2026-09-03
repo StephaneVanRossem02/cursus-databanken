@@ -11,9 +11,15 @@ Dit labo werkt rond het **apTunes-project**. De opgaven staan in de cursus, in d
 
 Voer eerst het bijhorende calibratiescript hieronder uit voor je aan de opgaven begint.
 
-## Scripts
+## Calibratiescript
 
-### Les_07.sql
+Download dit script en voer het eerst uit. Het maakt de databank en tabellen aan en vult ze met de voorbeelddata voor dit labo.
+
+- [Labo_07_Calibratie.sql](/downloads/oefeningen/labo-07/Labo_07_Calibratie.sql)
+
+## Lesvoorbeeld
+
+Democode uit de theorieles, ter naslag. Dit hoef je niet in te leveren.
 
 ```sql
 -- Les 07
@@ -270,9 +276,3 @@ INSERT INTO Auteur(Voornaam, Familienaam)
 -- Scroll op de pagina naar “Normalisatie van de apTunes databank”
 -- Om te kunnen starten vanaf oefening 24, voer je eerst het calibratiescript van Labo 7 uit.
 ```
-
-
-## Bestanden
-
-- [Labo_07_Calibratie.sql](/downloads/oefeningen/labo-07/Labo_07_Calibratie.sql)
-

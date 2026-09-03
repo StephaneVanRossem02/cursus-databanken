@@ -7,6 +7,12 @@ sidebar_position: 11
 
 _Bron: Labo 10._
 
+## Calibratiescript
+
+Download dit script en voer het eerst uit. Het maakt de databank en tabellen aan en vult ze met de voorbeelddata voor dit labo.
+
+- [Labo_10_Calibratie.sql](/downloads/oefeningen/labo-10/Labo_10_Calibratie.sql)
+
 ## Oefening Labo 10-01
 
 Toon hoe veel albums elke gebruiker heeft. Je moet dus naast de naam
@@ -69,8 +75,3 @@ Toon hoe veel albums van elke artiest elke gebruiker heeft. Toon ze
 van grootste naar kleinste aantal.
 
 <table><thead><tr><th>Gebruikersnaam</th><th>Artiest</th><th>Aantal albums van deze artiest in de collectie</th></tr></thead><tbody><tr><td>tuneBoY5</td><td>Iron Maiden</td><td>21</td></tr><tr><td>trebletrouble</td><td>Iron Maiden</td><td>21</td></tr><tr><td>neverloudenough</td><td>Iron Maiden</td><td>21</td></tr><tr><td>neverloudenough</td><td>Led Zeppelin</td><td>14</td></tr><tr><td>musicfan111</td><td>Iron Maiden</td><td>13</td></tr></tbody></table>
-
-## Bestanden
-
-- [Labo_10_Calibratie.sql](/downloads/oefeningen/labo-10/Labo_10_Calibratie.sql)
-

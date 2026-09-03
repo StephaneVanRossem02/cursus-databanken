@@ -7,6 +7,12 @@ sidebar_position: 6
 
 _Bron: Labo 05._
 
+## Calibratiescript
+
+Download dit script en voer het eerst uit. Het maakt de databank en tabellen aan en vult ze met de voorbeelddata voor dit labo.
+
+- [Labo_05_Calibratie.sql](/downloads/oefeningen/labo-05/Labo_05_Calibratie.sql)
+
 ## Oefening 05-01
 
 Laat zien hoeveel liedjes er in het systeem staan. Het zouden er 3123 moeten zijn.
@@ -87,8 +93,3 @@ Toon per genre het hoogste aantal royalties dat één nummer heeft. Neem hierbij
 Het antwoord:
 
 <table><thead><tr><th>Genre</th><th>Hoogste royalties</th></tr></thead><tbody><tr><td>Blues</td><td>38</td></tr><tr><td>Metal</td><td>49</td></tr><tr><td>Klassiek</td><td>102</td></tr><tr><td>Rock</td><td>193</td></tr></tbody></table>
-
-## Bestanden
-
-- [Labo_05_Calibratie.sql](/downloads/oefeningen/labo-05/Labo_05_Calibratie.sql)
-

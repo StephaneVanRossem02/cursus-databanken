@@ -7,32 +7,9 @@ sidebar_position: 7
 
 _Bron: Labo 06._
 
-## Opdracht: visualisatie
-queries
+## Calibratiescript
 
-Voor deze opdracht schrijf je geen SQL-code. In de plaats daarvan ga
-je SQL-code ontleden, zodat je goed begrijpt wat deze doet en hoe ze
-werkt. Je past hierbij de principes toe die worden uitgelegd [op
-deze pagina](https://apwt.gitbook.io/cursus-databanken/semester-1-databanken-intro/deeltalen/select/select-met-clausules).
-
-Je krijgt een handout met daarop een aantal kopieën van de tabel met
-liedjes. Noteer voor elke query (op je handout) de nodige vinkjes,
-kruisjes, gekleurde rechthoeken om aan te geven wat er precies
-gebeurt.
-
-De queries zijn:
-
-- `select * from MinderNummers where Artiest = 'Led Zeppelin' or Genre = 'Blues' order by Artiest, Genre DESC;`
-- `select count(*) from MinderNummers where Genre = 'Rock' group by Artiest;`
-- `select Album, sum(Duurtijd) from MinderNummers where Artiest = 'Van Halen' group by Album order by Album DESC;`
-- `select Album from MinderNummers group by Album having count(*) > 5;`
-- `select Artiest from MinderNummers group by Artiest having avg(Royalties) > 10;`
-- `select Artiest, Genre, count(*) from MinderNummers group by Artiest, Genre order by Artiest, Genre;`
-- `select Artiest, Genre, count(*) from MinderNummers where Duurtijd > 3 * 60 group by Artiest, Genre;`
-
-## Scripts
-
-### calibratie-visualisatie-queries.sql
+Voer dit script eerst uit. Het maakt de databank en tabellen aan en vult ze met de voorbeelddata voor dit labo.
 
 ```sql
 -- MySQL dump 10.13  Distrib 8.0.26, for Linux (x86_64)
@@ -92,8 +69,29 @@ UNLOCK TABLES;
 -- Dump completed on 2022-11-06 17:38:49
 ```
 
+## Opdracht: visualisatie
+queries
+
+Voor deze opdracht schrijf je geen SQL-code. In de plaats daarvan ga
+je SQL-code ontleden, zodat je goed begrijpt wat deze doet en hoe ze
+werkt. Je past hierbij de principes toe die worden uitgelegd [op
+deze pagina](https://apwt.gitbook.io/cursus-databanken/semester-1-databanken-intro/deeltalen/select/select-met-clausules).
+
+Je krijgt een handout met daarop een aantal kopieën van de tabel met
+liedjes. Noteer voor elke query (op je handout) de nodige vinkjes,
+kruisjes, gekleurde rechthoeken om aan te geven wat er precies
+gebeurt.
+
+De queries zijn:
+
+- `select * from MinderNummers where Artiest = 'Led Zeppelin' or Genre = 'Blues' order by Artiest, Genre DESC;`
+- `select count(*) from MinderNummers where Genre = 'Rock' group by Artiest;`
+- `select Album, sum(Duurtijd) from MinderNummers where Artiest = 'Van Halen' group by Album order by Album DESC;`
+- `select Album from MinderNummers group by Album having count(*) > 5;`
+- `select Artiest from MinderNummers group by Artiest having avg(Royalties) > 10;`
+- `select Artiest, Genre, count(*) from MinderNummers group by Artiest, Genre order by Artiest, Genre;`
+- `select Artiest, Genre, count(*) from MinderNummers where Duurtijd > 3 * 60 group by Artiest, Genre;`
 
 ## Bestanden
 
 - [handout-opdracht-queries-op-papier.pdf](/downloads/oefeningen/labo-06/handout-opdracht-queries-op-papier.pdf)
-

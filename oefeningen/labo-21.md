@@ -64,9 +64,9 @@ Als voor een bepaalde speler nog geen wedstrijden in de database staan, toon dan
     Tip: voor deze opgave zal je gebruik moeten maken van een cursor.
 ```
 
-## Scripts
+## Lesvoorbeeld
 
-### Les_21.sql
+Democode uit de theorieles, ter naslag. Dit hoef je niet in te leveren.
 
 ```sql
 CREATE DATABASE IF NOT EXISTS dbles21;
@@ -187,4 +187,3 @@ SET  SQL_SAFE_UPDATES = 1;
 
 -- Labo 20: triggers
 ```
-

@@ -13,47 +13,9 @@ Run eerst het calibratiescript voor de ‘tennis’-database, en bestudeer het d
 
 Lees ook aandachtig de bijgeleverde beschrijving ‘Beschrijving databases.pdf’ (enkel voor database ‘tennis’), om goed te begrijpen hoe alle velden in de verschillende tabellen precies worden ingevuld. Maak onderstaande opgaven en lever de oplossingen aan in 1 script-bestand, waarbij elke opgave voorafgegaan wordt door de nodige commentaar.
 
-## Opgave 1
+## Calibratiescript
 
-Schrijf de SQL-instructie die de view met naam “V_Spelers_per_Team” aanmaakt. Je voorziet daarbij gepaste kolomnamen. De view moet aan onderstaande informatiebehoefte voldoen: Toon voor elk team de divisie en het aantal spelers dat wedstrijden voor dit team gespeeld heeft.
-
-## Opgave 2
-
-Schrijf de SQL-instructie die de view “V_Spelers_per_Team” verwijdert.
-
-## Opgave 3
-
-Schrijf de SQL-instructie die de view met naam “V_Spelers_Wedstrijden” aanmaakt. De view
-
-moet in onderstaande informatiebehoefte voldoen: Geef voor elke speler alle info uit tabel spelers terug, aangevuld met per speler alle info van de wedstrijden die de speler heeft gespeeld. Voor informatie die in beide tabellen voorkomt toon je slechts 1 kolom. Ook spelers die nog geen wedstrijden speelden moeten in het overzicht verschijnen.
-
-## Opgave 4
-
-Schrijf de SQL-instructie die de view met naam “V_Spelers_Boetes” aanmaakt. Je voorziet daarbij gepaste kolomnamen. De view moet aan onderstaande informatiebehoefte voldoen: Toon voor elke speler het spelersnr, de familienaam en het totaalbedrag aan boetes, ook als de speler nog nooit boetes betaalde.
-
-## Opgave 5
-
-Schrijf de SQL-instructie die aan onderstaande informatiebehoefte voldoet. Je maakt daarbij gebruik van de view “V_Spelers_Boetes”: Toon voor de spelers waarvan het totaalbedrag aan boetes hoger ligt dan € 80 het spelersnr, de familienaam en het totaalbedrag aan boetes.
-
-## Opgave 6
-
-Schrijf de SQL-instructie die de naam van de view “V_Spelers_Boetes” verandert in “V_Spelers_TotaalbedragBoetesBetaald”.
-
-## Opgave 7
-
-Schrijf de SQL-instructie die de stored procedure met naam “SP_Toon_SpelerInfo” aanmaakt. De stored procedure moet in onderstaande functionaliteit voorzien: Toon alle basisinformatie voor een gegeven spelersnr. Indien geen spelersnr werd meegegeven moet de procedure een error signaleren met boodschap “U dient een spelersnummer op te geven.”. Indien wel een spelersnr werd meegegeven, toont de stored procedure alle informatie van die speler in een resultatentabel.
-
-## Opgave 8
-
-Schrijf de SQL-instructie die de stored function met naam “Bestaat_Speler” aanmaakt. De functie heeft als parameter het Id van een speler, en returnt een boolean die aangeeft of het betreffende Id voorkomt in de tabel met spelers.
-
-## Opgave 9
-
-Schrijf de SQL-instructie die de eerder gecreëerde stored procedure met naam “SP_Toon_SpelerInfo” opnieuw uitwerkt met de volgende uitbreiding: Als het spelersnummer leeg is, dan moet de procedure nog steeds een error signaleren met boodschap “U dient een spelersnummer op te geven.”. Indien wel een spelersnummer werd meegestuurd, maar dit nummer bestaat niet in de tabel met spelers, dan moet een error gegenereerd worden met volgende boodschap: “U dient een geldig spelersnummer op te geven.”. Tip: maak gebruik van je stored function Bestaat_Speler.
-
-## Scripts
-
-### tennis_calibratiescript.sql
+Voer dit script eerst uit. Het maakt de databank en tabellen aan en vult ze met de voorbeelddata voor dit labo.
 
 ```sql
 DROP DATABASE IF EXISTS Tennis;
@@ -247,3 +209,40 @@ INSERT INTO BESTUURSLEDEN VALUES ( 95, '1994-01-01', NULL, 'Penningmeester')
 ;
 ```
 
+## Opgave 1
+
+Schrijf de SQL-instructie die de view met naam “V_Spelers_per_Team” aanmaakt. Je voorziet daarbij gepaste kolomnamen. De view moet aan onderstaande informatiebehoefte voldoen: Toon voor elk team de divisie en het aantal spelers dat wedstrijden voor dit team gespeeld heeft.
+
+## Opgave 2
+
+Schrijf de SQL-instructie die de view “V_Spelers_per_Team” verwijdert.
+
+## Opgave 3
+
+Schrijf de SQL-instructie die de view met naam “V_Spelers_Wedstrijden” aanmaakt. De view
+
+moet in onderstaande informatiebehoefte voldoen: Geef voor elke speler alle info uit tabel spelers terug, aangevuld met per speler alle info van de wedstrijden die de speler heeft gespeeld. Voor informatie die in beide tabellen voorkomt toon je slechts 1 kolom. Ook spelers die nog geen wedstrijden speelden moeten in het overzicht verschijnen.
+
+## Opgave 4
+
+Schrijf de SQL-instructie die de view met naam “V_Spelers_Boetes” aanmaakt. Je voorziet daarbij gepaste kolomnamen. De view moet aan onderstaande informatiebehoefte voldoen: Toon voor elke speler het spelersnr, de familienaam en het totaalbedrag aan boetes, ook als de speler nog nooit boetes betaalde.
+
+## Opgave 5
+
+Schrijf de SQL-instructie die aan onderstaande informatiebehoefte voldoet. Je maakt daarbij gebruik van de view “V_Spelers_Boetes”: Toon voor de spelers waarvan het totaalbedrag aan boetes hoger ligt dan € 80 het spelersnr, de familienaam en het totaalbedrag aan boetes.
+
+## Opgave 6
+
+Schrijf de SQL-instructie die de naam van de view “V_Spelers_Boetes” verandert in “V_Spelers_TotaalbedragBoetesBetaald”.
+
+## Opgave 7
+
+Schrijf de SQL-instructie die de stored procedure met naam “SP_Toon_SpelerInfo” aanmaakt. De stored procedure moet in onderstaande functionaliteit voorzien: Toon alle basisinformatie voor een gegeven spelersnr. Indien geen spelersnr werd meegegeven moet de procedure een error signaleren met boodschap “U dient een spelersnummer op te geven.”. Indien wel een spelersnr werd meegegeven, toont de stored procedure alle informatie van die speler in een resultatentabel.
+
+## Opgave 8
+
+Schrijf de SQL-instructie die de stored function met naam “Bestaat_Speler” aanmaakt. De functie heeft als parameter het Id van een speler, en returnt een boolean die aangeeft of het betreffende Id voorkomt in de tabel met spelers.
+
+## Opgave 9
+
+Schrijf de SQL-instructie die de eerder gecreëerde stored procedure met naam “SP_Toon_SpelerInfo” opnieuw uitwerkt met de volgende uitbreiding: Als het spelersnummer leeg is, dan moet de procedure nog steeds een error signaleren met boodschap “U dient een spelersnummer op te geven.”. Indien wel een spelersnummer werd meegestuurd, maar dit nummer bestaat niet in de tabel met spelers, dan moet een error gegenereerd worden met volgende boodschap: “U dient een geldig spelersnummer op te geven.”. Tip: maak gebruik van je stored function Bestaat_Speler.

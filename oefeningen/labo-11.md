@@ -7,107 +7,11 @@ sidebar_position: 12
 
 _Bron: Labo 11._
 
-Toon alle taken, met het lid dat de taak uitvoert. Als de taak door
-niemand wordt uitgevoerd, staat er “taak niet toegewezen”. **Maak
-voor jezelf eerst de tekening met overlappende cirkels zodat je weet hoe
-je dit kan uitschrijven, zoals in de theorie.** Gebruik
-`COALESCE` en `AS om` je output leesbaar te maken,
-zoals in de voorbeeldoutput hieronder:
+## Calibratiescript
 
-<table><thead><tr class="header"><th>Voornaam</th><th>Omschrijving</th></tr></thead><tbody><tr class="odd"><td>Yannick</td><td>frisdrank meebrengen</td></tr><tr class="even"><td>Bavo</td><td>bestek voorzien</td></tr><tr class="odd"><td>Max</td><td>aardappelsla maken</td></tr><tr class="even"><td>Taak niet toegewezen</td><td>papieren bordjes meebrengen</td></tr></tbody></table>
+Dit labo werkt in twee fasen. Voer telkens het juiste script eerst uit.
 
-Noem het script 01.sql.
-
-Toon alle titels van games met hun bijbehorend platform, als er een
-is. Toon ook games waarvoor het platform niet meer ondersteund wordt
-(d.w.z. waarvoor geen info in `Releases` staat). Gebruik
-hiervoor een samenstelling van twee JOINs. Gebruik opnieuw
-`COALESCE` en `AS` voor mooiere output. Noem het
-script 02.sql.
-
-Voorbeeldoutput:
-
-<table><thead><tr class="header"><th>Titel</th><th>Naam</th></tr></thead><tbody><tr class="odd"><td>Anthem</td><td>PS4</td></tr><tr class="even"><td>Anthem</td><td>XBox one</td></tr><tr class="odd"><td>Anthem</td><td>Windows</td></tr><tr class="even"><td>…</td><td>…</td></tr><tr class="odd"><td>Mega Man 11</td><td>Switch</td></tr><tr class="even"><td>Oregon Trail</td><td>Platform niet meer ondersteund</td></tr></tbody></table>
-
-Tip: **Probeer dit niet in één keer.** Koppel eerst
-releases aan platformen. Controleer je output. Plaats het deel van de
-query dat deze koppeling doet tussen haakjes. Dit deel kan je nu ook
-zien als een cirkel in de tekening voor de verschillende soorten joins.
-Denk dan na over de tekening om ook games te betrekken en schrijf daarna
-pas de volledige query.
-
-Er is een tabel `Taken` en een tabel `Leden`.
-Bij taken staat (door middel van een verwijzing) welk lid een bepaalde
-taak uitvoert. Toon nu alle taken die niet aan iemand zijn toegewezen.
-Noem je script 03.sql.
-
-Toon alle platformen waarvoor games beschikbaar zijn. Een platform
-wordt dus niet getoond als er geen games beschikbaar voor zijn, maar
-verschijnt zodra er minstens één game voor is. Noem je script
-04.sql.
-
-Toon alle games waarvoor het platform onbekend is, samen met alle
-platformen waarvoor geen games beschikbaar zijn. Het resultaat ziet er
-als volgt uit:
-
-<table><thead><tr class="header"><th>Titel</th><th>Naam</th></tr></thead><tbody><tr class="odd"><td>Oregon Trail</td><td>Geen platformen gekend</td></tr><tr class="even"><td>Geen games gekend</td><td>Master System</td></tr></tbody></table>
-
-Noem je script 05.sql.
-
-Schrijf een script, `06.sql`, dat je alle voornamen van
-studenten toont die korter zijn dan gemiddeld.
-
-Het formaat is:
-
-<table><thead><tr class="header"><th style="text-align: left;">Voornaam</th></tr></thead><tbody><tr class="odd"><td style="text-align: left;">korte voornaam 1</td></tr><tr class="even"><td style="text-align: left;">korte voornaam 2</td></tr><tr class="odd"><td style="text-align: left;">korte voornaam 3</td></tr><tr class="even"><td style="text-align: left;">…</td></tr></tbody></table>
-
-Reminder: in de cursus is een functie terug te vinden om de lengte
-van een stuk tekst te bepalen. Gebruik het vergrootglas op Gitbook.
-
-Schrijf een script, `07.sql`, dat je alle studenten (enkel
-de `Id`’s) toont die een hoger persoonlijk puntengemiddelde
-hebben dan het algemene gemiddelde. Het persoonlijk gemiddelde is dus
-het gemiddelde over alle evaluaties van enkel die student en het
-algemene gemiddelde is het gemiddelde over alle evaluaties in het
-algemeen.
-
-<table><thead><tr class="header"><th style="text-align: left;">Id</th><th style="text-align: left;"></th></tr></thead><tbody><tr class="odd"><td style="text-align: left;">Id 1</td><td style="text-align: left;"></td></tr><tr class="even"><td style="text-align: left;">Id 2</td><td style="text-align: left;"></td></tr><tr class="odd"><td style="text-align: left;">Id 3</td><td style="text-align: left;"></td></tr><tr class="even"><td style="text-align: left;">…</td><td style="text-align: left;">…</td></tr></tbody></table>
-
-Tips:
-
-- evaluaties van één student neem je samen door te groeperen op het ID
-van de student aan wie de evaluatie toebehoort
-- gebruik daarna `having` om het gemiddelde van één student
-te vergelijken met het algemene gemiddelde
-
-het algemene gemiddelde vraag je me een scalaire query
-
-je mag variabelen gebruiken
-
-Schrijf een script, `08.sql`, dat je de voornamen en
-familienamen toont van alle studenten die aangesloten zijn bij de
-studentenvereniging. Doe dit **zonder gebruik te maken van
-JOIN**. (Tip: een student is aangesloten bij de vereniging als er
-een rol bestaat die naar die student verwijst…)
-
-Het formaat:
-
-<table><thead><tr class="header"><th style="text-align: left;">Voornaam</th><th style="text-align: left;">Familienaam</th></tr></thead><tbody><tr class="odd"><td style="text-align: left;">Voornaam 1</td><td style="text-align: left;">Familienaam 1</td></tr><tr class="even"><td style="text-align: left;">Voornaam 2</td><td style="text-align: left;">Familienaam 2</td></tr><tr class="odd"><td style="text-align: left;">Voornaam 3</td><td style="text-align: left;">Familienaam 3</td></tr></tbody></table>
-
-Toon in een script `09.sql` het laagste persoonlijke
-puntengemiddelde van alle studenten. Je hoeft de naam van de student er
-niet bij te tonen.
-
-Het formaat:
-
-<table><thead><tr class="header"><th style="text-align: left;">Gemiddelde</th><th style="text-align: left;"></th></tr></thead><tbody><tr class="odd"><td style="text-align: left;">Een cijfer</td><td style="text-align: left;">(Hier staat maar één rij!)</td></tr></tbody></table>
-
-Tip: gebruik een tijdelijke tabel om het jezelf makkelijker te
-maken.
-
-## Scripts
-
-### calibratie1tot5.sql
+**Voor opdracht 1 tot en met 5** gebruik je onderstaand script:
 
 ```sql
 use ApDB;
@@ -416,8 +320,104 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 ```
 
-
-## Bestanden
+**Vanaf opdracht 6** gebruik je een uitgebreide dataset. Download en voer dit script eerst uit:
 
 - [calibratievanaf6.sql](/downloads/oefeningen/labo-11/calibratievanaf6.sql)
 
+Toon alle taken, met het lid dat de taak uitvoert. Als de taak door
+niemand wordt uitgevoerd, staat er “taak niet toegewezen”. **Maak
+voor jezelf eerst de tekening met overlappende cirkels zodat je weet hoe
+je dit kan uitschrijven, zoals in de theorie.** Gebruik
+`COALESCE` en `AS om` je output leesbaar te maken,
+zoals in de voorbeeldoutput hieronder:
+
+<table><thead><tr class="header"><th>Voornaam</th><th>Omschrijving</th></tr></thead><tbody><tr class="odd"><td>Yannick</td><td>frisdrank meebrengen</td></tr><tr class="even"><td>Bavo</td><td>bestek voorzien</td></tr><tr class="odd"><td>Max</td><td>aardappelsla maken</td></tr><tr class="even"><td>Taak niet toegewezen</td><td>papieren bordjes meebrengen</td></tr></tbody></table>
+
+Noem het script 01.sql.
+
+Toon alle titels van games met hun bijbehorend platform, als er een
+is. Toon ook games waarvoor het platform niet meer ondersteund wordt
+(d.w.z. waarvoor geen info in `Releases` staat). Gebruik
+hiervoor een samenstelling van twee JOINs. Gebruik opnieuw
+`COALESCE` en `AS` voor mooiere output. Noem het
+script 02.sql.
+
+Voorbeeldoutput:
+
+<table><thead><tr class="header"><th>Titel</th><th>Naam</th></tr></thead><tbody><tr class="odd"><td>Anthem</td><td>PS4</td></tr><tr class="even"><td>Anthem</td><td>XBox one</td></tr><tr class="odd"><td>Anthem</td><td>Windows</td></tr><tr class="even"><td>…</td><td>…</td></tr><tr class="odd"><td>Mega Man 11</td><td>Switch</td></tr><tr class="even"><td>Oregon Trail</td><td>Platform niet meer ondersteund</td></tr></tbody></table>
+
+Tip: **Probeer dit niet in één keer.** Koppel eerst
+releases aan platformen. Controleer je output. Plaats het deel van de
+query dat deze koppeling doet tussen haakjes. Dit deel kan je nu ook
+zien als een cirkel in de tekening voor de verschillende soorten joins.
+Denk dan na over de tekening om ook games te betrekken en schrijf daarna
+pas de volledige query.
+
+Er is een tabel `Taken` en een tabel `Leden`.
+Bij taken staat (door middel van een verwijzing) welk lid een bepaalde
+taak uitvoert. Toon nu alle taken die niet aan iemand zijn toegewezen.
+Noem je script 03.sql.
+
+Toon alle platformen waarvoor games beschikbaar zijn. Een platform
+wordt dus niet getoond als er geen games beschikbaar voor zijn, maar
+verschijnt zodra er minstens één game voor is. Noem je script
+04.sql.
+
+Toon alle games waarvoor het platform onbekend is, samen met alle
+platformen waarvoor geen games beschikbaar zijn. Het resultaat ziet er
+als volgt uit:
+
+<table><thead><tr class="header"><th>Titel</th><th>Naam</th></tr></thead><tbody><tr class="odd"><td>Oregon Trail</td><td>Geen platformen gekend</td></tr><tr class="even"><td>Geen games gekend</td><td>Master System</td></tr></tbody></table>
+
+Noem je script 05.sql.
+
+Schrijf een script, `06.sql`, dat je alle voornamen van
+studenten toont die korter zijn dan gemiddeld.
+
+Het formaat is:
+
+<table><thead><tr class="header"><th style="text-align: left;">Voornaam</th></tr></thead><tbody><tr class="odd"><td style="text-align: left;">korte voornaam 1</td></tr><tr class="even"><td style="text-align: left;">korte voornaam 2</td></tr><tr class="odd"><td style="text-align: left;">korte voornaam 3</td></tr><tr class="even"><td style="text-align: left;">…</td></tr></tbody></table>
+
+Reminder: in de cursus is een functie terug te vinden om de lengte
+van een stuk tekst te bepalen. Gebruik het vergrootglas op Gitbook.
+
+Schrijf een script, `07.sql`, dat je alle studenten (enkel
+de `Id`’s) toont die een hoger persoonlijk puntengemiddelde
+hebben dan het algemene gemiddelde. Het persoonlijk gemiddelde is dus
+het gemiddelde over alle evaluaties van enkel die student en het
+algemene gemiddelde is het gemiddelde over alle evaluaties in het
+algemeen.
+
+<table><thead><tr class="header"><th style="text-align: left;">Id</th><th style="text-align: left;"></th></tr></thead><tbody><tr class="odd"><td style="text-align: left;">Id 1</td><td style="text-align: left;"></td></tr><tr class="even"><td style="text-align: left;">Id 2</td><td style="text-align: left;"></td></tr><tr class="odd"><td style="text-align: left;">Id 3</td><td style="text-align: left;"></td></tr><tr class="even"><td style="text-align: left;">…</td><td style="text-align: left;">…</td></tr></tbody></table>
+
+Tips:
+
+- evaluaties van één student neem je samen door te groeperen op het ID
+van de student aan wie de evaluatie toebehoort
+- gebruik daarna `having` om het gemiddelde van één student
+te vergelijken met het algemene gemiddelde
+
+het algemene gemiddelde vraag je me een scalaire query
+
+je mag variabelen gebruiken
+
+Schrijf een script, `08.sql`, dat je de voornamen en
+familienamen toont van alle studenten die aangesloten zijn bij de
+studentenvereniging. Doe dit **zonder gebruik te maken van
+JOIN**. (Tip: een student is aangesloten bij de vereniging als er
+een rol bestaat die naar die student verwijst…)
+
+Het formaat:
+
+<table><thead><tr class="header"><th style="text-align: left;">Voornaam</th><th style="text-align: left;">Familienaam</th></tr></thead><tbody><tr class="odd"><td style="text-align: left;">Voornaam 1</td><td style="text-align: left;">Familienaam 1</td></tr><tr class="even"><td style="text-align: left;">Voornaam 2</td><td style="text-align: left;">Familienaam 2</td></tr><tr class="odd"><td style="text-align: left;">Voornaam 3</td><td style="text-align: left;">Familienaam 3</td></tr></tbody></table>
+
+Toon in een script `09.sql` het laagste persoonlijke
+puntengemiddelde van alle studenten. Je hoeft de naam van de student er
+niet bij te tonen.
+
+Het formaat:
+
+<table><thead><tr class="header"><th style="text-align: left;">Gemiddelde</th><th style="text-align: left;"></th></tr></thead><tbody><tr class="odd"><td style="text-align: left;">Een cijfer</td><td style="text-align: left;">(Hier staat maar één rij!)</td></tr></tbody></table>
+
+Tip: gebruik een tijdelijke tabel om het jezelf makkelijker te
+maken.

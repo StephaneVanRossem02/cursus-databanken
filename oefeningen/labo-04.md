@@ -7,6 +7,12 @@ sidebar_position: 5
 
 _Bron: Labo 04._
 
+## Calibratiescript
+
+Download dit script en voer het eerst uit. Het maakt de databank en tabellen aan en vult ze met de voorbeelddata voor dit labo.
+
+- [Labo_4_calibratie.sql](/downloads/oefeningen/labo-04/Labo_4_calibratie.sql)
+
 ## Oefening Labo 04-01
 
 Maak eerst een map “Labo 4” in je map voor het vak “Databanken”. Je werkt verder vanaf de data die je in labo 3 hebt aangemaakt.
@@ -82,8 +88,3 @@ Sla op als 04-07.sql.
 Verander de naam van de kolom `Royalties` naar `VergoedingArtiest`. Het soort data in deze kolom blijft ongewijzigd.
 
 Noem je file 04-08.sql.
-
-## Bestanden
-
-- [Labo_4_calibratie.sql](/downloads/oefeningen/labo-04/Labo_4_calibratie.sql)
-

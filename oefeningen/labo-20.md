@@ -25,9 +25,15 @@ Maak de triggers ‘log_insert_liedjes’, ‘log_update_liedjes’ en ‘log_de
 
 Opgave 2: We willen ons ervan verzekeren dat het Id van een Liedje niet kan gewijzigd worden. Schrijf een trigger ‘prevent_update_id’ die automatisch wordt uitgevoerd vóór elke update op de tabel met Liedjes, en die een error message produceert wanneer het nieuwe Id niet gelijk is aan het oude Id. Dankzij de error message zal de update dan ook niet doorgaan.
 
-## Scripts
+## Calibratiescript
 
-### Les_20.sql
+Download dit script en voer het eerst uit. Het maakt de databank en tabellen aan en vult ze met de voorbeelddata voor dit labo.
+
+- [Les_20_Calibratie.sql](/downloads/oefeningen/labo-20/Les_20_Calibratie.sql)
+
+## Lesvoorbeeld
+
+Democode uit de theorieles, ter naslag. Dit hoef je niet in te leveren.
 
 ```sql
 -- Cursors: een cursor is een object in MySQL dat toelaat om de rijen van een resultatenset één na één te behandelen.
@@ -134,9 +140,3 @@ SELECT @genresList;
  
 SELECT 'regel1\nregel2\nregel3\n'
 ```
-
-
-## Bestanden
-
-- [Les_20_Calibratie.sql](/downloads/oefeningen/labo-20/Les_20_Calibratie.sql)
-

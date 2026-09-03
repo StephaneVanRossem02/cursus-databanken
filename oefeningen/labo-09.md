@@ -7,6 +7,13 @@ sidebar_position: 10
 
 _Bron: Labo 09._
 
+## Calibratiescript
+
+Download dit script en voer het eerst uit. Het maakt de databank en tabellen aan en vult ze met de voorbeelddata voor dit labo.
+
+- [Labo_09_Calibratie.sql](/downloads/oefeningen/labo-09/Labo_09_Calibratie.sql)
+- [Labo_09.mwb](/downloads/oefeningen/labo-09/Labo_09.mwb)
+
 ## Oefening 09-01
 
 
@@ -86,9 +93,3 @@ De eerste rijen zijn:
 
 
 <table><thead><tr><th>Liedje</th><th>Album</th></tr></thead><tbody><tr><td>Clair de Lune</td><td>Verzameld werk van Debussy</td></tr><tr><td>Suite bergamesqu</td><td>Verzameld werk van Debussy</td></tr><tr><td>Stairway to Heaven</td><td>Led Zeppelin IV</td></tr><tr><td>When the Levee Breaks</td><td>Led Zeppelin IV</td></tr><tr><td>Little Sun</td><td>Blues Pills</td></tr></tbody></table>
-
-## Bestanden
-
-- [Labo_09_Calibratie.sql](/downloads/oefeningen/labo-09/Labo_09_Calibratie.sql)
-- [Labo_09.mwb](/downloads/oefeningen/labo-09/Labo_09.mwb)
-

@@ -113,7 +113,8 @@ Als dat lukt, voeg dan `Einddatum` toe. Zorg dat
 
 Test een laatste keer je procedure.
 
-## Bestanden
+## Calibratiescript
+
+Download dit script en voer het eerst uit. Het maakt de databank en tabellen aan en vult ze met de voorbeelddata voor dit labo.
 
 - [Labo19_Calibratie.sql](/downloads/oefeningen/labo-19/Labo19_Calibratie.sql)
-

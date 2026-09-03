@@ -28,9 +28,15 @@ Enkele tips:
 
 Veel succes!
 
-## Scripts
+## Calibratiescript
 
-### Les_16.sql
+Download dit script en voer het eerst uit. Het maakt de databank en tabellen aan en vult ze met de voorbeelddata voor dit labo.
+
+- [Les_16_Calibratie.sql](/downloads/oefeningen/labo-16/Les_16_Calibratie.sql)
+
+## Lesvoorbeeld
+
+Democode uit de theorieles, ter naslag. Dit hoef je niet in te leveren.
 
 ```sql
 -- ------------------------
@@ -216,9 +222,3 @@ DELIMITER ;
 
 -- Labo 16 (1 grote oefening met stored function en loop)
 ```
-
-
-## Bestanden
-
-- [Les_16_Calibratie.sql](/downloads/oefeningen/labo-16/Les_16_Calibratie.sql)
-

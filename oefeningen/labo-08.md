@@ -11,7 +11,8 @@ Dit labo werkt rond het **apTunes-project**. De opgaven staan in de cursus, in d
 
 Voer eerst het bijhorende calibratiescript hieronder uit voor je aan de opgaven begint.
 
-## Bestanden
+## Calibratiescript
+
+Download dit script en voer het eerst uit. Het maakt de databank en tabellen aan en vult ze met de voorbeelddata voor dit labo.
 
 - [Labo_08_Calibratie.sql](/downloads/oefeningen/labo-08/Labo_08_Calibratie.sql)
-
