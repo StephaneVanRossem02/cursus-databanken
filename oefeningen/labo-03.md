@@ -70,9 +70,41 @@ Schrijf een script dat automatisch alle liedjes met minder dan 2000 verkochte ex
 
 Sla alle instructies op in één script, genaamd 03-01.sql.
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+CREATE DATABASE IF NOT EXISTS DbLabo03;
+
+USE DbLabo03;
+
+set sql_safe_updates = 0;
+delete
+from Liedjes
+where AantalVerkocht < 2000;
+set sql_safe_updates = 1;
+```
+
+</details>
+
 ## Oefening Labo 03-02
 
 Er staat een fout in onze database. Blijkbaar woog Thijs Verbeeck (die al in je tabel `Geboortes` staat) bij zijn geboorte 2.8 kilogram in plaats van 2.7. Gebruik de juiste instructie om dit aan te passen. Sla alle instructies op in één script, genaamd 03-02.sql.
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+set sql_safe_updates = 0;
+update Geboortes
+set GewichtInKilogram = 2.8
+where Voornaam = 'Thijs' and Familienaam = 'Verbeeck';
+set sql_safe_updates = 1;
+```
+
+</details>
 
 ## Oefening Labo 03-03
 
@@ -81,6 +113,19 @@ Het blijkt dat een stagiair de data voor `Liedjes` verkeerd heeft afgelezen. Van
 **Deze instructie zou altijd moeten werken, niet alleen voor de nummers die nu in je tabel staan.** Je script moet met andere woorden volledig automatisch werken. Het bevat geen informatie die specifiek over _Call Me Little Sunshine_, _Stairway to Heaven_ of _Tom Devil_ gaat.
 
 Sla alle nodige instructies op onder 03-03.sql.
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+set sql_safe_updates = 0;
+update Liedjes
+set AantalVerkocht = 10 * AantalVerkocht;
+set sql_safe_updates = 1;
+```
+
+</details>
 
 ## Oefening Labo 03-04
 
@@ -93,6 +138,19 @@ Je krijgt na de aanpassing dus (we tonen hier tijdstip en gewicht even niet, maa
 <table><thead><tr><th>Voornaam</th><th>Familienaam</th></tr></thead><tbody><tr><td>Adnane</td><td>L.</td></tr><tr><td>Dilara</td><td>E.</td></tr><tr><td>Mehmet</td><td>C.</td></tr><tr><td>Thijs</td><td>V.</td></tr></tbody></table>
 
 Sla op als 03-04.sql.
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+set sql_safe_updates = 0;
+update Geboortes
+set Familienaam = concat(substring(Familienaam, 1, 1), '.');
+set sql_safe_updates = 1;
+```
+
+</details>
 
 ## Oefening Labo 03-05
 
@@ -116,6 +174,17 @@ Tip: de kolomhoofding zal standaard niet “Filenaam” zijn als je deze data we
 
 Sla op als 03-05.sql.
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+select concat(Artiest, ' - ', Titel, '.mp3') as Filenaam
+from Liedjes;
+```
+
+</details>
+
 ## Oefening Labo 03-06
 
 Toon alle artiesten die een letter ‘E’ in hun naam hebben met een algemene instructie. Je krijgt dus:
@@ -125,6 +194,18 @@ Toon alle artiesten die een letter ‘E’ in hun naam hebben met een algemene i
 (Jack Broadbent was in een eerder script gewist en Ghost bevat geen ‘E’.)
 
 Sla op als 03-06.sql.
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+select Artiest
+from Liedjes
+where Artiest like '%E%';
+```
+
+</details>
 
 ## Oefening Labo 03-07
 
@@ -138,6 +219,18 @@ Tip: `<` werkt ook voor kolommen van type `DATETIME`.
 
 Sla op als 03-07.sql.
 
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+select *
+from Geboortes
+where TijdstipGeboorte < '1996-01-01 00:00:00' and GewichtInKilogram <= 3;
+```
+
+</details>
+
 ## Oefening Labo 03-08
 
 Toon alle titels van liedjes die **geen** letter ‘O’ bevatten.
@@ -148,3 +241,15 @@ Je zou moeten zien:
 
 Sla op als 03-08.sql.
 
+
+
+<details>
+<summary>Toon modeloplossing</summary>
+
+```sql
+select Titel
+from Liedjes
+where not (Titel like '%O%'); -- mag ook met NOT LIKE
+```
+
+</details>
