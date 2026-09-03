@@ -7,6 +7,56 @@ sidebar_position: 4
 
 _Bron: Labo 03._
 
+## Calibratiescript
+
+Voer dit script eerst uit. Het maakt de databank en tabellen aan en vult ze met de voorbeelddata voor dit labo.
+
+```sql
+CREATE DATABASE IF NOT EXISTS DbLabo03;
+
+USE DbLabo03;
+
+create table Liedjes (
+Artiest varchar(100),
+Titel varchar(100),
+AantalVerkocht int,
+ReleaseJaar int
+);
+
+create table Geboortes (
+Voornaam varchar(100),
+Familienaam varchar(100),
+TijdstipGeboorte datetime,
+GewichtInKilogram float
+);
+
+create table Huisdieren (
+Naam varchar(100),
+Diersoort varchar(100),
+Leeftijd int
+);
+
+insert into Liedjes (Artiest, AantalVerkocht, Titel, ReleaseJaar)
+values
+("Ghost", 35000, "Call Me Little Sunshine", 2021),
+("Led Zeppelin", 1000000, "Stairway to Heaven", 1973),
+("Jack Broadbent", 1000, "Woman", 2015),
+("Larkin Poe", 15000, "Tom Devil", 2013);
+
+insert into Geboortes (Voornaam, Familienaam, TijdstipGeboorte, GewichtInKilogram)
+values
+("Adnane", "Lazaar", "1973-07-13 08:11:25", 4.1),
+("Dilara", "El Farisi", "1999-10-25 06:11:13", 3.7),
+("Mehmet", "Cetinel", "1995-04-01 15:58:50", 2.9),
+("Thijs", "Verbeeck", "1990-08-15 19:23:12", 2.7);
+
+insert into Huisdieren (Naam, Diersoort, Leeftijd)
+values
+('Misty', 'Hond', 9),
+('Ming', 'Hond', 11),
+('Rambo', 'Kat', 16);
+```
+
 ## Oefening Labo 03-01
 
 Maak eerst een map “Labo 3” in je map voor het vak “Databanken”. Je werkt verder vanaf de data die je in labo 2 hebt aangemaakt.
@@ -92,54 +142,4 @@ Je zou moeten zien:
 <table><thead><tr><th>Titel</th></tr></thead><tbody><tr><td>Call Me Little Sunshine</td></tr></tbody></table>
 
 Sla op als 03-08.sql.
-
-## Scripts
-
-### Labo_03_Calibratie.sql
-
-```sql
-CREATE DATABASE IF NOT EXISTS DbLabo03;
-
-USE DbLabo03;
-
-create table Liedjes (
-Artiest varchar(100),
-Titel varchar(100),
-AantalVerkocht int,
-ReleaseJaar int
-);
-
-create table Geboortes (
-Voornaam varchar(100),
-Familienaam varchar(100),
-TijdstipGeboorte datetime,
-GewichtInKilogram float
-);
-
-create table Huisdieren (
-Naam varchar(100),
-Diersoort varchar(100),
-Leeftijd int
-);
-
-insert into Liedjes (Artiest, AantalVerkocht, Titel, ReleaseJaar)
-values
-("Ghost", 35000, "Call Me Little Sunshine", 2021),
-("Led Zeppelin", 1000000, "Stairway to Heaven", 1973),
-("Jack Broadbent", 1000, "Woman", 2015),
-("Larkin Poe", 15000, "Tom Devil", 2013);
-
-insert into Geboortes (Voornaam, Familienaam, TijdstipGeboorte, GewichtInKilogram)
-values
-("Adnane", "Lazaar", "1973-07-13 08:11:25", 4.1),
-("Dilara", "El Farisi", "1999-10-25 06:11:13", 3.7),
-("Mehmet", "Cetinel", "1995-04-01 15:58:50", 2.9),
-("Thijs", "Verbeeck", "1990-08-15 19:23:12", 2.7);
-
-insert into Huisdieren (Naam, Diersoort, Leeftijd)
-values
-('Misty', 'Hond', 9),
-('Ming', 'Hond', 11),
-('Rambo', 'Kat', 16);
-```
 
