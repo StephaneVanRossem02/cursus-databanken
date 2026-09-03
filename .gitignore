@@ -18,3 +18,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Oefening-assistent: server-only modeloplossingen mogen niet in git (en niet in de bundel).
+# De Worker leest ze lokaal in; op Cloudflare staan ze in de gedeployde Worker.
+worker/oplossingen.json
+worker/.dev.vars
+worker/.wrangler/
+worker/node_modules/

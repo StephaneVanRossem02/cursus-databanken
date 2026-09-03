@@ -31,6 +31,19 @@ const config = {
 
   onBrokenLinks: 'throw',
 
+  // Instellingen voor de oefening-assistent (databanken-tutor). Zie
+  // src/components/OefeningAssistent/config.js voor alle opties en standaardwaarden.
+  // workerUrl wijst naar de Cloudflare Worker die de modeloplossing server-side bij de
+  // prompt plakt. Zolang die niet gedeployd is, valt de assistent terug op een
+  // rechtstreekse Gemini-aanroep zonder oplossing (dat is bewust).
+  customFields: {
+    oefeningAssistent: {
+      workerUrl:
+        process.env.OEFENING_ASSISTENT_WORKER_URL ||
+        'https://oefening-assistent-databanken.stephanevanrossem2.workers.dev',
+    },
+  },
+
   // .md-bestanden als CommonMark verwerken (niet MDX), zodat losse `<` en `{`
   // in prozatekst en SQL-codevoorbeelden de build niet breken.
   markdown: {

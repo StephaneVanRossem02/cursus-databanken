@@ -1,11 +1,11 @@
 ---
-title: Labo 10 - JOINs
-sidebar_position: 11
+title: Labo 09 - JOINs
+sidebar_position: 10
 ---
 
-# Labo 10 - JOINs
+# Labo 09 - JOINs
 
-_Bron: Labo 10._
+_Bron: Labo 09._
 
 ## Calibratiescript
 
@@ -32,9 +32,9 @@ Voer dit script eerst uit. Het maakt de databank en tabellen aan en vult ze met 
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-CREATE DATABASE IF NOT EXISTS `DbLabo10` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+CREATE DATABASE IF NOT EXISTS `DbLabo09` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
 
-USE `DbLabo10`;
+USE `DbLabo09`;
 
 --
 -- Table structure for table `Artiesten`
@@ -174,10 +174,10 @@ DROP TABLE IF EXISTS `GebruikerHeeftLiedje`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `GebruikerHeeftLiedje` (
   `Gebruikers_Id` int NOT NULL,
-  `Liedjes_Id` int NOT NULL,
+  `Nummers_Id` int NOT NULL,
   `Favoriet` tinyint(1) NOT NULL,
   KEY `fk_GebruikerHeeftLiedje_Gebruikers` (`Gebruikers_Id`),
-  KEY `fk_GebruikerHeeftLiedje_Liedjes` (`Liedjes_Id`),
+  KEY `fk_GebruikerHeeftLiedje_Liedjes` (`Nummers_Id`),
   CONSTRAINT `fk_GebruikerHeeftLiedje_Gebruikers` FOREIGN KEY (`Gebruikers_Id`) REFERENCES `Gebruikers` (`Id`),
   CONSTRAINT `fk_GebruikerHeeftLiedje_Liedjes` FOREIGN KEY (`Liedjes_Id`) REFERENCES `Liedjes` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -204,10 +204,10 @@ CREATE TABLE `LiedjeOpAlbum` (
   `Liedjes_Id` int NOT NULL,
   `Albums_Id` int NOT NULL,
   `Tracknummer` tinyint unsigned NOT NULL,
-  KEY `fk_LiedjeOpAlbum_Liedjes` (`Liedjes_Id`),
+  KEY `fk_LiedjeOpAlbum_Nummers` (`Liedjes_Id`),
   KEY `fk_LiedjeOpAlbum_Albums` (`Albums_Id`),
   CONSTRAINT `fk_LiedjeOpAlbum_Albums` FOREIGN KEY (`Albums_Id`) REFERENCES `Albums` (`Id`),
-  CONSTRAINT `fk_LiedjeOpAlbum_Liedjes` FOREIGN KEY (`Liedjes_Id`) REFERENCES `Liedjes` (`Id`) ON DELETE CASCADE
+  CONSTRAINT `fk_LiedjeOpAlbum_Nummers` FOREIGN KEY (`Liedjes_Id`) REFERENCES `Liedjes` (`Id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -235,163 +235,243 @@ UNLOCK TABLES;
 ```
 
 </details>
-## Oefening Labo 10-01
+## Databankschema
 
-Toon hoe veel albums elke gebruiker heeft. Je moet dus naast de naam
-van elke gebruiker een getal zien staan. Noem je script `07.sql`.
+Onderstaand ER-diagram toont de tabellen van dit labo en hun relaties. Het volledige MySQL Workbench-model kan je [downloaden](/downloads/oefeningen/labo-09/Labo_09.mwb) en openen in MySQL Workbench.
 
-### Uitvoer
+```mermaid
+erDiagram
+  Artiesten {
+    int Id PK
+    varchar Naam
+  }
+  Albums {
+    int Id PK
+    varchar Titel
+    int Artiesten_Id FK
+  }
+  Liedjes {
+    int Id PK
+    varchar Titel
+    smallint Duurtijd
+    varchar Genre
+    tinyint Royalties
+    int Artiesten_Id FK
+  }
+  Gebruikers {
+    int Id PK
+    varchar Gebruikersnaam
+    varchar HashVanWachtwoord
+  }
+  GebruikerHeeftAlbum {
+    int Gebruikers_Id FK
+    int Albums_Id FK
+    datetime DatumToevoeging
+  }
+  GebruikerHeeftLiedje {
+    int Gebruikers_Id FK
+    int Liedjes_Id FK
+    tinyint Favoriet
+  }
+  LiedjeOpAlbum {
+    int Liedjes_Id FK
+    int Albums_Id FK
+    tinyint Tracknummer
+  }
+  Artiesten ||--o{ Albums : "maakt"
+  Artiesten ||--o{ Liedjes : "maakt"
+  Gebruikers ||--o{ GebruikerHeeftAlbum : "bezit"
+  Albums ||--o{ GebruikerHeeftAlbum : "in"
+  Gebruikers ||--o{ GebruikerHeeftLiedje : "bezit"
+  Liedjes ||--o{ GebruikerHeeftLiedje : "in"
+  Albums ||--o{ LiedjeOpAlbum : "bevat"
+  Liedjes ||--o{ LiedjeOpAlbum : "op"
+```
 
-<table><thead><tr><th>Gebruikersnaam</th><th>Aantal albums</th></tr></thead><tbody><tr><td>musicfan111</td><td>151</td></tr><tr><td>tuneBoY5</td><td>164</td></tr><tr><td>drbeatz</td><td>164</td></tr><tr><td>trebletrouble</td><td>151</td></tr><tr><td>neverloudenough</td><td>164</td></tr></tbody></table>
+## Oefening 09-01
+
+
+
+Toon met één instructie de titel en de artiest van alle liedjes. Maak hierbij gebruik van een inner join. Noem dit script `01.sql`.
+
+
+
+De eerste paar rijen zijn:
+
+
+
+<table><thead><tr><th>Titel</th><th>Artiest</th></tr></thead><tbody><tr><td>Clair de Lune</td><td>Claude Debussy</td></tr><tr><td>Suite bergamesqu</td><td>Claude Debussy</td></tr><tr><td>Stairway to Heaven</td><td>Led Zeppelin</td></tr><tr><td>When the Levee Breaks</td><td>Led Zeppelin</td></tr><tr><td>Little Sun</td><td>Blues Pills</td></tr></tbody></table>
 
 
 <details>
 <summary>Toon modeloplossing</summary>
 
 ```sql
--- Labo 10
-USE DbLabo10;
+USE DbLabo09;
 
--- Oefening Labo 10-01
-SELECT Gebruikersnaam, count(*)
-FROM Gebruikers
-INNER JOIN GebruikerHeeftAlbum
-ON Gebruikers.Id = GebruikerHeeftAlbum.Gebruikers_Id
-GROUP BY Gebruikersnaam;
+-- Oefening Labo 09-01
+select Liedjes.Titel, Artiesten.Naam
+from Liedjes 
+inner join Artiesten
+on Liedjes.Artiesten_Id = Artiesten.Id;
 ```
 
 </details>
 
-## Oefening Labo 10-02
 
-Toon alle combinaties van een gebruiker en een album in de collectie
-van diezelfde gebruiker. Je moet dus naast de naam van elke gebruiker
-een titel zien staan. Noem je script `08.sql`.
+<OefeningAssistent oefening="L09-01" hoofdstuk="L6" />
 
-De eerste paar rijen zijn (al kan jouw resultaatvolgorde variëren):
+## Oefening 09-02
 
-<table><thead><tr><th>Gebruikersnaam</th><th>Album</th></tr></thead><tbody><tr><td>musicfan111</td><td>Live After Death</td></tr><tr><td>musicfan111</td><td>Live At Donington 1992 (Disc 1)</td></tr><tr><td>musicfan111</td><td>Live At Donington 1992 (Disc 2)</td></tr><tr><td>musicfan111</td><td>No Prayer For The Dying</td></tr></tbody></table>
+
+
+Toon met één instructie de titel en de artiest van alle liedjes die beginnen met de letter “A”. Noem dit script `02.sql`.
+
+
+
+De eerste paar rijen zijn:
+
+
+
+<table><thead><tr><th>Titel</th><th>Artiest</th></tr></thead><tbody><tr><td>Amazing</td><td>Aerosmith</td></tr><tr><td>Angel</td><td>Aerosmith</td></tr><tr><td>All I Really Want</td><td>Alanis Morissette</td></tr><tr><td>Angela</td><td>Antônio Carlos Jobim</td></tr><tr><td>All For You</td><td>Black Label Society</td></tr></tbody></table>
 
 
 <details>
 <summary>Toon modeloplossing</summary>
 
 ```sql
--- Oefening Labo 10-02
-SELECT Gebruikersnaam, Albums.Titel
-FROM Gebruikers
-INNER JOIN GebruikerHeeftAlbum
-ON Gebruikers.Id = GebruikerHeeftAlbum.Gebruikers_Id
-INNER JOIN Albums
-ON Albums.Id = Albums_Id;
+-- Oefening Labo 09-02
+select Liedjes.Titel, Artiesten.Naam
+from Liedjes 
+inner join Artiesten
+on Liedjes.Artiesten_Id = Artiesten.Id
+where Liedjes.Titel like 'A%';
 ```
 
 </details>
 
-## Oefening Labo 10-03
 
-Toon alle combinaties van gebruikers en hun favoriete liedjes. In
-deze dataset hebben maar één gebruiker een favoriet los nummer. Noem je
-script `09.sql`.
+<OefeningAssistent oefening="L09-02" hoofdstuk="L6" />
 
-**Let op:** het calibratiescript heeft een bepaalde afspraak rond naamgeving niet helemaal gevolgd. We hebben de fout laten
-staan, omdat het een goede test is of je de werking van JOIN wel
-begrijpt.
+## Oefening 09-03
 
-Het resultaat:
 
-<table><thead><tr><th>Gebruikersnaam</th><th>Titel</th></tr></thead><tbody><tr><td>musicfan111</td><td>Eat The Rich</td></tr></tbody></table>
+
+Toon de titel van elk album naast de naam van de artiest. Noem dit script `03.sql`.
+
+
+
+De eerste paar rijen zijn:
+
+
+
+<table><thead><tr><th>Titel</th><th>Artiest</th></tr></thead><tbody><tr><td>Verzameld werk van Debussy</td><td>Claude Debussy</td></tr><tr><td>Led Zeppelin IV</td><td>Led Zeppelin</td></tr><tr><td>BBC Sessions [Disc 1] [Live]</td><td>Led Zeppelin</td></tr><tr><td>Physical Graffiti [Disc 1]</td><td>Led Zeppelin</td></tr><tr><td>BBC Sessions [Disc 2] [Live]</td><td>Led Zeppelin</td></tr></tbody></table>
 
 
 <details>
 <summary>Toon modeloplossing</summary>
 
 ```sql
--- Oefening Labo 10-03
-SELECT Gebruikersnaam, Liedjes.Titel
-FROM Gebruikers
-INNER JOIN GebruikerHeeftLiedje
-ON Gebruikers.Id = GebruikerHeeftLiedje.Gebruikers_Id
-INNER JOIN Liedjes
-ON Liedjes.Id = Liedjes_Id
-WHERE Favoriet = 0;
+-- Oefening Labo 09-03
+select Albums.Titel, Artiesten.Naam
+from Albums 
+inner join Artiesten
+on Albums.Artiesten_Id = Artiesten.Id;
 ```
 
 </details>
 
-## Oefening Labo 10-04
 
-Laat voor elke artiest het hoogste aantal royalties zien dat deze
-voor één liedje verdient. Noem je script `10.sql`.
+<OefeningAssistent oefening="L09-03" hoofdstuk="L6" />
 
-Voorbeelduitvoer:
+## Oefening 09-04
 
-<table><thead><tr><th>Artiest</th><th>Hoogste royalties</th></tr></thead><tbody><tr><td>Claude Debussy</td><td>4</td></tr><tr><td>Led Zeppelin</td><td>100</td></tr><tr><td>Blues Pills</td><td>18</td></tr><tr><td>Ghostface Killah</td><td>8</td></tr><tr><td>AC/DC</td><td>22</td></tr></tbody></table>
+
+
+Toon met één instructie hoe veel liedjes Led Zeppelin heeft. Het is niet toegelaten eerst het Id van Led Zeppelin op te zoeken. Noem je script `04.sql`.
+
+
+
+Het antwoord is 90.
 
 
 <details>
 <summary>Toon modeloplossing</summary>
 
 ```sql
--- Oefening Labo 10-04
-SELECT Artiesten.Naam, max(Royalties)
-FROM Artiesten
-INNER JOIN Liedjes
-ON Liedjes.Artiesten_Id = Artiesten.Id
-GROUP BY Artiesten.Id;
+-- Oefening Labo 09-04
+select count(*)
+from (Liedjes
+inner join Artiesten
+on Liedjes.Artiesten_Id = Artiesten.Id)
+where Artiesten.Naam = 'Led Zeppelin';
 ```
 
 </details>
 
-## Oefening Labo 10-05
 
-Laat per album zien hoe lang het langste liedje op dat album duurt.
-Noem je script `11.sql`.
+<OefeningAssistent oefening="L09-04" hoofdstuk="L6" />
 
-Gedeeltelijke uitvoer:
+## Oefening 09-05
 
-<table><thead><tr><th>Albumtitel</th><th>Langste duurtijd</th></tr></thead><tbody><tr><td>Verzameld werk van Debussy</td><td>160</td></tr><tr><td>Led Zeppelin IV</td><td>420</td></tr><tr><td>Blues Pills</td><td>300</td></tr><tr><td>Lady in Gold</td><td>300</td></tr><tr><td>Supreme Clientele</td><td>99</td></tr></tbody></table>
+
+
+Toon de titel van elk liedje naast het Id van het album waarop dat liedje staat. Noem dit script `05.sql`. Hiervoor heb je de tabel `LiedjeOpAlbum` nodig. Je hebt nog maar één join nodig.
+
+
+
+De eerste rijen van het resultaat:
+
+
+
+<table><thead><tr><th>Liedje</th><th>Album</th></tr></thead><tbody><tr><td>Clair de Lune</td><td>1</td></tr><tr><td>Suite bergamesqu</td><td>1</td></tr><tr><td>Stairway to Heaven</td><td>2</td></tr><tr><td>When the Levee Breaks</td><td>2</td></tr><tr><td>Little Sun</td><td>3</td></tr></tbody></table>
 
 
 <details>
 <summary>Toon modeloplossing</summary>
 
 ```sql
--- Oefening Labo 10-05
-SELECT Albums.Titel, max(Duurtijd) FROM LiedjeOpAlbum
-INNER JOIN Albums
-ON Albums.Id = Albums_Id
-INNER JOIN Liedjes
-ON Liedjes.Id = Liedjes_Id
-GROUP BY Albums.Id;
+-- Oefening Labo 09-05
+select Liedjes.Titel, Albums_Id
+from (LiedjeOpAlbum
+inner join Liedjes
+on Liedjes_Id = Liedjes.Id);
 ```
 
 </details>
 
-## Oefening Labo 10-06
 
-**Deze oefening is een uitdaging. Ze is moeilijker dan een
-examenvraag. De ideeën in de cursus volstaan, maar er is geen voorbeeld
-dat je rechtstreeks kan aanpassen. Je moet nadenken over verschillende
-constructies die je tot hiertoe gezien hebt.**
+<OefeningAssistent oefening="L09-05" hoofdstuk="L6" />
 
-Toon hoe veel albums van elke artiest elke gebruiker heeft. Toon ze
-van grootste naar kleinste aantal.
+## Oefening 09-06
 
-<table><thead><tr><th>Gebruikersnaam</th><th>Artiest</th><th>Aantal albums van deze artiest in de collectie</th></tr></thead><tbody><tr><td>tuneBoY5</td><td>Iron Maiden</td><td>21</td></tr><tr><td>trebletrouble</td><td>Iron Maiden</td><td>21</td></tr><tr><td>neverloudenough</td><td>Iron Maiden</td><td>21</td></tr><tr><td>neverloudenough</td><td>Led Zeppelin</td><td>14</td></tr><tr><td>musicfan111</td><td>Iron Maiden</td><td>13</td></tr></tbody></table>
+
+
+Toon elk liedje naast de titel van het album waarop het liedje staat. Werk verder op basis van je vorige script. Noem dit script `06.sql`.
+
+
+
+De eerste rijen zijn:
+
+
+
+<table><thead><tr><th>Liedje</th><th>Album</th></tr></thead><tbody><tr><td>Clair de Lune</td><td>Verzameld werk van Debussy</td></tr><tr><td>Suite bergamesqu</td><td>Verzameld werk van Debussy</td></tr><tr><td>Stairway to Heaven</td><td>Led Zeppelin IV</td></tr><tr><td>When the Levee Breaks</td><td>Led Zeppelin IV</td></tr><tr><td>Little Sun</td><td>Blues Pills</td></tr></tbody></table>
 
 
 <details>
 <summary>Toon modeloplossing</summary>
 
 ```sql
--- Oefening Labo 10-06
-SELECT Gebruikersnaam, Artiesten.Naam, count(*) FROM GebruikerHeeftAlbum
-INNER JOIN Gebruikers ON Gebruikers.Id = Gebruikers_Id
-INNER JOIN Albums ON Albums_Id = Albums.Id
-INNER JOIN Artiesten ON Albums.Artiesten_Id = Artiesten.Id
-GROUP BY Gebruikersnaam, Artiesten.Naam
-ORDER BY count(*) desc;
+-- Oefening Labo 09-06
+select Liedjes.Titel, Albums.Titel
+from LiedjeOpAlbum
+inner join Liedjes
+on Liedjes_Id = Liedjes.Id
+inner join Albums
+on Albums_Id = Albums.Id;
 ```
 
 </details>
+
+<OefeningAssistent oefening="L09-06" hoofdstuk="L6" />
+

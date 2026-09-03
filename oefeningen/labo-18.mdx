@@ -218,9 +218,15 @@ INSERT INTO BESTUURSLEDEN VALUES ( 95, '1994-01-01', NULL, 'Penningmeester')
 
 Schrijf de SQL-instructie die de view met naam “V_Spelers_per_Team” aanmaakt. Je voorziet daarbij gepaste kolomnamen. De view moet aan onderstaande informatiebehoefte voldoen: Toon voor elk team de divisie en het aantal spelers dat wedstrijden voor dit team gespeeld heeft.
 
+
+<OefeningAssistent oefening="L18-01" hoofdstuk="L10" />
+
 ## Opgave 2
 
 Schrijf de SQL-instructie die de view “V_Spelers_per_Team” verwijdert.
+
+
+<OefeningAssistent oefening="L18-02" hoofdstuk="L10" />
 
 ## Opgave 3
 
@@ -228,29 +234,50 @@ Schrijf de SQL-instructie die de view met naam “V_Spelers_Wedstrijden” aanma
 
 moet in onderstaande informatiebehoefte voldoen: Geef voor elke speler alle info uit tabel spelers terug, aangevuld met per speler alle info van de wedstrijden die de speler heeft gespeeld. Voor informatie die in beide tabellen voorkomt toon je slechts 1 kolom. Ook spelers die nog geen wedstrijden speelden moeten in het overzicht verschijnen.
 
+
+<OefeningAssistent oefening="L18-03" hoofdstuk="L10" />
+
 ## Opgave 4
 
 Schrijf de SQL-instructie die de view met naam “V_Spelers_Boetes” aanmaakt. Je voorziet daarbij gepaste kolomnamen. De view moet aan onderstaande informatiebehoefte voldoen: Toon voor elke speler het spelersnr, de familienaam en het totaalbedrag aan boetes, ook als de speler nog nooit boetes betaalde.
+
+
+<OefeningAssistent oefening="L18-04" hoofdstuk="L10" />
 
 ## Opgave 5
 
 Schrijf de SQL-instructie die aan onderstaande informatiebehoefte voldoet. Je maakt daarbij gebruik van de view “V_Spelers_Boetes”: Toon voor de spelers waarvan het totaalbedrag aan boetes hoger ligt dan € 80 het spelersnr, de familienaam en het totaalbedrag aan boetes.
 
+
+<OefeningAssistent oefening="L18-05" hoofdstuk="L10" />
+
 ## Opgave 6
 
 Schrijf de SQL-instructie die de naam van de view “V_Spelers_Boetes” verandert in “V_Spelers_TotaalbedragBoetesBetaald”.
+
+
+<OefeningAssistent oefening="L18-06" hoofdstuk="L10" />
 
 ## Opgave 7
 
 Schrijf de SQL-instructie die de stored procedure met naam “SP_Toon_SpelerInfo” aanmaakt. De stored procedure moet in onderstaande functionaliteit voorzien: Toon alle basisinformatie voor een gegeven spelersnr. Indien geen spelersnr werd meegegeven moet de procedure een error signaleren met boodschap “U dient een spelersnummer op te geven.”. Indien wel een spelersnr werd meegegeven, toont de stored procedure alle informatie van die speler in een resultatentabel.
 
+
+<OefeningAssistent oefening="L18-07" hoofdstuk="L10" />
+
 ## Opgave 8
 
 Schrijf de SQL-instructie die de stored function met naam “Bestaat_Speler” aanmaakt. De functie heeft als parameter het Id van een speler, en returnt een boolean die aangeeft of het betreffende Id voorkomt in de tabel met spelers.
 
+
+<OefeningAssistent oefening="L18-08" hoofdstuk="L10" />
+
 ## Opgave 9
 
 Schrijf de SQL-instructie die de eerder gecreëerde stored procedure met naam “SP_Toon_SpelerInfo” opnieuw uitwerkt met de volgende uitbreiding: Als het spelersnummer leeg is, dan moet de procedure nog steeds een error signaleren met boodschap “U dient een spelersnummer op te geven.”. Indien wel een spelersnummer werd meegestuurd, maar dit nummer bestaat niet in de tabel met spelers, dan moet een error gegenereerd worden met volgende boodschap: “U dient een geldig spelersnummer op te geven.”. Tip: maak gebruik van je stored function Bestaat_Speler.
+
+
+<OefeningAssistent oefening="L18-09" hoofdstuk="L10" />
 
 ## Modeloplossingen
 

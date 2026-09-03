@@ -155,6 +155,9 @@ ORDER BY Gemeente, Naam;
 
 </details>
 
+
+<OefeningAssistent oefening="L15-01" hoofdstuk="L10" />
+
 ## Opgave 2
 
 Maak een view ‘Alle_Klanten_Brussel_Antwerpen’ die zich op de vorige view baseert, maar enkel klanten uit Brussel en Antwerpen weerhoudt. Voorbeeld van output:
@@ -181,6 +184,9 @@ WHERE Gemeente IN ('Brussel', 'Antwerpen');
 ```
 
 </details>
+
+
+<OefeningAssistent oefening="L15-02" hoofdstuk="L10" />
 
 ## Opgave 3
 
@@ -214,6 +220,9 @@ ORDER BY 1;
 
 </details>
 
+
+<OefeningAssistent oefening="L15-03" hoofdstuk="L10" />
+
 ## Opgave 4
 
 Maak een view ‘Klanten_Zonder_Bestellingen’ die hetzelfde doet als de vorige, maar enkel de naam van klanten toont die nooit een bestelling plaatsten, gevolgd door het cijfer 0. Voorbeeld van output:
@@ -246,6 +255,9 @@ WHERE Id NOT IN (SELECT DISTINCT Klanten_Id FROM Bestellingen);
 ```
 
 </details>
+
+
+<OefeningAssistent oefening="L15-04" hoofdstuk="L10" />
 
 ## Opgave 5
 
@@ -293,6 +305,9 @@ ORDER BY `Aantal bestellingen` DESC, Klant;
 
 </details>
 
+
+<OefeningAssistent oefening="L15-05" hoofdstuk="L10" />
+
 ## Opgave 6
 
 Maak een view ‘Goede_Klanten’ die alle klanten toont met het aantal bestellingen dat ze ooit plaatsten, als dat er minstens 3 zijn. Voorbeeld van output:
@@ -319,6 +334,9 @@ WHERE `Aantal bestellingen` >= 3;
 
 </details>
 
+
+<OefeningAssistent oefening="L15-06" hoofdstuk="L10" />
+
 ## Opgave 7
 
 Maak een view ‘Alle_Bestellingen’ die voor elke klant zijn bestellingen toont (naam, gemeente, omschrijving van het product, en het aantal bestelde items van het product). Zorg ervoor dat je output er als volgt uitziet:
@@ -342,6 +360,9 @@ ORDER BY 1, 3;
 ```
 
 </details>
+
+
+<OefeningAssistent oefening="L15-07" hoofdstuk="L10" />
 
 ## Opgave 8
 
@@ -373,6 +394,9 @@ WHERE Aantal > (SELECT AVG(Aantal) FROM bestellingen);
 
 </details>
 
+
+<OefeningAssistent oefening="L15-08" hoofdstuk="L10" />
+
 ## Opgave 9
 
 Schrijf een stored procedure met de naam ‘zoek_klanten_op_naam’, waaraan je een zoekterm kan meesturen. De stored procedure toont een lijst van alle klanten waarvan de zoekterm in de naam voorkomt. Een voorbeeld van de output van het aanroepen van de SP met de zoekterm ‘na’:
@@ -402,6 +426,9 @@ CALL PROCEDURE zoek_klanten_op_naam('na')
 ```
 
 </details>
+
+
+<OefeningAssistent oefening="L15-09" hoofdstuk="L10" />
 
 ## Opgave 10
 
@@ -434,6 +461,9 @@ SELECT @aantal;
 ```
 
 </details>
+
+
+<OefeningAssistent oefening="L15-10" hoofdstuk="L10" />
 
 ## Opgave 11
 
@@ -470,6 +500,9 @@ CALL klanten_met_minimaal_X_bestellingen(4);
 
 </details>
 
+
+<OefeningAssistent oefening="L15-11" hoofdstuk="L10" />
+
 ## Opgave 12
 
 Schrijf een stored procedure met de naam ‘toplijst_best_verkochte_producten’ waarmee je een aantal kan meesturen. Er wordt een lijst getoond waarin per product het aantal verkochte items getoond wordt, gesorteerd op meest verkochte producten. Het meegestuurde aantal bepaalt hoeveel rijen de resultaten tabel maximaal mag tonen (tip: LIMIT). Een voorbeeld van de output van het aanroepen van de SP met de waarde 3:
@@ -503,3 +536,6 @@ CALL toplijst_best_verkochte_producten(3)
 ```
 
 </details>
+
+<OefeningAssistent oefening="L15-12" hoofdstuk="L10" />
+

@@ -1,29 +1,117 @@
 ---
-title: Labo 20 - Triggers
-sidebar_position: 21
+title: Labo 19 - Cursors
+sidebar_position: 20
 ---
 
-# Labo 20 - Triggers
+# Labo 19 - Cursors
 
-_Bron: Labo 20._
+_Bron: Labo 19._
 
-Labo 20: triggers
+Schrijf een stored procedure, DangerousInsertAlbumreleases. Deze
+stored procedure voegt drie willekeurige albumreleases in, maar
+signaleert ook met een kans van 1 op 3 een SQL state ‘45000’ na het
+invoegen van de tweede albumrelease.
 
-Werk verder in je aptunes-database zoals ze samengesteld was na labo 17.
+Om een willekeurige albumrelease te maken, kan je volgende procedure
+gebruiken:
 
-Opgave 1: Voorzie een nieuwe tabel ‘LiedjesLog’ met volgende kolommen:
+```sql
+USE `aptunes`;
+DROP procedure IF EXISTS `MockAlbumReleaseAlt`;
 
-- Een kolom Naam waarin je de naam van de gebruiker logt die de actie uitvoerde, die kan je bekomen met de ingebouwde functie USER().
-- Het Id van het liedje dat werd toegevoegd, gewijzigd of verwijderd.
-- Een kolom Aanpassing, waarin je ofwel een INSERT, een UPDATE of een DELETE kan noteren
+DELIMITER $$
+USE `aptunes`$$
+CREATE PROCEDURE `MockAlbumReleaseAlt` ()
+SQL SECURITY INVOKER
+BEGIN
+declare Albums_Id int;
+declare Bands_Id int;
+select Id from Albums order by rand() limit 1 into Albums_Id;
+select Id from Bands order by rand() limit 1 into Bands_Id;
+insert into Albumreleases (Bands_Id, Albums_Id)
+values
+(Bands_Id, Albums_Id);
+END$$
 
-(kies een geschikt datatype voor deze kolom).
+DELIMITER ;
+```
 
-- De dag en het tijdstip waarop de actie gelogd werd.
+Schrijf in je zelf geschreven stored procedure een handler zodat het
+niet mogelijk is dat er slechts één of twee albumreleases worden
+ingevoegd. Als er iets mis loopt, mag er geen enkele nieuwe release zijn
+toegevoegd. In plaats daarvan wordt deze foutboodschap getoond: “Nieuwe
+releases konden niet worden toegevoegd.”
 
-Maak de triggers ‘log_insert_liedjes’, ‘log_update_liedjes’ en ‘log_delete_liedjes’ die alle acties op de tabel Liedjes logt. In de update-trigger mag je ervan uitgaan dat het Id van het liedje niet wijzigt, en je dit dus ofwel in OLD ofwel in NEW kan terugvinden.
+Let op: SQL state ‘45000’ is niet het enige foutsignaal dat je hier
+kan krijgen, want het kan bijvoorbeeld ook zijn dat een willekeurige
+albumrelease al in het systeem zit. Schrijf je handler zo dat alle
+fouten worden tegengehouden: via SQLEXCEPTION dus.
 
-Opgave 2: We willen ons ervan verzekeren dat het Id van een Liedje niet kan gewijzigd worden. Schrijf een trigger ‘prevent_update_id’ die automatisch wordt uitgevoerd vóór elke update op de tabel met Liedjes, en die een error message produceert wanneer het nieuwe Id niet gelijk is aan het oude Id. Dankzij de error message zal de update dan ook niet doorgaan.
+Lees voor je deze oefening maakt zeker de instructies rond het
+correct uitvoeren van een ROLLBACK na.
+
+Schrijf een stored procedure, `Welcome`, die een
+promotiebericht toont dat je aan toekomstige gebruikers van je systeem
+zou kunnen tonen.
+
+Dit bericht lijst alle genres in het systeem op in volgende vorm:
+“Welkom bij APTunes! Wij hebben Blues, Classical, Country, Electronic,
+Folk, Hip-hop, Jazz, New age, Reggae, Rock”
+
+Maak hierbij gebruik van een cursor. Je mag ook veronderstellen dat
+er niet zo veel genres zijn dat je meer dan 1000 karakters nodig hebt
+voor het bericht.
+
+**Doordenker:** kan je dit ook zonder cursor, met
+`GROUP_CONCAT`? Probeer het als deze oefening vlot gaat.
+
+Schrijf een stored procedure, `AltWelcome`, die een
+alternatief promotiebericht aan de gebruikers van je systeem zou kunnen
+tonen.
+
+Dit bericht toont automatisch de namen van de drie meest bekende
+bands in het systeem. Voor ons betekent dit: de drie bands met het
+hoogste aantal nummers. Doe dit opnieuw met een cursor.
+
+Dit bericht ziet er bijvoorbeeld zo uit: “Welkom bij APTunes! Wij
+hebben de nieuwste nummers van matrix innovative portals, engage
+end-to-end-schemas, integrate front-end functionalities”.
+
+Schrijf een stored procedure waarmee je zelf de lidmaatschappen van
+muzikanten kan exporteren naar CSV-formaat. Dit zou je dan bijvoorbeeld
+kunnen importeren in een Excel of ander programma dat CSV
+ondersteunt:
+
+Schrijf (en test) eerst een query om artiesten met bijbehorende bands
+samen te tonen in volgend formaat:
+
+<table style={{width:"100%"}}><colgroup><col style={{width:"16%"}} /><col style={{width:"16%"}} /><col style={{width:"16%"}} /><col style={{width:"16%"}} /><col style={{width:"16%"}} /><col style={{width:"16%"}} /></colgroup><thead><tr class="header"><th>Voornaam</th><th>Familienaam</th><th>Geboortedatum</th><th>Naam</th><th>Startdatum</th><th>Einddatum</th></tr></thead><tbody><tr class="odd"><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr></tbody></table>
+
+Schrijf dan een stored procedure met één outputparameter van type
+`TEXT` (voor de volledige CSV-voorstelling).
+
+Maak in deze stored procedure een cursor voor de query hierboven.
+Zorg eerst dat je alleen de voornaam en familienaam op elke rij krijgt.
+Gebruik op het einde van elke regel `\n`.
+
+Test je procedure.
+
+Als dat lukt, zet je deze tussen dubbele aanhalingstekens. Als ze
+zelf al aanhalingstekens bevatten (bijvoorbeeld omwille van een
+bijnaam), worden deze verdubbeld, bijvoorbeeld:
+`"Bruce ""The Boss"""` Gebruik hiervoor
+`replace`.
+
+Test je procedure.
+
+Als dat lukt, voeg dan alle niet-nullable kolommen toe.
+
+Test je procedure.
+
+Als dat lukt, voeg dan `Einddatum` toe. Zorg dat
+`NULL` juist wordt weergegeven via `coalesce`.
+
+Test een laatste keer je procedure.
 
 ## Calibratiescript
 
@@ -33,10 +121,9 @@ Voer dit script eerst uit. Het maakt de databank en tabellen aan en vult ze met 
 <summary>Toon calibratiescript</summary>
 
 ```
-DROP DATABASE IF EXISTS `DbLes20`;
-CREATE DATABASE  IF NOT EXISTS `DbLes20` 
-/*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `DbLes20`;
+DROP DATABASE IF EXISTS `dblabo19`;
+CREATE DATABASE  IF NOT EXISTS `dblabo19` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `dblabo19`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Linux (x86_64)
 --
 -- Host: localhost    Database: aptunes
@@ -278,123 +365,126 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2020-04-22 15:18:06
+
+DROP procedure IF EXISTS `GetLiedjes`;
+
+DELIMITER $$
+CREATE PROCEDURE `GetLiedjes` (IN word VARCHAR(50))
+BEGIN
+	SELECT Titel
+	FROM Liedjes
+	WHERE Titel LIKE CONCAT('%', word, '%');
+END$$
+
+DELIMITER ;
+
+DROP procedure IF EXISTS `NumberOfGenres`;
+
+DELIMITER $$
+CREATE PROCEDURE `NumberOfGenres` (out result tinyint)
+BEGIN
+	SELECT COUNT(*)
+	FROM Genres
+	INTO result;
+END$$
+
+DELIMITER ;
+
+DROP procedure IF EXISTS `CleanupOldMemberships`;
+
+DELIMITER $$
+CREATE PROCEDURE `CleanupOldMemberships` (IN endDate date, OUT numberCleaned int)
+BEGIN
+	SELECT COUNT(*)
+	FROM Lidmaatschappen
+	WHERE Einddatum < endDate
+	INTO numberCleaned;
+
+	DELETE FROM Lidmaatschappen
+	WHERE Einddatum < endDate;
+
+-- sommige studenten gebruikten de eerste select niet
+-- je mag ook doen: set numberCleaned = row_count()
+-- dat moet dan *na* de DELETE doen (en behoort niet tot de leerstof)
+END$$
+
+DELIMITER ;
+
+DROP procedure IF EXISTS `CreateAndReleaseAlbum`;
+
+DELIMITER $$
+CREATE PROCEDURE `CreateAndReleaseAlbum` (IN titel varchar(100), IN bands_Id int)
+BEGIN
+	INSERT INTO Albums(Titel)
+	VALUES(titel);
+
+	INSERT INTO Albumreleases(Bands_Id, Albums_Id)
+	VALUES(bands_Id, last_insert_id());
+END$$
+
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `MockAlbumrelease`()
+BEGIN
+	DECLARE randomAlbumId INT DEFAULT 0;
+	DECLARE randomBandId INT DEFAULT 0;
+    
+    SELECT Id FROM Bands ORDER BY rand() LIMIT 1 INTO randomBandId;
+    SELECT Id FROM Albums ORDER BY rand() LIMIT 1 INTO randomAlbumId;
+
+	IF (randomBandId, randomAlbumId) 
+		NOT IN (SELECT Bands_Id, Albums_Id FROM Albumreleases) 
+	THEN
+		INSERT INTO Albumreleases(Bands_Id, Albums_Id)
+		VALUES(randomBandId, randomAlbumId);
+	END IF;
+END$$
+
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `MockAlbumreleaseWithSuccess`(OUT success BOOL)
+BEGIN
+	DECLARE randomAlbumId INT DEFAULT 0;
+	DECLARE randomBandId INT DEFAULT 0;
+    
+	SELECT Id FROM Bands ORDER BY rand() LIMIT 1 INTO randomBandId;
+    SELECT Id FROM Albums ORDER BY rand() LIMIT 1 INTO randomAlbumId;
+
+	IF (randomBandId, randomAlbumId) 
+		NOT IN (SELECT Bands_Id, Albums_Id FROM Albumreleases) 
+	THEN
+		INSERT INTO Albumreleases(Bands_Id, Albums_Id)
+		VALUES(randomBandId, randomAlbumId);
+		SET success = 1;
+	ELSE 
+		SET success = 0;
+	END IF;
+END$$
+
+DELIMITER ;
+
+DROP procedure IF EXISTS `MockAlbumreleaseWithMessage`;
+
+DELIMITER $$
+CREATE PROCEDURE `MockAlbumreleaseWithMessage` ()
+BEGIN
+	DECLARE success bool;
+	CALL MockAlbumreleaseWithSuccess(success);
+	IF success THEN
+		SELECT 'Release toevoegen gelukt!';
+	ELSE
+		SELECT 'Release toevoegen niet gelukt!';
+	END IF;
+END$$
+
+DELIMITER ;
 ```
 
 </details>
-## Lesvoorbeeld
 
-Democode uit de theorieles, ter naslag. Dit hoef je niet in te leveren.
-
-<details>
-<summary>Toon lesvoorbeeld</summary>
-
-```sql
--- Cursors: een cursor is een object in MySQL dat toelaat om de rijen van een resultatenset één na één te behandelen.
--- Demo 1
-
-USE DbLes20;
-DROP procedure IF EXISTS `VoorbeeldCursors`;
-
-DELIMITER $$
-USE `dbles20`$$
-CREATE PROCEDURE `VoorbeeldCursors` (OUT genresList VARCHAR(1000))
-BEGIN
-  DECLARE done INTEGER DEFAULT 0;
-  DECLARE currentGenre VARCHAR(50) DEFAULT "";
-  DECLARE genreCursor CURSOR FOR SELECT Naam FROM Genres;
-  DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
-  SET genresList = ''; # initialiseren, anders null!
-  OPEN genreCursor;
-  getGenre: LOOP
-    FETCH genreCursor INTO currentGenre;
-    IF done = 1
-    THEN
-      LEAVE getGenre;
-    END IF;
-    SET genresList = CONCAT(currentGenre,";",genresList);
-    END LOOP getGenre;
-  CLOSE genreCursor;
-
-END$$
-
-DELIMITER ;
-
-
-CALL VoorbeeldCursors(@genresList);
-SELECT @genresList;
-
--- Demo 2:
-
-# nu met exit handler;
-USE `DbLes20`;
-DROP procedure IF EXISTS `VoorbeeldCursorsMetExitHandler`;
-
-DELIMITER $$
-USE `DbLes20`$$
-CREATE PROCEDURE `VoorbeeldCursorsMetExitHandler` (OUT GenresList VARCHAR(1000))
-BEGIN
-	DECLARE currentGenre VARCHAR(45) DEFAULT "";
-	DECLARE genreCursor CURSOR FOR SELECT Naam FROM Genres;
-	DECLARE EXIT HANDLER FOR NOT FOUND
-		BEGIN
-		# We hoeven niets meer te doen. Aan het einde van de resultatenset
-		# zal de fetch voor een error zorgen. Die vangen we op met deze lege exit handler.
-		# De procedure wordt dus beëindigd, en de cursor automatisch gesloten.
-        END;
-
-	SET GenresList = ''; # initialiseren, anders null!
-    
-	OPEN genreCursor;
-	getGenre: LOOP
-		FETCH genreCursor INTO currentGenre;
-		SET GenresList = CONCAT(currentGenre,";",GenresList);
-	END LOOP;
-
-END$$
-
-DELIMITER ;
-
---  Voorbeeld met meerdere variabelen:
-DROP procedure IF EXISTS `VoorbeeldCursorsMetMeerdereVariabelen`;
-
-DELIMITER $$
-USE `DbLes20`$$
-CREATE PROCEDURE `VoorbeeldCursorsMetMeerdereVariabelen` (OUT GenresList VARCHAR(1000))
-BEGIN
-	DECLARE done INTEGER DEFAULT 0;
-	DECLARE currentId INT DEFAULT 0;
-	DECLARE currentGenre VARCHAR(45) DEFAULT "";
-	DECLARE genreCursor CURSOR FOR SELECT Id, Naam FROM Genres;
-	DECLARE EXIT HANDLER FOR NOT FOUND
-		BEGIN
-		# We hoeven niets meer te doen. Aan het einde van de resultatenset
-		# zal de fetch voor een error zorgen. Die vangen we op met deze lege exit handler.
-		# De procedure wordt dus beëindigd, en de cursor automatisch gesloten.
-        END;
-
-	SET GenresList = ''; # initialiseren, anders null!
-    
-	OPEN genreCursor;
-	getGenre: LOOP
-		FETCH genreCursor INTO currentId, currentGenre;
-		SET GenresList = CONCAT(currentId, ' ', currentGenre,";",GenresList);
-	END LOOP;
-
-END$$
-
-DELIMITER ;
-
-CALL VoorbeeldCursorsMetMeerdereVariabelen(@genresList);
-SELECT @genresList;
-
--- Labo 19 oef 2, 3 en 4
--- In oef 4 van Labo19 wordt gevraagd om een newline-karakter in een tekst-variabele te verwerken. Wanneer je de variabele in de Workbench uitleest met SELECT, verschijnt de tekst toch op 1 regel:
--- Klik op het knopje ‘Wrap Cell Content’ om de newline-karakters wel weer te geven:
- 
-SELECT 'regel1\nregel2\nregel3\n'
-```
-
-</details>
+<OefeningAssistent oefening="L19" hoofdstuk="L11" />
 
 ## Modeloplossingen
 
@@ -402,39 +492,167 @@ SELECT 'regel1\nregel2\nregel3\n'
 <summary>Toon modeloplossingen</summary>
 
 ```sql
--- opgave 1
-CREATE TABLE LiedjesLogs (
-    Naam VARCHAR(100) NOT NULL,
-    Liedjes_Id INT NOT NULL,
-    Aanpassing ENUM('INSERT', 'UPDATE', 'DELETE'),
-    Tijdstip DATETIME NOT NULL
-);
+-- script 1
+USE `aptunes`;
+DROP procedure IF EXISTS `DangerousInsertAlbumreleases`;
 
--- geen aanpassing delimiter nodig als we maar één statement hebben in de trigger
-CREATE TRIGGER log_insert_liedjes
-	AFTER INSERT ON Liedjes FOR EACH ROW 
-    INSERT INTO LiedjesLogs VALUES (USER(), NEW.Id, 'INSERT', NOW());
+DELIMITER $$
+USE `aptunes`$$
+CREATE PROCEDURE `DangerousInsertAlbumreleases`()
+BEGIN
+	DECLARE Aantal TINYINT DEFAULT 0;
+	DECLARE success BOOL;
+	DECLARE willekeurigeUitkomst TINYINT DEFAULT 0;
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
+		BEGIN
+			ROLLBACK;
+			SELECT 'Stored procedure is beëindigd en alle wijzigingen zijn ongedaan gemaakt.';
+		END;
 
--- merk op: we moeten hier ofwel het oude ofwel het nieuwe Id gebruiken
--- deels om deze reden willen we normaal niet dat Id's na aanmaak nog wijzigen
-CREATE TRIGGER log_update_liedjes
-	AFTER UPDATE ON Liedjes FOR EACH ROW 
-    INSERT INTO LiedjesLogs VALUES(USER(), OLD.Id, 'UPDATE', NOW());
+	START TRANSACTION;
 
-CREATE TRIGGER log_delete_liedjes
-	AFTER DELETE ON Liedjes FOR EACH ROW 
-    INSERT INTO LiedjesLogs VALUES(USER(), OLD.Id, 'DELETE', NOW());
+	SELECT FLOOR(1 + RAND() * 3) INTO willekeurigeUitkomst;
 
--- opgave 2
-delimiter $$
-CREATE TRIGGER prevent_update_id
-	BEFORE UPDATE ON Liedjes FOR EACH ROW
-	BEGIN
-		IF OLD.Id != NEW.Id THEN
-			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = "Niet toegelaten Id te wijzigen na aanmaak.";
+	MockLoop: LOOP
+		IF Aantal < 3 THEN
+			call aptunes.MockAlbumreleaseWithSuccess(success);
+			IF success = 1 THEN
+				SET Aantal = Aantal + 1;
+	IF Aantal = 2 AND willekeurigeUitkomst = 1 THEN
+		SIGNAL SQLSTATE '45000';
+	END IF;
+			END IF;
+		ELSE
+			LEAVE MockLoop;
 		END IF;
-	END$$
-delimiter ;
+	END LOOP;
+
+	-- enkel indien er geen error opgetreden is, zal een commit gebeuren.
+	COMMIT;
+END$$
+
+DELIMITER ;
+
+
+
+-- script 2
+USE `aptunes`;
+DROP procedure IF EXISTS `Welcome`;
+
+DELIMITER $$
+USE `aptunes`$$
+CREATE PROCEDURE Welcome ()
+begin
+	declare done bool default false;
+	declare huidigeNaam varchar(100);
+	declare bericht varchar(1000) default "Welkom bij APTunes! Wij hebben ";
+	declare GenreCursor cursor for
+		select Naam from Genres;
+	declare continue handler for not found
+		begin
+			set bericht = substring(bericht,1,char_length(bericht) - 2);
+			set done = true;
+		end;
+
+	open GenreCursor;
+	concatLoop: loop
+	  fetch GenreCursor into huidigeNaam;
+	  if done then
+		leave concatLoop;
+	  end if;
+	  set bericht = concat(bericht, huidigeNaam, ", ");
+	end loop;
+    
+    select bericht;
+end$$
+
+DELIMITER ;
+
+
+
+-- script 3
+USE `aptunes`;
+DROP procedure IF EXISTS `aptunes`.`AltWelcome`;
+;
+
+DELIMITER $$
+USE `aptunes`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AltWelcome`()
+begin
+declare done bool default false;
+declare huidigeNaam varchar(100);
+declare bericht varchar(1000) default "Welkom bij APTunes! Wij hebben de nieuwste nummers van ";
+declare BandCursor cursor for
+select Naam from Bands
+inner join Liedjes
+on Bands.Id = Bands_Id
+group by Bands.Id, Naam
+order by COUNT(*) DESC
+limit 3;
+-- kon ook zonder limit 3, met extra variabele counter
+declare continue handler for not found
+begin
+  set bericht = substring(bericht,1,char_length(bericht) - 2);
+  set done = true;
+end;
+
+open BandCursor;
+concatLoop: loop
+  fetch BandCursor into huidigeNaam;
+  if done
+    then leave concatLoop;
+  end if;
+  set bericht = concat(bericht, huidigeNaam, ", ");
+end loop;
+
+SELECT bericht;
+end$$
+
+DELIMITER ;
+;
+
+
+-- script 4
+DELIMITER $$
+CREATE PROCEDURE `ExportLidmaatschappen`(OUT csv text)
+BEGIN
+	declare huidigeVoornaam varchar(45);
+	declare huidigeFamilienaam varchar(45);
+	declare huidigeGeboortedatum date;
+	declare huidigeNaam varchar(100);
+	declare huidigeStartdatum date;
+	declare huidigeEinddatum date;
+	declare done bool default false;
+
+	declare CsvCursor cursor for
+		select Voornaam, Familienaam, Geboortedatum, Naam, Startdatum, Einddatum
+		from Bands inner join Lidmaatschappen on Bands.Id = Bands_Id
+		inner join Muzikanten on Muzikanten.Id = Muzikanten_Id;
+
+	declare continue handler for not found
+		begin
+		  set csv = substring(csv,1,char_length(csv) - 1);
+		  set done = true;
+		end;
+
+	set csv = "";
+
+	open CsvCursor;
+	concatLoop: loop
+	  fetch CsvCursor into huidigeVoornaam, huidigeFamilienaam, huidigeGeboortedatum, huidigeNaam, huidigeStartdatum, huidigeEinddatum;
+	  if done then
+		leave concatLoop;
+	  end if;
+	  set csv = concat(csv,
+					   '"', replace(huidigeVoornaam,'"', '""'),   '"', ",",
+					   '"', replace(huidigeFamilienaam,'"', '""'), '"', ",",
+					   huidigeGeboortedatum, ",",
+					   '"', replace(huidigeNaam,'"', '""'),    '"', ",",
+							huidigeStartdatum,                      ",",
+							coalesce(huidigeEinddatum,"NULL"),      "\n");
+	end loop;
+END$$
+DELIMITER ;
 ```
 
 </details>

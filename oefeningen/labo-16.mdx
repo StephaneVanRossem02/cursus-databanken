@@ -1,117 +1,32 @@
 ---
-title: Labo 19 - Cursors
-sidebar_position: 20
+title: Labo 16 - Stored functions
+sidebar_position: 17
 ---
 
-# Labo 19 - Cursors
+# Labo 16 - Stored functions
 
-_Bron: Labo 19._
+_Bron: Labo 16._
 
-Schrijf een stored procedure, DangerousInsertAlbumreleases. Deze
-stored procedure voegt drie willekeurige albumreleases in, maar
-signaleert ook met een kans van 1 op 3 een SQL state ‘45000’ na het
-invoegen van de tweede albumrelease.
+Voor dit labo heb je geen calibratiescript nodig, omdat je het kan uitwerken in een databank naar keuze.
 
-Om een willekeurige albumrelease te maken, kan je volgende procedure
-gebruiken:
+We willen in een databank een stored function toevoegen die controleert of een paswoord aan bepaalde voorwaarden voldoet. De stored function ontvangt een paswoord als parameter, en returnt een boolean die vertelt of het paswoord aan de volgende voorwaarden voldoet:
 
-```sql
-USE `aptunes`;
-DROP procedure IF EXISTS `MockAlbumReleaseAlt`;
+- Het moet minstens 8 karakters lang zijn;
+- Er moet minstens 1 kleine letter en 1 hoofdletter in voorkomen;
+- Er moet minstens 1 cijfer in voorkomen.
 
-DELIMITER $$
-USE `aptunes`$$
-CREATE PROCEDURE `MockAlbumReleaseAlt` ()
-SQL SECURITY INVOKER
-BEGIN
-declare Albums_Id int;
-declare Bands_Id int;
-select Id from Albums order by rand() limit 1 into Albums_Id;
-select Id from Bands order by rand() limit 1 into Bands_Id;
-insert into Albumreleases (Bands_Id, Albums_Id)
-values
-(Bands_Id, Albums_Id);
-END$$
+Om deze test te schrijven, maak je gebruik van een lus-structuur die het paswoord letter per letter gaat nakijken, om vervolgens het juiste antwoord te returnen.
 
-DELIMITER ;
-```
+Enkele tips:
 
-Schrijf in je zelf geschreven stored procedure een handler zodat het
-niet mogelijk is dat er slechts één of twee albumreleases worden
-ingevoegd. Als er iets mis loopt, mag er geen enkele nieuwe release zijn
-toegevoegd. In plaats daarvan wordt deze foutboodschap getoond: “Nieuwe
-releases konden niet worden toegevoegd.”
+- Om na te gaan of een karakter een cijfer, kleine letter of grote letter is, kan je best afgaan op de ASCII-waarde van het karakter. De ASCII-waarde van de kleine letter a is 97, die van de kleine letter b is 98, enz… In MySQL verkrijg je de ASCII waarde van de kleine letter ‘a’ (97) via volgende functieaanroep: ASCII('a'). Hou rekening met volgende ASCII-waarden:
+  - De kleine letters 'a' tot 'z': 97 t/m 122
+  - De hoofdletters 'A' tot 'Z': 65 t/m 90
+  - De cijfers 0 t/m 9: 48 t/m 57
+- Splits de opgave in kleinere deelproblemen op. Laat je functie bijvoorbeeld eerst enkel checken of er een kleine letter in voorkomt. Breid de functionaliteit stelselmatig uit.
+- Als je functie niet werkt zoals gewenst, denk dan na over hoe je jezelf wat nuttige debug- informatie kan bezorgen, of hoe je stukjes van je code apart kan testen.
 
-Let op: SQL state ‘45000’ is niet het enige foutsignaal dat je hier
-kan krijgen, want het kan bijvoorbeeld ook zijn dat een willekeurige
-albumrelease al in het systeem zit. Schrijf je handler zo dat alle
-fouten worden tegengehouden: via SQLEXCEPTION dus.
-
-Lees voor je deze oefening maakt zeker de instructies rond het
-correct uitvoeren van een ROLLBACK na.
-
-Schrijf een stored procedure, `Welcome`, die een
-promotiebericht toont dat je aan toekomstige gebruikers van je systeem
-zou kunnen tonen.
-
-Dit bericht lijst alle genres in het systeem op in volgende vorm:
-“Welkom bij APTunes! Wij hebben Blues, Classical, Country, Electronic,
-Folk, Hip-hop, Jazz, New age, Reggae, Rock”
-
-Maak hierbij gebruik van een cursor. Je mag ook veronderstellen dat
-er niet zo veel genres zijn dat je meer dan 1000 karakters nodig hebt
-voor het bericht.
-
-**Doordenker:** kan je dit ook zonder cursor, met
-`GROUP_CONCAT`? Probeer het als deze oefening vlot gaat.
-
-Schrijf een stored procedure, `AltWelcome`, die een
-alternatief promotiebericht aan de gebruikers van je systeem zou kunnen
-tonen.
-
-Dit bericht toont automatisch de namen van de drie meest bekende
-bands in het systeem. Voor ons betekent dit: de drie bands met het
-hoogste aantal nummers. Doe dit opnieuw met een cursor.
-
-Dit bericht ziet er bijvoorbeeld zo uit: “Welkom bij APTunes! Wij
-hebben de nieuwste nummers van matrix innovative portals, engage
-end-to-end-schemas, integrate front-end functionalities”.
-
-Schrijf een stored procedure waarmee je zelf de lidmaatschappen van
-muzikanten kan exporteren naar CSV-formaat. Dit zou je dan bijvoorbeeld
-kunnen importeren in een Excel of ander programma dat CSV
-ondersteunt:
-
-Schrijf (en test) eerst een query om artiesten met bijbehorende bands
-samen te tonen in volgend formaat:
-
-<table style="width:100%;"><colgroup><col style="width: 16%" /><col style="width: 16%" /><col style="width: 16%" /><col style="width: 16%" /><col style="width: 16%" /><col style="width: 16%" /></colgroup><thead><tr class="header"><th>Voornaam</th><th>Familienaam</th><th>Geboortedatum</th><th>Naam</th><th>Startdatum</th><th>Einddatum</th></tr></thead><tbody><tr class="odd"><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr></tbody></table>
-
-Schrijf dan een stored procedure met één outputparameter van type
-`TEXT` (voor de volledige CSV-voorstelling).
-
-Maak in deze stored procedure een cursor voor de query hierboven.
-Zorg eerst dat je alleen de voornaam en familienaam op elke rij krijgt.
-Gebruik op het einde van elke regel `\n`.
-
-Test je procedure.
-
-Als dat lukt, zet je deze tussen dubbele aanhalingstekens. Als ze
-zelf al aanhalingstekens bevatten (bijvoorbeeld omwille van een
-bijnaam), worden deze verdubbeld, bijvoorbeeld:
-`"Bruce ""The Boss"""` Gebruik hiervoor
-`replace`.
-
-Test je procedure.
-
-Als dat lukt, voeg dan alle niet-nullable kolommen toe.
-
-Test je procedure.
-
-Als dat lukt, voeg dan `Einddatum` toe. Zorg dat
-`NULL` juist wordt weergegeven via `coalesce`.
-
-Test een laatste keer je procedure.
+Veel succes!
 
 ## Calibratiescript
 
@@ -121,9 +36,9 @@ Voer dit script eerst uit. Het maakt de databank en tabellen aan en vult ze met 
 <summary>Toon calibratiescript</summary>
 
 ```
-DROP DATABASE IF EXISTS `dblabo19`;
-CREATE DATABASE  IF NOT EXISTS `dblabo19` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `dblabo19`;
+DROP DATABASE IF EXISTS `dbles16`;
+CREATE DATABASE  IF NOT EXISTS `dbles16` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `dbles16`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Linux (x86_64)
 --
 -- Host: localhost    Database: aptunes
@@ -365,290 +280,248 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2020-04-22 15:18:06
-
-DROP procedure IF EXISTS `GetLiedjes`;
-
-DELIMITER $$
-CREATE PROCEDURE `GetLiedjes` (IN word VARCHAR(50))
-BEGIN
-	SELECT Titel
-	FROM Liedjes
-	WHERE Titel LIKE CONCAT('%', word, '%');
-END$$
-
-DELIMITER ;
-
-DROP procedure IF EXISTS `NumberOfGenres`;
-
-DELIMITER $$
-CREATE PROCEDURE `NumberOfGenres` (out result tinyint)
-BEGIN
-	SELECT COUNT(*)
-	FROM Genres
-	INTO result;
-END$$
-
-DELIMITER ;
-
-DROP procedure IF EXISTS `CleanupOldMemberships`;
-
-DELIMITER $$
-CREATE PROCEDURE `CleanupOldMemberships` (IN endDate date, OUT numberCleaned int)
-BEGIN
-	SELECT COUNT(*)
-	FROM Lidmaatschappen
-	WHERE Einddatum < endDate
-	INTO numberCleaned;
-
-	DELETE FROM Lidmaatschappen
-	WHERE Einddatum < endDate;
-
--- sommige studenten gebruikten de eerste select niet
--- je mag ook doen: set numberCleaned = row_count()
--- dat moet dan *na* de DELETE doen (en behoort niet tot de leerstof)
-END$$
-
-DELIMITER ;
-
-DROP procedure IF EXISTS `CreateAndReleaseAlbum`;
-
-DELIMITER $$
-CREATE PROCEDURE `CreateAndReleaseAlbum` (IN titel varchar(100), IN bands_Id int)
-BEGIN
-	INSERT INTO Albums(Titel)
-	VALUES(titel);
-
-	INSERT INTO Albumreleases(Bands_Id, Albums_Id)
-	VALUES(bands_Id, last_insert_id());
-END$$
-
-DELIMITER ;
-
-DELIMITER $$
-CREATE PROCEDURE `MockAlbumrelease`()
-BEGIN
-	DECLARE randomAlbumId INT DEFAULT 0;
-	DECLARE randomBandId INT DEFAULT 0;
-    
-    SELECT Id FROM Bands ORDER BY rand() LIMIT 1 INTO randomBandId;
-    SELECT Id FROM Albums ORDER BY rand() LIMIT 1 INTO randomAlbumId;
-
-	IF (randomBandId, randomAlbumId) 
-		NOT IN (SELECT Bands_Id, Albums_Id FROM Albumreleases) 
-	THEN
-		INSERT INTO Albumreleases(Bands_Id, Albums_Id)
-		VALUES(randomBandId, randomAlbumId);
-	END IF;
-END$$
-
-DELIMITER ;
-
-DELIMITER $$
-CREATE PROCEDURE `MockAlbumreleaseWithSuccess`(OUT success BOOL)
-BEGIN
-	DECLARE randomAlbumId INT DEFAULT 0;
-	DECLARE randomBandId INT DEFAULT 0;
-    
-	SELECT Id FROM Bands ORDER BY rand() LIMIT 1 INTO randomBandId;
-    SELECT Id FROM Albums ORDER BY rand() LIMIT 1 INTO randomAlbumId;
-
-	IF (randomBandId, randomAlbumId) 
-		NOT IN (SELECT Bands_Id, Albums_Id FROM Albumreleases) 
-	THEN
-		INSERT INTO Albumreleases(Bands_Id, Albums_Id)
-		VALUES(randomBandId, randomAlbumId);
-		SET success = 1;
-	ELSE 
-		SET success = 0;
-	END IF;
-END$$
-
-DELIMITER ;
-
-DROP procedure IF EXISTS `MockAlbumreleaseWithMessage`;
-
-DELIMITER $$
-CREATE PROCEDURE `MockAlbumreleaseWithMessage` ()
-BEGIN
-	DECLARE success bool;
-	CALL MockAlbumreleaseWithSuccess(success);
-	IF success THEN
-		SELECT 'Release toevoegen gelukt!';
-	ELSE
-		SELECT 'Release toevoegen niet gelukt!';
-	END IF;
-END$$
-
-DELIMITER ;
 ```
 
 </details>
+## Lesvoorbeeld
+
+Democode uit de theorieles, ter naslag. Dit hoef je niet in te leveren.
+
+<details>
+<summary>Toon lesvoorbeeld</summary>
+
+```sql
+-- ------------------------
+-- Lesweek 08 - Les 16
+-- ------------------------
+
+-- Herhalingen: welke herhalingen kennen de studenten van de programmeervakken?
+-- Volgende demo’s vertrekken vanuit aptunes2020.sql. 
+-- LOOP: verbeterde versie LOOP-demo (de versie op Gitbook werkt niet correct bij 0 of negatieve getallen)
+
+USE `dbles16`;
+DROP procedure IF EXISTS `LoopDemo`;
+
+DELIMITER $$
+USE `dbles16`$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LoopDemo`(
+    IN numberOfIterations INT
+)
+BEGIN
+    DECLARE i INT DEFAULT 0;
+    DECLARE producedText VARCHAR(255) DEFAULT '';
+    
+    concat_loop:  LOOP
+        IF  i < numberOfIterations THEN
+			SET i = i + 1;
+            SET producedText = CONCAT(producedText, i);
+            IF i < numberOfIterations THEN
+				SET producedText = CONCAT(producedText, ",");
+			END IF;
+		ELSE
+			LEAVE concat_loop;
+		END IF;
+    END LOOP;
+
+    SELECT producedText; 
+END$$
+
+DELIMITER ;
+
+CALL LoopDemo(10);
+
+-- WHILE … DO: Digitap
+
+CREATE TABLE TimeSlots(
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    SlotDate DATE UNIQUE
+);
+
+USE `dbles16`;
+DROP procedure IF EXISTS `AddTimeSlots`;
+
+DELIMITER $$
+USE `dbles16`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddTimeSlots`(
+    startDate DATE,
+    numberOfDays INT
+)
+BEGIN
+    DECLARE counter INT DEFAULT 1;
+    DECLARE currentDate DATE DEFAULT startDate;
+    WHILE counter <= numberOfDays DO
+        INSERT INTO TimeSlots (SlotDate)
+        VALUES
+        (currentDate);
+        SET counter = counter + 1;
+        -- deze functie telt een aantal dagen bij een datum
+        SET currentDate = DATE_ADD(currentDate, INTERVAL 1 day);
+    END WHILE;
+END$$
+
+DELIMITER ;
+
+CALL AddTimeSlots('2025-11-18', 90);
+
+SELECT * FROM Timeslots;
+
+-- REPEAT: Digitap
+
+USE `dbles16`;
+DROP procedure IF EXISTS `ConcatenateNumbersViaRepeat`;
+
+DELIMITER $$
+USE `dbles16`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConcatenateNumbersViaRepeat`()
+BEGIN
+    DECLARE counter INT DEFAULT 1;
+    DECLARE result VARCHAR(90) DEFAULT '';
+
+    REPEAT
+        SET result = CONCAT(result,counter,',');
+        SET counter = counter + 1;
+    UNTIL counter >= 25
+    END REPEAT;
+    set result = CONCAT(result, counter);
+
+    -- toont het resultaat op het scherm
+    SELECT result;
+END$$
+
+DELIMITER ;
+
+CALL ConcatenateNumbersViaRepeat();
+
+-- Stored functions: zijn deterministisch of niet
+ -- voorbeeld 1:
+	
+-- We tonen per band hoeveel muzikanten er in totaal bij gespeeld hebben
+-- (muzikanten die er niet meer bij spelen worden ook geteld)
+
+SELECT Bands.Id, Bands.Naam, COUNT(*)
+FROM Bands INNER JOIN Lidmaatschappen
+ON Bands.Id = Lidmaatschappen.Bands_Id
+GROUP BY Bands.Id, Bands.Naam;
+
+-- Ontwerp een functie die voor een bepaalde Band (Id) aangeeft hoeveel muzikanten er ooit bij speelden
+USE `dbles16`;
+DROP function IF EXISTS `AantalMuzikantenInBand`;
+
+DELIMITER $$
+USE `dbles16`$$
+CREATE FUNCTION AantalMuzikantenInBand(pBands_Id INT)
+RETURNS INTEGER
+DETERMINISTIC
+BEGIN
+	DECLARE Aantal INT DEFAULT 0;
+    
+	SELECT COUNT(*) INTO Aantal
+	FROM Bands INNER JOIN Lidmaatschappen
+	ON Bands.Id = Lidmaatschappen.Bands_Id
+	WHERE Bands.Id = pBands_Id
+    GROUP BY Bands.Id;
+    
+	RETURN Aantal;
+END$$
+
+DELIMITER ;
+
+-- Geef het aantal muzikanten in band 176:
+SELECT AantalMuzikantenInBand(176);
+
+-- Toon per band hoeveel muzikanten er in totaal bij gespeeld hebben
+-- (muzikanten die er niet meer bij spelen worden ook geteld)
+SELECT Id, Naam, AantalMuzikantenInBand(Id)
+FROM Bands;
+
+-- Voorbeeld 2:
+
+DROP function IF EXISTS `dbles16`.`dubbel`;
+
+
+DELIMITER $$
+USE dbles16$$
+
+CREATE FUNCTION `dubbel`(getal int)
+	RETURNS int
+    DETERMINISTIC
+BEGIN
+	RETURN getal * 2;
+END$$
+
+DELIMITER ;
+
+-- uittesten:
+SELECT dubbel(5);
+
+-- Voorbeeld 3:
+
+-- SET GLOBAL log_bin_trust_function_creators = True;
+
+USE `dbles16`;
+DROP function IF EXISTS `dbles16`.`head_or_tails`;
+
+DELIMITER $$
+CREATE FUNCTION `head_or_tails`()
+	RETURNS BOOL
+	NOT DETERMINISTIC
+BEGIN
+	RETURN RAND() >= 0.5;
+END$$
+
+DELIMITER ;
+
+-- Labo 16 (1 grote oefening met stored function en loop)
+```
+
+</details>
+
+
+<OefeningAssistent oefening="L16" hoofdstuk="L10" />
+
 ## Modeloplossingen
 
 <details>
 <summary>Toon modeloplossingen</summary>
 
 ```sql
--- script 1
-USE `aptunes`;
-DROP procedure IF EXISTS `DangerousInsertAlbumreleases`;
-
 DELIMITER $$
-USE `aptunes`$$
-CREATE PROCEDURE `DangerousInsertAlbumreleases`()
+
+DROP FUNCTION IF EXISTS CheckPassword$$
+CREATE FUNCTION CheckPassword(paswoord VARCHAR(50))
+    RETURNS BOOLEAN
+    DETERMINISTIC
 BEGIN
-	DECLARE Aantal TINYINT DEFAULT 0;
-	DECLARE success BOOL;
-	DECLARE willekeurigeUitkomst TINYINT DEFAULT 0;
-	DECLARE EXIT HANDLER FOR SQLEXCEPTION
-		BEGIN
-			ROLLBACK;
-			SELECT 'Stored procedure is beëindigd en alle wijzigingen zijn ongedaan gemaakt.';
-		END;
-
-	START TRANSACTION;
-
-	SELECT FLOOR(1 + RAND() * 3) INTO willekeurigeUitkomst;
-
-	MockLoop: LOOP
-		IF Aantal < 3 THEN
-			call aptunes.MockAlbumreleaseWithSuccess(success);
-			IF success = 1 THEN
-				SET Aantal = Aantal + 1;
-	IF Aantal = 2 AND willekeurigeUitkomst = 1 THEN
-		SIGNAL SQLSTATE '45000';
-	END IF;
-			END IF;
-		ELSE
-			LEAVE MockLoop;
-		END IF;
-	END LOOP;
-
-	-- enkel indien er geen error opgetreden is, zal een commit gebeuren.
-	COMMIT;
-END$$
-
-DELIMITER ;
-
-
-
--- script 2
-USE `aptunes`;
-DROP procedure IF EXISTS `Welcome`;
-
-DELIMITER $$
-USE `aptunes`$$
-CREATE PROCEDURE Welcome ()
-begin
-	declare done bool default false;
-	declare huidigeNaam varchar(100);
-	declare bericht varchar(1000) default "Welkom bij APTunes! Wij hebben ";
-	declare GenreCursor cursor for
-		select Naam from Genres;
-	declare continue handler for not found
-		begin
-			set bericht = substring(bericht,1,char_length(bericht) - 2);
-			set done = true;
-		end;
-
-	open GenreCursor;
-	concatLoop: loop
-	  fetch GenreCursor into huidigeNaam;
-	  if done then
-		leave concatLoop;
-	  end if;
-	  set bericht = concat(bericht, huidigeNaam, ", ");
-	end loop;
+    DECLARE lengte INT DEFAULT LENGTH(paswoord);
+    DECLARE i INT DEFAULT 1;
+    DECLARE bevat_kleine_letter BOOLEAN DEFAULT FALSE;
+    DECLARE bevat_hoofdletter BOOLEAN DEFAULT FALSE;
+    DECLARE bevat_cijfer BOOLEAN DEFAULT FALSE;
+    DECLARE karakter VARCHAR(1);
     
-    select bericht;
-end$$
+    IF lengte < 8 THEN
+        RETURN FALSE;
+    ELSE
+        WHILE i <= lengte DO
+            SET karakter = SUBSTRING(paswoord, i, 1);
 
-DELIMITER ;
+            IF ASCII(karakter) BETWEEN 97 AND 122 THEN
+                SET bevat_kleine_letter = TRUE;  -- 'a' (97) tot 'z' (122)
+            ELSEIF ASCII(karakter) BETWEEN 65 AND 90 THEN
+                SET bevat_hoofdletter = TRUE;    -- 'A' (65) tot 'Z' (90)
+            ELSEIF ASCII(karakter) BETWEEN 48 AND 57 THEN
+                SET bevat_cijfer = TRUE;         -- '0' (48) tot '9' (57)
+            END IF;
 
+            SET i = i + 1;
+        END WHILE;
 
+        -- Controleer of aan alle voorwaarden is voldaan
+        RETURN bevat_kleine_letter AND bevat_hoofdletter AND bevat_cijfer;
+    END IF;
+END $$
 
--- script 3
-USE `aptunes`;
-DROP procedure IF EXISTS `aptunes`.`AltWelcome`;
-;
-
-DELIMITER $$
-USE `aptunes`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `AltWelcome`()
-begin
-declare done bool default false;
-declare huidigeNaam varchar(100);
-declare bericht varchar(1000) default "Welkom bij APTunes! Wij hebben de nieuwste nummers van ";
-declare BandCursor cursor for
-select Naam from Bands
-inner join Liedjes
-on Bands.Id = Bands_Id
-group by Bands.Id, Naam
-order by COUNT(*) DESC
-limit 3;
--- kon ook zonder limit 3, met extra variabele counter
-declare continue handler for not found
-begin
-  set bericht = substring(bericht,1,char_length(bericht) - 2);
-  set done = true;
-end;
-
-open BandCursor;
-concatLoop: loop
-  fetch BandCursor into huidigeNaam;
-  if done
-    then leave concatLoop;
-  end if;
-  set bericht = concat(bericht, huidigeNaam, ", ");
-end loop;
-
-SELECT bericht;
-end$$
-
-DELIMITER ;
-;
-
-
--- script 4
-DELIMITER $$
-CREATE PROCEDURE `ExportLidmaatschappen`(OUT csv text)
-BEGIN
-	declare huidigeVoornaam varchar(45);
-	declare huidigeFamilienaam varchar(45);
-	declare huidigeGeboortedatum date;
-	declare huidigeNaam varchar(100);
-	declare huidigeStartdatum date;
-	declare huidigeEinddatum date;
-	declare done bool default false;
-
-	declare CsvCursor cursor for
-		select Voornaam, Familienaam, Geboortedatum, Naam, Startdatum, Einddatum
-		from Bands inner join Lidmaatschappen on Bands.Id = Bands_Id
-		inner join Muzikanten on Muzikanten.Id = Muzikanten_Id;
-
-	declare continue handler for not found
-		begin
-		  set csv = substring(csv,1,char_length(csv) - 1);
-		  set done = true;
-		end;
-
-	set csv = "";
-
-	open CsvCursor;
-	concatLoop: loop
-	  fetch CsvCursor into huidigeVoornaam, huidigeFamilienaam, huidigeGeboortedatum, huidigeNaam, huidigeStartdatum, huidigeEinddatum;
-	  if done then
-		leave concatLoop;
-	  end if;
-	  set csv = concat(csv,
-					   '"', replace(huidigeVoornaam,'"', '""'),   '"', ",",
-					   '"', replace(huidigeFamilienaam,'"', '""'), '"', ",",
-					   huidigeGeboortedatum, ",",
-					   '"', replace(huidigeNaam,'"', '""'),    '"', ",",
-							huidigeStartdatum,                      ",",
-							coalesce(huidigeEinddatum,"NULL"),      "\n");
-	end loop;
-END$$
 DELIMITER ;
 ```
 

@@ -1,0 +1,1182 @@
+{
+  "_lees_dit_eerst": "Deze data komt WEL in de publieke JS-bundel terecht. Zet hier dus nooit een modeloplossing in: enkel opgave-context, hints en valkuilen. De modeloplossingen leven in worker/oplossingen.json, dat enkel de Cloudflare Worker inleest. 'hoofdstukken' zijn de leerlijnniveaus L1-L11 in de volgorde waarin de labo's ze aanleren (kennisgrens); 'oefeningen' zijn de losse opdrachten per labo, met een verwijzing naar hun niveau.",
+
+  "hoofdstukken": {
+    "L1": {
+      "titel": "Databanken en Workbench",
+      "toegelaten": [
+        "verbinden met een MySQL-server via MySQL Workbench",
+        "een script schrijven, opslaan en uitvoeren",
+        "weten wat een tabel, een kolom en een rij is"
+      ],
+      "nogNietGezien": [
+        "CREATE TABLE en datatypes (komt in L2)",
+        "INSERT, SELECT, UPDATE, DELETE (komt in L3)",
+        "groeperen en aggregaties (komt in L4)",
+        "sleutels, relaties en ERD (komt in L5)",
+        "JOIN over meerdere tabellen (komt in L6)"
+      ]
+    },
+    "L2": {
+      "titel": "DDL, een tabel",
+      "toegelaten": [
+        "CREATE TABLE om een tabel met kolommen aan te maken",
+        "datatypes kiezen: VARCHAR, INT, DECIMAL of FLOAT, DATE, DATETIME",
+        "een kolom verplicht maken met NOT NULL, of leeg toelaten",
+        "een tabel aanpassen met ALTER TABLE (een kolom toevoegen of hernoemen)",
+        "DROP TABLE om een tabel volledig te verwijderen"
+      ],
+      "nogNietGezien": [
+        "INSERT, UPDATE en DELETE (komt in L3)",
+        "SELECT met WHERE en ORDER BY (komt in L3)",
+        "groeperen met COUNT, SUM, AVG, GROUP BY (komt in L4)",
+        "PRIMARY KEY, FOREIGN KEY en relaties (komt in L5)",
+        "JOIN over meerdere tabellen (komt in L6)"
+      ]
+    },
+    "L3": {
+      "titel": "DML, een tabel",
+      "toegelaten": [
+        "CREATE TABLE en DROP TABLE met datatypes (uit L2)",
+        "INSERT INTO ... VALUES om rijen toe te voegen",
+        "SELECT ... FROM met WHERE en vergelijkingen (=, <>, <, >, <=, >=)",
+        "resultaten sorteren met ORDER BY (ASC of DESC) en beperken met LIMIT",
+        "rijen aanpassen met UPDATE en verwijderen met DELETE, telkens met WHERE"
+      ],
+      "nogNietGezien": [
+        "aggregaatfuncties COUNT, SUM, AVG en GROUP BY / HAVING (komt in L4)",
+        "PRIMARY KEY, FOREIGN KEY, relaties en ERD (komt in L5)",
+        "JOIN over meerdere tabellen (komt in L6)",
+        "views, indexen en subquery's (komt later)"
+      ]
+    },
+    "L4": {
+      "titel": "Groeperen en aggregaties",
+      "toegelaten": [
+        "alles uit L1 tot L3, nog steeds op een enkele tabel",
+        "aggregaatfuncties COUNT, SUM, AVG, MIN en MAX",
+        "unieke waarden met DISTINCT",
+        "groeperen met GROUP BY en filteren op groepen met HAVING"
+      ],
+      "nogNietGezien": [
+        "PRIMARY KEY, FOREIGN KEY, relaties en ERD (komt in L5)",
+        "JOIN over meerdere tabellen (komt in L6)",
+        "views (komt in L7)",
+        "indexen (komt in L8)",
+        "subquery's (komt in L9)"
+      ]
+    },
+    "L5": {
+      "titel": "Sleutels, relaties en ERD",
+      "toegelaten": [
+        "alles uit L1 tot L4",
+        "PRIMARY KEY en AUTO_INCREMENT",
+        "FOREIGN KEY en relaties 1-N en M-N",
+        "een ERD lezen en tekenen, en een ontwerp normaliseren"
+      ],
+      "nogNietGezien": [
+        "JOIN over meerdere tabellen (komt in L6)",
+        "views (komt in L7)",
+        "indexen (komt in L8)",
+        "subquery's (komt in L9)"
+      ]
+    },
+    "L6": {
+      "titel": "JOINs (meerdere tabellen)",
+      "toegelaten": [
+        "alles uit L1 tot L5",
+        "INNER JOIN om rijen uit meerdere tabellen te combineren",
+        "LEFT JOIN (en RIGHT JOIN) om ook niet-overeenkomende rijen te tonen",
+        "aggregaties combineren met joins"
+      ],
+      "nogNietGezien": [
+        "views (komt in L7)",
+        "indexen (komt in L8)",
+        "subquery's (komt in L9)"
+      ]
+    },
+    "L7": {
+      "titel": "Views",
+      "toegelaten": [
+        "alles uit L1 tot L6",
+        "een VIEW aanmaken met CREATE VIEW en gebruiken als een tabel",
+        "een view aanpassen of verwijderen"
+      ],
+      "nogNietGezien": [
+        "indexen (komt in L8)",
+        "subquery's (komt in L9)",
+        "stored functions en procedures (komt in L10)"
+      ]
+    },
+    "L8": {
+      "titel": "Indexen",
+      "toegelaten": [
+        "alles uit L1 tot L7",
+        "een index aanmaken met CREATE INDEX en verwijderen met DROP INDEX",
+        "een query-uitvoering bekijken met EXPLAIN"
+      ],
+      "nogNietGezien": [
+        "subquery's (komt in L9)",
+        "stored functions en procedures (komt in L10)",
+        "cursors en triggers (komt in L11)"
+      ]
+    },
+    "L9": {
+      "titel": "Subquery's",
+      "toegelaten": [
+        "alles uit L1 tot L8",
+        "een subquery in WHERE (bijvoorbeeld met IN of een vergelijking)",
+        "een subquery in FROM (afgeleide tabel) of in SELECT"
+      ],
+      "nogNietGezien": [
+        "stored functions en procedures (komt in L10)",
+        "cursors en triggers (komt in L11)"
+      ]
+    },
+    "L10": {
+      "titel": "Stored programs",
+      "toegelaten": [
+        "alles uit L1 tot L9",
+        "een stored function maken met CREATE FUNCTION, met RETURN",
+        "een stored procedure maken met CREATE PROCEDURE, met IN- en OUT-parameters",
+        "DELIMITER, DECLARE voor lokale variabelen, en controlestructuren IF en WHILE"
+      ],
+      "nogNietGezien": [
+        "cursors en triggers (komt in L11)"
+      ]
+    },
+    "L11": {
+      "titel": "Cursors en triggers",
+      "toegelaten": [
+        "alles uit L1 tot L10",
+        "een cursor declareren, openen, rij per rij overlopen (FETCH) en sluiten",
+        "een CONTINUE HANDLER voor NOT FOUND",
+        "een trigger maken met CREATE TRIGGER (BEFORE/AFTER, INSERT/UPDATE/DELETE) met OLD en NEW"
+      ],
+      "nogNietGezien": []
+    }
+  },
+
+  "oefeningen": {
+    "L02-01": {
+      "titel": "Labo 02 - Oefening 1: drie tabellen aanmaken",
+      "hoofdstuk": "L2",
+      "leerdoelen": [
+        "een tabel met kolommen aanmaken met CREATE TABLE",
+        "per kolom het meest geschikte datatype kiezen"
+      ],
+      "functioneleAnalyse": "Maak in een script drie tabellen aan. Liedjes met de kolommen Artiest, Titel, AantalVerkocht en ReleaseJaar. Geboortes met Voornaam, Familienaam, TijdstipGeboorte en GewichtInKilogram. Huisdieren met Naam, Diersoort en Leeftijd. De student kiest zelf per kolom het meest geschikte datatype; voor tekst volstaat 100 karakters.",
+      "schema": "Aan te maken tabellen (kolomnamen gegeven, datatype kiest de student zelf):\n- Liedjes(Artiest, Titel, AantalVerkocht, ReleaseJaar)\n- Geboortes(Voornaam, Familienaam, TijdstipGeboorte, GewichtInKilogram)\n- Huisdieren(Naam, Diersoort, Leeftijd)",
+      "letOp": "TijdstipGeboorte bevat zowel een datum als een uur, niet enkel een datum.",
+      "veelgemaakteFouten": [
+        "een geheel getal in een tekstkolom (VARCHAR) steken in plaats van INT",
+        "DATE gebruiken voor TijdstipGeboorte terwijl ook het uur nodig is",
+        "de puntkomma tussen twee instructies vergeten"
+      ],
+      "hints": [
+        "Overloop elke kolom: bevat ze tekst, een geheel getal, een kommagetal of een tijdstip? Dat bepaalt het datatype.",
+        "AantalVerkocht en ReleaseJaar zijn gehele getallen. Welk datatype past daarbij?",
+        "TijdstipGeboorte bevat een datum EN een uur. Welk datatype houdt die allebei bij?",
+        "GewichtInKilogram heeft cijfers na de komma. Welk datatype laat decimalen toe?"
+      ]
+    },
+    "L02-02": {
+      "titel": "Labo 02 - Oefening 2: gegevens toevoegen",
+      "hoofdstuk": "L3",
+      "leerdoelen": [
+        "rijen toevoegen aan een tabel met INSERT INTO ... VALUES",
+        "een datum met uur en een kommagetal correct noteren"
+      ],
+      "functioneleAnalyse": "Voeg de gegeven rijen toe aan de tabellen Liedjes, Geboortes en Huisdieren uit de vorige oefening. De gegevens (artiesten en verkoopcijfers, geboortes met tijdstip en gewicht, huisdieren met soort en leeftijd) staan in de opgave.",
+      "schema": "Bestaande tabellen:\n- Liedjes(Artiest, Titel, AantalVerkocht, ReleaseJaar)\n- Geboortes(Voornaam, Familienaam, TijdstipGeboorte, GewichtInKilogram)\n- Huisdieren(Naam, Diersoort, Leeftijd)",
+      "letOp": "De volgorde van de waarden in VALUES moet overeenkomen met de volgorde van de kolommen die je opsomt.",
+      "veelgemaakteFouten": [
+        "de kolomvolgorde in VALUES komt niet overeen met de opgesomde kolommen",
+        "een komma in plaats van een punt als decimaalteken (2,7 in plaats van 2.7)",
+        "een tijdstip zonder uur noteren"
+      ],
+      "hints": [
+        "Met welke instructie voeg je nieuwe rijen toe aan een bestaande tabel?",
+        "Noem in je INSERT eerst de kolommen op, en zet daarna de waarden in VALUES in exact dezelfde volgorde.",
+        "Een tijdstip noteer je als tekst tussen aanhalingstekens in het formaat 'JJJJ-MM-DD uu:mm:ss'.",
+        "Je kan meerdere rijen in een enkele INSERT zetten door de VALUES-groepen met een komma te scheiden."
+      ]
+    },
+    "L02-03": {
+      "titel": "Labo 02 - Oefening 3: een tabel verwijderen",
+      "hoofdstuk": "L2",
+      "leerdoelen": [
+        "een volledige tabel verwijderen met een geschreven instructie"
+      ],
+      "functioneleAnalyse": "Verwijder de tabel Huisdieren, inclusief alle data, met een enkele geschreven SQL-instructie (dus niet via de rechtermuisknop).",
+      "schema": "Bestaande tabel:\n- Huisdieren(Naam, Diersoort, Leeftijd)",
+      "letOp": "De opgave vraagt uitdrukkelijk een geschreven instructie, niet de rechtermuisknop.",
+      "veelgemaakteFouten": [
+        "DELETE gebruiken: dat verwijdert de rijen maar laat de tabel bestaan",
+        "de tabel via de rechtermuisknop verwijderen in plaats van met een instructie"
+      ],
+      "hints": [
+        "Je zoekt een DDL-instructie die een hele tabel wegdoet, niet een die enkel rijen verwijdert.",
+        "Het sleutelwoord begint met DROP. Wat zet je erachter om een tabel te verwijderen?"
+      ]
+    },
+    "L02-04": {
+      "titel": "Labo 02 - Oefening 4: zwaarste geboortes tonen",
+      "hoofdstuk": "L3",
+      "leerdoelen": [
+        "rijen filteren met WHERE en een vergelijking",
+        "het resultaat sorteren met ORDER BY"
+      ],
+      "functioneleAnalyse": "Toon de voornaam en familienaam van alle geboortes met een gewicht van minstens 3 kilogram. Kinderen onder 3 kg verschijnen niet. Sorteer van licht naar zwaar, dus het lichtste kind bovenaan.",
+      "schema": "Tabel:\n- Geboortes(Voornaam, Familienaam, TijdstipGeboorte, GewichtInKilogram)",
+      "verwachteUitvoer": "Voornaam   Familienaam   GewichtInKilogram\nDilara     El Farisi     3.7\nAdnane     Lazaar        4.1",
+      "letOp": "'Minstens 3' betekent dat een gewicht van precies 3 ook meetelt.",
+      "veelgemaakteFouten": [
+        "'> 3' gebruiken in plaats van '>= 3' waardoor precies 3 kg wegvalt",
+        "vergeten te sorteren",
+        "aflopend (DESC) sorteren terwijl het lichtste bovenaan moet"
+      ],
+      "hints": [
+        "Welke tabel bevat de gewichten? Begin met SELECT van de gevraagde kolommen FROM die tabel.",
+        "Om enkel kinderen van minstens 3 kg te houden, filter je met WHERE op de gewichtskolom. Welke operator betekent 'minstens'?",
+        "'Lichtste bovenaan' is oplopend sorteren. Welke clausule sorteert het resultaat, en is dat ASC of DESC?"
+      ]
+    },
+    "L02-05": {
+      "titel": "Labo 02 - Oefening 5: best verkochte liedjes",
+      "hoofdstuk": "L3",
+      "leerdoelen": [
+        "rijen filteren met WHERE",
+        "aflopend sorteren met ORDER BY ... DESC"
+      ],
+      "functioneleAnalyse": "Toon Titel, Artiest en AantalVerkocht van alle liedjes met minstens 5000 verkochte exemplaren, gesorteerd van best naar minst verkocht.",
+      "schema": "Tabel:\n- Liedjes(Artiest, Titel, AantalVerkocht, ReleaseJaar)",
+      "verwachteUitvoer": "Titel                     Artiest        AantalVerkocht\nStairway to Heaven        Led Zeppelin   1000000\nCall Me Little Sunshine   Ghost          35000\nTom Devil                 Larkin Poe     15000",
+      "letOp": "Van best naar minst verkocht betekent aflopend (DESC) op AantalVerkocht.",
+      "veelgemaakteFouten": [
+        "oplopend (ASC) sorteren terwijl de best verkochte bovenaan moet",
+        "'> 5000' gebruiken in plaats van '>= 5000'",
+        "de kolommen in een andere volgorde tonen dan gevraagd"
+      ],
+      "hints": [
+        "Welke kolommen moet je tonen en uit welke tabel? Begin met SELECT ... FROM.",
+        "Filter de liedjes met minder dan 5000 verkopen weg met WHERE. Welke operator gebruik je voor 'minstens'?",
+        "'Best naar minst' is aflopend sorteren. Welke richting geef je mee aan ORDER BY?"
+      ]
+    },
+
+    "L03-01": {
+      "titel": "Labo 03 - Oefening 1: goedkope liedjes wissen",
+      "hoofdstuk": "L3",
+      "leerdoelen": [
+        "rijen verwijderen met DELETE en een WHERE-voorwaarde",
+        "eerst met een SELECT controleren welke rijen je zal raken"
+      ],
+      "functioneleAnalyse": "Wis automatisch alle liedjes met minder dan 2000 verkochte exemplaren uit de tabel Liedjes. Werk zoals in de theorie: begin met een SELECT die net die liedjes toont, controleer, en bouw dat pas dan om naar een DELETE.",
+      "schema": "Tabel:\n- Liedjes(Artiest, Titel, AantalVerkocht, ReleaseJaar)",
+      "letOp": "MySQL Workbench blokkeert standaard een DELETE zonder sleutel (safe update mode).",
+      "veelgemaakteFouten": [
+        "DELETE zonder WHERE: dan wis je de hele tabel",
+        "Error Code 1175 (safe update mode) niet herkennen",
+        "> gebruiken in plaats van < voor 'minder dan'"
+      ],
+      "hints": [
+        "Test eerst met SELECT * FROM Liedjes WHERE ... welke rijen je wil raken. Klopt de lijst, vervang dan enkel SELECT * door DELETE.",
+        "Welke vergelijkingsoperator hoort bij 'minder dan 2000'?",
+        "Krijg je Error Code 1175? Dat is de veilige-updatemodus van Workbench die je tijdelijk moet uitzetten."
+      ]
+    },
+    "L03-02": {
+      "titel": "Labo 03 - Oefening 2: een gewicht corrigeren",
+      "hoofdstuk": "L3",
+      "leerdoelen": [
+        "één bestaande rij aanpassen met UPDATE en WHERE"
+      ],
+      "functioneleAnalyse": "In de tabel Geboortes staat een fout: Thijs Verbeeck woog bij zijn geboorte 2.8 kg, niet 2.7. Pas dat aan met de juiste instructie.",
+      "schema": "Tabel:\n- Geboortes(Voornaam, Familienaam, TijdstipGeboorte, GewichtInKilogram)",
+      "letOp": "Zonder WHERE pas je álle rijen aan.",
+      "veelgemaakteFouten": [
+        "de WHERE vergeten waardoor iedereen 2.8 kg wordt",
+        "enkel op de voornaam filteren terwijl er meerdere personen kunnen zijn"
+      ],
+      "hints": [
+        "Met UPDATE ... SET geef je de kolom en de nieuwe waarde. Welke kolom moet veranderen?",
+        "Beperk met WHERE tot precies Thijs Verbeeck. Op welke kolommen filter je zodat je zeker één persoon raakt?"
+      ]
+    },
+    "L03-03": {
+      "titel": "Labo 03 - Oefening 3: verkoopcijfers maal tien",
+      "hoofdstuk": "L3",
+      "leerdoelen": [
+        "een kolom aanpassen op basis van zijn eigen huidige waarde",
+        "een algemene, data-onafhankelijke instructie schrijven"
+      ],
+      "functioneleAnalyse": "Vermenigvuldig in Liedjes het aantal verkochte exemplaren van elk liedje met 10. De instructie moet algemeen werken en mag geen titels expliciet noemen.",
+      "schema": "Tabel:\n- Liedjes(Artiest, Titel, AantalVerkocht, ReleaseJaar)",
+      "letOp": "Geen WHERE: het geldt voor alle rijen. De nieuwe waarde hangt af van de oude waarde in dezelfde kolom.",
+      "veelgemaakteFouten": [
+        "een vast getal invullen in plaats van de bestaande kolomwaarde te gebruiken",
+        "per liedje een aparte UPDATE schrijven"
+      ],
+      "hints": [
+        "In SET mag je rechts verwijzen naar de huidige waarde van een kolom. Hoe druk je 'tien keer de huidige waarde' uit?",
+        "Moet je hier wel filteren met WHERE, als élk liedje aangepast wordt?"
+      ]
+    },
+    "L03-04": {
+      "titel": "Labo 03 - Oefening 4: familienaam anonimiseren",
+      "hoofdstuk": "L3",
+      "leerdoelen": [
+        "tekstfuncties gebruiken in een UPDATE (een deel uit tekst halen en tekst samenvoegen)"
+      ],
+      "functioneleAnalyse": "Vervang in Geboortes elke familienaam door enkel de eerste letter, gevolgd door een punt. Zo wordt 'Lazaar' bijvoorbeeld 'L.'.",
+      "schema": "Tabel:\n- Geboortes(Voornaam, Familienaam, TijdstipGeboorte, GewichtInKilogram)",
+      "veelgemaakteFouten": [
+        "de punt vergeten aan te plakken",
+        "verkeerde start of lengte bij het uitknippen (MySQL telt vanaf positie 1)"
+      ],
+      "hints": [
+        "Je hebt twee stukken nodig: de eerste letter van de naam, en een punt. Welke functie haalt een deel uit een tekst, en welke plakt stukken aan elkaar?",
+        "SUBSTRING(tekst, start, lengte): in MySQL begint de eerste positie op 1. Welke start en lengte geven precies de eerste letter?"
+      ]
+    },
+    "L03-05": {
+      "titel": "Labo 03 - Oefening 5: filenaam samenstellen",
+      "hoofdstuk": "L3",
+      "leerdoelen": [
+        "een berekende kolom tonen",
+        "een kolomhoofding hernoemen met AS"
+      ],
+      "functioneleAnalyse": "Toon per liedje een filenaam die bestaat uit: de artiest, een spatie, een streepje, een spatie, de titel en de extensie '.mp3'. Geef de resultaatkolom de hoofding Filenaam.",
+      "schema": "Tabel:\n- Liedjes(Artiest, Titel, AantalVerkocht, ReleaseJaar)",
+      "verwachteUitvoer": "Filenaam\nGhost - Call Me Little Sunshine.mp3\nLed Zeppelin - Stairway to Heaven.mp3\nLarkin Poe - Tom Devil.mp3",
+      "veelgemaakteFouten": [
+        "de spaties rond het streepje vergeten (' - ')",
+        "AS vergeten waardoor de hoofding de hele expressie wordt"
+      ],
+      "hints": [
+        "Bouw de tekst op met CONCAT en zet de vaste stukken (' - ' en '.mp3') als aparte tekstwaarden tussen de kolommen.",
+        "De hoofding van de kolom pas je aan met AS achter de expressie."
+      ]
+    },
+    "L03-06": {
+      "titel": "Labo 03 - Oefening 6: artiesten met een E",
+      "hoofdstuk": "L3",
+      "leerdoelen": [
+        "op een patroon zoeken met LIKE en jokertekens"
+      ],
+      "functioneleAnalyse": "Toon met een algemene instructie alle artiesten die ergens een letter E in hun naam hebben.",
+      "schema": "Tabel:\n- Liedjes(Artiest, Titel, AantalVerkocht, ReleaseJaar)",
+      "letOp": "LIKE is in MySQL standaard hoofdletterongevoelig, dus E vindt ook e.",
+      "veelgemaakteFouten": [
+        "= gebruiken in plaats van LIKE",
+        "de jokertekens (%) vergeten"
+      ],
+      "hints": [
+        "Voor 'bevat ergens een E' gebruik je LIKE met jokertekens. Welk teken staat voor 'om het even welke tekens'?",
+        "Zet dat jokerteken zowel voor als na de E zodat de letter overal in de naam mag staan."
+      ]
+    },
+    "L03-07": {
+      "titel": "Labo 03 - Oefening 7: lichte kinderen geboren voor 1996",
+      "hoofdstuk": "L3",
+      "leerdoelen": [
+        "filteren met meerdere voorwaarden die samen moeten kloppen (AND)",
+        "vergelijken op een DATETIME-kolom"
+      ],
+      "functioneleAnalyse": "Toon alle gegevens van personen die geboren zijn in of voor 1995 en die maximaal 3 kg wogen bij hun geboorte.",
+      "schema": "Tabel:\n- Geboortes(Voornaam, Familienaam, TijdstipGeboorte, GewichtInKilogram)",
+      "letOp": "'In of voor 1995' betekent tot en met 31 december 1995; een DATETIME vergelijk je met een datum-tekst.",
+      "veelgemaakteFouten": [
+        "enkel op het jaartal vergelijken in plaats van op de volledige datum",
+        "OR gebruiken waar AND nodig is",
+        "> gebruiken in plaats van <= voor 'maximaal'"
+      ],
+      "hints": [
+        "Twee voorwaarden die allebei moeten kloppen: welk sleutelwoord combineert ze in de WHERE?",
+        "Voor 'in of voor 1995' vergelijk je TijdstipGeboorte met een grens zoals '1996-01-01 00:00:00'. Welke operator gebruik je?"
+      ]
+    },
+    "L03-08": {
+      "titel": "Labo 03 - Oefening 8: titels zonder O",
+      "hoofdstuk": "L3",
+      "leerdoelen": [
+        "een patroon uitsluiten met NOT en LIKE"
+      ],
+      "functioneleAnalyse": "Toon alle titels van liedjes die géén letter O bevatten.",
+      "schema": "Tabel:\n- Liedjes(Artiest, Titel, AantalVerkocht, ReleaseJaar)",
+      "veelgemaakteFouten": [
+        "de ontkenning vergeten (gewoon LIKE '%O%' schrijven)",
+        "<> proberen te gebruiken voor een patroon"
+      ],
+      "hints": [
+        "Je weet hoe je 'bevat een O' schrijft met LIKE. Hoe draai je die hele voorwaarde om naar 'bevat geen O'?"
+      ]
+    },
+
+    "L04-01": {
+      "titel": "Labo 04 - Oefening 1: tabel Games met optionele uitgever",
+      "hoofdstuk": "L3",
+      "leerdoelen": [
+        "een tabel maken met een kolom die leeg mag blijven (NULL toegelaten)",
+        "bij INSERT een ontbrekende waarde als NULL invoeren"
+      ],
+      "functioneleAnalyse": "Maak een tabel Games met Titel (tot 100 tekens), Releasedatum, Genre (tot 20 tekens) en Uitgever (tot 100 tekens). Onafhankelijk uitgegeven games hebben geen uitgever, dus die kolom mag leeg blijven. Voeg daarna de drie gegeven games toe (een ervan zonder uitgever).",
+      "schema": "Aan te maken tabel:\n- Games(Titel, Releasedatum, Genre, Uitgever) - Uitgever mag leeg blijven",
+      "letOp": "Een kolom die leeg mag blijven, maak je niet NOT NULL; een ontbrekende uitgever geef je bij INSERT op als NULL, niet als lege tekst.",
+      "veelgemaakteFouten": [
+        "Uitgever verplicht maken (NOT NULL) terwijl ze mag ontbreken",
+        "een lege string '' invoeren in plaats van NULL"
+      ],
+      "hints": [
+        "Welke kolom mag leeg blijven? Zorg dat je die kolom niet verplicht maakt bij het aanmaken.",
+        "Hoe geef je bij INSERT aan dat een waarde ontbreekt, in plaats van een lege tekst?"
+      ]
+    },
+    "L04-02": {
+      "titel": "Labo 04 - Oefening 2: games met een uitgever",
+      "hoofdstuk": "L3",
+      "leerdoelen": [
+        "filteren op de aanwezigheid van een waarde met IS NOT NULL"
+      ],
+      "functioneleAnalyse": "Toon alle games die een uitgever hebben.",
+      "schema": "Tabel:\n- Games(Titel, Releasedatum, Genre, Uitgever)",
+      "letOp": "Een waarde vergelijken met NULL doe je niet met =, maar met IS NULL of IS NOT NULL.",
+      "veelgemaakteFouten": [
+        "Uitgever = NULL of Uitgever <> NULL schrijven (werkt niet zoals verwacht)"
+      ],
+      "hints": [
+        "'Heeft een uitgever' betekent dat de kolom Uitgever niet leeg is. Hoe test je in SQL of iets NIET NULL is?"
+      ]
+    },
+    "L04-03": {
+      "titel": "Labo 04 - Oefening 3: games zonder uitgever",
+      "hoofdstuk": "L3",
+      "leerdoelen": [
+        "filteren op ontbrekende waarden met IS NULL"
+      ],
+      "functioneleAnalyse": "Toon alle games zonder uitgever.",
+      "schema": "Tabel:\n- Games(Titel, Releasedatum, Genre, Uitgever)",
+      "veelgemaakteFouten": [
+        "Uitgever = NULL gebruiken in plaats van IS NULL"
+      ],
+      "hints": [
+        "'Zonder uitgever' betekent dat de kolom leeg is. Welke test gebruik je voor NULL?"
+      ]
+    },
+    "L04-04": {
+      "titel": "Labo 04 - Oefening 4: kolom Ontwikkelaar toevoegen en invullen",
+      "hoofdstuk": "L3",
+      "leerdoelen": [
+        "een kolom toevoegen aan een bestaande tabel met ALTER TABLE",
+        "een kolom verplicht maken met NOT NULL",
+        "waarden invullen met UPDATE per rij"
+      ],
+      "functioneleAnalyse": "Voeg aan Games een verplichte kolom Ontwikkelaar toe (tot 100 tekens). Vul daarna per game de juiste ontwikkelaar in: Lancarse, Hiding Spot en Ubisoft.",
+      "schema": "Bestaande tabel:\n- Games(Titel, Releasedatum, Genre, Uitgever)",
+      "letOp": "Je hebt meerdere instructies nodig: eerst de kolom toevoegen, dan per game een UPDATE.",
+      "veelgemaakteFouten": [
+        "proberen alles in een enkele instructie te doen",
+        "de nieuwe kolom niet als NOT NULL definieren"
+      ],
+      "hints": [
+        "Een bestaande tabel pas je aan met ALTER TABLE. Welk deel voegt een kolom toe?",
+        "'Altijd verplicht ingevuld' vertaalt naar welke beperking op de kolom?",
+        "Vul daarna elke game apart in met UPDATE ... SET ... WHERE Titel = ...."
+      ]
+    },
+    "L04-05": {
+      "titel": "Labo 04 - Oefening 5: uitgever leegmaken",
+      "hoofdstuk": "L3",
+      "leerdoelen": [
+        "een waarde wissen door de kolom op NULL te zetten (zonder de rij te verwijderen)"
+      ],
+      "functioneleAnalyse": "Square Enix bestaat niet meer als uitgever. Maak bij elke game die als uitgever Square Enix had de uitgever leeg. De games zelf blijven bestaan.",
+      "schema": "Tabel:\n- Games(Titel, Releasedatum, Genre, Uitgever)",
+      "letOp": "De rijen blijven staan; enkel de kolom Uitgever wordt leeggemaakt.",
+      "veelgemaakteFouten": [
+        "DELETE gebruiken, waardoor de hele game verdwijnt",
+        "'' invoeren in plaats van NULL"
+      ],
+      "hints": [
+        "Je moet de rij houden maar een kolom leegmaken. Welke instructie past een bestaande rij aan?",
+        "Hoe zet je een kolom expliciet op 'leeg', en op welke uitgever filter je met WHERE?"
+      ]
+    },
+    "L04-06": {
+      "titel": "Labo 04 - Oefening 6: liedjes zonder artiest en album",
+      "hoofdstuk": "L3",
+      "leerdoelen": [
+        "meerdere IS NULL-voorwaarden combineren met AND",
+        "alfabetisch sorteren"
+      ],
+      "functioneleAnalyse": "Toon alfabetisch de titels van alle liedjes die geen artiest en geen album hebben. Voer eerst het bijgeleverde calibratie.sql uit.",
+      "schema": "Tabel (na calibratie.sql):\n- Liedjes(Titel, Artiest, Album, DuurtijdInSeconden, ...)",
+      "letOp": "Beide kolommen (Artiest en Album) moeten allebei leeg zijn.",
+      "veelgemaakteFouten": [
+        "OR gebruiken waar AND nodig is",
+        "= NULL in plaats van IS NULL",
+        "het sorteren vergeten"
+      ],
+      "hints": [
+        "Beide voorwaarden (geen artiest en geen album) moeten kloppen. Hoe combineer je ze, en hoe test je op leeg?",
+        "Alfabetisch tonen doe je met welke clausule op de Titel?"
+      ]
+    },
+    "L04-07": {
+      "titel": "Labo 04 - Oefening 7: korte liedjes zonder album wissen",
+      "hoofdstuk": "L3",
+      "leerdoelen": [
+        "rijen verwijderen op basis van meerdere voorwaarden",
+        "eerst controleren met een SELECT"
+      ],
+      "functioneleAnalyse": "Wis alle liedjes die maximaal 3 minuten (180 seconden) duren en waarvoor geen album voorzien is.",
+      "schema": "Tabel:\n- Liedjes(Titel, Artiest, Album, DuurtijdInSeconden, ...)",
+      "letOp": "3 minuten is 180 seconden; controleer je voorwaarde eerst met een SELECT.",
+      "veelgemaakteFouten": [
+        "minuten en seconden verwarren",
+        "OR gebruiken waar AND nodig is",
+        "DELETE zonder de voorwaarden"
+      ],
+      "hints": [
+        "Twee voorwaarden samen: maximaal 180 seconden EN geen album. Test dat eerst met een SELECT.",
+        "Klopt de lijst, zet dan SELECT om naar DELETE."
+      ]
+    },
+    "L04-08": {
+      "titel": "Labo 04 - Oefening 8: kolom hernoemen",
+      "hoofdstuk": "L3",
+      "leerdoelen": [
+        "een kolom hernoemen met ALTER TABLE, met behoud van het datatype"
+      ],
+      "functioneleAnalyse": "Hernoem in de tabel Liedjes de kolom Royalties naar VergoedingArtiest. Het datatype van de kolom blijft ongewijzigd.",
+      "schema": "Tabel:\n- Liedjes(..., Royalties)",
+      "letOp": "Bij hernoemen via CHANGE COLUMN moet je het datatype opnieuw opgeven.",
+      "veelgemaakteFouten": [
+        "het datatype vergeten bij CHANGE COLUMN",
+        "de syntax van RENAME en CHANGE door elkaar halen"
+      ],
+      "hints": [
+        "Een kolom aanpassen doe je met ALTER TABLE. Welk deel laat een kolom hernoemen, en wat moet je daarbij nog eens meegeven?"
+      ]
+    },
+
+    "L05-01": {
+      "titel": "Labo 05 - Oefening 1: aantal liedjes",
+      "hoofdstuk": "L4",
+      "leerdoelen": ["het aantal rijen tellen met COUNT(*)"],
+      "functioneleAnalyse": "Toon hoeveel liedjes er in het systeem staan (dat zouden er 3123 moeten zijn).",
+      "schema": "Tabel:\n- Liedjes(Artiest, Titel, Album, Genre, ReleaseJaar, Duurtijd, Royalties)",
+      "veelgemaakteFouten": ["een kolomnaam proberen tellen terwijl COUNT(*) volstaat"],
+      "hints": ["Welke functie geeft het aantal rijen terug? Je hoeft geen kolom te noemen; COUNT(*) telt alle rijen."]
+    },
+    "L05-02": {
+      "titel": "Labo 05 - Oefening 2: som van royalties",
+      "hoofdstuk": "L4",
+      "leerdoelen": ["waarden optellen met SUM", "eerst filteren met WHERE"],
+      "functioneleAnalyse": "Toon de som van de royalties over alle nummers van Led Zeppelin (zou 4905 moeten zijn).",
+      "schema": "Tabel:\n- Liedjes(Artiest, Titel, Album, Genre, ReleaseJaar, Duurtijd, Royalties)",
+      "hints": ["Welke functie telt getallen op? Beperk met WHERE eerst tot de artiest Led Zeppelin."]
+    },
+    "L05-03": {
+      "titel": "Labo 05 - Oefening 3: nummers voor 1990",
+      "hoofdstuk": "L4",
+      "leerdoelen": ["tellen met een voorwaarde"],
+      "functioneleAnalyse": "Tel hoeveel nummers uitkwamen voor 1990. Nummers uit 1990 tellen niet mee (zou 1804 zijn).",
+      "schema": "Tabel:\n- Liedjes(Artiest, Titel, Album, Genre, ReleaseJaar, Duurtijd, Royalties)",
+      "veelgemaakteFouten": ["<= 1990 gebruiken waardoor 1990 wel meetelt"],
+      "hints": ["COUNT met een WHERE op ReleaseJaar. 'Voor 1990' betekent strikt kleiner dan 1990."]
+    },
+    "L05-04": {
+      "titel": "Labo 05 - Oefening 4: voor en vanaf 1990",
+      "hoofdstuk": "L4",
+      "leerdoelen": ["groeperen op een booleaanse expressie"],
+      "functioneleAnalyse": "Toon tegelijk hoeveel nummers voor 1990 en hoeveel vanaf 1990 uitkwamen (1990 hoort bij 'vanaf'). Hernoem de hoofding met AS.",
+      "schema": "Tabel:\n- Liedjes(..., ReleaseJaar)",
+      "letOp": "Je kan groeperen op een voorwaarde (een expressie), niet enkel op een kolom.",
+      "hints": ["Als je groepeert op de uitkomst van 'ReleaseJaar < 1990', krijg je precies twee groepen. Wat zet je achter GROUP BY?"]
+    },
+    "L05-05": {
+      "titel": "Labo 05 - Oefening 5: aantal per genre",
+      "hoofdstuk": "L4",
+      "leerdoelen": ["per groep tellen met GROUP BY", "sorteren op een aggregaat"],
+      "functioneleAnalyse": "Toon per genre hoeveel nummers er zijn, van kleine naar grote aantallen.",
+      "schema": "Tabel:\n- Liedjes(..., Genre)",
+      "hints": ["Groepeer per Genre en tel per groep. Sorteren op het aantal doe je met ORDER BY op COUNT(*)."]
+    },
+    "L05-06": {
+      "titel": "Labo 05 - Oefening 6: DISTINCT herschrijven",
+      "hoofdstuk": "L4",
+      "leerdoelen": ["inzien dat GROUP BY ook duplicaten wegwerkt"],
+      "functioneleAnalyse": "Herschrijf 'SELECT DISTINCT Artiest FROM Liedjes' zodat je hetzelfde resultaat krijgt, maar zonder DISTINCT.",
+      "schema": "Tabel:\n- Liedjes(..., Artiest)",
+      "hints": ["Welke clausule geeft ook een enkele rij per unieke waarde, zonder DISTINCT?"]
+    },
+    "L05-07": {
+      "titel": "Labo 05 - Oefening 7: aantal artiesten",
+      "hoofdstuk": "L4",
+      "leerdoelen": ["unieke waarden tellen met COUNT(DISTINCT ...)"],
+      "functioneleAnalyse": "Toon het aantal verschillende artiesten in het systeem (180).",
+      "schema": "Tabel:\n- Liedjes(..., Artiest)",
+      "letOp": "Gevraagd is het aantal UNIEKE artiesten, niet het aantal rijen.",
+      "hints": ["COUNT telt rijen. Hoe zorg je dat het enkel de verschillende artiesten telt?"]
+    },
+    "L05-08": {
+      "titel": "Labo 05 - Oefening 8: genres met lange nummers",
+      "hoofdstuk": "L4",
+      "leerdoelen": ["gemiddelde per groep met AVG", "groepen filteren met HAVING"],
+      "functioneleAnalyse": "Toon de genres waarvan de nummers gemiddeld minstens 5 minuten duren, gesorteerd op gemiddelde duurtijd. Hernoem de kolommen.",
+      "schema": "Tabel:\n- Liedjes(..., Genre, Duurtijd)",
+      "letOp": "Filteren op een groepsresultaat (het gemiddelde) doe je met HAVING, niet WHERE. 5 minuten = 300 seconden.",
+      "veelgemaakteFouten": ["WHERE gebruiken op AVG(...) in plaats van HAVING"],
+      "hints": ["Bereken AVG(Duurtijd) per genre met GROUP BY.", "Om enkel genres met gemiddelde >= 300 te houden, gebruik je HAVING (WHERE kan niet op een aggregaat)."]
+    },
+    "L05-09": {
+      "titel": "Labo 05 - Oefening 9: nummers per decennium",
+      "hoofdstuk": "L4",
+      "leerdoelen": ["groeperen op een berekende waarde", "groepen filteren met HAVING"],
+      "functioneleAnalyse": "Toon per decennium het aantal uitgebrachte nummers, maar enkel als dat minstens 450 is, chronologisch. Herleid het jaartal tot decennium met TRUNCATE(jaar, -1).",
+      "schema": "Tabel:\n- Liedjes(..., ReleaseJaar)",
+      "hints": ["Groepeer op TRUNCATE(ReleaseJaar,-1); die alias mag je in GROUP BY en ORDER BY hergebruiken.", "Filter de te kleine groepen weg met HAVING op het aantal."]
+    },
+    "L05-10": {
+      "titel": "Labo 05 - Oefening 10: artiesten met lange klassieke nummers",
+      "hoofdstuk": "L4",
+      "leerdoelen": ["WHERE en/of GROUP BY combineren met HAVING op een gemiddelde"],
+      "functioneleAnalyse": "Toon alfabetisch alle artiesten die klassieke nummers hebben, maar enkel als hun klassieke nummers gemiddeld langer dan 8 minuten duren.",
+      "schema": "Tabel:\n- Liedjes(..., Artiest, Genre, Duurtijd)",
+      "letOp": "8 minuten = 480 seconden. Je kan eerst met WHERE op Genre = 'Klassiek' filteren, of groeperen op Artiest en Genre.",
+      "hints": ["Beperk tot het genre Klassiek (met WHERE of in de groepering), en houd via HAVING enkel de artiesten met gemiddelde duurtijd > 480 seconden."]
+    },
+    "L05-11": {
+      "titel": "Labo 05 - Oefening 11: winstgevende rockalbums",
+      "hoofdstuk": "L4",
+      "leerdoelen": ["groepsvoorwaarden combineren in HAVING", "GROUP_CONCAT gebruiken"],
+      "functioneleAnalyse": "Toon van Z naar A alle albums met rocknummers waarvan de totale royalties meer dan 300 eurocent bedragen (bij volledig beluisteren).",
+      "schema": "Tabel:\n- Liedjes(..., Album, Genre, Royalties)",
+      "letOp": "Per album optellen met SUM en controleren of er rock op staat; GROUP_CONCAT bundelt de genres van een album.",
+      "hints": ["Groepeer per Album en houd enkel albums met SUM(Royalties) > 300.", "Of er rock op staat, kan je in HAVING testen met GROUP_CONCAT(Genre) LIKE '%rock%'."]
+    },
+    "L05-12": {
+      "titel": "Labo 05 - Oefening 12: hoogste royalties per genre",
+      "hoofdstuk": "L4",
+      "leerdoelen": ["MAX per groep", "WHERE (rijen) en HAVING (groepen) combineren", "NULL negeren"],
+      "functioneleAnalyse": "Toon per genre de hoogste royalties van een enkel nummer, enkel voor genres met een gemiddelde duurtijd van minstens 4 minuten. Negeer nummers zonder royalties. Sorteer van laag naar hoog.",
+      "schema": "Tabel:\n- Liedjes(..., Genre, Duurtijd, Royalties)",
+      "letOp": "WHERE filtert rijen voor het groeperen (royalties niet NULL); HAVING filtert groepen (gemiddelde duurtijd). 4 minuten = 240 seconden.",
+      "hints": ["Laat lege royalties weg met WHERE Royalties IS NOT NULL en neem MAX(Royalties) per genre.", "Houd via HAVING enkel de genres met AVG(Duurtijd) >= 240."]
+    },
+
+    "L09-01": {
+      "titel": "Labo 09 - Oefening 1: liedjes met hun artiest",
+      "hoofdstuk": "L6",
+      "leerdoelen": ["twee tabellen combineren met INNER JOIN via een foreign key"],
+      "functioneleAnalyse": "Toon met een enkele instructie de titel van elk liedje naast de naam van de artiest, via een INNER JOIN.",
+      "schema": "Tabellen:\n- Artiesten(Id PK, Naam)\n- Liedjes(Id PK, Titel, Duurtijd, Genre, Royalties, Artiesten_Id FK -> Artiesten.Id)",
+      "letOp": "Kwalificeer gelijknamige kolommen met hun tabelnaam (bv. Liedjes.Titel).",
+      "veelgemaakteFouten": ["de ON-voorwaarde vergeten (geeft een kruisproduct)", "koppelen op de verkeerde kolommen"],
+      "hints": ["Welke kolom in Liedjes verwijst naar Artiesten? Koppel beide tabellen met INNER JOIN ON die FK = Artiesten.Id.", "Toon daarna Liedjes.Titel en Artiesten.Naam."]
+    },
+    "L09-02": {
+      "titel": "Labo 09 - Oefening 2: liedjes die met A beginnen",
+      "hoofdstuk": "L6",
+      "leerdoelen": ["een join combineren met een WHERE-filter"],
+      "functioneleAnalyse": "Toon titel en artiest van alle liedjes die met de letter A beginnen, via een join.",
+      "schema": "Tabellen:\n- Artiesten(Id PK, Naam)\n- Liedjes(Id PK, Titel, ..., Artiesten_Id FK)",
+      "hints": ["Vertrek van je join uit oefening 1 en voeg een WHERE toe.", "Welk LIKE-patroon betekent 'begint met A' (in tegenstelling tot 'bevat A')?"]
+    },
+    "L09-03": {
+      "titel": "Labo 09 - Oefening 3: albums met hun artiest",
+      "hoofdstuk": "L6",
+      "leerdoelen": ["een join leggen tussen twee andere tabellen via een FK"],
+      "functioneleAnalyse": "Toon de titel van elk album naast de naam van de artiest.",
+      "schema": "Tabellen:\n- Artiesten(Id PK, Naam)\n- Albums(Id PK, Titel, Artiesten_Id FK -> Artiesten.Id)",
+      "hints": ["Zelfde idee als bij liedjes, maar koppel nu Albums aan Artiesten via Albums.Artiesten_Id = Artiesten.Id."]
+    },
+    "L09-04": {
+      "titel": "Labo 09 - Oefening 4: aantal liedjes van Led Zeppelin",
+      "hoofdstuk": "L6",
+      "leerdoelen": ["een join combineren met COUNT en een filter op naam"],
+      "functioneleAnalyse": "Toon met een enkele instructie hoeveel liedjes Led Zeppelin heeft (antwoord 90). Je mag het Id van Led Zeppelin niet eerst apart opzoeken.",
+      "schema": "Tabellen:\n- Artiesten(Id PK, Naam)\n- Liedjes(Id PK, ..., Artiesten_Id FK)",
+      "letOp": "Filter op de naam via de join, niet op een vooraf opgezocht Id.",
+      "hints": ["Join Liedjes met Artiesten en filter met WHERE op Artiesten.Naam = 'Led Zeppelin'.", "Tel het resultaat met COUNT(*)."]
+    },
+    "L09-05": {
+      "titel": "Labo 09 - Oefening 5: liedje met album-Id",
+      "hoofdstuk": "L6",
+      "leerdoelen": ["een koppeltabel gebruiken in een join"],
+      "functioneleAnalyse": "Toon de titel van elk liedje naast het Id van het album waarop het staat. Gebruik de koppeltabel LiedjeOpAlbum; een enkele join volstaat.",
+      "schema": "Tabellen:\n- Liedjes(Id PK, Titel, ...)\n- LiedjeOpAlbum(Liedjes_Id FK, Albums_Id FK, Tracknummer)",
+      "hints": ["LiedjeOpAlbum bevat al Albums_Id. Join die tabel met Liedjes op Liedjes_Id = Liedjes.Id.", "Je hoeft Albums zelf nog niet te joinen om het Id te tonen."]
+    },
+    "L09-06": {
+      "titel": "Labo 09 - Oefening 6: liedje met albumtitel",
+      "hoofdstuk": "L6",
+      "leerdoelen": ["meerdere joins na elkaar gebruiken"],
+      "functioneleAnalyse": "Toon elk liedje naast de titel van het album waarop het staat. Bouw verder op de vorige oefening.",
+      "schema": "Tabellen:\n- Liedjes(Id PK, Titel)\n- Albums(Id PK, Titel)\n- LiedjeOpAlbum(Liedjes_Id FK, Albums_Id FK)",
+      "letOp": "Nu heb je twee joins nodig: van LiedjeOpAlbum naar Liedjes en naar Albums.",
+      "hints": ["Voeg aan de vorige query een tweede INNER JOIN met Albums toe, op Albums_Id = Albums.Id.", "Toon dan Liedjes.Titel en Albums.Titel."]
+    },
+
+    "L10-01": {
+      "titel": "Labo 10 - Oefening 1: aantal albums per gebruiker",
+      "hoofdstuk": "L6",
+      "leerdoelen": ["joinen via een koppeltabel", "groeperen en tellen na een join"],
+      "functioneleAnalyse": "Toon per gebruiker hoeveel albums die bezit: naast elke gebruikersnaam een aantal.",
+      "schema": "Tabellen:\n- Gebruikers(Id PK, Gebruikersnaam)\n- GebruikerHeeftAlbum(Gebruikers_Id FK, Albums_Id FK, DatumToevoeging)",
+      "hints": ["Join Gebruikers met GebruikerHeeftAlbum op Gebruikers.Id = Gebruikers_Id.", "Groepeer per gebruiker en tel met COUNT(*)."]
+    },
+    "L10-02": {
+      "titel": "Labo 10 - Oefening 2: gebruiker met albumtitels",
+      "hoofdstuk": "L6",
+      "leerdoelen": ["twee joins gebruiken om van gebruiker naar album te gaan"],
+      "functioneleAnalyse": "Toon alle combinaties van een gebruiker en een album in zijn collectie: gebruikersnaam naast albumtitel.",
+      "schema": "Tabellen:\n- Gebruikers(Id PK, Gebruikersnaam)\n- GebruikerHeeftAlbum(Gebruikers_Id FK, Albums_Id FK)\n- Albums(Id PK, Titel)",
+      "hints": ["Ga van Gebruikers via GebruikerHeeftAlbum naar Albums, met twee INNER JOINs.", "Toon Gebruikersnaam en Albums.Titel."]
+    },
+    "L10-03": {
+      "titel": "Labo 10 - Oefening 3: favoriete liedjes",
+      "hoofdstuk": "L6",
+      "leerdoelen": ["joinen via een koppeltabel met een extra kolom, en daarop filteren"],
+      "functioneleAnalyse": "Toon alle combinaties van gebruikers en hun favoriete liedjes.",
+      "schema": "Tabellen:\n- Gebruikers(Id PK, Gebruikersnaam)\n- GebruikerHeeftLiedje(Gebruikers_Id FK, Liedjes_Id FK, Favoriet)\n- Liedjes(Id PK, Titel)",
+      "letOp": "Het calibratiescript volgde de naamgevingsafspraak niet: in deze dataset staat een favoriet net gemarkeerd met Favoriet = 0. Lees de kolomwaarde goed.",
+      "hints": ["Join Gebruikers via GebruikerHeeftLiedje naar Liedjes.", "Kijk goed welke waarde in de kolom Favoriet hier een favoriet aanduidt, en filter daarop."]
+    },
+    "L10-04": {
+      "titel": "Labo 10 - Oefening 4: hoogste royalties per artiest",
+      "hoofdstuk": "L6",
+      "leerdoelen": ["een join combineren met MAX en GROUP BY"],
+      "functioneleAnalyse": "Toon voor elke artiest de hoogste royalties die een van zijn liedjes oplevert.",
+      "schema": "Tabellen:\n- Artiesten(Id PK, Naam)\n- Liedjes(Id PK, Royalties, Artiesten_Id FK)",
+      "letOp": "Groepeer op Artiesten.Id (niet enkel op naam) zodat naamgenoten niet samengevoegd worden.",
+      "hints": ["Join Artiesten met Liedjes, groepeer per artiest en neem MAX(Royalties)."]
+    },
+    "L10-05": {
+      "titel": "Labo 10 - Oefening 5: langste liedje per album",
+      "hoofdstuk": "L6",
+      "leerdoelen": ["meerdere joins combineren met MAX en GROUP BY"],
+      "functioneleAnalyse": "Toon per album hoe lang het langste liedje op dat album duurt.",
+      "schema": "Tabellen:\n- Albums(Id PK, Titel)\n- LiedjeOpAlbum(Liedjes_Id FK, Albums_Id FK)\n- Liedjes(Id PK, Duurtijd)",
+      "hints": ["Join LiedjeOpAlbum met Albums en met Liedjes.", "Groepeer per album en neem MAX(Duurtijd)."]
+    },
+    "L10-06": {
+      "titel": "Labo 10 - Oefening 6: albums per artiest per gebruiker (uitdaging)",
+      "hoofdstuk": "L6",
+      "leerdoelen": ["meerdere joins combineren met groeperen op twee kolommen"],
+      "functioneleAnalyse": "Uitdaging: toon hoeveel albums van elke artiest elke gebruiker heeft, van grootste naar kleinste aantal.",
+      "schema": "Tabellen:\n- Gebruikers(Id PK, Gebruikersnaam)\n- GebruikerHeeftAlbum(Gebruikers_Id FK, Albums_Id FK)\n- Albums(Id PK, Artiesten_Id FK)\n- Artiesten(Id PK, Naam)",
+      "letOp": "Je combineert meerdere joins met groeperen op twee kolommen (gebruiker en artiest).",
+      "hints": ["Ga van GebruikerHeeftAlbum via Albums naar Artiesten, en naar Gebruikers.", "Groepeer per Gebruikersnaam en artiestnaam, tel met COUNT(*) en sorteer aflopend."]
+    },
+
+    "L01-01": {
+      "titel": "Labo 01 - Oefening 1: debug-scripts verbeteren",
+      "hoofdstuk": "L3",
+      "leerdoelen": ["veelvoorkomende SQL-fouten herkennen en verbeteren", "tekst, getallen en berekeningen correct noteren"],
+      "functioneleAnalyse": "Corrigeer de fouten in drie gegeven debug-scripts zodat ze correct uitvoeren. Het gaat om tekstwaarden tussen aanhalingstekens, een berekening (2021-50) die als getal moet blijven en niet als tekst, een geschikt datatype, en een titel die zelf een apostrof bevat.",
+      "schema": "Tabellen:\n- Boeken(Titel, Uitgeverij, Jaartal)\n- Liedjes(Titel, Duurtijd)",
+      "letOp": "Een rekensom als 2021-50 mag NIET tussen aanhalingstekens (anders is het tekst); een tekst met een apostrof erin zet je best tussen dubbele aanhalingstekens.",
+      "veelgemaakteFouten": ["tekstwaarden zonder aanhalingstekens", "'2021-50' als tekst noteren in plaats van als aftrekking", "de apostrof in Ain't sluit de tekst vroegtijdig af"],
+      "hints": ["Script 1: titel en uitgeverij zijn tekst. Hoe noteer je tekstwaarden? En moet 2021-50 tussen aanhalingstekens staan als je wil dat SQL het aftrekt?", "Script 3: de titel bevat zelf een apostrof (Ain't). Hoe zorg je dat die de tekst niet vroegtijdig afsluit?"]
+    },
+    "L01-02": {
+      "titel": "Labo 01 - Oefening 2: tabel Boeken aanmaken",
+      "hoofdstuk": "L2",
+      "leerdoelen": ["een tabel aanmaken met CREATE TABLE"],
+      "functioneleAnalyse": "Schrijf de CREATE-instructie voor een tabel Boeken met een titel en een jaar van uitgave. (De afbeelding met de exacte voorstelling ontbreekt in het bronmateriaal.)",
+      "schema": "Aan te maken tabel:\n- Boeken(Titel = tekst, JaarUitgave = geheel getal)",
+      "letOp": "De begeleidende afbeelding ontbreekt in de migratie; de tabel heeft een titel (tekst) en een jaar van uitgave (geheel getal).",
+      "hints": ["Gebruik CREATE TABLE met een tekstkolom voor de titel en een geheel getal voor het jaar van uitgave."]
+    },
+    "L01-03": {
+      "titel": "Labo 01 - Oefening 3: tabel Kunstwerken aanmaken",
+      "hoofdstuk": "L2",
+      "leerdoelen": ["per kolom een geschikt datatype kiezen"],
+      "functioneleAnalyse": "Schrijf de CREATE-instructie voor een tabel Kunstwerken met een auteur (tekst tot 100 tekens), een titel (tekst tot 100 tekens) en een waarde (kommagetal). Gebruik hoofdletters voor de kolomnamen.",
+      "schema": "Aan te maken tabel:\n- Kunstwerken(Auteur, Titel, Waarde)",
+      "veelgemaakteFouten": ["een geheel getal (INT) kiezen voor Waarde in plaats van een kommagetal"],
+      "hints": ["Kies per kolom een datatype: tekst voor auteur en titel, en een kommagetal voor de waarde. Welk type laat decimalen toe?"]
+    },
+    "L01-04": {
+      "titel": "Labo 01 - Oefening 4: kunstwerken toevoegen",
+      "hoofdstuk": "L3",
+      "leerdoelen": ["rijen toevoegen met INSERT"],
+      "functioneleAnalyse": "Voeg met INSERT drie kunstwerken toe aan Kunstwerken: Guernica (Pablo Picasso, waarde 2 miljoen), De Denker (Auguste Rodin, 1 miljoen) en Mona Lisa (Leonardo Da Vinci, 2 miljoen).",
+      "schema": "Bestaande tabel:\n- Kunstwerken(Auteur, Titel, Waarde)",
+      "veelgemaakteFouten": ["2 miljoen schrijven als 2.000.000 of met punten in plaats van 2000000", "de volgorde van de waarden verkeerd zetten"],
+      "hints": ["Gebruik INSERT INTO Kunstwerken met de kolommen en daarna de waarden in dezelfde volgorde.", "Schrijf een bedrag als 2 miljoen zonder punten of komma's: 2000000."]
+    },
+
+    "L06": {
+      "titel": "Labo 06 - Groeperen: queries ontleden",
+      "hoofdstuk": "L4",
+      "leerdoelen": ["begrijpen wat WHERE, GROUP BY, HAVING en ORDER BY elk doen", "de uitvoeringsvolgorde van een SELECT doorzien"],
+      "functioneleAnalyse": "Voor dit labo schrijf je geen SQL: je ontleedt zeven gegeven SELECT-queries op de tabel MinderNummers (met combinaties van WHERE, GROUP BY, HAVING en ORDER BY) en duidt op een handout aan wat elke query precies doet.",
+      "schema": "Tabel:\n- MinderNummers(Titel, Artiest, Album, Duurtijd, Genre, ReleaseJaar, Royalties)",
+      "letOp": "Je hoeft niets te schrijven; je moet stap voor stap uitleggen wat elke query doet.",
+      "veelgemaakteFouten": ["WHERE en HAVING verwarren", "denken dat ORDER BY invloed heeft op de groepering"],
+      "hints": ["Denk aan de volgorde: eerst FROM, dan WHERE (rijen filteren), dan GROUP BY (groepen vormen), dan HAVING (groepen filteren), dan SELECT, en ten slotte ORDER BY.", "Bij GROUP BY: hoeveel rijen blijven er over per groep, en welke kolommen mag je dan nog zinvol tonen?"]
+    },
+    "L07": {
+      "titel": "Labo 07 - apTunes: normalisatie",
+      "hoofdstuk": "L5",
+      "leerdoelen": ["een niet-genormaliseerde tabel opsplitsen in tabellen met sleutels en relaties", "gegevens migreren naar de nieuwe structuur"],
+      "functioneleAnalyse": "Normaliseer de apTunes-databank: splits de brede tabel Nummers op in aparte tabellen (bv. Artiesten, Albums) met een eigen primary key, en leg de relaties met foreign keys. De opgaven staan in de cursus onder 'apTunes - normalisatie'.",
+      "schema": "Vertrekpunt: een brede tabel Nummers met o.a. Titel, Artiest, Album; doel: aparte tabellen met PK/FK.",
+      "letOp": "Werk stap voor stap en verlies geen data tijdens het migreren.",
+      "veelgemaakteFouten": ["de oude tekstkolom verwijderen voor de gegevens gemigreerd zijn", "de foreign key niet NOT NULL maken nadat ze ingevuld is"],
+      "hints": ["Welke gegevens herhalen zich in Nummers? Die horen in een eigen tabel met een sleutel.", "Volgorde: nieuwe tabel maken -> vullen met SELECT DISTINCT -> FK-kolom toevoegen -> FK invullen via een UPDATE met JOIN -> pas dan de oude kolom verwijderen."]
+    },
+    "L08": {
+      "titel": "Labo 08 - apTunes: joins",
+      "hoofdstuk": "L6",
+      "leerdoelen": ["veel-op-veel-relaties leggen via een koppeltabel", "gegevens over meerdere tabellen samenbrengen met joins"],
+      "functioneleAnalyse": "Werk verder op de genormaliseerde apTunes-databank en los de join-opgaven op, inclusief veel-op-veel-relaties (M op N) via koppeltabellen. De opgaven staan in de cursus onder 'apTunes - veel-op-veel relaties en joins'.",
+      "schema": "Genormaliseerde apTunes-tabellen met koppeltabellen voor M-op-N-relaties.",
+      "letOp": "Een M-op-N-relatie los je op met een koppeltabel die twee foreign keys bevat.",
+      "hints": ["Welke twee tabellen wil je verbinden, en welke koppeltabel zit ertussen?", "Join telkens ON de foreign key = de primary key van de andere tabel."]
+    },
+    "L11": {
+      "titel": "Labo 11 - JOINs (advanced)",
+      "hoofdstuk": "L6",
+      "leerdoelen": ["complexere joins combineren met filteren en groeperen"],
+      "functioneleAnalyse": "Los de gevorderde join-opgaven op. Dit labo werkt in twee fasen; voer telkens eerst het juiste calibratiescript uit.",
+      "schema": "Meerdere gerelateerde tabellen (zie het calibratiescript van de betreffende fase).",
+      "letOp": "Bouw een complexe query stap voor stap op: eerst de joins, dan filteren, dan groeperen.",
+      "hints": ["Teken eerst welke tabellen je nodig hebt en hoe ze aan elkaar hangen.", "Voeg de joins een voor een toe en controleer tussentijds je resultaat."]
+    },
+    "L12": {
+      "titel": "Labo 12 - Views",
+      "hoofdstuk": "L7",
+      "leerdoelen": ["een view aanmaken, aanpassen en gebruiken", "views op elkaar stapelen; LEFT JOIN gebruiken voor niet-overeenkomende rijen"],
+      "functioneleAnalyse": "Maak en gebruik verschillende views: AuteursBoeken (auteur met boek(en)), een aanpassing via de view, een uitgebreide view AuteursBoekenRatings (met gemiddelde rating via een tussenview), TakenVerdeling (ook niet-toegewezen taken en leden zonder taak) en GamesOpPlatformen (ook platformen zonder games).",
+      "schema": "O.a. Boeken, Reviews (ratings), leden/taken en games/platformen (zie calibratie).",
+      "letOp": "Een view is een opgeslagen SELECT. Voor 'ook rijen zonder match' heb je een LEFT (of RIGHT) JOIN nodig; hulpviews maken complexe views behapbaar.",
+      "veelgemaakteFouten": ["een INNER JOIN gebruiken waar rijen zonder match toch getoond moeten worden", "vergeten dat niet elke view aanpasbaar is"],
+      "hints": ["Een view maak je met CREATE VIEW naam AS (jouw SELECT). Test de SELECT eerst apart.", "Moeten rijen zonder overeenkomst ook verschijnen (bv. leden zonder taak)? Dan is een INNER JOIN niet genoeg."]
+    },
+    "L13": {
+      "titel": "Labo 13 - Indexeren",
+      "hoofdstuk": "L8",
+      "leerdoelen": ["indexen aanmaken en verwijderen", "een samengestelde index en een prefix-index gebruiken", "de invloed op de uitvoering bekijken"],
+      "functioneleAnalyse": "Maak indexen op de aptunes-databank: een enkelvoudige index op Albums.Titel, een samengestelde index op (Voornaam, Familienaam) van Muzikanten, verwijder die weer, en bepaal een geschikte prefixlengte. Volg de naamgeving Col1Col2...Idx.",
+      "schema": "Tabellen o.a. Albums(Titel) en Muzikanten(Voornaam, Familienaam).",
+      "letOp": "Bij een samengestelde index is de volgorde van de kolommen belangrijk; noem de index zoals afgesproken (bv. VoornaamFamilienaamIdx).",
+      "hints": ["Een index maak je met CREATE INDEX naam ON tabel(kolom(men)); de volgorde van de kolommen bepaalt de naam en de werking.", "Voor een prefix-index geef je een lengte mee tussen haakjes achter de kolom."]
+    },
+    "L14": {
+      "titel": "Labo 14 - Subqueries en stored procedures",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["stored procedures schrijven met de juiste parameterrichting (IN, OUT)", "resultaten teruggeven via een OUT-parameter"],
+      "functioneleAnalyse": "Schrijf stored procedures op de aptunes-databank, o.a. GetLiedjes (toont titels die een stuk tekst bevatten), NumberOfGenres (geeft het aantal genres terug via een OUT-parameter) en CleanupOldMemberships (verwijdert oude lidmaatschappen en geeft het aantal verwijderde terug). Kies telkens het meest specifieke parametertype.",
+      "schema": "aptunes-databank (o.a. Liedjes, en lidmaatschappen met een einddatum).",
+      "letOp": "Gebruik geen INOUT als IN of OUT volstaat; bij CleanupOldMemberships moet je het aantal eerst tellen voor je verwijdert.",
+      "veelgemaakteFouten": ["de verkeerde parameterrichting kiezen", "tellen na het verwijderen (dan is de data al weg)"],
+      "hints": ["Bepaal per parameter: krijgt de procedure die binnen (IN) of geeft ze die terug (OUT)?", "Voor 'bevat een stuk tekst' denk je aan LIKE met jokertekens rond de meegegeven waarde.", "Tel bij CleanupOldMemberships het aantal te verwijderen rijen voor je de DELETE uitvoert."]
+    },
+    "L16": {
+      "titel": "Labo 16 - Stored functions",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["een stored function schrijven die een waarde returnt", "een lus gebruiken om tekst teken per teken te overlopen"],
+      "functioneleAnalyse": "Schrijf een stored function die een paswoord controleert: minstens 8 tekens, minstens 1 kleine letter, 1 hoofdletter en 1 cijfer. De functie krijgt het paswoord als parameter en geeft een boolean terug. Overloop het paswoord teken per teken met een lus.",
+      "schema": "Geen tabel nodig; je werkt met een parameter en lokale variabelen.",
+      "letOp": "Gebruik de ASCII-waarde van elk teken (a-z: 97-122, A-Z: 65-90, 0-9: 48-57). Bouw de functie stapsgewijs op.",
+      "veelgemaakteFouten": ["de lengtecontrole vergeten", "te vroeg TRUE returnen voor alle voorwaarden gecontroleerd zijn"],
+      "hints": ["Splits op in deelvragen: houd aparte vlaggen bij voor 'heeft kleine letter', 'heeft hoofdletter', 'heeft cijfer'.", "Met ASCII(SUBSTRING(pw, i, 1)) haal je de code van het i-de teken op; vergelijk die met de gegeven grenzen."]
+    },
+    "L17": {
+      "titel": "Labo 17 - Stored procedures",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["stored procedures met lussen (REPEAT/WHILE) schrijven", "een bestaande procedure vanuit een andere oproepen"],
+      "functioneleAnalyse": "Schrijf stored procedures op de aptunes-databank, o.a. MockAlbumreleases die met een lus (REPEAT) herhaaldelijk testdata toevoegt tot het gevraagde aantal geslaagde releases bereikt is.",
+      "schema": "aptunes-databank (albums en releases; procedures uit vorige labo's mogen hergebruikt worden).",
+      "letOp": "Verhoog de teller enkel wanneer het toevoegen echt lukt; zorg dat de lus stopt bij het gewenste aantal.",
+      "hints": ["Declareer een lokale teller en gebruik een REPEAT-lus die stopt wanneer de teller het gewenste aantal bereikt.", "Roep binnen de lus de bestaande procedure aan en verhoog de teller enkel bij succes."]
+    },
+    "L19": {
+      "titel": "Labo 19 - Cursors en handlers",
+      "hoofdstuk": "L11",
+      "leerdoelen": ["een stored procedure met een foutafhandeling (handler) schrijven", "transactielogica met signalen (SIGNAL SQLSTATE) begrijpen"],
+      "functioneleAnalyse": "Schrijf een stored procedure DangerousInsertAlbumreleases die drie willekeurige albumreleases invoegt, maar met kans 1 op 3 na de tweede invoeging een SQL state '45000' signaleert. Voorzie een handler zodat het onmogelijk is dat er maar een of twee releases worden toegevoegd.",
+      "schema": "aptunes-databank (Albums, Bands, Albumreleases); een hulpprocedure MockAlbumReleaseAlt is gegeven.",
+      "letOp": "Alles moet lukken of alles moet mislukken: gebruik een handler om bij een fout terug te rollen.",
+      "hints": ["Met SIGNAL SQLSTATE '45000' gooi je zelf een fout op; een DECLARE ... HANDLER vangt die af.", "Denk aan alles-of-niets: hoe zorg je dat een halverwege mislukte reeks helemaal ongedaan gemaakt wordt?"]
+    },
+    "L20": {
+      "titel": "Labo 20 - Triggers",
+      "hoofdstuk": "L11",
+      "leerdoelen": ["triggers schrijven voor INSERT, UPDATE en DELETE", "OLD en NEW gebruiken; wijzigingen tegenhouden met een fout"],
+      "functioneleAnalyse": "Maak een logtabel LiedjesLog en triggers log_insert_liedjes, log_update_liedjes en log_delete_liedjes die elke actie op Liedjes loggen (met USER(), het liedje-Id, het soort actie en het tijdstip). Schrijf ook een trigger prevent_update_id die een update tegenhoudt als het Id verandert.",
+      "schema": "Tabel Liedjes; nieuwe tabel LiedjesLog(Naam, Liedje-Id, Aanpassing, Tijdstip).",
+      "letOp": "In een INSERT-trigger gebruik je NEW, in een DELETE-trigger OLD, in een UPDATE-trigger allebei. Een wijziging tegenhouden doe je met SIGNAL.",
+      "veelgemaakteFouten": ["OLD gebruiken in een INSERT-trigger of NEW in een DELETE-trigger", "het verkeerde tijdstip (BEFORE/AFTER) kiezen"],
+      "hints": ["Kies per actie het juiste moment (BEFORE/AFTER) en de juiste verwijzing: NEW voor nieuwe waarden, OLD voor oude.", "Om een update te blokkeren bij een gewijzigd Id, vergelijk je OLD.Id met NEW.Id in een BEFORE UPDATE-trigger en signaleer je een fout."]
+    },
+
+    "L18-01": {
+      "titel": "Labo 18 - Opgave 1: view spelers per team",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["een view maken die joint en groepeert"],
+      "functioneleAnalyse": "Maak de view V_Spelers_per_Team met gepaste kolomnamen: toon voor elk team de divisie en het aantal spelers dat wedstrijden voor dat team speelde.",
+      "schema": "Tennis-DB o.a.: Spelers, Teams(TeamNr, Divisie), Wedstrijden(SpelersNr, TeamNr), Boetes.",
+      "letOp": "Tel de verschillende spelers (COUNT DISTINCT) die effectief wedstrijden speelden.",
+      "hints": ["Join Teams met Wedstrijden en groepeer per team.", "Verpak de SELECT in CREATE VIEW V_Spelers_per_Team AS (...)."]
+    },
+    "L18-02": {
+      "titel": "Labo 18 - Opgave 2: view verwijderen",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["een view verwijderen"],
+      "functioneleAnalyse": "Schrijf de instructie die de view V_Spelers_per_Team verwijdert.",
+      "schema": "Tennis-DB.",
+      "hints": ["Welke DROP-instructie hoort bij een view (en niet bij een tabel)?"]
+    },
+    "L18-03": {
+      "titel": "Labo 18 - Opgave 3: view spelers met wedstrijden",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["een view met een LEFT JOIN maken, zonder dubbele kolommen"],
+      "functioneleAnalyse": "Maak de view V_Spelers_Wedstrijden: geef voor elke speler alle info uit Spelers, aangevuld met de wedstrijden die de speler speelde. Toon gedeelde kolommen slechts een keer. Ook spelers zonder wedstrijden moeten verschijnen.",
+      "schema": "Tennis-DB: Spelers, Wedstrijden (gedeelde kolom SpelersNr).",
+      "letOp": "'Ook spelers zonder wedstrijden' betekent een LEFT JOIN; toon de gedeelde kolom maar een keer.",
+      "hints": ["Welke join houdt ook spelers zonder overeenkomstige wedstrijd bij?", "Som de kolommen expliciet op zodat de gedeelde kolom niet dubbel verschijnt."]
+    },
+    "L18-04": {
+      "titel": "Labo 18 - Opgave 4: view totaal boetes per speler",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["een view met LEFT JOIN en SUM (ook zonder boetes)"],
+      "functioneleAnalyse": "Maak de view V_Spelers_Boetes met gepaste kolomnamen: toon per speler het spelersnr, de familienaam en het totale boetebedrag, ook als de speler nooit boetes betaalde.",
+      "schema": "Tennis-DB: Spelers, Boetes(SpelersNr, Bedrag).",
+      "letOp": "Spelers zonder boetes moeten ook verschijnen (LEFT JOIN); hun totaal is dan 0 of NULL.",
+      "hints": ["LEFT JOIN Spelers met Boetes en groepeer per speler.", "Gebruik SUM voor het totaalbedrag; denk aan spelers zonder boetes."]
+    },
+    "L18-05": {
+      "titel": "Labo 18 - Opgave 5: hoge boetes via de view",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["een view als bron gebruiken in een query"],
+      "functioneleAnalyse": "Toon met behulp van de view V_Spelers_Boetes het spelersnr, de familienaam en het totaalbedrag van de spelers waarvan het totale boetebedrag hoger is dan 80 euro.",
+      "schema": "View V_Spelers_Boetes(SpelersNr, Familienaam, TotaalBoetes).",
+      "hints": ["Je mag een view als een gewone tabel in de FROM gebruiken.", "Filter met WHERE op de totaal-kolom van de view."]
+    },
+    "L18-06": {
+      "titel": "Labo 18 - Opgave 6: view hernoemen",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["een view hernoemen"],
+      "functioneleAnalyse": "Hernoem de view V_Spelers_Boetes naar V_Spelers_TotaalbedragBoetesBetaald.",
+      "schema": "Tennis-DB.",
+      "hints": ["Een view hernoemen kan met RENAME TABLE (een view gedraagt zich hier als een tabel)."]
+    },
+    "L18-07": {
+      "titel": "Labo 18 - Opgave 7: stored procedure spelerinfo",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["een stored procedure met een parameter en een foutsignaal"],
+      "functioneleAnalyse": "Maak de stored procedure SP_Toon_SpelerInfo: toon alle basisinfo voor een gegeven spelersnr. Is er geen spelersnr meegegeven, signaleer dan een fout met de boodschap 'U dient een spelersnummer op te geven.'.",
+      "schema": "Tennis-DB: Spelers.",
+      "letOp": "Een ontbrekend nummer herken je aan een NULL-parameter; een fout gooi je met SIGNAL SQLSTATE '45000' en MESSAGE_TEXT.",
+      "hints": ["Test bovenaan of de parameter NULL is en signaleer dan de fout.", "Anders doe je een SELECT op Spelers met WHERE op het spelersnr."]
+    },
+    "L18-08": {
+      "titel": "Labo 18 - Opgave 8: stored function bestaat speler",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["een stored function die een boolean returnt"],
+      "functioneleAnalyse": "Maak de stored function Bestaat_Speler met als parameter het Id van een speler. Ze geeft een boolean terug die aangeeft of dat Id in de tabel Spelers voorkomt.",
+      "schema": "Tennis-DB: Spelers.",
+      "hints": ["Tel of vraag op of er een rij met dat Id bestaat, en zet dat om naar waar/onwaar.", "EXISTS of een COUNT(*) > 0 kan je hiervoor gebruiken, gevolgd door RETURN."]
+    },
+    "L18-09": {
+      "titel": "Labo 18 - Opgave 9: stored procedure met geldigheidscontrole",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["een stored procedure uitbreiden en een stored function hergebruiken"],
+      "functioneleAnalyse": "Werk SP_Toon_SpelerInfo opnieuw uit: bij een leeg spelersnummer nog steeds de fout 'U dient een spelersnummer op te geven.'; bij een niet-bestaand nummer een fout 'U dient een geldig spelersnummer op te geven.'. Gebruik hiervoor je stored function Bestaat_Speler.",
+      "schema": "Tennis-DB: Spelers; stored function Bestaat_Speler.",
+      "letOp": "Twee gevallen: parameter NULL, of het nummer bestaat niet (test met Bestaat_Speler).",
+      "hints": ["Controleer eerst op NULL, dan met Bestaat_Speler of het nummer bestaat, elk met hun eigen foutboodschap.", "Pas na beide controles toon je de info van de speler."]
+    },
+
+    "L21-01": {
+      "titel": "Labo 21 - Opgave 1: aantal gespeelde wedstrijden",
+      "hoofdstuk": "L11",
+      "leerdoelen": ["een stored function die telt en een getal returnt"],
+      "functioneleAnalyse": "Maak de stored function Aantal_Wedstrijden_Gespeeld met als parameter het Id van een speler; ze returnt het aantal wedstrijden dat die speler speelde.",
+      "schema": "Tennis-DB: Wedstrijden(SpelersNr, ...).",
+      "hints": ["Tel de rijen in Wedstrijden voor die speler met COUNT(*) en RETURN het resultaat."]
+    },
+    "L21-02": {
+      "titel": "Labo 21 - Opgave 2: aantal gewonnen wedstrijden",
+      "hoofdstuk": "L11",
+      "leerdoelen": ["tellen met een voorwaarde in een stored function"],
+      "functioneleAnalyse": "Maak de stored function Aantal_Wedstrijden_Gewonnen (parameter: speler-Id) die het aantal gewonnen wedstrijden teruggeeft. Een wedstrijd is gewonnen als het aantal gewonnen sets groter is dan het aantal verloren sets.",
+      "schema": "Tennis-DB: Wedstrijden(SpelersNr, GewonnenSets, VerlorenSets).",
+      "hints": ["Tel de wedstrijden waar GewonnenSets > VerlorenSets voor die speler."]
+    },
+    "L21-03": {
+      "titel": "Labo 21 - Opgave 3: aantal boetes per speler",
+      "hoofdstuk": "L11",
+      "leerdoelen": ["een stored function die telt over een gerelateerde tabel"],
+      "functioneleAnalyse": "Maak de stored function Aantal_Boetes_Voor_Speler die het aantal boetes voor een gegeven speler teruggeeft (speler als parameter).",
+      "schema": "Tennis-DB: Boetes(SpelersNr, ...).",
+      "hints": ["Tel de rijen in Boetes voor de meegegeven speler."]
+    },
+    "L21-04": {
+      "titel": "Labo 21 - Opgave 4: lijst spelers met aantal boetes",
+      "hoofdstuk": "L11",
+      "leerdoelen": ["een stored function gebruiken in een SELECT"],
+      "functioneleAnalyse": "Toon een lijst van alle spelers met hun nummer, naam en het aantal boetes dat ze ooit kregen, met behulp van de stored function Aantal_Boetes_Voor_Speler.",
+      "schema": "Tennis-DB: Spelers; function Aantal_Boetes_Voor_Speler.",
+      "hints": ["Je mag een stored function gewoon in de SELECT-lijst oproepen, met de spelerskolom als argument."]
+    },
+    "L21-05": {
+      "titel": "Labo 21 - Opgave 5: statistiektekst via OUT-parameter",
+      "hoofdstuk": "L11",
+      "leerdoelen": ["een stored procedure met IN- en OUT-parameter", "tekst samenstellen met CONCAT"],
+      "functioneleAnalyse": "Maak de stored procedure SP_Get_Speler_Statistieken (speler als input) die via een output-parameter de tekst teruggeeft: \"Speler '[naam]' heeft [#] wedstrijd(en) gespeeld en [#] boete(s) ontvangen.\" met de familienaam en de respectieve aantallen.",
+      "schema": "Tennis-DB: Spelers; functions uit opgave 1 en 3.",
+      "letOp": "Gebruik een OUT-parameter en stel de tekst samen met CONCAT en je eerdere functions.",
+      "hints": ["Bereken de aantallen met je stored functions en zet de tekst samen met CONCAT.", "Schrijf het resultaat in de OUT-parameter."]
+    },
+    "L21-06": {
+      "titel": "Labo 21 - Opgave 6: view speler-statistieken",
+      "hoofdstuk": "L11",
+      "leerdoelen": ["een view die stored functions gebruikt en niets weglaat"],
+      "functioneleAnalyse": "Maak de view V_Spelers_Statistieken met gepaste kolomnamen: per speler het spelersnr, aantal gespeelde, gewonnen en verloren wedstrijden, aantal boetes en totaalbedrag aan boetes. Ook spelers zonder boetes of wedstrijden verschijnen. Gebruik indien nodig je stored functions.",
+      "schema": "Tennis-DB: Spelers, Wedstrijden, Boetes; eerder gemaakte functions.",
+      "letOp": "Zorg dat spelers zonder wedstrijden of boetes ook in de view staan (functions of LEFT JOIN).",
+      "hints": ["Vertrek van Spelers en voeg per kolom een stored function of een LEFT JOIN toe.", "Verloren = gespeeld - gewonnen, of via een eigen berekening."]
+    },
+    "L21-07": {
+      "titel": "Labo 21 - Opgave 7: query op de statistiekview",
+      "hoofdstuk": "L11",
+      "leerdoelen": ["een view combineren met andere kolommen en sorteren"],
+      "functioneleAnalyse": "Toon met behulp van V_Spelers_Statistieken per speler de naam, voorletters, aantal gespeelde/gewonnen/verloren wedstrijden, aantal boetes en totaalbedrag aan boetes. Sorteer op naam.",
+      "schema": "View V_Spelers_Statistieken; tabel Spelers voor naam/voorletters.",
+      "hints": ["Join de view met Spelers (op spelersnr) om naam en voorletters erbij te halen, en sorteer met ORDER BY op de naam."]
+    },
+    "L21-08": {
+      "titel": "Labo 21 - Opgave 8: view uitbreiden",
+      "hoofdstuk": "L11",
+      "leerdoelen": ["een view aanpassen met ALTER VIEW"],
+      "functioneleAnalyse": "Pas de query van V_Spelers_Statistieken aan zodat ze voor elke speler al zijn/haar gegevens toont, plus de aantallen wedstrijden (gespeeld/gewonnen/verloren), aantal boetes en totaalbedrag.",
+      "schema": "View V_Spelers_Statistieken; tabel Spelers.",
+      "hints": ["Gebruik ALTER VIEW en neem in de SELECT alle kolommen van Spelers mee naast de berekende aantallen."]
+    },
+    "L21-09": {
+      "titel": "Labo 21 - Opgave 9: wedstrijd bewaren (insert of update)",
+      "hoofdstuk": "L11",
+      "leerdoelen": ["een stored procedure die invoegt of aanpast, met validatie"],
+      "functioneleAnalyse": "Maak de stored procedure SP_Bewaar_Wedstrijd die een wedstrijd bewaart op basis van input-parameters. Bestaat het wedstrijdnr nog niet, voeg dan toe; anders pas de bestaande wedstrijd aan. Is het spelersnr leeg of onbekend, signaleer dan een gepaste fout (gebruik Bestaat_Speler).",
+      "schema": "Tennis-DB: Wedstrijden; function Bestaat_Speler.",
+      "letOp": "Eerst valideren (speler bestaat), dan beslissen tussen INSERT en UPDATE op basis van het wedstrijdnr.",
+      "hints": ["Controleer eerst het spelersnr met Bestaat_Speler en signaleer bij een probleem een fout.", "Bestaat het wedstrijdnr al? Zo ja UPDATE, zo nee INSERT."]
+    },
+    "L21-10": {
+      "titel": "Labo 21 - Opgave 10: wedstrijdoverzicht met een cursor",
+      "hoofdstuk": "L11",
+      "leerdoelen": ["een cursor gebruiken om rij per rij tekst op te bouwen"],
+      "functioneleAnalyse": "Maak de stored function SamenvattingWedstrijdenVoorSpelers (parameter SpelersNr, returntype TEXT) die een overzicht van alle wedstrijden van die speler als tekst teruggeeft, met een regel per wedstrijd. Geen wedstrijden of een onbestaande speler geven elk hun eigen boodschap.",
+      "schema": "Tennis-DB: Wedstrijden, Spelers.",
+      "letOp": "Je hebt een cursor nodig om rij per rij door de wedstrijden te gaan; een newline voeg je toe met '\\n'.",
+      "hints": ["Declareer een cursor over de wedstrijden van de speler en een CONTINUE HANDLER voor NOT FOUND.", "Overloop de rijen, plak per wedstrijd een regel (met '\\n') aan een TEXT-variabele, en vang de gevallen 'geen wedstrijden' en 'onbestaande speler' apart op."]
+    },
+
+    "L15-01": {
+      "titel": "Labo 15 - Opgave 1: view Alle_Klanten",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["een view maken met sortering"],
+      "functioneleAnalyse": "Maak de view Alle_Klanten die de gemeente en naam van alle klanten toont, gesorteerd op gemeente en dan op naam.",
+      "schema": "Klanten(Id, Naam, Gemeente), Bestellingen(Klanten_Id, Producten_Id, Aantal), Producten(Id, ProductOmschrijving).",
+      "hints": ["Verpak een SELECT Gemeente, Naam ... ORDER BY Gemeente, Naam in CREATE VIEW Alle_Klanten AS (...)."]
+    },
+    "L15-02": {
+      "titel": "Labo 15 - Opgave 2: view op een view",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["een view baseren op een bestaande view"],
+      "functioneleAnalyse": "Maak de view Alle_Klanten_Brussel_Antwerpen die zich op Alle_Klanten baseert en enkel klanten uit Brussel en Antwerpen behoudt.",
+      "schema": "View Alle_Klanten(Gemeente, Naam).",
+      "hints": ["Selecteer uit de bestaande view en filter met WHERE Gemeente IN ('Brussel', 'Antwerpen')."]
+    },
+    "L15-03": {
+      "titel": "Labo 15 - Opgave 3: aantal bestellingen per klant",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["een view met join, groepering en telling"],
+      "functioneleAnalyse": "Maak de view Aantal_Bestellingen_Per_Klant die per klant die ooit bestelde de naam en het aantal bestellingen toont, gesorteerd op naam.",
+      "schema": "Klanten(Id, Naam), Bestellingen(Klanten_Id).",
+      "hints": ["Join Klanten met Bestellingen, groepeer per klant en tel met COUNT(*).", "Klanten zonder bestellingen vallen hier vanzelf weg (INNER JOIN)."]
+    },
+    "L15-04": {
+      "titel": "Labo 15 - Opgave 4: klanten zonder bestellingen",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["een subquery gebruiken om afwezigheid te testen"],
+      "functioneleAnalyse": "Maak de view Klanten_Zonder_Bestellingen die de naam van klanten toont die nooit bestelden, gevolgd door het cijfer 0.",
+      "schema": "Klanten(Id, Naam), Bestellingen(Klanten_Id).",
+      "letOp": "Een vaste 0 als kolom mag; 'nooit besteld' test je met NOT IN (subquery) of een LEFT JOIN die NULL oplevert.",
+      "hints": ["Selecteer klanten waarvan de Id NOT IN (SELECT Klanten_Id FROM Bestellingen) zit.", "Toon 0 als vaste waarde in de tweede kolom."]
+    },
+    "L15-05": {
+      "titel": "Labo 15 - Opgave 5: beide views combineren",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["twee resultaten samenvoegen met UNION ALL"],
+      "functioneleAnalyse": "Combineer de twee vorige views tot Aantal_Bestellingen_Per_Klant_Alle, met passende hoofdingen, gesorteerd op aantal bestellingen (aflopend) en dan alfabetisch.",
+      "schema": "Views Aantal_Bestellingen_Per_Klant en Klanten_Zonder_Bestellingen.",
+      "hints": ["Plak beide views onder elkaar met UNION ALL.", "Sorteer het geheel met ORDER BY op het aantal (DESC) en dan op naam."]
+    },
+    "L15-06": {
+      "titel": "Labo 15 - Opgave 6: goede klanten",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["filteren op een reeds berekende view-kolom"],
+      "functioneleAnalyse": "Maak de view Goede_Klanten die klanten toont met minstens 3 bestellingen.",
+      "schema": "View Aantal_Bestellingen_Per_Klant(Klant, 'Aantal bestellingen').",
+      "hints": ["Selecteer uit Aantal_Bestellingen_Per_Klant en filter met WHERE op de aantal-kolom >= 3."]
+    },
+    "L15-07": {
+      "titel": "Labo 15 - Opgave 7: alle bestellingen met product",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["een view met meerdere joins"],
+      "functioneleAnalyse": "Maak de view Alle_Bestellingen die per klant de naam, gemeente, productomschrijving en het bestelde aantal toont.",
+      "schema": "Klanten(Id, Naam, Gemeente), Bestellingen(Klanten_Id, Producten_Id, Aantal), Producten(Id, ProductOmschrijving).",
+      "hints": ["Join Klanten, Bestellingen en Producten aan elkaar via hun sleutels.", "Toon de gevraagde kolommen en sorteer zoals in het voorbeeld."]
+    },
+    "L15-08": {
+      "titel": "Labo 15 - Opgave 8: grote bestellingen",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["een subquery met een gemiddelde in de WHERE"],
+      "functioneleAnalyse": "Maak de view Alle_Grote_Bestellingen die enkel de bestellingen toont waarvan het aantal groter is dan het gemiddelde aantal bestelde items per bestelling.",
+      "schema": "View Alle_Bestellingen; tabel Bestellingen(Aantal).",
+      "letOp": "Het gemiddelde bereken je met een subquery: (SELECT AVG(Aantal) FROM Bestellingen).",
+      "hints": ["Selecteer uit Alle_Bestellingen en vergelijk Aantal met een subquery die het gemiddelde berekent."]
+    },
+    "L15-09": {
+      "titel": "Labo 15 - Opgave 9: SP zoek klanten op naam",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["een stored procedure met een IN-parameter en LIKE"],
+      "functioneleAnalyse": "Schrijf de stored procedure zoek_klanten_op_naam met een zoekterm als parameter; ze toont alle klanten waarvan de zoekterm in de naam voorkomt.",
+      "schema": "Klanten(Id, Naam, Gemeente).",
+      "hints": ["IN-parameter VARCHAR; filter met Naam LIKE CONCAT('%', zoekterm, '%')."]
+    },
+    "L15-10": {
+      "titel": "Labo 15 - Opgave 10: SP aantal klanten",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["een stored procedure met een OUT-parameter"],
+      "functioneleAnalyse": "Schrijf de stored procedure aantal_klanten die via een output-parameter het aantal klanten in de database teruggeeft.",
+      "schema": "Klanten(Id, ...).",
+      "hints": ["OUT-parameter INT; zet er COUNT(*) uit Klanten in met SET ... = (SELECT COUNT(*) ...) of SELECT ... INTO."]
+    },
+    "L15-11": {
+      "titel": "Labo 15 - Opgave 11: SP klanten met minimaal X bestellingen",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["een parameter gebruiken in een HAVING"],
+      "functioneleAnalyse": "Schrijf de stored procedure klanten_met_minimaal_X_bestellingen met een aantal als parameter; ze toont klanten die minstens dat aantal bestellingen plaatsten.",
+      "schema": "Klanten(Id, Naam), Bestellingen(Klanten_Id).",
+      "hints": ["Join en groepeer per klant, tel de bestellingen en filter met HAVING op de meegegeven parameter."]
+    },
+    "L15-12": {
+      "titel": "Labo 15 - Opgave 12: SP toplijst producten",
+      "hoofdstuk": "L10",
+      "leerdoelen": ["een parameter gebruiken met LIMIT"],
+      "functioneleAnalyse": "Schrijf de stored procedure toplijst_best_verkochte_producten met een aantal als parameter; ze toont per product het aantal verkochte items, gesorteerd op meest verkocht, met maximaal het meegegeven aantal rijen.",
+      "schema": "Bestellingen(Producten_Id, Aantal), Producten(Id, ProductOmschrijving).",
+      "letOp": "Het maximumaantal rijen regel je met LIMIT en de parameter.",
+      "hints": ["Groepeer per product en tel de verkochte items op met SUM(Aantal), sorteer aflopend.", "Beperk het aantal rijen met LIMIT en de parameter."]
+    }
+  }
+}

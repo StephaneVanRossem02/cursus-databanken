@@ -118,6 +118,9 @@ select count(*) from Liedjes;
 
 </details>
 
+
+<OefeningAssistent oefening="L05-01" hoofdstuk="L4" />
+
 ## Oefening 05-02
 
 Laat zien welk getal je krijgt als je alle royalties op nummers van Led Zeppelin optelt. Dat zou 4905 moeten zijn.
@@ -135,6 +138,9 @@ where Artiest = 'Led Zeppelin';
 
 </details>
 
+
+<OefeningAssistent oefening="L05-02" hoofdstuk="L4" />
+
 ## Oefening 05-03
 
 Laat zien hoeveel nummers in het systeem zijn uitgekomen voor 1990. Het zouden er 1804 moeten zijn. Nummers uitgekomen in 1990 horen hier dus niet bij.
@@ -151,6 +157,9 @@ where ReleaseJaar < 1990;
 ```
 
 </details>
+
+
+<OefeningAssistent oefening="L05-03" hoofdstuk="L4" />
 
 ## Oefening 05-04
 
@@ -175,6 +184,9 @@ group by ReleaseJaar < 1990;
 
 </details>
 
+
+<OefeningAssistent oefening="L05-04" hoofdstuk="L4" />
+
 ## Oefening 05-05
 
 Laat per genre zien hoeveel nummers er in het systeem zijn. Toon van kleinere naar grotere aantallen.
@@ -196,6 +208,9 @@ order by count(*);
 ```
 
 </details>
+
+
+<OefeningAssistent oefening="L05-05" hoofdstuk="L4" />
 
 ## Oefening 05-06
 
@@ -219,6 +234,9 @@ group by Artiest;
 
 </details>
 
+
+<OefeningAssistent oefening="L05-06" hoofdstuk="L4" />
+
 ## Oefening 05-07
 
 Toon het aantal artiesten in het systeem. Dit is 180.
@@ -233,6 +251,9 @@ select count(distinct Artiest) from Liedjes;
 ```
 
 </details>
+
+
+<OefeningAssistent oefening="L05-07" hoofdstuk="L4" />
 
 ## Oefening 05-08
 
@@ -257,6 +278,9 @@ order by `Gemiddelde duurtijd`;
 
 </details>
 
+
+<OefeningAssistent oefening="L05-08" hoofdstuk="L4" />
+
 ## Oefening 05-09
 
 Toon per decennium het aantal uitgebrachte nummers, maar enkel als dat aantal minstens 450 bedraagt. Om dit klaar te spelen, moet je het jaartal herleiden tot het decennium. Dit kan je doen met de functie `TRUNCATE`. Bijvoorbeeld: `TRUNCATE(1973,-1)` levert 1970 als resultaat. Toon de resultaten chronologisch.
@@ -279,6 +303,9 @@ order by Decennium;
 ```
 
 </details>
+
+
+<OefeningAssistent oefening="L05-09" hoofdstuk="L4" />
 
 ## Oefening 05-10
 
@@ -307,6 +334,9 @@ order by Artiest;
 
 </details>
 
+
+<OefeningAssistent oefening="L05-10" hoofdstuk="L4" />
+
 ## Oefening 05-11
 
 Toon, van Z naar A, alle albums met rocknummers op die de eigenaar in totaal meer dan 300 eurocent aan royalties opleveren als een gebruiker ze volledig beluistert.
@@ -329,6 +359,9 @@ order by Album desc;
 ```
 
 </details>
+
+
+<OefeningAssistent oefening="L05-11" hoofdstuk="L4" />
 
 ## Oefening 05-12
 
@@ -354,3 +387,6 @@ order by max(Royalties);
 ```
 
 </details>
+
+<OefeningAssistent oefening="L05-12" hoofdstuk="L4" />
+

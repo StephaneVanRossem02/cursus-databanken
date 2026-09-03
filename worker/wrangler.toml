@@ -1,0 +1,19 @@
+name = "oefening-assistent-databanken"
+main = "src/index.js"
+compatibility_date = "2026-08-01"
+
+# De Worker heeft geen eigen Gemini-key: die van de student komt per aanvraag mee in de
+# header x-student-key. Er zijn voor deze assistent-route geen secrets nodig.
+#
+# Lokaal draaien en testen (zonder Cloudflare-account):
+#   cd worker
+#   npx wrangler dev --port 8787
+#   Zet dan in de browserconsole op http://localhost:3005:
+#     localStorage.setItem('oefening-assistent:worker-url', 'http://127.0.0.1:8787')
+#
+# Deployen (vraagt een Cloudflare-account, dat je al hebt):
+#   cd worker
+#   npx wrangler login
+#   npx wrangler deploy
+#   -> URL wordt https://oefening-assistent-databanken.<subdomein>.workers.dev
+#      Zet die daarna als workerUrl in docusaurus.config.js (customFields.oefeningAssistent).

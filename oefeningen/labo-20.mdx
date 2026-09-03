@@ -1,32 +1,29 @@
 ---
-title: Labo 16 - Stored functions
-sidebar_position: 17
+title: Labo 20 - Triggers
+sidebar_position: 21
 ---
 
-# Labo 16 - Stored functions
+# Labo 20 - Triggers
 
-_Bron: Labo 16._
+_Bron: Labo 20._
 
-Voor dit labo heb je geen calibratiescript nodig, omdat je het kan uitwerken in een databank naar keuze.
+Labo 20: triggers
 
-We willen in een databank een stored function toevoegen die controleert of een paswoord aan bepaalde voorwaarden voldoet. De stored function ontvangt een paswoord als parameter, en returnt een boolean die vertelt of het paswoord aan de volgende voorwaarden voldoet:
+Werk verder in je aptunes-database zoals ze samengesteld was na labo 17.
 
-- Het moet minstens 8 karakters lang zijn;
-- Er moet minstens 1 kleine letter en 1 hoofdletter in voorkomen;
-- Er moet minstens 1 cijfer in voorkomen.
+Opgave 1: Voorzie een nieuwe tabel ‘LiedjesLog’ met volgende kolommen:
 
-Om deze test te schrijven, maak je gebruik van een lus-structuur die het paswoord letter per letter gaat nakijken, om vervolgens het juiste antwoord te returnen.
+- Een kolom Naam waarin je de naam van de gebruiker logt die de actie uitvoerde, die kan je bekomen met de ingebouwde functie USER().
+- Het Id van het liedje dat werd toegevoegd, gewijzigd of verwijderd.
+- Een kolom Aanpassing, waarin je ofwel een INSERT, een UPDATE of een DELETE kan noteren
 
-Enkele tips:
+(kies een geschikt datatype voor deze kolom).
 
-- Om na te gaan of een karakter een cijfer, kleine letter of grote letter is, kan je best afgaan op de ASCII-waarde van het karakter. De ASCII-waarde van de kleine letter a is 97, die van de kleine letter b is 98, enz… In MySQL verkrijg je de ASCII waarde van de kleine letter ‘a’ (97) via volgende functieaanroep: ASCII('a'). Hou rekening met volgende ASCII-waarden:
-  - De kleine letters 'a' tot 'z': 97 t/m 122
-  - De hoofdletters 'A' tot 'Z': 65 t/m 90
-  - De cijfers 0 t/m 9: 48 t/m 57
-- Splits de opgave in kleinere deelproblemen op. Laat je functie bijvoorbeeld eerst enkel checken of er een kleine letter in voorkomt. Breid de functionaliteit stelselmatig uit.
-- Als je functie niet werkt zoals gewenst, denk dan na over hoe je jezelf wat nuttige debug- informatie kan bezorgen, of hoe je stukjes van je code apart kan testen.
+- De dag en het tijdstip waarop de actie gelogd werd.
 
-Veel succes!
+Maak de triggers ‘log_insert_liedjes’, ‘log_update_liedjes’ en ‘log_delete_liedjes’ die alle acties op de tabel Liedjes logt. In de update-trigger mag je ervan uitgaan dat het Id van het liedje niet wijzigt, en je dit dus ofwel in OLD ofwel in NEW kan terugvinden.
+
+Opgave 2: We willen ons ervan verzekeren dat het Id van een Liedje niet kan gewijzigd worden. Schrijf een trigger ‘prevent_update_id’ die automatisch wordt uitgevoerd vóór elke update op de tabel met Liedjes, en die een error message produceert wanneer het nieuwe Id niet gelijk is aan het oude Id. Dankzij de error message zal de update dan ook niet doorgaan.
 
 ## Calibratiescript
 
@@ -36,9 +33,10 @@ Voer dit script eerst uit. Het maakt de databank en tabellen aan en vult ze met 
 <summary>Toon calibratiescript</summary>
 
 ```
-DROP DATABASE IF EXISTS `dbles16`;
-CREATE DATABASE  IF NOT EXISTS `dbles16` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `dbles16`;
+DROP DATABASE IF EXISTS `DbLes20`;
+CREATE DATABASE  IF NOT EXISTS `DbLes20` 
+/*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `DbLes20`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Linux (x86_64)
 --
 -- Host: localhost    Database: aptunes
@@ -291,191 +289,115 @@ Democode uit de theorieles, ter naslag. Dit hoef je niet in te leveren.
 <summary>Toon lesvoorbeeld</summary>
 
 ```sql
--- ------------------------
--- Lesweek 08 - Les 16
--- ------------------------
+-- Cursors: een cursor is een object in MySQL dat toelaat om de rijen van een resultatenset één na één te behandelen.
+-- Demo 1
 
--- Herhalingen: welke herhalingen kennen de studenten van de programmeervakken?
--- Volgende demo’s vertrekken vanuit aptunes2020.sql. 
--- LOOP: verbeterde versie LOOP-demo (de versie op Gitbook werkt niet correct bij 0 of negatieve getallen)
-
-USE `dbles16`;
-DROP procedure IF EXISTS `LoopDemo`;
+USE DbLes20;
+DROP procedure IF EXISTS `VoorbeeldCursors`;
 
 DELIMITER $$
-USE `dbles16`$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LoopDemo`(
-    IN numberOfIterations INT
-)
+USE `dbles20`$$
+CREATE PROCEDURE `VoorbeeldCursors` (OUT genresList VARCHAR(1000))
 BEGIN
-    DECLARE i INT DEFAULT 0;
-    DECLARE producedText VARCHAR(255) DEFAULT '';
+  DECLARE done INTEGER DEFAULT 0;
+  DECLARE currentGenre VARCHAR(50) DEFAULT "";
+  DECLARE genreCursor CURSOR FOR SELECT Naam FROM Genres;
+  DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+  SET genresList = ''; # initialiseren, anders null!
+  OPEN genreCursor;
+  getGenre: LOOP
+    FETCH genreCursor INTO currentGenre;
+    IF done = 1
+    THEN
+      LEAVE getGenre;
+    END IF;
+    SET genresList = CONCAT(currentGenre,";",genresList);
+    END LOOP getGenre;
+  CLOSE genreCursor;
+
+END$$
+
+DELIMITER ;
+
+
+CALL VoorbeeldCursors(@genresList);
+SELECT @genresList;
+
+-- Demo 2:
+
+# nu met exit handler;
+USE `DbLes20`;
+DROP procedure IF EXISTS `VoorbeeldCursorsMetExitHandler`;
+
+DELIMITER $$
+USE `DbLes20`$$
+CREATE PROCEDURE `VoorbeeldCursorsMetExitHandler` (OUT GenresList VARCHAR(1000))
+BEGIN
+	DECLARE currentGenre VARCHAR(45) DEFAULT "";
+	DECLARE genreCursor CURSOR FOR SELECT Naam FROM Genres;
+	DECLARE EXIT HANDLER FOR NOT FOUND
+		BEGIN
+		# We hoeven niets meer te doen. Aan het einde van de resultatenset
+		# zal de fetch voor een error zorgen. Die vangen we op met deze lege exit handler.
+		# De procedure wordt dus beëindigd, en de cursor automatisch gesloten.
+        END;
+
+	SET GenresList = ''; # initialiseren, anders null!
     
-    concat_loop:  LOOP
-        IF  i < numberOfIterations THEN
-			SET i = i + 1;
-            SET producedText = CONCAT(producedText, i);
-            IF i < numberOfIterations THEN
-				SET producedText = CONCAT(producedText, ",");
-			END IF;
-		ELSE
-			LEAVE concat_loop;
-		END IF;
-    END LOOP;
+	OPEN genreCursor;
+	getGenre: LOOP
+		FETCH genreCursor INTO currentGenre;
+		SET GenresList = CONCAT(currentGenre,";",GenresList);
+	END LOOP;
 
-    SELECT producedText; 
 END$$
 
 DELIMITER ;
 
-CALL LoopDemo(10);
-
--- WHILE … DO: Digitap
-
-CREATE TABLE TimeSlots(
-    Id INT AUTO_INCREMENT PRIMARY KEY,
-    SlotDate DATE UNIQUE
-);
-
-USE `dbles16`;
-DROP procedure IF EXISTS `AddTimeSlots`;
+--  Voorbeeld met meerdere variabelen:
+DROP procedure IF EXISTS `VoorbeeldCursorsMetMeerdereVariabelen`;
 
 DELIMITER $$
-USE `dbles16`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `AddTimeSlots`(
-    startDate DATE,
-    numberOfDays INT
-)
+USE `DbLes20`$$
+CREATE PROCEDURE `VoorbeeldCursorsMetMeerdereVariabelen` (OUT GenresList VARCHAR(1000))
 BEGIN
-    DECLARE counter INT DEFAULT 1;
-    DECLARE currentDate DATE DEFAULT startDate;
-    WHILE counter <= numberOfDays DO
-        INSERT INTO TimeSlots (SlotDate)
-        VALUES
-        (currentDate);
-        SET counter = counter + 1;
-        -- deze functie telt een aantal dagen bij een datum
-        SET currentDate = DATE_ADD(currentDate, INTERVAL 1 day);
-    END WHILE;
-END$$
+	DECLARE done INTEGER DEFAULT 0;
+	DECLARE currentId INT DEFAULT 0;
+	DECLARE currentGenre VARCHAR(45) DEFAULT "";
+	DECLARE genreCursor CURSOR FOR SELECT Id, Naam FROM Genres;
+	DECLARE EXIT HANDLER FOR NOT FOUND
+		BEGIN
+		# We hoeven niets meer te doen. Aan het einde van de resultatenset
+		# zal de fetch voor een error zorgen. Die vangen we op met deze lege exit handler.
+		# De procedure wordt dus beëindigd, en de cursor automatisch gesloten.
+        END;
 
-DELIMITER ;
-
-CALL AddTimeSlots('2025-11-18', 90);
-
-SELECT * FROM Timeslots;
-
--- REPEAT: Digitap
-
-USE `dbles16`;
-DROP procedure IF EXISTS `ConcatenateNumbersViaRepeat`;
-
-DELIMITER $$
-USE `dbles16`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ConcatenateNumbersViaRepeat`()
-BEGIN
-    DECLARE counter INT DEFAULT 1;
-    DECLARE result VARCHAR(90) DEFAULT '';
-
-    REPEAT
-        SET result = CONCAT(result,counter,',');
-        SET counter = counter + 1;
-    UNTIL counter >= 25
-    END REPEAT;
-    set result = CONCAT(result, counter);
-
-    -- toont het resultaat op het scherm
-    SELECT result;
-END$$
-
-DELIMITER ;
-
-CALL ConcatenateNumbersViaRepeat();
-
--- Stored functions: zijn deterministisch of niet
- -- voorbeeld 1:
-	
--- We tonen per band hoeveel muzikanten er in totaal bij gespeeld hebben
--- (muzikanten die er niet meer bij spelen worden ook geteld)
-
-SELECT Bands.Id, Bands.Naam, COUNT(*)
-FROM Bands INNER JOIN Lidmaatschappen
-ON Bands.Id = Lidmaatschappen.Bands_Id
-GROUP BY Bands.Id, Bands.Naam;
-
--- Ontwerp een functie die voor een bepaalde Band (Id) aangeeft hoeveel muzikanten er ooit bij speelden
-USE `dbles16`;
-DROP function IF EXISTS `AantalMuzikantenInBand`;
-
-DELIMITER $$
-USE `dbles16`$$
-CREATE FUNCTION AantalMuzikantenInBand(pBands_Id INT)
-RETURNS INTEGER
-DETERMINISTIC
-BEGIN
-	DECLARE Aantal INT DEFAULT 0;
+	SET GenresList = ''; # initialiseren, anders null!
     
-	SELECT COUNT(*) INTO Aantal
-	FROM Bands INNER JOIN Lidmaatschappen
-	ON Bands.Id = Lidmaatschappen.Bands_Id
-	WHERE Bands.Id = pBands_Id
-    GROUP BY Bands.Id;
-    
-	RETURN Aantal;
+	OPEN genreCursor;
+	getGenre: LOOP
+		FETCH genreCursor INTO currentId, currentGenre;
+		SET GenresList = CONCAT(currentId, ' ', currentGenre,";",GenresList);
+	END LOOP;
+
 END$$
 
 DELIMITER ;
 
--- Geef het aantal muzikanten in band 176:
-SELECT AantalMuzikantenInBand(176);
+CALL VoorbeeldCursorsMetMeerdereVariabelen(@genresList);
+SELECT @genresList;
 
--- Toon per band hoeveel muzikanten er in totaal bij gespeeld hebben
--- (muzikanten die er niet meer bij spelen worden ook geteld)
-SELECT Id, Naam, AantalMuzikantenInBand(Id)
-FROM Bands;
-
--- Voorbeeld 2:
-
-DROP function IF EXISTS `dbles16`.`dubbel`;
-
-
-DELIMITER $$
-USE dbles16$$
-
-CREATE FUNCTION `dubbel`(getal int)
-	RETURNS int
-    DETERMINISTIC
-BEGIN
-	RETURN getal * 2;
-END$$
-
-DELIMITER ;
-
--- uittesten:
-SELECT dubbel(5);
-
--- Voorbeeld 3:
-
--- SET GLOBAL log_bin_trust_function_creators = True;
-
-USE `dbles16`;
-DROP function IF EXISTS `dbles16`.`head_or_tails`;
-
-DELIMITER $$
-CREATE FUNCTION `head_or_tails`()
-	RETURNS BOOL
-	NOT DETERMINISTIC
-BEGIN
-	RETURN RAND() >= 0.5;
-END$$
-
-DELIMITER ;
-
--- Labo 16 (1 grote oefening met stored function en loop)
+-- Labo 19 oef 2, 3 en 4
+-- In oef 4 van Labo19 wordt gevraagd om een newline-karakter in een tekst-variabele te verwerken. Wanneer je de variabele in de Workbench uitleest met SELECT, verschijnt de tekst toch op 1 regel:
+-- Klik op het knopje ‘Wrap Cell Content’ om de newline-karakters wel weer te geven:
+ 
+SELECT 'regel1\nregel2\nregel3\n'
 ```
 
 </details>
+
+
+<OefeningAssistent oefening="L20" hoofdstuk="L11" />
 
 ## Modeloplossingen
 
@@ -483,43 +405,39 @@ DELIMITER ;
 <summary>Toon modeloplossingen</summary>
 
 ```sql
-DELIMITER $$
+-- opgave 1
+CREATE TABLE LiedjesLogs (
+    Naam VARCHAR(100) NOT NULL,
+    Liedjes_Id INT NOT NULL,
+    Aanpassing ENUM('INSERT', 'UPDATE', 'DELETE'),
+    Tijdstip DATETIME NOT NULL
+);
 
-DROP FUNCTION IF EXISTS CheckPassword$$
-CREATE FUNCTION CheckPassword(paswoord VARCHAR(50))
-    RETURNS BOOLEAN
-    DETERMINISTIC
-BEGIN
-    DECLARE lengte INT DEFAULT LENGTH(paswoord);
-    DECLARE i INT DEFAULT 1;
-    DECLARE bevat_kleine_letter BOOLEAN DEFAULT FALSE;
-    DECLARE bevat_hoofdletter BOOLEAN DEFAULT FALSE;
-    DECLARE bevat_cijfer BOOLEAN DEFAULT FALSE;
-    DECLARE karakter VARCHAR(1);
-    
-    IF lengte < 8 THEN
-        RETURN FALSE;
-    ELSE
-        WHILE i <= lengte DO
-            SET karakter = SUBSTRING(paswoord, i, 1);
+-- geen aanpassing delimiter nodig als we maar één statement hebben in de trigger
+CREATE TRIGGER log_insert_liedjes
+	AFTER INSERT ON Liedjes FOR EACH ROW 
+    INSERT INTO LiedjesLogs VALUES (USER(), NEW.Id, 'INSERT', NOW());
 
-            IF ASCII(karakter) BETWEEN 97 AND 122 THEN
-                SET bevat_kleine_letter = TRUE;  -- 'a' (97) tot 'z' (122)
-            ELSEIF ASCII(karakter) BETWEEN 65 AND 90 THEN
-                SET bevat_hoofdletter = TRUE;    -- 'A' (65) tot 'Z' (90)
-            ELSEIF ASCII(karakter) BETWEEN 48 AND 57 THEN
-                SET bevat_cijfer = TRUE;         -- '0' (48) tot '9' (57)
-            END IF;
+-- merk op: we moeten hier ofwel het oude ofwel het nieuwe Id gebruiken
+-- deels om deze reden willen we normaal niet dat Id's na aanmaak nog wijzigen
+CREATE TRIGGER log_update_liedjes
+	AFTER UPDATE ON Liedjes FOR EACH ROW 
+    INSERT INTO LiedjesLogs VALUES(USER(), OLD.Id, 'UPDATE', NOW());
 
-            SET i = i + 1;
-        END WHILE;
+CREATE TRIGGER log_delete_liedjes
+	AFTER DELETE ON Liedjes FOR EACH ROW 
+    INSERT INTO LiedjesLogs VALUES(USER(), OLD.Id, 'DELETE', NOW());
 
-        -- Controleer of aan alle voorwaarden is voldaan
-        RETURN bevat_kleine_letter AND bevat_hoofdletter AND bevat_cijfer;
-    END IF;
-END $$
-
-DELIMITER ;
+-- opgave 2
+delimiter $$
+CREATE TRIGGER prevent_update_id
+	BEFORE UPDATE ON Liedjes FOR EACH ROW
+	BEGIN
+		IF OLD.Id != NEW.Id THEN
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = "Niet toegelaten Id te wijzigen na aanmaak.";
+		END IF;
+	END$$
+delimiter ;
 ```
 
 </details>

@@ -17,37 +17,64 @@ Maak onderstaande opgaven en lever de oplossingen aan in 1 script-bestand, waarb
 
 Schrijf een stored function met naam “Aantal_Wedstrijden_Gespeeld”. De functie heeft als parameter het Id van een speler, en returnt het aantal gespeelde wedstrijden van deze speler.
 
+
+<OefeningAssistent oefening="L21-01" hoofdstuk="L11" />
+
 ## Opgave 2
 
 Schrijf een stored function met naam “Aantal_Wedstrijden_Gewonnen”. De functie heeft als parameter het Id van een speler, en returnt het aantal gewonnen wedstrijden van deze speler. Tip: een speler heeft een wedstrijd gewonnen indien het aantal gewonnen sets groter is dan het aantal verloren sets.
+
+
+<OefeningAssistent oefening="L21-02" hoofdstuk="L11" />
 
 ## Opgave 3
 
 Schrijf de SQL-instructie die de stored function met naam “Aantal_Boetes_Voor_Speler” aanmaakt. De stored function moet in onderstaande informatiebehoefte voldoen: Geef het aantal boetes terug die voor een bepaalde speler zijn aangerekend. De betreffende speler moet als parameter meegegeven worden aan de stored function.
 
+
+<OefeningAssistent oefening="L21-03" hoofdstuk="L11" />
+
 ## Opgave 4
 
 Schrijf de SQL-instructie om een lijst te tonen van alle spelers hun nummer, naam, en het aantal boetes dat ze ooit kregen. Maak gebruik van de stored function Aantal_Boetes_Voor_Speler.
+
+
+<OefeningAssistent oefening="L21-04" hoofdstuk="L11" />
 
 ## Opgave 5
 
 Schrijf de SQL-instructie die de stored procedure met naam “SP_Get_Speler_Statistieken” aanmaakt. De stored procedure moet in onderstaande informatiebehoefte voldoen. Geef onderstaande tekst als output-parameter terug. “Speler ‘[naam]’ heeft [#] wedstrijd(en) gespeeld en [#] boete(s) ontvangen.” Je vervangt daarbij [naam] door de familienaam van de speler en [#] door het respectievelijke aantal wedstrijden en het aantal boetes. De betreffende speler moet als input parameter meegegeven worden aan de stored procedure.
 
+
+<OefeningAssistent oefening="L21-05" hoofdstuk="L11" />
+
 ## Opgave 6
 
 Schrijf de SQL-instructie die de view met naam “V_Spelers_Statistieken” aanmaakt. Je voorziet daarbij gepaste kolomnamen. De view moet aan onderstaande informatiebehoefte voldoen: Toon voor elke speler het spelersnr, het aantal gespeelde wedstrijden, het aantal gewonnen wedstrijden, het aantal verloren wedstrijden, het aantal boetes en het totaalbedrag aan boetes. Tip: maak indien nodig gebruik van één of meerdere stored functions die je eerder definieerde. Zorg ervoor dat ook spelers die nooit boetes ontvingen of wedstrijden speelden in het overzicht worden getoond.
+
+
+<OefeningAssistent oefening="L21-06" hoofdstuk="L11" />
 
 ## Opgave 7
 
 Schrijf de SQL-instructie die aan onderstaande informatiebehoefte voldoet. Je maakt daarbij gebruik van de view “V_Spelers_Statistieken”. Toon voor elke speler zijn naam, voorletters, het aantal gespeelde wedstrijden, het aantal gewonnen wedstrijden, het aantal verloren wedstrijden, het aantal boetes en het totaalbedrag aan boetes. Sorteer op naam.
 
+
+<OefeningAssistent oefening="L21-07" hoofdstuk="L11" />
+
 ## Opgave 8
 
 Schrijf de SQL-instructie die de query van de view “V_Spelers_Statistieken” aanpast zodat deze voldoet aan onderstaande informatiebehoefte: Toon voor elke speler al zijn/haar gegevens, het aantal gespeelde wedstrijden, het aantal gewonnen wedstrijden, het aantal verloren wedstrijden, het aantal boetes en het totaalbedrag aan boetes.
 
+
+<OefeningAssistent oefening="L21-08" hoofdstuk="L11" />
+
 ## Opgave 9
 
 Schrijf de SQL-instructie die de stored procedure met naam “SP_Bewaar_Wedstrijd” aanmaakt. De stored procedure moet in onderstaande functionaliteit voorzien: Bewaar de wedstrijd waarvoor de gegevens via input parameters worden meegegeven. Als het meegegeven spelersnr niet kan teruggevonden worden of niet ingevuld is moet een adequate foutboodschap gesignaleerd worden. Tip: maak gebruik van je eerder gedefinieerde stored function Bestaat_Speler. Ook alle overige noodzakelijke informatie wordt als parameters meegegeven aan de stored procedure. Wanneer het meegegeven wedstrijdnr nog niet bestaat dan voeg je de wedstrijd toe als nieuwe wedstrijd, anders pas je de gegevens van de bestaande wedstrijd aan.
+
+
+<OefeningAssistent oefening="L21-09" hoofdstuk="L11" />
 
 ## Opgave 10
 
@@ -63,6 +90,9 @@ Als voor een bepaalde speler nog geen wedstrijden in de database staan, toon dan
 
     Tip: voor deze opgave zal je gebruik moeten maken van een cursor.
 ```
+
+
+<OefeningAssistent oefening="L21-10" hoofdstuk="L11" />
 
 ## Lesvoorbeeld
 

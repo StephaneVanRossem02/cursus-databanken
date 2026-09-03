@@ -1,6 +1,6 @@
 ---
 title: "Inleiding"
-sidebar_position: 14
+sidebar_position: 10
 ---
 
 # Inleiding
