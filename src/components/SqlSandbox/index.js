@@ -117,6 +117,13 @@ function vertaalStudentSql(sql) {
   // SQLite kent maar een databank: USE / CREATE DATABASE negeren i.p.v. erop stuk te lopen.
   s = s.replace(/^[ \t]*USE[ \t]+[^;]*;/gim, '');
   s = s.replace(/^[ \t]*CREATE[ \t]+DATABASE[^;]*;/gim, '');
+  // MySQL sessie-instellingen (SET sql_safe_updates, SET foreign_key_checks, SET @var, ...)
+  // negeren. SQLite kent geen los SET-statement. Enkel bekende sessie-variabelen worden
+  // geraakt, dus een UPDATE ... SET kolom = ... blijft ongemoeid.
+  s = s.replace(
+    /^[ \t]*SET[ \t]+(?:SESSION[ \t]+|GLOBAL[ \t]+)?(?:@[A-Za-z_]\w*|SQL_SAFE_UPDATES|FOREIGN_KEY_CHECKS|UNIQUE_CHECKS|SQL_MODE|SQL_NOTES|AUTOCOMMIT|TIME_ZONE|NAMES|CHARACTER_SET_\w+|COLLATION_\w+)\b[^;]*;/gim,
+    '',
+  );
   // ") ENGINE=... " op tabeleinde weg (tot aan de ;).
   s = s.replace(/\)\s*ENGINE\s*=[^;]*/gi, ')');
   // AUTO_INCREMENT bestaat niet in SQLite. Een kolom met AUTO_INCREMENT krijgt type
