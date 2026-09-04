@@ -171,6 +171,18 @@ function haalSchemaTekst(url) {
 
 const MAX_RIJEN = 200;
 
+// Gedeelde databanken per "groep": meerdere sandboxes (bv. de drie debug-scripts van
+// een oefening) werken zo op dezelfde databank, net als aparte scripts tegen een
+// MySQL-databank. Sleutel -> {db} of {belofte} tijdens het opbouwen.
+const gedeeldeDbs = new Map();
+
+async function bouwLegeOfDataDb(leeg, schemaUrl) {
+  const SQL = await laadSqlJs();
+  const db = new SQL.Database();
+  if (!leeg) db.run(await haalSchemaTekst(schemaUrl));
+  return db;
+}
+
 function donkerThema() {
   return (
     typeof document !== 'undefined' &&
@@ -183,6 +195,7 @@ const ACE_THEMA_DONKER = 'ace/theme/tomorrow_night';
 export default function SqlSandbox({
   labo,
   leeg = false,
+  groep,
   start = '',
   placeholder = 'Typ hier je SQL en klik op Uitvoeren...',
   children,
@@ -217,29 +230,50 @@ export default function SqlSandbox({
     statusRef.current = status;
   }, [status]);
 
-  // Databank lui opbouwen (pas bij eerste gebruik).
+  // Databank lui opbouwen (pas bij eerste gebruik). Bij een "groep" wordt de databank
+  // gedeeld door alle sandboxes met dezelfde groep (ze werken op dezelfde tabellen).
   const zorgDatabank = useCallback(() => {
+    if (groep) {
+      const entry = gedeeldeDbs.get(groep);
+      if (entry?.db) {
+        dbRef.current = entry.db;
+        return Promise.resolve(entry.db);
+      }
+      if (entry?.belofte) return entry.belofte;
+      setStatus('laden');
+      const belofte = bouwLegeOfDataDb(leeg, schemaUrl)
+        .then((db) => {
+          gedeeldeDbs.set(groep, {db});
+          dbRef.current = db;
+          setStatus('klaar');
+          return db;
+        })
+        .catch((e) => {
+          gedeeldeDbs.delete(groep);
+          setInitFout(String(e.message || e));
+          setStatus('fout');
+          throw e;
+        });
+      gedeeldeDbs.set(groep, {belofte});
+      return belofte;
+    }
     if (dbRef.current) return Promise.resolve(dbRef.current);
     if (bouwBelofteRef.current) return bouwBelofteRef.current;
     setStatus('laden');
-    bouwBelofteRef.current = (async () => {
-      const SQL = await laadSqlJs();
-      const db = new SQL.Database();
-      if (!leeg) {
-        const schemaTekst = await haalSchemaTekst(schemaUrl);
-        db.run(schemaTekst);
-      }
-      dbRef.current = db;
-      setStatus('klaar');
-      return db;
-    })().catch((e) => {
-      bouwBelofteRef.current = null;
-      setInitFout(String(e.message || e));
-      setStatus('fout');
-      throw e;
-    });
+    bouwBelofteRef.current = bouwLegeOfDataDb(leeg, schemaUrl)
+      .then((db) => {
+        dbRef.current = db;
+        setStatus('klaar');
+        return db;
+      })
+      .catch((e) => {
+        bouwBelofteRef.current = null;
+        setInitFout(String(e.message || e));
+        setStatus('fout');
+        throw e;
+      });
     return bouwBelofteRef.current;
-  }, [schemaUrl, leeg]);
+  }, [schemaUrl, leeg, groep]);
 
   const huidigeTekst = useCallback(() => {
     return editorRef.current ? editorRef.current.getValue() : query;
@@ -371,11 +405,13 @@ export default function SqlSandbox({
     }
     dbRef.current = null;
     bouwBelofteRef.current = null;
+    // Bij een gedeelde groep ook de gedeelde databank wissen (reset voor alle schermen).
+    if (groep) gedeeldeDbs.delete(groep);
     zorgDatabank().then(
       () => setMelding('Databank hersteld naar de begintoestand.'),
       () => {},
     );
-  }, [zorgDatabank]);
+  }, [zorgDatabank, groep]);
 
   function bijToets(e) {
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {

@@ -52,29 +52,27 @@ insert into liedjes values ('Ain't talkin' 'bout Love', 5 * 60);
 
 Zorg dat de files correct uitvoeren en dat je in de tabellen het gewenste resultaat kan zien.
 
-Hieronder staan de drie scripts samen. Verbeter de fouten en klik op **Uitvoeren** tot alles werkt.
+Verbeter de fouten in de drie scripts hieronder en klik telkens op **Uitvoeren**. De drie schermen werken op dezelfde databank, dus voer ze na elkaar uit.
 
-<SqlSandbox labo="01" leeg>{`-- Labo_01-01.01
-use DbLabo01;
+**Script 1**
+
+<SqlSandbox labo="01" leeg groep="labo01-oef01">{`use DbLabo01;
 drop table if exists Boeken;
 create table Boeken (Titel varchar(100), Uitgeverij varchar(100), Jaartal smallint unsigned);
+insert into Boeken (Titel, Uitgeverij, Jaartal) values (Fabels, Editions Minuit, '2021-50');`}</SqlSandbox>
 
--- we willen uitdrukken dat het boek 50 jaar geleden is verschenen
--- maar we willen het rekenwerk niet zelf doen!
-insert into Boeken (Titel, Uitgeverij, Jaartal) values (Fabels, Editions Minuit, '2021-50');
+**Script 2**
 
--- Labo_01-01.02
-use DbLabo01;
-SeLeCT titel from boeken;
+<SqlSandbox labo="01" leeg groep="labo01-oef01">{`use DbLabo01;
+SeLeCT titel from boeken;`}</SqlSandbox>
 
--- Labo_01-01.03
-use DbLabo01;
+**Script 3**
+
+<SqlSandbox labo="01" leeg groep="labo01-oef01">{`use DbLabo01;
 insert into boeken values ('De geschiedenis van Rock 'n Roll', 'De Hasque', 2011');
 drop table if exists Liedjes;
 CREATE TABLE Liedjes(Titel VARCHAR(100), Duurtijd int);
--- het liedje duurt vijf minuten
-insert into liedjes values ('Ain't talkin' 'bout Love', 5 * 60);
-`}</SqlSandbox>
+insert into liedjes values ('Ain't talkin' 'bout Love', 5 * 60);`}</SqlSandbox>
 
 <OefeningAssistent oefening="L01-01" hoofdstuk="L3" />
 
@@ -93,10 +91,7 @@ Sla je uiteindelijke script op onder Databanken/Labo 1/02.sql.
 :::
 
 
-<SqlSandbox labo="01" leeg>{`-- Oefening 01-02: maak de tabel Boeken aan.
--- Schrijf hieronder je CREATE TABLE-instructie en klik op Uitvoeren.
-
-`}</SqlSandbox>
+<SqlSandbox labo="01" leeg />
 
 <OefeningAssistent oefening="L01-02" hoofdstuk="L2" />
 
@@ -109,11 +104,7 @@ Schrijf zelf de `CREATE`-instructie om een tabel `Kunstwerken` aan te maken. Een
 :::
 
 
-<SqlSandbox labo="01" leeg>{`-- Oefening 01-03: maak de tabel Kunstwerken aan.
--- Kolommen: Auteur (tekst, max 100), Titel (tekst, max 100), Waarde (kommagetal).
--- Gebruik hoofdletters voor je kolomnamen. Schrijf je CREATE TABLE hieronder.
-
-`}</SqlSandbox>
+<SqlSandbox labo="01" leeg />
 
 <OefeningAssistent oefening="L01-03" hoofdstuk="L2" />
 
@@ -132,16 +123,7 @@ Voer je code uit wanneer je klaar bent om ze te testen. Controleer de output van
 :::
 
 
-<SqlSandbox labo="01" leeg>{`-- Oefening 01-04: voeg de kunstwerken toe aan Kunstwerken.
--- De tabel is hieronder al aangemaakt (zoals in oefening 01-03), zodat je je INSERT kan testen.
-create table if not exists Kunstwerken (Auteur varchar(100), Titel varchar(100), Waarde float);
-
--- Voeg deze kunstwerken toe met INSERT:
---   Guernica - Pablo Picasso - waarde 2000000
---   De Denker - Auguste Rodin - waarde 1000000
---   Mona Lisa - Leonardo Da Vinci - waarde 2000000
-
-`}</SqlSandbox>
+<SqlSandbox labo="01" leeg>{`create table if not exists Kunstwerken (Auteur varchar(100), Titel varchar(100), Waarde float);`}</SqlSandbox>
 
 <OefeningAssistent oefening="L01-04" hoofdstuk="L3" />
 
