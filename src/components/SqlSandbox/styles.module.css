@@ -151,8 +151,17 @@
 }
 
 .tabel th {
-  background: var(--ifm-color-emphasis-100);
+  /* Lichtblauwe header (huisstijlblauw) i.p.v. lichtgrijs: zo verschilt hij duidelijk
+     van de gestreepte rijen en blijft de tekst goed leesbaar in light mode. */
+  background: #dbeafe;
+  color: #1e40af;
   font-weight: 700;
+}
+
+/* In dark mode een gedempt donkerblauw met lichte tekst, i.p.v. het felle lichtblauw. */
+:global([data-theme='dark']) .tabel th {
+  background: #1e3a5f;
+  color: #dbeafe;
 }
 
 .tabel tbody tr:nth-child(even) {
