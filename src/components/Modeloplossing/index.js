@@ -15,11 +15,11 @@ import styles from './styles.module.css';
  * (zoals de tutor-oplossingen in de Cloudflare Worker). De echte leerwinst zit in
  * de AI-tutor; dit slot houdt de volledige oplossing gewoon een stap verder weg.
  *
- * De code wordt eenmalig per toestel onthouden (localStorage): wie ze ingeeft,
- * ontgrendelt alle modeloplossingen op dat toestel.
+ * Er is een aparte code per labo (customFields.oplossing.codes in docusaurus.config.js).
+ * Een code ontgrendelt enkel dat labo, en wordt per toestel onthouden (localStorage).
  */
 
-const OPSLAG_SLEUTEL = 'cursus-databanken:oplossing-ontgrendeld';
+const OPSLAG_PREFIX = 'cursus-databanken:oplossing-ontgrendeld';
 const STANDAARD_CODE = 'databanken';
 
 function normaliseer(waarde) {
@@ -28,8 +28,10 @@ function normaliseer(waarde) {
 
 export default function Modeloplossing({children, labo}) {
   const {siteConfig} = useDocusaurusContext();
-  const codeUitConfig = siteConfig?.customFields?.oplossing?.code;
-  const juisteCode = normaliseer(codeUitConfig ?? STANDAARD_CODE);
+  const codes = siteConfig?.customFields?.oplossing?.codes ?? {};
+  const juisteCode = normaliseer(codes[labo] ?? STANDAARD_CODE);
+  // Een code ontgrendelt enkel het labo waar ze bij hoort.
+  const opslagSleutel = `${OPSLAG_PREFIX}:${labo ?? 'algemeen'}`;
 
   const [ontgrendeld, setOntgrendeld] = useState(false);
   const [invoer, setInvoer] = useState('');
@@ -37,11 +39,11 @@ export default function Modeloplossing({children, labo}) {
 
   useEffect(() => {
     try {
-      if (window.localStorage.getItem(OPSLAG_SLEUTEL) === 'ja') setOntgrendeld(true);
+      if (window.localStorage.getItem(opslagSleutel) === 'ja') setOntgrendeld(true);
     } catch {
       /* localStorage kan geblokkeerd zijn; slot blijft dan gewoon dicht. */
     }
-  }, []);
+  }, [opslagSleutel]);
 
   function probeer(e) {
     e.preventDefault();
@@ -49,7 +51,7 @@ export default function Modeloplossing({children, labo}) {
       setOntgrendeld(true);
       setFout(false);
       try {
-        window.localStorage.setItem(OPSLAG_SLEUTEL, 'ja');
+        window.localStorage.setItem(opslagSleutel, 'ja');
       } catch {
         /* niet kunnen bewaren is geen ramp: dan blijft het enkel deze sessie open. */
       }
@@ -62,7 +64,7 @@ export default function Modeloplossing({children, labo}) {
     setOntgrendeld(false);
     setInvoer('');
     try {
-      window.localStorage.removeItem(OPSLAG_SLEUTEL);
+      window.localStorage.removeItem(opslagSleutel);
     } catch {
       /* stil negeren. */
     }

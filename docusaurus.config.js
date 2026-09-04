@@ -42,12 +42,35 @@ const config = {
         process.env.OEFENING_ASSISTENT_WORKER_URL ||
         'https://oefening-assistent-databanken.stephanevanrossem2.workers.dev',
     },
-    // Vrijgavecode voor de modeloplossingen (component Modeloplossing).
-    // Wijzig de waarde hieronder om de code aan te passen; deel ze pas met studenten
-    // wanneer je de modeloplossingen wil vrijgeven. Let op: dit is een lichte
-    // afscherming (client-side), geen harde beveiliging.
+    // Vrijgavecodes voor de modeloplossingen (component Modeloplossing), EEN CODE PER LABO.
+    // Deel de code van een labo pas met studenten wanneer je dat labo wil vrijgeven.
+    // Wijzig gerust een waarde hieronder. Let op: dit is een lichte afscherming
+    // (client-side), geen harde beveiliging. Een code ontgrendelt enkel dat ene labo,
+    // en blijft daarna open op het toestel van de student.
     oplossing: {
-      code: process.env.OPLOSSING_CODE || 'sql-kiwi-274',
+      codes: {
+        '01': 'mango-47',
+        '02': 'vlinder-83',
+        '03': 'kiwi-29',
+        '04': 'anker-61',
+        '05': 'druif-15',
+        '06': 'tulp-90',
+        '07': 'kompas-38',
+        '08': 'pinguin-72',
+        '09': 'kaneel-54',
+        '10': 'wafel-26',
+        '11': 'klaver-88',
+        '12': 'haven-33',
+        '13': 'ster-46',
+        '14': 'lelie-19',
+        '15': 'kabel-77',
+        '16': 'peper-52',
+        '17': 'wolk-64',
+        '18': 'gember-31',
+        '19': 'raket-95',
+        '20': 'otter-28',
+        '21': 'kwarts-70',
+      },
     },
   },
 
