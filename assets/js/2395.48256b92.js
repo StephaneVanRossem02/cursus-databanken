@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcursus_databanken=self.webpackChunkcursus_databanken||[]).push([["2395"],{59590(e,a,s){s.d(a,{createPieServices:()=>u.f});var u=s(26041);s(4954)}}]);

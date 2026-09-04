@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcursus_databanken=self.webpackChunkcursus_databanken||[]).push([["3017"],{37632(e,a,s){s.d(a,{createWardleyServices:()=>u.J});var u=s(9427);s(4954)}}]);

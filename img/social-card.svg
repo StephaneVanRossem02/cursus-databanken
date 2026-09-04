@@ -1,0 +1,20 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cardBg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e3a8a"/>
+    </linearGradient>
+    <linearGradient id="cardDb" x1="120" y1="180" x2="360" y2="470" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#93c5fd"/>
+      <stop offset="1" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#cardBg)"/>
+  <g stroke="url(#cardDb)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none" transform="translate(150 205)">
+    <ellipse cx="90" cy="35" rx="80" ry="30"/>
+    <path d="M10 35v70c0 16.5 35.8 30 80 30s80-13.5 80-30V35"/>
+    <path d="M10 105v70c0 16.5 35.8 30 80 30s80-13.5 80-30v-70"/>
+  </g>
+  <text x="420" y="290" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="96" font-weight="800" fill="#ffffff">Databanken</text>
+  <text x="422" y="360" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="40" font-weight="500" fill="#93c5fd">Cursus databanken en SQL</text>
+</svg>

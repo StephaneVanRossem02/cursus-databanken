@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcursus_databanken=self.webpackChunkcursus_databanken||[]).push([["1668"],{86569(e,s,a){a.r(s),a.d(s,{default:()=>k});var r=a(74848);a(96540);var u=a(34164),n=a(34308),c=a(88287),t=a(22831),d=a(15571);function k(e){return(0,r.jsx)(n.e3,{className:(0,u.A)(c.G.wrapper.docsPages),children:(0,r.jsx)(d.A,{children:(0,t.v)(e.route.routes)})})}}}]);
