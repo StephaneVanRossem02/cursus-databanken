@@ -20,10 +20,10 @@ const config = {
   },
 
   // Set the production url of your site here
-  url: 'https://StephaneVanRossem02.github.io',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/cursus-databanken/',
+  // Eigen domein op de root (zie static/CNAME), dus niet meer het github.io-adres.
+  url: 'https://databanken.apload.be',
+  // Op een eigen domein staat de site op de root, dus baseUrl is '/', niet '/cursus-databanken/'.
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   organizationName: 'StephaneVanRossem02', // GitHub-gebruiker/organisatie.
