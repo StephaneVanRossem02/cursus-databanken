@@ -114,6 +114,9 @@ function vertaalStudentSql(sql) {
   let s = sql;
   // MySQL backslash-escape -> SQLite.
   s = s.replace(/\\'/g, "''");
+  // SQLite kent maar een databank: USE / CREATE DATABASE negeren i.p.v. erop stuk te lopen.
+  s = s.replace(/^[ \t]*USE[ \t]+[^;]*;/gim, '');
+  s = s.replace(/^[ \t]*CREATE[ \t]+DATABASE[^;]*;/gim, '');
   // ") ENGINE=... " op tabeleinde weg (tot aan de ;).
   s = s.replace(/\)\s*ENGINE\s*=[^;]*/gi, ')');
   // AUTO_INCREMENT bestaat niet in SQLite. Een kolom met AUTO_INCREMENT krijgt type
@@ -182,8 +185,14 @@ export default function SqlSandbox({
   leeg = false,
   start = '',
   placeholder = 'Typ hier je SQL en klik op Uitvoeren...',
+  children,
 }) {
   const schemaUrl = useBaseUrl(`/sandbox/labo-${labo}.sql`);
+
+  // Begininhoud voor de editor: expliciete start-prop, anders een SQL-blok dat als
+  // children is meegegeven (bv. voorgevulde debug-scripts om te verbeteren).
+  const kinderenTekst = Array.isArray(children) ? children.join('') : children;
+  const beginTekst = start || (typeof kinderenTekst === 'string' ? kinderenTekst : '');
 
   const wrapRef = useRef(null);
   const hostRef = useRef(null);
@@ -199,7 +208,7 @@ export default function SqlSandbox({
   const [status, setStatus] = useState('leeg'); // leeg | laden | klaar | fout
   const [aceKlaar, setAceKlaar] = useState(false);
   const [initFout, setInitFout] = useState('');
-  const [query, setQuery] = useState(start);
+  const [query, setQuery] = useState(beginTekst);
   const [resultaten, setResultaten] = useState(null);
   const [queryFout, setQueryFout] = useState('');
   const [melding, setMelding] = useState('');
