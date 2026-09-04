@@ -1,0 +1,170 @@
+.wrap {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  background: var(--ifm-background-surface-color);
+}
+
+.kop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary-contrast-foreground);
+  background: var(--ifm-color-primary-contrast-background);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+}
+
+.subtiel {
+  font-size: 0.82rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.invoer {
+  width: 100%;
+  min-height: 110px;
+  resize: vertical;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+  box-sizing: border-box;
+}
+
+.invoer:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: -1px;
+}
+
+.editorHost {
+  width: 100%;
+  min-height: 110px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  overflow: hidden;
+  box-sizing: border-box;
+  line-height: 1.5;
+}
+
+/* Ace vult de container; laat de afgeronde hoeken van de container zien. */
+.editorHost :global(.ace_editor) {
+  border-radius: 6px;
+  font-family: var(--ifm-font-family-monospace);
+}
+
+.knoprij {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.7rem;
+}
+
+.knop {
+  font-weight: 600;
+  color: var(--ifm-button-color, #fff);
+  background: var(--ifm-color-primary);
+  border: 1px solid var(--ifm-color-primary);
+  border-radius: 6px;
+  padding: 0.45rem 1.1rem;
+  cursor: pointer;
+}
+
+.knop:hover:not(:disabled) {
+  background: var(--ifm-color-primary-dark);
+}
+
+.knopLicht {
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-800);
+  background: transparent;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  padding: 0.45rem 1.1rem;
+  cursor: pointer;
+}
+
+.knopLicht:hover:not(:disabled) {
+  background: var(--ifm-color-emphasis-100);
+}
+
+.knop:disabled,
+.knopLicht:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.tip {
+  font-size: 0.78rem;
+  color: var(--ifm-color-emphasis-500);
+  margin-left: auto;
+}
+
+.fout {
+  margin: 0.8rem 0 0;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.85rem;
+  color: var(--ifm-color-danger-darker);
+  background: var(--ifm-color-danger-contrast-background);
+  border: 1px solid var(--ifm-color-danger-contrast-foreground);
+}
+
+.melding {
+  margin: 0.8rem 0 0;
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.resultaatwrap {
+  margin-top: 0.9rem;
+  overflow-x: auto;
+}
+
+.tabel {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.85rem;
+}
+
+.tabel th,
+.tabel td {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  padding: 0.35rem 0.6rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.tabel th {
+  background: var(--ifm-color-emphasis-100);
+  font-weight: 700;
+}
+
+.tabel tbody tr:nth-child(even) {
+  background: var(--ifm-color-emphasis-100);
+}
+
+.nul {
+  color: var(--ifm-color-emphasis-500);
+}
+
+.telling {
+  margin: 0.5rem 0 0;
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-600);
+}
