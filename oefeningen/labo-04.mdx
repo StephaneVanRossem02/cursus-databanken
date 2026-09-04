@@ -91,8 +91,7 @@ Plaats hierin volgende games (je mag veronderstellen dat de release telkens om m
 Sla alle instructies op in één script, genaamd 04-01.sql.
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="04">
 
 ```sql
 CREATE DATABASE IF NOT EXISTS DbLabo04;
@@ -115,7 +114,7 @@ INSERT INTO Games VALUES
 ('Mario vs. Rabbids: Sparks of Hope', '2022-10-21', 'strategy', 'Ubisoft');
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L04-01" hoofdstuk="L3" />
@@ -131,8 +130,7 @@ Je krijgt:
 Sla je instructie op in één script, genaamd 04-02.sql.
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="04">
 
 ```sql
 -- Oefening 04.02
@@ -140,7 +138,7 @@ SELECT * FROM Games
 WHERE Uitgever IS NOT NULL;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L04-02" hoofdstuk="L3" />
@@ -156,8 +154,7 @@ Je krijgt:
 Sla je instructie op in één script, genaamd 04-03.sql.
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="04">
 
 ```sql
 -- Oefening 04.03
@@ -165,7 +162,7 @@ SELECT * FROM Games
 WHERE Uitgever IS NULL;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L04-03" hoofdstuk="L3" />
@@ -179,8 +176,7 @@ Zorg ervoor dat de ontwikkelaar altijd verplicht ingevuld moet zijn.
 Je hebt hier meerdere instructies nodig. Sla ze op in één script, genaamd 04-04.sql.
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="04">
 
 ```sql
 -- Oefening 04.04
@@ -197,7 +193,7 @@ WHERE Titel = 'Mario vs. Rabbids: Sparks of Hope';
 set sql_safe_updates = 1;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L04-04" hoofdstuk="L3" />
@@ -213,8 +209,7 @@ Je krijgt dus:
 Sla de instructie(s) op in 04-05.sql.
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="04">
 
 ```sql
 -- Oefening 04.05
@@ -224,7 +219,7 @@ WHERE Uitgever = 'Square Enix';
 SET sql_safe_updates = 1;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L04-05" hoofdstuk="L3" />
@@ -242,8 +237,7 @@ Toon alfabetisch de titel van alle liedjes zonder artiest en zonder album. Je zo
 Sla de instructie(s) op in 04-06.sql.
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="04">
 
 ```sql
 -- Oefening 04.06
@@ -253,7 +247,7 @@ AND Album IS NULL
 ORDER BY 1;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L04-06" hoofdstuk="L3" />
@@ -267,8 +261,7 @@ Ter controle: een voorbeeld van zo’n liedje is “Take It Or Leave It” van �
 Sla op als 04-07.sql.
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="04">
 
 ```sql
 -- Oefening 04.07
@@ -289,7 +282,7 @@ WHERE Album IS NULL
 AND DuurtijdInSeconden <= 180;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L04-07" hoofdstuk="L3" />
@@ -301,8 +294,7 @@ Verander de naam van de kolom `Royalties` naar `VergoedingArtiest`. Het soort da
 Noem je file 04-08.sql.
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="04">
 
 ```sql
 -- Oefening 04.08
@@ -310,7 +302,7 @@ ALTER TABLE Liedjes
 CHANGE COLUMN Royalties VergoedingArtiest INT DEFAULT NULL;
 ```
 
-</details>
+</Modeloplossing>
 
 <OefeningAssistent oefening="L04-08" hoofdstuk="L3" />
 

@@ -104,8 +104,7 @@ UNLOCK TABLES;
 Laat zien hoeveel liedjes er in het systeem staan. Het zouden er 3123 moeten zijn.
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="05">
 
 ```sql
 create database if not exists DbLabo05;
@@ -116,7 +115,7 @@ use DbLabo05;
 select count(*) from Liedjes;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L05-01" hoofdstuk="L4" />
@@ -126,8 +125,7 @@ select count(*) from Liedjes;
 Laat zien welk getal je krijgt als je alle royalties op nummers van Led Zeppelin optelt. Dat zou 4905 moeten zijn.
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="05">
 
 ```sql
 -- Oefening 05-02
@@ -136,7 +134,7 @@ from Liedjes
 where Artiest = 'Led Zeppelin';
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L05-02" hoofdstuk="L4" />
@@ -146,8 +144,7 @@ where Artiest = 'Led Zeppelin';
 Laat zien hoeveel nummers in het systeem zijn uitgekomen voor 1990. Het zouden er 1804 moeten zijn. Nummers uitgekomen in 1990 horen hier dus niet bij.
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="05">
 
 ```sql
 -- Oefening 05-03
@@ -156,7 +153,7 @@ from Liedjes
 where ReleaseJaar < 1990;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L05-03" hoofdstuk="L4" />
@@ -172,8 +169,7 @@ Je zou moeten zien:
 De hoofding is hier aangepast met `AS`.
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="05">
 
 ```sql
 -- Oefening 05-04
@@ -182,7 +178,7 @@ from Liedjes
 group by ReleaseJaar < 1990;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L05-04" hoofdstuk="L4" />
@@ -196,8 +192,7 @@ Het resultaat zou moeten zijn:
 <table><thead><tr><th>Aantal</th><th>Genre</th></tr></thead><tbody><tr><td>20</td><td>Rap</td></tr><tr><td>30</td><td>Electro</td></tr><tr><td>47</td><td>Pop</td></tr><tr><td>94</td><td>Blues</td></tr><tr><td>126</td><td>Klassiek</td></tr><tr><td>129</td><td>Jazz</td></tr><tr><td>402</td><td>Metal</td></tr><tr><td>604</td><td>Wereldmuziek</td></tr><tr><td>1671</td><td>Rock</td></tr></tbody></table>
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="05">
 
 ```sql
 -- Oefening 05-05
@@ -207,7 +202,7 @@ group by Genre
 order by count(*);
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L05-05" hoofdstuk="L4" />
@@ -222,8 +217,7 @@ FROM Liedjes;
 ```
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="05">
 
 ```sql
 -- Oefening 05-06
@@ -232,7 +226,7 @@ from Liedjes
 group by Artiest;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L05-06" hoofdstuk="L4" />
@@ -242,15 +236,14 @@ group by Artiest;
 Toon het aantal artiesten in het systeem. Dit is 180.
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="05">
 
 ```sql
 -- Oefening 05-07
 select count(distinct Artiest) from Liedjes;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L05-07" hoofdstuk="L4" />
@@ -262,8 +255,7 @@ Toon alle genres waarvan de nummers gemiddeld minstens 5 minuten duren, in volgo
 <table><thead><tr><th>Genre</th><th>Gemiddelde duurtijd</th></tr></thead><tbody><tr><td>Electro</td><td>302.5000</td></tr><tr><td>Metal</td><td>308.3781</td></tr><tr><td>Klassiek</td><td>1450.3254</td></tr></tbody></table>
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="05">
 
 ```sql
 -- Oefening 05-08
@@ -276,7 +268,7 @@ having avg(Duurtijd) >= 5 * 60
 order by `Gemiddelde duurtijd`;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L05-08" hoofdstuk="L4" />
@@ -290,8 +282,7 @@ Het resultaat zou moeten zijn:
 <table><thead><tr><th>Decennium</th><th>Aantal nummers</th></tr></thead><tbody><tr><td>1960</td><td>474</td></tr><tr><td>1970</td><td>455</td></tr><tr><td>1980</td><td>451</td></tr><tr><td>1990</td><td>457</td></tr></tbody></table>
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="05">
 
 ```sql
 -- Oefening 05-09
@@ -302,7 +293,7 @@ having count(*) >= 450
 order by Decennium;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L05-09" hoofdstuk="L4" />
@@ -316,8 +307,7 @@ Het resultaat is:
 <table><thead><tr><th>Artiest</th></tr></thead><tbody><tr><td>Chicago Symphony Orchestra &amp; Fritz Reiner</td></tr><tr><td>Emanuel Ax, Eugene Ormandy &amp; Philadelphia Orchestra</td></tr><tr><td>Felix Schmidt, London Symphony Orchestra &amp; Rafael Frühbeck de Burgos</td></tr><tr><td>Heroes</td></tr><tr><td>Leonard Bernstein &amp; New York Philharmonic</td></tr><tr><td>Lost</td></tr><tr><td>Mela Tenenbaum, Pro Musica Prague &amp; Richard Kapp</td></tr><tr><td>Richard Marlow &amp; The Choir of Trinity College, Cambridge</td></tr><tr><td>Scholars Baroque Ensemble</td></tr></tbody></table>
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="05">
 
 ```sql
 -- Oefening 05-10
@@ -332,7 +322,7 @@ having avg(Duurtijd) >= 8 * 60 and Genre = 'Klassiek'
 order by Artiest;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L05-10" hoofdstuk="L4" />
@@ -346,8 +336,7 @@ Deze albums zijn:
 <table><thead><tr><th>Album</th></tr></thead><tbody><tr><td>The Song Remains The Same (Disc 2)</td></tr><tr><td>The Song Remains The Same (Disc 1)</td></tr><tr><td>Presence</td></tr><tr><td>Physical Graffiti [Disc 2]</td></tr><tr><td>Led Zeppelin III</td></tr><tr><td>Led Zeppelin II</td></tr><tr><td>Led Zeppelin I</td></tr><tr><td>IV</td></tr><tr><td>In Through The Out Door</td></tr><tr><td>Greatest Hits</td></tr><tr><td>BBC Sessions [Disc 2] [Live]</td></tr><tr><td>BBC Sessions [Disc 1] [Live]</td></tr></tbody></table>
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="05">
 
 ```sql
 -- Oefening 05-11
@@ -358,7 +347,7 @@ having sum(Royalties) > 300 and group_concat(Genre) like '%rock%'
 order by Album desc;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L05-11" hoofdstuk="L4" />
@@ -372,8 +361,7 @@ Het antwoord:
 <table><thead><tr><th>Genre</th><th>Hoogste royalties</th></tr></thead><tbody><tr><td>Blues</td><td>38</td></tr><tr><td>Metal</td><td>49</td></tr><tr><td>Klassiek</td><td>102</td></tr><tr><td>Rock</td><td>193</td></tr></tbody></table>
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="05">
 
 ```sql
 -- Oefening 05-12
@@ -386,7 +374,7 @@ having avg(Duurtijd) >= 4 * 60
 order by max(Royalties);
 ```
 
-</details>
+</Modeloplossing>
 
 <OefeningAssistent oefening="L05-12" hoofdstuk="L4" />
 

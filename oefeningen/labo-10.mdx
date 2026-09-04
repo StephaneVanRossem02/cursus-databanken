@@ -245,8 +245,7 @@ van elke gebruiker een getal zien staan. Noem je script `07.sql`.
 <table><thead><tr><th>Gebruikersnaam</th><th>Aantal albums</th></tr></thead><tbody><tr><td>musicfan111</td><td>151</td></tr><tr><td>tuneBoY5</td><td>164</td></tr><tr><td>drbeatz</td><td>164</td></tr><tr><td>trebletrouble</td><td>151</td></tr><tr><td>neverloudenough</td><td>164</td></tr></tbody></table>
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="10">
 
 ```sql
 -- Labo 10
@@ -260,7 +259,7 @@ ON Gebruikers.Id = GebruikerHeeftAlbum.Gebruikers_Id
 GROUP BY Gebruikersnaam;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L10-01" hoofdstuk="L6" />
@@ -276,8 +275,7 @@ De eerste paar rijen zijn (al kan jouw resultaatvolgorde variëren):
 <table><thead><tr><th>Gebruikersnaam</th><th>Album</th></tr></thead><tbody><tr><td>musicfan111</td><td>Live After Death</td></tr><tr><td>musicfan111</td><td>Live At Donington 1992 (Disc 1)</td></tr><tr><td>musicfan111</td><td>Live At Donington 1992 (Disc 2)</td></tr><tr><td>musicfan111</td><td>No Prayer For The Dying</td></tr></tbody></table>
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="10">
 
 ```sql
 -- Oefening Labo 10-02
@@ -289,7 +287,7 @@ INNER JOIN Albums
 ON Albums.Id = Albums_Id;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L10-02" hoofdstuk="L6" />
@@ -309,8 +307,7 @@ Het resultaat:
 <table><thead><tr><th>Gebruikersnaam</th><th>Titel</th></tr></thead><tbody><tr><td>musicfan111</td><td>Eat The Rich</td></tr></tbody></table>
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="10">
 
 ```sql
 -- Oefening Labo 10-03
@@ -323,7 +320,7 @@ ON Liedjes.Id = Liedjes_Id
 WHERE Favoriet = 0;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L10-03" hoofdstuk="L6" />
@@ -338,8 +335,7 @@ Voorbeelduitvoer:
 <table><thead><tr><th>Artiest</th><th>Hoogste royalties</th></tr></thead><tbody><tr><td>Claude Debussy</td><td>4</td></tr><tr><td>Led Zeppelin</td><td>100</td></tr><tr><td>Blues Pills</td><td>18</td></tr><tr><td>Ghostface Killah</td><td>8</td></tr><tr><td>AC/DC</td><td>22</td></tr></tbody></table>
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="10">
 
 ```sql
 -- Oefening Labo 10-04
@@ -350,7 +346,7 @@ ON Liedjes.Artiesten_Id = Artiesten.Id
 GROUP BY Artiesten.Id;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L10-04" hoofdstuk="L6" />
@@ -365,8 +361,7 @@ Gedeeltelijke uitvoer:
 <table><thead><tr><th>Albumtitel</th><th>Langste duurtijd</th></tr></thead><tbody><tr><td>Verzameld werk van Debussy</td><td>160</td></tr><tr><td>Led Zeppelin IV</td><td>420</td></tr><tr><td>Blues Pills</td><td>300</td></tr><tr><td>Lady in Gold</td><td>300</td></tr><tr><td>Supreme Clientele</td><td>99</td></tr></tbody></table>
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="10">
 
 ```sql
 -- Oefening Labo 10-05
@@ -378,7 +373,7 @@ ON Liedjes.Id = Liedjes_Id
 GROUP BY Albums.Id;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L10-05" hoofdstuk="L6" />
@@ -396,8 +391,7 @@ van grootste naar kleinste aantal.
 <table><thead><tr><th>Gebruikersnaam</th><th>Artiest</th><th>Aantal albums van deze artiest in de collectie</th></tr></thead><tbody><tr><td>tuneBoY5</td><td>Iron Maiden</td><td>21</td></tr><tr><td>trebletrouble</td><td>Iron Maiden</td><td>21</td></tr><tr><td>neverloudenough</td><td>Iron Maiden</td><td>21</td></tr><tr><td>neverloudenough</td><td>Led Zeppelin</td><td>14</td></tr><tr><td>musicfan111</td><td>Iron Maiden</td><td>13</td></tr></tbody></table>
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="10">
 
 ```sql
 -- Oefening Labo 10-06
@@ -409,7 +403,7 @@ GROUP BY Gebruikersnaam, Artiesten.Naam
 ORDER BY count(*) desc;
 ```
 
-</details>
+</Modeloplossing>
 
 <OefeningAssistent oefening="L10-06" hoofdstuk="L6" />
 

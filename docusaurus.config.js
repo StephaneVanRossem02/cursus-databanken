@@ -42,6 +42,13 @@ const config = {
         process.env.OEFENING_ASSISTENT_WORKER_URL ||
         'https://oefening-assistent-databanken.stephanevanrossem2.workers.dev',
     },
+    // Vrijgavecode voor de modeloplossingen (component Modeloplossing).
+    // Wijzig de waarde hieronder om de code aan te passen; deel ze pas met studenten
+    // wanneer je de modeloplossingen wil vrijgeven. Let op: dit is een lichte
+    // afscherming (client-side), geen harde beveiliging.
+    oplossing: {
+      code: process.env.OPLOSSING_CODE || 'sql-kiwi-274',
+    },
   },
 
   // .md-bestanden als CommonMark verwerken (niet MDX), zodat losse `<` en `{`

@@ -71,8 +71,7 @@ Schrijf een script dat automatisch alle liedjes met minder dan 2000 verkochte ex
 Sla alle instructies op in één script, genaamd 03-01.sql.
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="03">
 
 ```sql
 CREATE DATABASE IF NOT EXISTS DbLabo03;
@@ -86,7 +85,7 @@ where AantalVerkocht < 2000;
 set sql_safe_updates = 1;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L03-01" hoofdstuk="L3" />
@@ -96,8 +95,7 @@ set sql_safe_updates = 1;
 Er staat een fout in onze database. Blijkbaar woog Thijs Verbeeck (die al in je tabel `Geboortes` staat) bij zijn geboorte 2.8 kilogram in plaats van 2.7. Gebruik de juiste instructie om dit aan te passen. Sla alle instructies op in één script, genaamd 03-02.sql.
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="03">
 
 ```sql
 set sql_safe_updates = 0;
@@ -107,7 +105,7 @@ where Voornaam = 'Thijs' and Familienaam = 'Verbeeck';
 set sql_safe_updates = 1;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L03-02" hoofdstuk="L3" />
@@ -121,8 +119,7 @@ Het blijkt dat een stagiair de data voor `Liedjes` verkeerd heeft afgelezen. Van
 Sla alle nodige instructies op onder 03-03.sql.
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="03">
 
 ```sql
 set sql_safe_updates = 0;
@@ -131,7 +128,7 @@ set AantalVerkocht = 10 * AantalVerkocht;
 set sql_safe_updates = 1;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L03-03" hoofdstuk="L3" />
@@ -149,8 +146,7 @@ Je krijgt na de aanpassing dus (we tonen hier tijdstip en gewicht even niet, maa
 Sla op als 03-04.sql.
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="03">
 
 ```sql
 set sql_safe_updates = 0;
@@ -159,7 +155,7 @@ set Familienaam = concat(substring(Familienaam, 1, 1), '.');
 set sql_safe_updates = 1;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L03-04" hoofdstuk="L3" />
@@ -187,15 +183,14 @@ Tip: de kolomhoofding zal standaard niet “Filenaam” zijn als je deze data we
 Sla op als 03-05.sql.
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="03">
 
 ```sql
 select concat(Artiest, ' - ', Titel, '.mp3') as Filenaam
 from Liedjes;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L03-05" hoofdstuk="L3" />
@@ -211,8 +206,7 @@ Toon alle artiesten die een letter ‘E’ in hun naam hebben met een algemene i
 Sla op als 03-06.sql.
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="03">
 
 ```sql
 select Artiest
@@ -220,7 +214,7 @@ from Liedjes
 where Artiest like '%E%';
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L03-06" hoofdstuk="L3" />
@@ -238,8 +232,7 @@ Tip: `<` werkt ook voor kolommen van type `DATETIME`.
 Sla op als 03-07.sql.
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="03">
 
 ```sql
 select *
@@ -247,7 +240,7 @@ from Geboortes
 where TijdstipGeboorte < '1996-01-01 00:00:00' and GewichtInKilogram <= 3;
 ```
 
-</details>
+</Modeloplossing>
 
 
 <OefeningAssistent oefening="L03-07" hoofdstuk="L3" />
@@ -264,8 +257,7 @@ Sla op als 03-08.sql.
 
 
 
-<details>
-<summary>Toon modeloplossing</summary>
+<Modeloplossing labo="03">
 
 ```sql
 select Titel
@@ -273,7 +265,7 @@ from Liedjes
 where not (Titel like '%O%'); -- mag ook met NOT LIKE
 ```
 
-</details>
+</Modeloplossing>
 
 <OefeningAssistent oefening="L03-08" hoofdstuk="L3" />
 
