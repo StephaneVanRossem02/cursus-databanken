@@ -9,9 +9,9 @@ _Bron: Labo 01._
 
 ## Oefening Labo 01 - 01
 
-Maak eerst een map “Databanken” met daarin een map “Labo 1”.
+Maak eerst een map "Databanken" met daarin een map "Labo 1".
 
-Hieronder staan drie “debug scripts”. Deze bevatten allemaal enkele fouten. Corrigeer de fouten in elke file.
+Hieronder staan drie "debug scripts". Deze bevatten allemaal enkele fouten. Corrigeer de fouten in elke file.
 
 
 Zorg dat de files correct uitvoeren en dat je in de tabellen het gewenste resultaat kan zien.
@@ -44,7 +44,19 @@ insert into liedjes values ('Ain't talkin' 'bout Love', 5 * 60);`}</SqlSandbox>
 
 Hieronder zie je een visuele voorstelling van twee tabellen:
 
-_(Bijhorende afbeelding niet beschikbaar in het bronmateriaal.)_
+```mermaid
+erDiagram
+    Boeken {
+        VARCHAR Titel "max 50 tekens"
+        INT JaarUitgave
+    }
+    Liedjes {
+        VARCHAR Titel "max 100 tekens"
+        INT Duurtijd
+    }
+```
+
+_Gebruik de exacte notatie `VARCHAR(50)` en `VARCHAR(100)` in je `CREATE`-instructie._
 
 Schrijf zelf de `CREATE`-instructie om de tabel `Boeken` aan te maken. Voer je code uit wanneer je klaar bent om ze te testen. Controleer de output van je script. Indien de instructie mis loopt, lees dan de foutmelding en probeer het probleem op te lossen.
 
