@@ -131,36 +131,111 @@
   color: var(--ifm-color-emphasis-600);
 }
 
-/* --- Schemaboom (zoals de navigator in Workbench) --- */
+/* --- Werkblad: navigator links, editor en uitvoer rechts (zoals Workbench) --- */
 
-.schema {
-  margin-top: 0.9rem;
+.werkblad {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.hoofd {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.zijbalk {
+  flex: 0 0 15rem;
+  max-width: 15rem;
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 6px;
-  background: var(--ifm-background-color);
+  background: var(--ifm-color-emphasis-100);
+  overflow: hidden;
 }
 
-.schemaKop {
-  cursor: pointer;
-  padding: 0.45rem 0.75rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--ifm-color-emphasis-800);
+.zijbalkDicht {
+  flex-basis: auto;
+  max-width: none;
+}
+
+.zijbalkKnop {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 0.4rem;
+  width: 100%;
+  padding: 0.4rem 0.55rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-700);
 }
 
-.schemaTelling {
-  font-size: 0.75rem;
-  font-weight: 400;
+.zijbalkKnop:hover {
+  color: var(--ifm-color-primary);
+}
+
+.zijbalkPijl {
+  font-size: 0.6rem;
   color: var(--ifm-color-emphasis-500);
 }
 
+/* Ingeklapt: een smalle strook met het woord verticaal, zoals een dichtgeklapt paneel. */
+.zijbalkDicht .zijbalkKnop {
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem 0.3rem;
+  width: auto;
+}
+
+.zijbalkDicht .zijbalkTitel {
+  writing-mode: vertical-rl;
+}
+
+.schemaTelling {
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--ifm-color-emphasis-500);
+  margin-left: auto;
+}
+
 .boom {
-  padding: 0.2rem 0.75rem 0.7rem;
-  font-size: 0.85rem;
+  padding: 0 0.55rem 0.6rem;
+  font-size: 0.82rem;
+  max-height: 22rem;
+  overflow: auto;
+}
+
+.boomUitleg {
+  margin: 0.2rem 0 0.4rem;
+  font-size: 0.7rem;
+  line-height: 1.4;
+  color: var(--ifm-color-emphasis-500);
+}
+
+/* Op smalle schermen onder elkaar in plaats van naast elkaar. */
+@media (max-width: 768px) {
+  .werkblad {
+    flex-direction: column;
+  }
+
+  .zijbalk {
+    flex: 0 0 auto;
+    max-width: none;
+    width: 100%;
+  }
+
+  .zijbalkDicht .zijbalkKnop {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .zijbalkDicht .zijbalkTitel {
+    writing-mode: horizontal-tb;
+  }
 }
 
 .boomWortel {
@@ -255,45 +330,69 @@
 /* --- Feedback per statement (zoals de Action Output in Workbench) --- */
 
 .samenvatting {
-  margin: 0.9rem 0 0.2rem;
-  font-size: 0.85rem;
+  margin: 0.9rem 0 0.35rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: var(--ifm-color-emphasis-700);
 }
 
-.stap {
-  margin-top: 0.6rem;
-  padding: 0.55rem 0.75rem;
+/* Compacte lijst: een regel per statement, openklikbaar voor de details. */
+.uitvoer {
   border: 1px solid var(--ifm-color-emphasis-300);
-  border-left: 4px solid var(--ifm-color-emphasis-400);
   border-radius: 6px;
+  overflow: hidden;
   background: var(--ifm-background-color);
 }
 
-.stap_ok {
-  border-left-color: var(--ifm-color-success);
-}
-
-.stap_fout {
-  border-left-color: var(--ifm-color-danger);
-  background: var(--ifm-color-danger-contrast-background);
-}
-
-.stap_overgeslagen,
-.stap_genegeerd {
-  opacity: 0.75;
+.stap + .stap {
+  border-top: 1px solid var(--ifm-color-emphasis-200);
 }
 
 .stapKop {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.4rem 0.6rem;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+  line-height: 1.6;
+}
+
+/* Eigen pijltje: een summary met display:flex verliest het standaardmarkeerteken. */
+.stapKop {
+  list-style: none;
+}
+
+.stapKop::-webkit-details-marker {
+  display: none;
+}
+
+.pijl {
+  flex: 0 0 auto;
+  font-size: 0.6rem;
+  color: var(--ifm-color-emphasis-500);
+  transition: transform 0.15s ease;
+}
+
+.stap[open] .pijl {
+  transform: rotate(90deg);
+}
+
+.stapKop:hover {
+  background: var(--ifm-color-emphasis-100);
+}
+
+.stap_fout .stapKop {
+  background: var(--ifm-color-danger-contrast-background);
+}
+
+.stap_overgeslagen .stapKop,
+.stap_genegeerd .stapKop {
+  opacity: 0.7;
 }
 
 .stapTeken {
   font-weight: 700;
-  color: var(--ifm-color-emphasis-600);
+  color: var(--ifm-color-emphasis-500);
 }
 
 .stap_ok .stapTeken {
@@ -304,46 +403,64 @@
   color: var(--ifm-color-danger);
 }
 
-.stapTitel {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--ifm-color-emphasis-800);
-}
-
-.stapRegel {
-  font-size: 0.75rem;
+.stapNr {
+  min-width: 1.1rem;
+  font-size: 0.72rem;
   color: var(--ifm-color-emphasis-500);
-  margin-left: auto;
+  text-align: right;
 }
 
+/* De SQL vult de regel en wordt afgekapt: een statement blijft altijd een regel hoog. */
 .stapSql {
-  display: block;
-  margin-top: 0.35rem;
-  padding: 0.3rem 0.5rem;
-  border-radius: 4px;
-  background: var(--ifm-color-emphasis-100);
+  flex: 1 1 auto;
+  min-width: 0;
+  background: none;
+  border: none;
+  padding: 0;
   font-family: var(--ifm-font-family-monospace);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--ifm-color-emphasis-800);
-  overflow-x: auto;
-  white-space: pre;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stapKort {
+  flex: 0 0 auto;
+  font-size: 0.75rem;
+  color: var(--ifm-color-emphasis-600);
+  white-space: nowrap;
+}
+
+.stap_fout .stapKort {
+  color: var(--ifm-color-danger-darker);
+}
+
+.stapBody {
+  padding: 0.1rem 0.6rem 0.6rem 2.2rem;
+}
+
+.stapDetail {
+  margin: 0;
+  font-size: 0.73rem;
+  color: var(--ifm-color-emphasis-500);
 }
 
 .stapMelding {
-  margin: 0.4rem 0 0;
-  font-size: 0.85rem;
+  margin: 0.15rem 0 0;
+  font-size: 0.82rem;
   color: var(--ifm-color-emphasis-700);
 }
 
 .stapFout {
-  margin: 0.4rem 0 0;
+  margin: 0.15rem 0 0;
   font-family: var(--ifm-font-family-monospace);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--ifm-color-danger-darker);
 }
 
 .resultaatwrap {
-  margin-top: 0.9rem;
+  margin-top: 0.5rem;
   overflow-x: auto;
 }
 

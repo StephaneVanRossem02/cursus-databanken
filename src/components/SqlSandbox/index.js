@@ -304,6 +304,18 @@ function geluktMelding(info, gewijzigd) {
   }
 }
 
+// Wat er rechts op de compacte regel komt: het resultaat in een paar woorden.
+function kortResultaat(u) {
+  const eersteRegel = String(u.melding || '').split('\n')[0];
+  if (u.toestand === 'fout') {
+    return `fout: ${eersteRegel.length > 48 ? `${eersteRegel.slice(0, 48)}...` : eersteRegel}`;
+  }
+  if (u.toestand === 'overgeslagen') return 'niet uitgevoerd';
+  if (u.toestand === 'genegeerd') return 'overgeslagen';
+  if (u.resultaat) return `${u.resultaat.totaal} rij${u.resultaat.totaal === 1 ? '' : 'en'}`;
+  return eersteRegel.replace(/\.$/, '');
+}
+
 // De SQL van een statement op een regel, voor in de kop van het feedbackblok.
 function voorbeeldRegel(sql) {
   const opEenRegel = sql.replace(/\s+/g, ' ').trim();
@@ -446,13 +458,20 @@ function TabelKnoop({tabel}) {
       <ul className={styles.velden}>
         {tabel.kolommen.map((k) => (
           <li key={k.naam} className={styles.veld}>
-            <span className={styles.icoonVeld} aria-hidden="true">
+            <span
+              className={styles.icoonVeld}
+              title={k.sleutel ? 'PRIMARY KEY' : undefined}
+              aria-hidden="true"
+            >
               {k.sleutel ? '🔑' : '◦'}
             </span>
             <span className={styles.veldNaam}>{k.naam}</span>
             <span className={styles.veldType}>{k.type || 'geen type'}</span>
-            {k.verplicht && <span className={styles.veldVlag}>NOT NULL</span>}
-            {k.sleutel && <span className={styles.veldVlag}>PRIMARY KEY</span>}
+            {k.verplicht && (
+              <span className={styles.veldVlag} title="NOT NULL: dit veld moet ingevuld zijn">
+                NN
+              </span>
+            )}
           </li>
         ))}
       </ul>
@@ -493,6 +512,7 @@ export default function SqlSandbox({
   const [initFout, setInitFout] = useState('');
   const [query, setQuery] = useState(beginTekst);
   const [uitvoeringen, setUitvoeringen] = useState(null); // feedback per statement
+  const [openRegels, setOpenRegels] = useState({}); // welke statementregels opengeklapt zijn
   const [melding, setMelding] = useState('');
   const [structuur, setStructuur] = useState(null); // tabellen/views met hun kolommen
   const [databanken, setDatabanken] = useState([]); // namen uit CREATE DATABASE
@@ -636,6 +656,16 @@ export default function SqlSandbox({
     // Autocompletie bijwerken met (eventueel nieuw aangemaakte) tabellen.
     if (editorRef.current) editorRef.current.$dbSchema = schemaUitDb(db);
     setUitvoeringen(lijst);
+    // Alles blijft dichtgeklapt op een compacte regel, behalve wat je meteen wil zien:
+    // de fout waar het script stopte en het laatste resultaat van je script.
+    const laatsteTabel = [...lijst].reverse().find((u) => u.resultaat);
+    const standaardOpen = {};
+    for (const u of lijst) {
+      if (u.toestand === 'fout' || (laatsteTabel && u.nr === laatsteTabel.nr)) {
+        standaardOpen[u.nr] = true;
+      }
+    }
+    setOpenRegels(standaardOpen);
     // Structuur van de databank bijwerken: zo ziet de student meteen welke tabellen
     // en kolommen er nu bestaan.
     setStructuur(leesStructuur(db));
@@ -648,6 +678,8 @@ export default function SqlSandbox({
   const toonSchema = useCallback(
     (open) => {
       setSchemaOpen(open);
+      // De editor wordt smaller of breder: Ace moet zijn afmetingen opnieuw berekenen.
+      setTimeout(() => editorRef.current?.resize(), 0);
       if (!open) return;
       zorgDatabank().then(
         (db) => setStructuur(leesStructuur(db)),
@@ -744,6 +776,7 @@ export default function SqlSandbox({
 
   const herstel = useCallback(() => {
     setUitvoeringen(null);
+    setOpenRegels({});
     setMelding('');
     setStructuur(null);
     setDatabanken([]);
@@ -801,6 +834,69 @@ export default function SqlSandbox({
         </span>
       </div>
 
+      <div className={styles.werkblad}>
+        {/* Navigator links, in te klappen zoals in Workbench. */}
+        <aside className={`${styles.zijbalk} ${schemaOpen ? '' : styles.zijbalkDicht}`}>
+          <button
+            type="button"
+            className={styles.zijbalkKnop}
+            onClick={() => toonSchema(!schemaOpen)}
+            aria-expanded={schemaOpen}
+            title={schemaOpen ? 'Schema inklappen' : 'Schema uitklappen'}
+          >
+            <span className={styles.zijbalkPijl} aria-hidden="true">
+              {schemaOpen ? '◀' : '▶'}
+            </span>
+            <span className={styles.zijbalkTitel}>Schema</span>
+            {schemaOpen && tabellen.length > 0 && (
+              <span className={styles.schemaTelling}>{tabellen.length}</span>
+            )}
+          </button>
+
+          {schemaOpen && (
+            <div className={styles.boom}>
+              <div className={styles.boomWortel}>
+                <span className={styles.icoonDb} aria-hidden="true">
+                  ▤
+                </span>
+                {databanken.length ? databanken.join(', ') : 'sandbox'}
+              </div>
+              <p className={styles.boomUitleg}>
+                De browsersandbox werkt met een databank; CREATE DATABASE en USE worden overgeslagen.
+              </p>
+
+              {structuur === null && (
+                <p className={styles.stapMelding}>Structuur wordt opgehaald...</p>
+              )}
+
+              {structuur !== null && tabellen.length === 0 && views.length === 0 && (
+                <p className={styles.stapMelding}>
+                  Nog geen tabellen. Maak er een aan met CREATE TABLE en voer je script uit.
+                </p>
+              )}
+
+              {tabellen.length > 0 && (
+                <div className={styles.boomTak}>
+                  <div className={styles.boomGroep}>Tabellen ({tabellen.length})</div>
+                  {tabellen.map((t) => (
+                    <TabelKnoop key={t.naam} tabel={t} />
+                  ))}
+                </div>
+              )}
+
+              {views.length > 0 && (
+                <div className={styles.boomTak}>
+                  <div className={styles.boomGroep}>Views ({views.length})</div>
+                  {views.map((v) => (
+                    <TabelKnoop key={v.naam} tabel={v} />
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        </aside>
+
+        <div className={styles.hoofd}>
       <div ref={hostRef} className={styles.editorHost} hidden={!aceKlaar} />
       {!aceKlaar && (
         <textarea
@@ -844,83 +940,46 @@ export default function SqlSandbox({
       )}
       {melding && <p className={styles.melding}>{melding}</p>}
 
-      {/* Schemaboom: openklikken zoals de navigator in Workbench. */}
-      <details
-        className={styles.schema}
-        open={schemaOpen}
-        onToggle={(e) => toonSchema(e.currentTarget.open)}
-      >
-        <summary className={styles.schemaKop}>
-          Structuur van de databank
-          {tabellen.length > 0 && (
-            <span className={styles.schemaTelling}>
-              {tabellen.length} tabel{tabellen.length === 1 ? '' : 'len'}
-            </span>
-          )}
-        </summary>
-
-        <div className={styles.boom}>
-          <div className={styles.boomWortel}>
-            <span className={styles.icoonDb} aria-hidden="true">
-              ▤
-            </span>
-            {databanken.length ? databanken.join(', ') : 'sandbox'}
-            <span className={styles.subtiel}>
-              {' '}
-              (de browsersandbox werkt met een databank; CREATE DATABASE en USE worden
-              overgeslagen)
-            </span>
-          </div>
-
-          {structuur === null && <p className={styles.stapMelding}>Structuur wordt opgehaald...</p>}
-
-          {structuur !== null && tabellen.length === 0 && views.length === 0 && (
-            <p className={styles.stapMelding}>
-              Nog geen tabellen. Maak er een aan met CREATE TABLE en voer je script uit.
-            </p>
-          )}
-
-          {tabellen.length > 0 && (
-            <div className={styles.boomTak}>
-              <div className={styles.boomGroep}>Tabellen ({tabellen.length})</div>
-              {tabellen.map((t) => (
-                <TabelKnoop key={t.naam} tabel={t} />
-              ))}
-            </div>
-          )}
-
-          {views.length > 0 && (
-            <div className={styles.boomTak}>
-              <div className={styles.boomGroep}>Views ({views.length})</div>
-              {views.map((v) => (
-                <TabelKnoop key={v.naam} tabel={v} />
-              ))}
-            </div>
-          )}
-        </div>
-      </details>
-
       {samenvatting && <p className={styles.samenvatting}>{samenvatting}</p>}
 
-      {uitvoeringen &&
-        uitvoeringen.slice(0, MAX_BLOKKEN).map((u) => (
-          <div key={u.nr} className={`${styles.stap} ${styles[`stap_${u.toestand}`]}`}>
-            <div className={styles.stapKop}>
-              <span className={styles.stapTeken} aria-hidden="true">
-                {STATUSTEKEN[u.toestand]}
-              </span>
-              <span className={styles.stapTitel}>
-                Statement {u.nr}: {u.label}
-              </span>
-              <span className={styles.stapRegel}>regel {u.regel}</span>
-            </div>
-            <code className={styles.stapSql}>{u.voorbeeld}</code>
-            <p className={u.toestand === 'fout' ? styles.stapFout : styles.stapMelding}>
-              {u.toestand === 'fout' ? `Fout: ${u.melding}` : u.melding}
-            </p>
-            {u.resultaat && <Resultaattabel resultaat={u.resultaat} />}
-          </div>
-        ))}
+      {uitvoeringen && (
+        <div className={styles.uitvoer}>
+          {uitvoeringen.slice(0, MAX_BLOKKEN).map((u) => (
+            <details
+              key={u.nr}
+              className={`${styles.stap} ${styles[`stap_${u.toestand}`]}`}
+              open={Boolean(openRegels[u.nr])}
+              onToggle={(e) => {
+                const open = e.currentTarget.open;
+                setOpenRegels((vorige) =>
+                  vorige[u.nr] === open ? vorige : {...vorige, [u.nr]: open},
+                );
+              }}
+            >
+              <summary className={styles.stapKop}>
+                <span className={styles.pijl} aria-hidden="true">
+                  ▶
+                </span>
+                <span className={styles.stapTeken} aria-hidden="true">
+                  {STATUSTEKEN[u.toestand]}
+                </span>
+                <span className={styles.stapNr}>{u.nr}</span>
+                <code className={styles.stapSql}>{u.voorbeeld}</code>
+                <span className={styles.stapKort}>{kortResultaat(u)}</span>
+              </summary>
+              <div className={styles.stapBody}>
+                <p className={styles.stapDetail}>
+                  {u.label} · regel {u.regel}
+                </p>
+                <p className={u.toestand === 'fout' ? styles.stapFout : styles.stapMelding}>
+                  {u.toestand === 'fout' ? `Fout: ${u.melding}` : u.melding}
+                </p>
+                {u.resultaat && openRegels[u.nr] && <Resultaattabel resultaat={u.resultaat} />}
+              </div>
+            </details>
+          ))}
+        </div>
+      )}
 
       {uitvoeringen && uitvoeringen.length > MAX_BLOKKEN && (
         <p className={styles.telling}>
@@ -928,6 +987,8 @@ export default function SqlSandbox({
           {uitvoeringen.length - MAX_BLOKKEN === 1 ? '' : 's'} uitgevoerd (niet getoond).
         </p>
       )}
+        </div>
+      </div>
     </div>
   );
 }
