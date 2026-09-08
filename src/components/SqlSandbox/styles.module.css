@@ -131,6 +131,217 @@
   color: var(--ifm-color-emphasis-600);
 }
 
+/* --- Schemaboom (zoals de navigator in Workbench) --- */
+
+.schema {
+  margin-top: 0.9rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  background: var(--ifm-background-color);
+}
+
+.schemaKop {
+  cursor: pointer;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-800);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.schemaTelling {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--ifm-color-emphasis-500);
+}
+
+.boom {
+  padding: 0.2rem 0.75rem 0.7rem;
+  font-size: 0.85rem;
+}
+
+.boomWortel {
+  padding: 0.25rem 0;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.boomTak {
+  margin-left: 0.6rem;
+  padding-left: 0.7rem;
+  border-left: 1px dashed var(--ifm-color-emphasis-300);
+}
+
+.boomGroep {
+  margin: 0.35rem 0 0.15rem;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.icoonDb,
+.icoonTabel,
+.icoonVeld {
+  margin-right: 0.4rem;
+  color: var(--ifm-color-primary);
+}
+
+.knoop {
+  margin-left: 0.2rem;
+}
+
+.knoopKop {
+  cursor: pointer;
+  padding: 0.15rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+
+.knoopKop:hover {
+  color: var(--ifm-color-primary);
+}
+
+.knoopNaam {
+  font-family: var(--ifm-font-family-monospace);
+  font-weight: 600;
+}
+
+.knoopTelling {
+  font-size: 0.75rem;
+  color: var(--ifm-color-emphasis-500);
+}
+
+.velden {
+  list-style: none;
+  margin: 0.15rem 0 0.35rem;
+  padding-left: 1.1rem;
+  border-left: 1px dashed var(--ifm-color-emphasis-300);
+}
+
+.veld {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.1rem 0;
+}
+
+.veldNaam {
+  font-family: var(--ifm-font-family-monospace);
+}
+
+.veldType {
+  font-size: 0.78rem;
+  color: var(--ifm-color-emphasis-600);
+  font-family: var(--ifm-font-family-monospace);
+}
+
+.veldVlag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ifm-color-primary-contrast-foreground);
+  background: var(--ifm-color-primary-contrast-background);
+  border-radius: 999px;
+  padding: 0.05rem 0.45rem;
+}
+
+/* --- Feedback per statement (zoals de Action Output in Workbench) --- */
+
+.samenvatting {
+  margin: 0.9rem 0 0.2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.stap {
+  margin-top: 0.6rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-left: 4px solid var(--ifm-color-emphasis-400);
+  border-radius: 6px;
+  background: var(--ifm-background-color);
+}
+
+.stap_ok {
+  border-left-color: var(--ifm-color-success);
+}
+
+.stap_fout {
+  border-left-color: var(--ifm-color-danger);
+  background: var(--ifm-color-danger-contrast-background);
+}
+
+.stap_overgeslagen,
+.stap_genegeerd {
+  opacity: 0.75;
+}
+
+.stapKop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 0.6rem;
+}
+
+.stapTeken {
+  font-weight: 700;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.stap_ok .stapTeken {
+  color: var(--ifm-color-success);
+}
+
+.stap_fout .stapTeken {
+  color: var(--ifm-color-danger);
+}
+
+.stapTitel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.stapRegel {
+  font-size: 0.75rem;
+  color: var(--ifm-color-emphasis-500);
+  margin-left: auto;
+}
+
+.stapSql {
+  display: block;
+  margin-top: 0.35rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  background: var(--ifm-color-emphasis-100);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-800);
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.stapMelding {
+  margin: 0.4rem 0 0;
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.stapFout {
+  margin: 0.4rem 0 0;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.82rem;
+  color: var(--ifm-color-danger-darker);
+}
+
 .resultaatwrap {
   margin-top: 0.9rem;
   overflow-x: auto;
