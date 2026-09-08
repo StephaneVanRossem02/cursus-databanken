@@ -1,6 +1,7 @@
 ---
 title: "Labo oefeningen"
 sidebar_position: 124
+unlisted: true
 ---
 
 # Labo oefeningen

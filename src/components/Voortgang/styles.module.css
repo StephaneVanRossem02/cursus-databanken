@@ -164,8 +164,25 @@
   min-width: 0;
 }
 
+.kop {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
 .laboLink {
   font-weight: 600;
+}
+
+.week {
+  padding: 0.05rem 0.4rem;
+  border-radius: 5px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .rijAf .onderwerp {

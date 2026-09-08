@@ -14,31 +14,32 @@ import styles from './styles.module.css';
 
 const OPSLAG_SLEUTEL = 'cursus-databanken:voortgang';
 
-// Onderwerp en bijhorende cursushoofdstukken per labo. De niveaubadges (L1..L11)
-// worden hieronder uit oefeningen.json afgeleid; dit blijft de "waar lees ik de
-// theorie"-koppeling.
+// Onderwerp, semesterweek en bijhorende cursushoofdstukken per labo. De week komt
+// uit de semesterplanning en komt overeen met de weekmap in oefeningen/. De
+// niveaubadges (L1..L11) worden hieronder uit oefeningen.json afgeleid; dit blijft
+// de "waar lees ik de theorie"-koppeling.
 const LABOS = [
-  {n: '01', onderwerp: 'Debuggen, CREATE, INSERT', theorie: [['DDL', '/docs/week_01-basics/ddl/']]},
-  {n: '02', onderwerp: 'Tabellen en datatypes kiezen', theorie: [['DDL', '/docs/week_01-basics/ddl/']]},
-  {n: '03', onderwerp: 'CREATE en INSERT', theorie: [['DDL', '/docs/week_01-basics/ddl/']]},
-  {n: '04', onderwerp: 'Tabellen en eerste SELECT', theorie: [['DDL', '/docs/week_01-basics/ddl/'], ['DML', '/docs/week_01-basics/dml/']]},
-  {n: '05', onderwerp: 'SELECT, DISTINCT', theorie: [['SELECT', '/docs/week_02-select-where/select/']]},
-  {n: '06', onderwerp: 'GROUP BY, HAVING, COUNT, ORDER BY', theorie: [['Groeperen en samenvatten', '/docs/week_03-aggregatie/groeperen-en-samenvatten/']]},
-  {n: '07', onderwerp: 'apTunes: normalisatie', theorie: [['apTunes', '/docs/week_04-normalisatie/aptunes']]},
-  {n: '08', onderwerp: 'apTunes: veel-op-veel en joins', theorie: [['apTunes', '/docs/week_04-normalisatie/aptunes'], ['JOINS (Basic)', '/docs/week_05-joins/joins-basic/']]},
-  {n: '09', onderwerp: 'INNER JOIN', theorie: [['JOINS (Basic)', '/docs/week_05-joins/joins-basic/']]},
-  {n: '10', onderwerp: 'JOINs en aggregatie', theorie: [['JOINS (Basic)', '/docs/week_05-joins/joins-basic/'], ['JOINS (Advanced)', '/docs/week_05-joins/joins-advanced/']]},
-  {n: '11', onderwerp: 'ALTER, FOREIGN KEY, COALESCE', theorie: [['JOINS (Advanced)', '/docs/week_05-joins/joins-advanced/']]},
-  {n: '12', onderwerp: 'Views', theorie: [['Views', '/docs/week_08-views-sp/views/']]},
-  {n: '13', onderwerp: 'Indexeren', theorie: [['Indexeren', '/docs/week_13-advanced/indexeren/']]},
-  {n: '14', onderwerp: 'Subquery, IF, IN, variabelen', theorie: [['Subqueries', '/docs/week_06-subqueries/subqueries/']]},
-  {n: '15', onderwerp: 'Views en stored programs', theorie: [['Views', '/docs/week_08-views-sp/views/'], ['Stored programs', '/docs/week_08-views-sp/stored-procedures/']]},
-  {n: '16', onderwerp: 'Stored functions en procedures', theorie: [['Stored programs', '/docs/week_09-loops-functions/stored-procedures/']]},
-  {n: '17', onderwerp: 'Stored procedures en functions', theorie: [['Stored programs', '/docs/week_10-error-handling/stored-procedures/']]},
-  {n: '18', onderwerp: 'Tennis-dataset: views, keys, stored', theorie: [['Stored programs', '/docs/week_10-error-handling/stored-procedures/']]},
-  {n: '19', onderwerp: 'Stored procedures en cursors', theorie: [['Stored programs', '/docs/week_11-transactions/stored-procedures/']]},
-  {n: '20', onderwerp: 'Cursors en triggers', theorie: [['Stored programs', '/docs/week_12-triggers/stored-procedures/']]},
-  {n: '21', onderwerp: 'Herhalingsoefeningen', groep: 'H', theorie: []},
+  {n: '01', week: 1, onderwerp: 'Debuggen, CREATE, INSERT', theorie: [['DDL', '/docs/week_01-basics/ddl/']]},
+  {n: '02', week: 1, onderwerp: 'Tabellen en datatypes kiezen', theorie: [['DDL', '/docs/week_01-basics/ddl/']]},
+  {n: '03', week: 3, onderwerp: 'CREATE en INSERT', theorie: [['DDL', '/docs/week_01-basics/ddl/']]},
+  {n: '04', week: 3, onderwerp: 'Tabellen en eerste SELECT', theorie: [['DDL', '/docs/week_01-basics/ddl/'], ['DML', '/docs/week_01-basics/dml/']]},
+  {n: '05', week: 3, onderwerp: 'SELECT, DISTINCT', theorie: [['SELECT', '/docs/week_02-select-where/select/']]},
+  {n: '06', week: 3, onderwerp: 'GROUP BY, HAVING, COUNT, ORDER BY', theorie: [['Groeperen en samenvatten', '/docs/week_03-aggregatie/groeperen-en-samenvatten/']]},
+  {n: '07', week: 4, onderwerp: 'apTunes: normalisatie', theorie: [['apTunes', '/docs/week_04-normalisatie/aptunes']]},
+  {n: '08', week: 4, onderwerp: 'apTunes: veel-op-veel en joins', theorie: [['apTunes', '/docs/week_04-normalisatie/aptunes'], ['JOINS (Basic)', '/docs/week_05-joins/joins-basic/']]},
+  {n: '09', week: 5, onderwerp: 'INNER JOIN', theorie: [['JOINS (Basic)', '/docs/week_05-joins/joins-basic/']]},
+  {n: '10', week: 5, onderwerp: 'JOINs en aggregatie', theorie: [['JOINS (Basic)', '/docs/week_05-joins/joins-basic/'], ['JOINS (Advanced)', '/docs/week_05-joins/joins-advanced/']]},
+  {n: '11', week: 6, onderwerp: 'ALTER, FOREIGN KEY, COALESCE', theorie: [['JOINS (Advanced)', '/docs/week_05-joins/joins-advanced/']]},
+  {n: '12', week: 6, onderwerp: 'Views', theorie: [['Views', '/docs/week_08-views-sp/views/']]},
+  {n: '13', week: 8, onderwerp: 'Indexeren', theorie: [['Indexeren', '/docs/week_13-advanced/indexeren/']]},
+  {n: '14', week: 8, onderwerp: 'Subquery, IF, IN, variabelen', theorie: [['Subqueries', '/docs/week_06-subqueries/subqueries/']]},
+  {n: '15', week: 9, onderwerp: 'Views en stored programs', theorie: [['Views', '/docs/week_08-views-sp/views/'], ['Stored programs', '/docs/week_08-views-sp/stored-procedures/']]},
+  {n: '16', week: 9, onderwerp: 'Stored functions en procedures', theorie: [['Stored programs', '/docs/week_09-loops-functions/stored-procedures/']]},
+  {n: '17', week: 10, onderwerp: 'Stored procedures en functions', theorie: [['Stored programs', '/docs/week_10-error-handling/stored-procedures/']]},
+  {n: '18', week: 10, onderwerp: 'Tennis-dataset: views, keys, stored', theorie: [['Stored programs', '/docs/week_10-error-handling/stored-procedures/']]},
+  {n: '19', week: 11, onderwerp: 'Stored procedures en cursors', theorie: [['Stored programs', '/docs/week_11-transactions/stored-procedures/']]},
+  {n: '20', week: 12, onderwerp: 'Cursors en triggers', theorie: [['Stored programs', '/docs/week_12-triggers/stored-procedures/']]},
+  {n: '21', week: 13, onderwerp: 'Herhalingsoefeningen', groep: 'H', theorie: []},
 ];
 
 // Labo 21 is bewust een herhalingsblok dat de hele cursus overspant.
@@ -173,9 +174,14 @@ export default function Voortgang() {
                       <span className={styles.vinkje} aria-hidden="true" />
                     </label>
                     <div className={styles.inhoud}>
-                      <Link to={`/oefeningen/labo-${labo.n}`} className={styles.laboLink}>
-                        Labo {labo.n}
-                      </Link>
+                      <span className={styles.kop}>
+                        <Link to={`/oefeningen/labo-${labo.n}`} className={styles.laboLink}>
+                          Labo {labo.n}
+                        </Link>
+                        {labo.week && (
+                          <span className={styles.week}>Week {labo.week}</span>
+                        )}
+                      </span>
                       <span className={styles.onderwerp}>{labo.onderwerp}</span>
                       {labo.theorie.length > 0 && (
                         <span className={styles.theorie}>

@@ -1,6 +1,7 @@
 ---
 title: "Voorbeeld"
 sidebar_position: 122
+unlisted: true
 ---
 
 # Voorbeeld

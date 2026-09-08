@@ -1,6 +1,7 @@
 ---
 title: "Discussiepunten bij ontwerp in ERM"
 sidebar_position: 119
+unlisted: true
 ---
 
 # Discussiepunten bij ontwerp in ERM

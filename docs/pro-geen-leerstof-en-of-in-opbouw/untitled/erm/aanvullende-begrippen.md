@@ -1,6 +1,7 @@
 ---
 title: "Aanvullende begrippen"
 sidebar_position: 120
+unlisted: true
 ---
 
 # Aanvullende begrippen

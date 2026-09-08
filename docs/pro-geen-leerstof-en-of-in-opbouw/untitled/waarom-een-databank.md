@@ -1,6 +1,7 @@
 ---
 title: "Waarom een databank?"
 sidebar_position: 113
+unlisted: true
 ---
 
 # Waarom een databank?

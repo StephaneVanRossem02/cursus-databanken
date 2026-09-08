@@ -1,6 +1,7 @@
 ---
 title: "Bibliografie"
 sidebar_position: 123
+unlisted: true
 ---
 
 # Bibliografie

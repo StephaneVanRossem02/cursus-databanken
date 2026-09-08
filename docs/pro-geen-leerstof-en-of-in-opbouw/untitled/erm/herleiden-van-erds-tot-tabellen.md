@@ -1,6 +1,7 @@
 ---
 title: "Herleiden van ERD's tot tabellen"
 sidebar_position: 121
+unlisted: true
 ---
 
 # Herleiden van ERD's tot tabellen

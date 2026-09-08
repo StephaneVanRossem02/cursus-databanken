@@ -1,6 +1,7 @@
 ---
 title: "Constraints (voorwaarden, beperkingen)"
 sidebar_position: 117
+unlisted: true
 ---
 
 # Constraints (voorwaarden, beperkingen)

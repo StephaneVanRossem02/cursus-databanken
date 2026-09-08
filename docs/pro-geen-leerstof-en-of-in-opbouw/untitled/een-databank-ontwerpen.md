@@ -1,6 +1,7 @@
 ---
 title: "Een databank ontwerpen"
 sidebar_position: 114
+unlisted: true
 ---
 
 # Een databank ontwerpen

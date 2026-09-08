@@ -1,6 +1,7 @@
 ---
 title: "Basisbegrippen"
 sidebar_position: 116
+unlisted: true
 ---
 
 # Basisbegrippen
