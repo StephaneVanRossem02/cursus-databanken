@@ -1,6 +1,7 @@
 ---
 title: Labo 14 - Subqueries
 sidebar_position: 15
+slug: /labo-14
 ---
 
 # Labo 14 - Subqueries
@@ -31,8 +32,7 @@ Het outputformaat is:
 
 <table><thead><tr class="header"><th style={{textAlign:"left"}}>Titel</th><th style={{textAlign:"left"}}></th></tr></thead><tbody><tr class="odd"><td style={{textAlign:"left"}}>…</td><td style={{textAlign:"left"}}>(hier staan normaal meerdere rijen)</td></tr></tbody></table>
 
-Plaats enkel de definitie in het script, geen oproep. Noem het script
-dat voor de definitie zorgt `01.sql`.
+Plaats enkel de definitie in het script, geen oproep.
 
 Schrijf een stored procedure, `NumberOfGenres`, die je
 vertelt hoeveel verschillende genres er zijn. Het aantal zal een
@@ -43,8 +43,7 @@ Je moet ze als volgt kunnen oproepen:
 maar nadat ze is uitgevoerd, moet de gebruiker
 `SELECT @Aantal` kunnen uitvoeren.
 
-Plaats enkel de definitie in het script, geen oproep. Noem het script
-dat voor de definitie zorgt `02.sql`.
+Plaats enkel de definitie in het script, geen oproep.
 
 Schrijf een stored procedure, `CleanupOldMemberships`.
 Deze doet twee dingen:
@@ -69,8 +68,7 @@ Tip: je kan niet meer zien hoe veel lidmaatschappen verwijderd zijn
 als ze al weg zijn, dus hou eerst de waarde bij en verwijder dan pas de
 lidmaatschappen…
 
-Plaats enkel de definitie in het script, geen oproep. Noem het script
-dat voor de definitie zorgt `03.sql`.
+Plaats enkel de definitie in het script, geen oproep.
 
 Schrijf een stored procedure, `CreateAndReleaseAlbum`.
 Deze maakt een nieuw album aan en koppelt het meteen aan een artiest
@@ -82,8 +80,7 @@ een parameter `bands_Id` (van type `INT`). Ze
 levert geen output en je het is mogelijk dat meerdere personen
 tegelijkertijd gebruik maken van de database.
 
-Plaats enkel de definitie in het script, geen oproep. Noem het script
-dat voor de definitie zorgt `04.sql`.
+Plaats enkel de definitie in het script, geen oproep.
 
 ��Extra info
 We zullen gebruik maken van stored procedures om testdata te
@@ -128,8 +125,7 @@ select (1001, 3001) in (select Bands_Id, Albums_Id from Albumreleases);.
 Je zal zien dat het resultaat 0 (FALSE) of 1
 (TRUE) is.
 
-Plaats enkel de definitie in het script, geen oproep. Noem het script
-dat voor de definitie zorgt 05.sql. Test je procedure uit
+Plaats enkel de definitie in het script, geen oproep. Test je procedure uit
 door ze enkele keren op te roepen en dan Albumreleases te
 bekijken. Na calibratie was deze tabel leeg, dus na enkele calls zouden
 er een paar records moeten staan.
@@ -146,8 +142,7 @@ van een output parameter met naam `success` van type
 `BOOL`. Zet deze op `1` als de `INSERT`
 plaatsvindt en zet anders op `0`.
 
-Plaats enkel de definitie in het script, geen oproep. Noem het script
-dat voor de definitie zorgt `06.sql`.
+Plaats enkel de definitie in het script, geen oproep.
 
 Schrijf een stored procedure
 `MockAlbumreleaseWithMessage`. Deze doet hetzelfde als

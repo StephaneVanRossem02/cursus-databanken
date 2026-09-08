@@ -1,6 +1,7 @@
 ---
 title: Labo 11 - JOINs (advanced)
 sidebar_position: 12
+slug: /labo-11
 ---
 
 # Labo 11 - JOINs (advanced)
@@ -16152,14 +16153,11 @@ zoals in de voorbeeldoutput hieronder:
 
 <table><thead><tr class="header"><th>Voornaam</th><th>Omschrijving</th></tr></thead><tbody><tr class="odd"><td>Yannick</td><td>frisdrank meebrengen</td></tr><tr class="even"><td>Bavo</td><td>bestek voorzien</td></tr><tr class="odd"><td>Max</td><td>aardappelsla maken</td></tr><tr class="even"><td>Taak niet toegewezen</td><td>papieren bordjes meebrengen</td></tr></tbody></table>
 
-Noem het script 01.sql.
-
 Toon alle titels van games met hun bijbehorend platform, als er een
 is. Toon ook games waarvoor het platform niet meer ondersteund wordt
 (d.w.z. waarvoor geen info in `Releases` staat). Gebruik
 hiervoor een samenstelling van twee JOINs. Gebruik opnieuw
-`COALESCE` en `AS` voor mooiere output. Noem het
-script 02.sql.
+`COALESCE` en `AS` voor mooiere output.
 
 Voorbeeldoutput:
 
@@ -16175,12 +16173,10 @@ pas de volledige query.
 Er is een tabel `Taken` en een tabel `Leden`.
 Bij taken staat (door middel van een verwijzing) welk lid een bepaalde
 taak uitvoert. Toon nu alle taken die niet aan iemand zijn toegewezen.
-Noem je script 03.sql.
 
 Toon alle platformen waarvoor games beschikbaar zijn. Een platform
 wordt dus niet getoond als er geen games beschikbaar voor zijn, maar
-verschijnt zodra er minstens één game voor is. Noem je script
-04.sql.
+verschijnt zodra er minstens één game voor is.
 
 Toon alle games waarvoor het platform onbekend is, samen met alle
 platformen waarvoor geen games beschikbaar zijn. Het resultaat ziet er
@@ -16188,9 +16184,7 @@ als volgt uit:
 
 <table><thead><tr class="header"><th>Titel</th><th>Naam</th></tr></thead><tbody><tr class="odd"><td>Oregon Trail</td><td>Geen platformen gekend</td></tr><tr class="even"><td>Geen games gekend</td><td>Master System</td></tr></tbody></table>
 
-Noem je script 05.sql.
-
-Schrijf een script, `06.sql`, dat je alle voornamen van
+Schrijf een script dat je alle voornamen van
 studenten toont die korter zijn dan gemiddeld.
 
 Het formaat is:
@@ -16200,7 +16194,7 @@ Het formaat is:
 Reminder: in de cursus is een functie terug te vinden om de lengte
 van een stuk tekst te bepalen. Gebruik het vergrootglas op Gitbook.
 
-Schrijf een script, `07.sql`, dat je alle studenten (enkel
+Schrijf een script dat je alle studenten (enkel
 de `Id`’s) toont die een hoger persoonlijk puntengemiddelde
 hebben dan het algemene gemiddelde. Het persoonlijk gemiddelde is dus
 het gemiddelde over alle evaluaties van enkel die student en het
@@ -16220,7 +16214,7 @@ het algemene gemiddelde vraag je me een scalaire query
 
 je mag variabelen gebruiken
 
-Schrijf een script, `08.sql`, dat je de voornamen en
+Schrijf een script dat je de voornamen en
 familienamen toont van alle studenten die aangesloten zijn bij de
 studentenvereniging. Doe dit **zonder gebruik te maken van
 JOIN**. (Tip: een student is aangesloten bij de vereniging als er
@@ -16230,7 +16224,7 @@ Het formaat:
 
 <table><thead><tr class="header"><th style={{textAlign:"left"}}>Voornaam</th><th style={{textAlign:"left"}}>Familienaam</th></tr></thead><tbody><tr class="odd"><td style={{textAlign:"left"}}>Voornaam 1</td><td style={{textAlign:"left"}}>Familienaam 1</td></tr><tr class="even"><td style={{textAlign:"left"}}>Voornaam 2</td><td style={{textAlign:"left"}}>Familienaam 2</td></tr><tr class="odd"><td style={{textAlign:"left"}}>Voornaam 3</td><td style={{textAlign:"left"}}>Familienaam 3</td></tr></tbody></table>
 
-Toon in een script `09.sql` het laagste persoonlijke
+Toon in een script het laagste persoonlijke
 puntengemiddelde van alle studenten. Je hoeft de naam van de student er
 niet bij te tonen.
 

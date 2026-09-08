@@ -1,6 +1,7 @@
 ---
 title: Labo 03 - DDL
 sidebar_position: 4
+slug: /labo-03
 ---
 
 # Labo 03 - DDL
@@ -68,8 +69,6 @@ Maak eerst een map “Labo 3” in je map voor het vak “Databanken”. Je werk
 
 Schrijf een script dat automatisch alle liedjes met minder dan 2000 verkochte exemplaren wist. Doe dit zoals gedemonstreerd in de theorieles: start met een script dat al deze liedjes toont en pas het dan aan zodat het ze wist.
 
-Sla alle instructies op in één script, genaamd 03-01.sql.
-
 
 <SqlSandbox labo="03" />
 
@@ -94,7 +93,7 @@ set sql_safe_updates = 1;
 
 ## Oefening Labo 03-02
 
-Er staat een fout in onze database. Blijkbaar woog Thijs Verbeeck (die al in je tabel `Geboortes` staat) bij zijn geboorte 2.8 kilogram in plaats van 2.7. Gebruik de juiste instructie om dit aan te passen. Sla alle instructies op in één script, genaamd 03-02.sql.
+Er staat een fout in onze database. Blijkbaar woog Thijs Verbeeck (die al in je tabel `Geboortes` staat) bij zijn geboorte 2.8 kilogram in plaats van 2.7. Gebruik de juiste instructie om dit aan te passen.
 
 
 <SqlSandbox labo="03" />
@@ -119,8 +118,6 @@ set sql_safe_updates = 1;
 Het blijkt dat een stagiair de data voor `Liedjes` verkeerd heeft afgelezen. Van elk nummer zijn tien keer zo veel exemplaren verkocht als eerder aangegeven. Schrijf een instructie die het aantal verkochte exemplaren van elk liedje met 10 vermenigvuldigt.
 
 **Deze instructie zou altijd moeten werken, niet alleen voor de nummers die nu in je tabel staan.** Je script moet met andere woorden volledig automatisch werken. Het bevat geen informatie die specifiek over _Call Me Little Sunshine_, _Stairway to Heaven_ of _Tom Devil_ gaat.
-
-Sla alle nodige instructies op onder 03-03.sql.
 
 
 <SqlSandbox labo="03" />
@@ -148,8 +145,6 @@ Schrijf de nodige instructie om de familienaam van **elke persoon in de tabel** 
 Je krijgt na de aanpassing dus (we tonen hier tijdstip en gewicht even niet, maar ze zijn er nog wel):
 
 <table><thead><tr><th>Voornaam</th><th>Familienaam</th></tr></thead><tbody><tr><td>Adnane</td><td>L.</td></tr><tr><td>Dilara</td><td>E.</td></tr><tr><td>Mehmet</td><td>C.</td></tr><tr><td>Thijs</td><td>V.</td></tr></tbody></table>
-
-Sla op als 03-04.sql.
 
 
 <SqlSandbox labo="03" />
@@ -187,10 +182,6 @@ Je krijgt dus:
 Tip: de kolomhoofding zal standaard niet “Filenaam” zijn als je deze data weergeeft. Je kan dit oplossen door achter de expressie die je selecteert `AS Filenaam` te schrijven. Dat verandert de hoofding.
 
 
-
-Sla op als 03-05.sql.
-
-
 <SqlSandbox labo="03" />
 
 <Modeloplossing labo="03">
@@ -212,8 +203,6 @@ Toon alle artiesten die een letter ‘E’ in hun naam hebben met een algemene i
 <table><thead><tr><th>Artiest</th></tr></thead><tbody><tr><td>Led Zeppelin</td></tr><tr><td>Larkin Poe</td></tr></tbody></table>
 
 (Jack Broadbent was in een eerder script gewist en Ghost bevat geen ‘E’.)
-
-Sla op als 03-06.sql.
 
 
 <SqlSandbox labo="03" />
@@ -241,8 +230,6 @@ Je zou moeten zien:
 
 Tip: `<` werkt ook voor kolommen van type `DATETIME`.
 
-Sla op als 03-07.sql.
-
 
 <SqlSandbox labo="03" />
 
@@ -266,8 +253,6 @@ Toon alle titels van liedjes die **geen** letter ‘O’ bevatten.
 Je zou moeten zien:
 
 <table><thead><tr><th>Titel</th></tr></thead><tbody><tr><td>Call Me Little Sunshine</td></tr></tbody></table>
-
-Sla op als 03-08.sql.
 
 
 

@@ -1,6 +1,7 @@
 ---
 title: Labo 13 - Indexeren
 sidebar_position: 14
+slug: /labo-13
 ---
 
 # Labo 13 - Indexeren
@@ -37,20 +38,17 @@ Activeer eerst de database (met naam `aptunes`). Voor deze
 labosessie doe je dat **maar één keer**, niet in elk
 script. Dat komt omdat je alleen analyses kan krijgen voor scripts die
 uit één opdracht bestaan. Maak een gewone index op de kolom
-`Titel` van de tabel `Albums`. Noem je script dat
-dit doet `01.sql`.
+`Titel` van de tabel `Albums`.
 
 ### Vraag 2
 
 Maak een gewone index op de combinatie van `Voornaam` en
 `Familienaam` van `Muzikanten`. In de combinatie
-noteer je eerst `Voornaam`. Noem je script dat dit doet
-`02.sql`.
+noteer je eerst `Voornaam`.
 
 ### Vraag 3
 
-Verwijder de index uit vraag 1 en 2. Noem je script dat dit doet
-`03.sql`.
+Verwijder de index uit vraag 1 en 2.
 
 ### Vraag 4
 
@@ -58,9 +56,8 @@ Zoek, volgens de uitleg in de cursus, de ideale prefixlengte voor de
 kolommen `Voornaam` en `Familienaam` van de tabel
 `Muzikanten`. Noteer beide. Maak dan opnieuw een index op de
 combinatie van `Voornaam` en `Familienaam`, ieder
-met de ideale prefixlengte. Noem je script dat de index met de ideale
-prefixlengtes aanmaakt `04.sql`. Verwijder de index opnieuw
-met een script `05.sql`.
+met de ideale prefixlengte. Verwijder de index opnieuw
+met een script.
 
 ### Algemene uitleg verdere
 vragen
@@ -102,8 +99,6 @@ FROM Liedjes GROUP BY Titel
 ORDER BY COUNT(*) DESC;
 ```
 
-Je script noem je `06.sql`.
-
 #### Vraag 6
 
 De te optimaliseren query is:
@@ -111,9 +106,7 @@ De te optimaliseren query is:
 ```sql
 SELECT Titel, COUNT(*)
 FROM Liedjes
-WHERE Lengte >= 120 AND Lengte 
-
-Je script noem je `07.sql`.
+WHERE Lengte >= 120 AND Lengte
 
 #### Vraag 7
 
@@ -131,8 +124,6 @@ where Naam = 'Rock';
 mogen zien in je uitvoeringsdiagram. Je zal waarschijnlijk geen
 snelheidswinst zien.)
 
-Je script noem je `08.sql`.
-
 #### Vraag 8
 
 ```sql
@@ -145,8 +136,6 @@ on Liedjes.Bands_Id = Bands.Id
 where Titel like 'Au%'
 order by Lengte;
 ```
-
-Je script noem je `09.sql`.
 
 #### Vraag 9
 
