@@ -1,7 +1,7 @@
 ---
 title: "SELECT met clausules"
 description: "Het is niet voldoende om rijen te kunnen opvragen. Je moet ook in staat zijn om specifieke informatie op te vragen, statistische gegevens te genereren, enz...."
-sidebar_position: 38
+sidebar_position: 39
 ---
 
 # SELECT met clausules
