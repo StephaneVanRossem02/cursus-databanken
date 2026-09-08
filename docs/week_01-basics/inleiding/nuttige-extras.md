@@ -1,5 +1,6 @@
 ---
 title: "Nuttige extra's"
+description: "Er zijn oneindig veel boeken over SQL, maar een goed boek om een overzicht te krijgen van de basisinstructies is."
 sidebar_position: 4
 ---
 

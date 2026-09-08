@@ -1,5 +1,6 @@
 ---
 title: "Subqueries"
+description: "Stel: Je wil alle personen selecteren die ouder zijn dan de gemiddelde persoon in je tabel Personen (met een kolom Leeftijd). Hoe zou je zoiets aanpakken? Je..."
 sidebar_position: 72
 ---
 

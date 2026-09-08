@@ -1,5 +1,6 @@
 ---
 title: "Constraints (voorwaarden, beperkingen)"
+description: "Attributen die horen bij een één op n-, of bij een n op één-relatie, kunnen, indien gewenst, verschoven worden naar de entity set aan de n-kant van de..."
 sidebar_position: 117
 unlisted: true
 ---

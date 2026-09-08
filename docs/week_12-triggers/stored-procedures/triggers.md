@@ -1,5 +1,6 @@
 ---
 title: "Triggers"
+description: "Triggers kunnen activeren voor of na een INSERT, UPDATE of DELETE in een tabel. Dit zijn de basisoperaties van de DML. Je gebruikt triggers om handelingen vast..."
 sidebar_position: 102
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "Sleutels voor identificatie"
+description: "De tabellen die je tot hiertoe gemaakt hebt in MySQL, groeperen heel veel informatie in één record. Informatie groeperen is een belangrijk doel van databanken..."
 sidebar_position: 21
 ---
 

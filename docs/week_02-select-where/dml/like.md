@@ -1,5 +1,6 @@
 ---
 title: "LIKE"
+description: "In veel gevallen weten we maar half wat we willen zoeken. We kennen een deel van de naam, het begin of het einde of iets tussenin. Met de LIKE operator kan je..."
 sidebar_position: 31
 ---
 

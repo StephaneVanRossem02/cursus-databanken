@@ -1,5 +1,6 @@
 ---
 title: "DELIMITER"
+description: "Sql statements worden normaal afgesloten door een puntkomma (;)."
 sidebar_position: 90
 ---
 

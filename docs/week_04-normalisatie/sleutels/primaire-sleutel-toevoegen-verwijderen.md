@@ -1,5 +1,6 @@
 ---
 title: "Primaire sleutel toevoegen/verwijderen"
+description: "We vertrekken hier van volgend script, 0048\\\\CalibrateDB.sql."
 sidebar_position: 22
 ---
 

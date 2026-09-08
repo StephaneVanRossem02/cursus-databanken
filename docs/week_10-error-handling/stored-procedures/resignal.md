@@ -1,5 +1,6 @@
 ---
 title: "RESIGNAL"
+description: "Met dit statement kan je een fout (gedeeltelijk) afhandelen, maar toch de omringende omgeving op de hoogte brengen van wat zich heeft voorgedaan. Vergelijk het..."
 sidebar_position: 100
 ---
 

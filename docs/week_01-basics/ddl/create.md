@@ -1,5 +1,6 @@
 ---
 title: "CREATE"
+description: "Je zou het volgende SQL statement gebruiken om een database te maken."
 sidebar_position: 18
 ---
 

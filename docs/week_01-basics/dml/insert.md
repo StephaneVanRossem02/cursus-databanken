@@ -1,5 +1,6 @@
 ---
 title: "INSERT"
+description: "Aan alleen structuur heb je niets. We willen ook data bijhouden in ons systeem. Met andere woorden: rijen, niet alleen tabellen."
 sidebar_position: 28
 ---
 

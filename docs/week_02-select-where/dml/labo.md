@@ -1,5 +1,6 @@
 ---
 title: "Labo"
+description: "Voor je deze oefeningen maakt, gebruik je onderstaand script om zeker te zijn dat je databank in de gewenste toestand is."
 sidebar_position: 36
 unlisted: true
 ---

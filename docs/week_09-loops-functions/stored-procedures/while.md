@@ -1,5 +1,6 @@
 ---
 title: "WHILE"
+description: "WHILE is ook een herhalingsstructuur die zorgt dat code of statements achter elkaar kunnen uitgevoerd worden zolang de conditie waar (TRUE) is."
 sidebar_position: 96
 ---
 

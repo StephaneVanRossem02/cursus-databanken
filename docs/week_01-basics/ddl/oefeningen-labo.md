@@ -1,5 +1,6 @@
 ﻿---
 title: "Labo"
+description: "Als je tabellen maakt, zit het niet altijd meteen juist. Vaak probeer je een bepaalde structuur voor je data en verbeter je deze regelmatig. Om je de structuur..."
 sidebar_position: 26
 unlisted: true
 ---

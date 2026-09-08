@@ -1,5 +1,6 @@
 ---
 title: "Oefeningen triggers"
+description: "Maak een tabel en een reeks triggers (loginsertliedjes enz.) om alle aanpassingen aan de tabel Liedjes van aptunes te loggen. Meerbepaald: maak een tabel met..."
 sidebar_position: 109
 ---
 

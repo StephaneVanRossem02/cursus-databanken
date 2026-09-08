@@ -1,5 +1,6 @@
 ---
 title: "Herleiden van ERD's tot tabellen"
+description: "Elk E-R Diagram kan steeds herleid worden tot een aantal tabellen. Deze herleiding kan de basis vormen van het ontwerp voor een relationele database."
 sidebar_position: 121
 unlisted: true
 ---

@@ -1,5 +1,6 @@
 ---
 title: "SELECT DISTINCT"
+description: "Met GROUP BY kan je er voor zorgen dat bepaalde waarden worden samengenomen. Op die manier kan je bijvoorbeeld (voor de dataset met honden) elk geslacht één..."
 sidebar_position: 46
 ---
 

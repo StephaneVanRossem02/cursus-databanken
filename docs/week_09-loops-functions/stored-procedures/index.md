@@ -1,5 +1,6 @@
 ---
 title: "Loops & Stored Functions"
+description: "Loops & Stored Functions: onderdeel van de cursus Databanken en SQL."
 sidebar_position: 1
 ---
 

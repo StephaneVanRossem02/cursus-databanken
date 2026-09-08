@@ -1,5 +1,6 @@
 ---
 title: "Aggregaatfuncties"
+description: "Aggregaatfuncties lijken op de functies die je al kent (substring, concat, length, round). Het verschil is dat, als je een kolomnaam invult, de..."
 sidebar_position: 41
 ---
 

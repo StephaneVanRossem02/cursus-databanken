@@ -1,5 +1,6 @@
 ---
 title: "BETWEEN"
+description: "Vaak zijn we geïnteresseerd in een specifieke deel data. Bijvoorbeeld alle personen in een bepaalde leeftijdscategorie. We kunnen dit al schrijven als volgt..."
 sidebar_position: 45
 ---
 

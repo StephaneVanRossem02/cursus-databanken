@@ -1,5 +1,6 @@
 ﻿---
 title: "IF -THEN-ELSE-ELSEIF"
+description: "Op basis van het resultaat van een IF-THEN-... statement kan je één of meerdere SQL statements uitvoeren en een aangepast resultaat op basis van de ingebouwde..."
 sidebar_position: 94
 ---
 

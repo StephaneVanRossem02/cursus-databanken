@@ -1,5 +1,6 @@
 ---
 title: "ALTER"
+description: "ALTER: onderdeel van de cursus Databanken en SQL."
 sidebar_position: 66
 ---
 

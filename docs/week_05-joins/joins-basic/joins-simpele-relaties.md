@@ -1,5 +1,6 @@
 ﻿---
 title: "JOINs bij simpele relaties"
+description: "Om de integriteit van de database te bewaren, normaliseren we de gegevens in de database. Door normalisering geraakt de informatie echter verspreid over meer..."
 sidebar_position: 49
 ---
 

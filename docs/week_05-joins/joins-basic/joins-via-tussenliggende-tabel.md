@@ -1,5 +1,6 @@
 ---
 title: "JOINs via tussenliggende tabel"
+description: "We weten wel hoe we leden aan taken kunnen koppelen door middel van INNER JOIN, maar die aanpak werkt niet wanneer er meer dan twee tabellen nodig zijn om de..."
 sidebar_position: 50
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "NoSQL"
+description: "Elke tabel heeft 1 PK (deze identificeert een entry)"
 sidebar_position: 125
 unlisted: true
 ---

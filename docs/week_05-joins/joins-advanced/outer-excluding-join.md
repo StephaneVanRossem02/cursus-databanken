@@ -1,5 +1,6 @@
 ---
 title: "FULL OUTER EXCLUDING JOIN"
+description: "Deze query retourneert alle records in de linkertabel (tabel A) en alle records in de rechtertabel (tabel B) die niet overeenkomen. Net als de gewone full..."
 sidebar_position: 60
 ---
 

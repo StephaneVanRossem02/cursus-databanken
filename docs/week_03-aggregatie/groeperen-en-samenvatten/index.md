@@ -1,5 +1,6 @@
 ﻿---
 title: "Groeperen en samenvatten"
+description: "Groeperen en samenvatten: onderdeel van de cursus Databanken en SQL."
 sidebar_position: 40
 ---
 

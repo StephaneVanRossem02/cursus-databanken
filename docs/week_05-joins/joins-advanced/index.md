@@ -1,5 +1,6 @@
 ---
 title: "JOINS (Advanced)"
+description: "Om de integriteit van een database te bewaren, normaliseren we de gegevens in de database. Ruwweg betekent dit dat we tabellen splitsen in kleinere, zinvollere..."
 sidebar_position: 52
 ---
 

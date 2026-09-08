@@ -1,5 +1,6 @@
 ---
 title: "Vergelijkingen"
+description: "Om waarden te vergelijken, maakt MySQL gebruik van enkele operatoren die erg lijken op wat je mogelijk kent uit andere programmeertalen."
 sidebar_position: 33
 ---
 

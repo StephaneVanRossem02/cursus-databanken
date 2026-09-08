@@ -1,5 +1,6 @@
 ---
 title: "Cursors"
+description: "In een stored procedure kunnen we resultatenset rij per rij verwerken. Dit lijkt op een for-lus of een foreach-lus is een typische programmeertaal. Volgende..."
 sidebar_position: 103
 ---
 

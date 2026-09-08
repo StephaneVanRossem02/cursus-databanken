@@ -1,5 +1,6 @@
 ---
 title: "ALTER"
+description: "Hier zien we iets meer in verband met het aanmaken van structuren voor je data. We starten onze database met behulp van onderstaand calibratiescript, dat je..."
 sidebar_position: 19
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "Oefeningen stored functions"
+description: "Schrijf een stored function PercentageOf. Hiermee kan je een bepaald percentage van een getal uitrekenen. Het percentage geef je eerst mee en is een geheel..."
 sidebar_position: 108
 ---
 

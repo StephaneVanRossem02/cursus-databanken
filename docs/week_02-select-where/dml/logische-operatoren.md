@@ -1,5 +1,6 @@
 ---
 title: "Logische operatoren"
+description: "We willen niet alleen rijen kunnen selecteren gebaseerd op één kolom die gelijk is aan een bepaalde waarde. We moeten ook complexere voorwaarden kunnen..."
 sidebar_position: 32
 ---
 

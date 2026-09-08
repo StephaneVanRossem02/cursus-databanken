@@ -1,5 +1,6 @@
 ﻿---
 title: "Relaties-voorstellen"
+description: "Afhankelijk van hoe entiteiten aan elkaar gekoppeld kunnen zijn, delen we de koppelingen tussen deze entiteiten op in categorieën."
 sidebar_position: 25
 ---
 

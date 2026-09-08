@@ -1,5 +1,6 @@
 ---
 title: "Transacties en rollbacks"
+description: "Bij het woord \"transactie\" denk je waarschijnlijk aan een uitwisseling van geld en/of goederen. Belangrijk bij zo'n uitwisseling is dat ze volledig wordt..."
 sidebar_position: 104
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "PRO"
+description: "PRO: onderdeel van de cursus Databanken en SQL."
 sidebar_position: 112
 unlisted: true
 ---

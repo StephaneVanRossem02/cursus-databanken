@@ -1,5 +1,6 @@
 ---
 title: "CREATE"
+description: "Een index toevoegen doe je in het algemene geval met volgende syntax."
 sidebar_position: 78
 ---
 

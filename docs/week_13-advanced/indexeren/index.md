@@ -1,5 +1,6 @@
 ---
 title: "Indexeren"
+description: "Je kent het principe van een index waarschijnlijk uit alledaagse situaties."
 sidebar_position: 76
 ---
 

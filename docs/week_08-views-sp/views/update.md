@@ -1,5 +1,6 @@
 ﻿---
 title: "UPDATE"
+description: "Views kunnen onder bepaalde omstandigheden worden aangepast, ttz. de inhoud van de view kan op dezelfde wijze worden benaderd als een gewone tabel."
 sidebar_position: 68
 ---
 

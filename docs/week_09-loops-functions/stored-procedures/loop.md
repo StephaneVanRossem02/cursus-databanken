@@ -1,5 +1,6 @@
 ---
 title: "LOOP"
+description: "Een herhaling dient, zoals het woord doet veronderstellen, om code of statements een aantal keer achter elkaar uit te voeren."
 sidebar_position: 95
 ---
 

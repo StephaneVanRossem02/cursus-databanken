@@ -1,5 +1,6 @@
 ﻿---
 title: "Installatie van alle software"
+description: "Installatie van alle software: onderdeel van de cursus Databanken en SQL."
 sidebar_position: 6
 ---
 

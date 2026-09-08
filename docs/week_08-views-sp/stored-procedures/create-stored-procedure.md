@@ -1,5 +1,6 @@
 ﻿---
 title: "CREATE"
+description: "We baseren ons op de voorbeelddatabase vermeld binnen de rubriek inleiding."
 sidebar_position: 88
 ---
 

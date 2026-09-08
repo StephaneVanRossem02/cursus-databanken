@@ -1,5 +1,6 @@
 ---
 title: "Basisstructuren van een relationele databank"
+description: "De basiswoordenschat van relationele databanken is als volgt."
 sidebar_position: 12
 ---
 

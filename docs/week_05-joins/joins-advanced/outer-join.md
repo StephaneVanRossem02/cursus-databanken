@@ -1,5 +1,6 @@
 ---
 title: "FULL OUTER JOIN"
+description: "MySQL ondersteunt deze constructie niet, in tegenstelling tot sommige andere databanken. Maar je kan ze wel nabootsen door een (gewone) left join boven een..."
 sidebar_position: 59
 ---
 

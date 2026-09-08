@@ -1,5 +1,6 @@
 ---
 title: "SIGNAL"
+description: "Met dit statement kan je een error of waarschuwing geven. Meestal gebeurt dit wanneer een stored procedure wordt uitgevoerd, maar het is strikt gesproken ook..."
 sidebar_position: 98
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "Transacties & Cursors"
+description: "Transacties & Cursors: onderdeel van de cursus Databanken en SQL."
 sidebar_position: 1
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "Welkom"
+description: "Deze cursus wordt gebruikt als handboek binnen de opleiding graduaat programmeren van de AP Hogeschool."
 sidebar_position: 1
 slug: /
 ---

@@ -1,5 +1,6 @@
 ---
 title: "Bibliografie"
+description: "Vandenbulcke, J. en Lemahieu, W. O., Databasesystemen voor de praktijk. Zevende druk, Den Haag, Ten Hagen en Stam, 2000, 559 p."
 sidebar_position: 123
 unlisted: true
 ---

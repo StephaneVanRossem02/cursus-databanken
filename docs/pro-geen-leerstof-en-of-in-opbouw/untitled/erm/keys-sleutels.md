@@ -1,5 +1,6 @@
 ---
 title: "Keys (Sleutels)"
+description: "Een voorbeeld is een entity type Hotelkamer met een kolom Nummer. Nummer op zich kan niet als sleutel dienen. Een entiteit van dit type kan enkel uniek..."
 sidebar_position: 118
 unlisted: true
 ---

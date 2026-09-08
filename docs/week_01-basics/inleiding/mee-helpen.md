@@ -1,5 +1,6 @@
 ---
 title: "Mee helpen?"
+description: "Fijn dat je interesse toont om aan deze cursus te helpen. Dit kan op meerdere manieren."
 sidebar_position: 5
 ---
 

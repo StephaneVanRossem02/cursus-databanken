@@ -1,5 +1,6 @@
 ---
 title: "Overzicht"
+description: "Een entity-relationshipmodel (ERM) van een databank drukt uit welke informatie aanwezig is in een databank en hoe deze informatie gestructureerd is. Het..."
 sidebar_position: 84
 ---
 

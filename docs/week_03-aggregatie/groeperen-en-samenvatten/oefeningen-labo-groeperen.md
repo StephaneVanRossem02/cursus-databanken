@@ -1,5 +1,6 @@
 ﻿---
 title: "Labo"
+description: "Labo: onderdeel van de cursus Databanken en SQL."
 sidebar_position: 47
 unlisted: true
 ---

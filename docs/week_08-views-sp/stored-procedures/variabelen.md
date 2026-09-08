@@ -1,5 +1,6 @@
 ---
 title: "Variabelen"
+description: "Een variabele dient om data via een naam te kunnen aanspreken. Binnen een stored procedure is het mogelijk om variabelen te declareren die dan binnen deze..."
 sidebar_position: 91
 ---
 

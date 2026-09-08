@@ -1,5 +1,6 @@
 ---
 title: "CREATE"
+description: "We baseren ons voorbeeld op onderstaande tabellen Taken en Leden."
 sidebar_position: 65
 ---
 

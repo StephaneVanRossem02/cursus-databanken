@@ -1,5 +1,6 @@
 ---
 title: "Views"
+description: "Een view is een zogeheten virtuele tabel die gebaseerd is op het resultaat van een query."
 sidebar_position: 64
 ---
 

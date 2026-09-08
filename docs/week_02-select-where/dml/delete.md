@@ -1,5 +1,6 @@
 ---
 title: "DELETE"
+description: "Net zoals het DROP statement verwijdert het DELETE statement objecten uit de database. Het DROP statement verwijdert een tabel uit de database, het DELETE..."
 sidebar_position: 30
 ---
 

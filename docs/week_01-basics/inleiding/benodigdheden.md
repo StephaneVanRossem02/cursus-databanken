@@ -1,5 +1,6 @@
 ﻿---
 title: "Benodigdheden"
+description: "In alle lessen (hoorcolleges en practica) hebben we volgende zaken nodig."
 sidebar_position: 3
 ---
 

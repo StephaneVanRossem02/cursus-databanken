@@ -1,5 +1,6 @@
 ---
 title: "Subqueries met tijdelijke opslag"
+description: "Subqueries komen vaak van pas om één waarde te berekenen die dan gebruikt wordt in een grotere query. Wanneer we een query gebruiken om precies één waarde te..."
 sidebar_position: 74
 ---
 

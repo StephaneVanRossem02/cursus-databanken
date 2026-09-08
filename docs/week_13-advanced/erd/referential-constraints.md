@@ -1,5 +1,6 @@
 ---
 title: "Referentiële beperkingen"
+description: "Als twee entiteiten gelinkt zijn, kan een aanpassing van de ene soms een aanpassing van de andere noodzakelijk maken."
 sidebar_position: 83
 ---
 

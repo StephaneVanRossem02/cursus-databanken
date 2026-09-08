@@ -1,5 +1,6 @@
 ---
 title: "MySQL Server"
+description: "Tijdens de labo’s over SQL werken we met MySQL. We zullen je nu door de installatie van deze software te leiden. We zullen eerst de server kant van de software..."
 sidebar_position: 7
 ---
 

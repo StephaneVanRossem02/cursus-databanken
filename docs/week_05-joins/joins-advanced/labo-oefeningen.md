@@ -1,5 +1,6 @@
 ---
 title: "Labo oefeningen"
+description: "Start vanaf onderstaand script, 0500\\\\CalibrateDB.sql."
 sidebar_position: 62
 unlisted: true
 ---

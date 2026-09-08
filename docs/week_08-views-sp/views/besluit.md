@@ -1,5 +1,6 @@
 ---
 title: "BESLUIT"
+description: "Views zijn vooral nuttig ingeval je vaak eenzelfde complexe query moet uitvoeren. Indien je een query hebt die een complexe logica bevat, kunnen views helpen..."
 sidebar_position: 70
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "Labo oefeningen"
+description: "Om zelf tekeningen te maken, kan je gebruik maken van draw.io. Kies bij het aanmaken voor een blanco diagram en kies dan het onderdeel \"Entity Relation\"."
 sidebar_position: 124
 unlisted: true
 ---

@@ -1,5 +1,6 @@
 ---
 title: "INNER JOIN"
+description: "Let op: het Venn diagram mag je niet lezen als twee verzamelingen records en hun doorsnede. Het heeft hier een andere betekenis!"
 sidebar_position: 53
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "Diagramnotatie"
+description: "Om een beter overzicht van het databaseschema te krijgen, maken we vaak gebruik van een diagram. Dit wordt een entity-relationship diagram (of \"ERD\") genoemd...."
 sidebar_position: 13
 ---
 

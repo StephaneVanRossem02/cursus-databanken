@@ -1,5 +1,6 @@
 ---
 title: "Voorbeeld"
+description: "Een klassiek voorbeeld daarvan is een lijst met de namen en adressen. Die lijst kan er als volgt uitzien."
 sidebar_position: 10
 ---
 

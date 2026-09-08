@@ -1,5 +1,6 @@
 ---
 title: "Stored programs"
+description: "Een procedure is vergelijkbaar met een methode in een typische programmeertaal. Je kan er een reeks stappen in formuleren die je later heel makkelijk terug kan..."
 sidebar_position: 86
 ---
 

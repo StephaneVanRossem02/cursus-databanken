@@ -1,5 +1,6 @@
 ---
 title: "UNIQUE"
+description: "De primary key is een unieke index bij creatie. Er kan echter slechts één primary key per tabel worden gedefinieerd en indien je toch op een andere kolom ook..."
 sidebar_position: 80
 ---
 

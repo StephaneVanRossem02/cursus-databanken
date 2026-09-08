@@ -1,5 +1,6 @@
 ---
 title: "COALESCE"
+description: "De functie COALESCE (Engels voor \"samensmelten\") in SQL retourneert de eerste niet-NULL expressie tussen de argumenten. Met deze functie kan je eenvoudig..."
 sidebar_position: 55
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "RIGHT JOIN"
+description: "Als ik de tabellen in de select statement switch en Boeken links en Personen rechts zet, gaat Simone de Beauvoir getoond worden?"
 sidebar_position: 56
 ---
 

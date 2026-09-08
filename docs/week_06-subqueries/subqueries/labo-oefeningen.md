@@ -1,5 +1,6 @@
 ---
 title: "Labo oefeningen"
+description: "Start vanaf het gegeven calibratiescript, 0526CalibrateDB.sql. Dit vult de database ApDB in met onderstaande structuren."
 sidebar_position: 75
 unlisted: true
 ---

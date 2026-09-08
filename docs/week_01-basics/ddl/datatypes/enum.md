@@ -1,5 +1,6 @@
 ---
 title: "Enum"
+description: "Vaak kan je in een bepaalde kolom maar een beperkt aantal mogelijke waarden invullen. Een datatype zoals INT of VARCHAR is dan niet op zijn plaats, omdat die..."
 sidebar_position: 17
 ---
 

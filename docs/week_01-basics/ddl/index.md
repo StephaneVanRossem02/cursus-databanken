@@ -1,5 +1,6 @@
 ---
 title: "DDL"
+description: "DDL: onderdeel van de cursus Databanken en SQL."
 sidebar_position: 15
 ---
 

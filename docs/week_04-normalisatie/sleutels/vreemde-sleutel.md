@@ -1,5 +1,6 @@
 ﻿---
 title: "Vreemde sleutels"
+description: "In het voorbeeld met games heb je gezien dat er verschillende redenen zijn om rijen uniek te identificeren. Dit is alleen zinvol als we de primaire..."
 sidebar_position: 24
 ---
 

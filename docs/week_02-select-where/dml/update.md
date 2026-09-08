@@ -1,5 +1,6 @@
 ---
 title: "UPDATE"
+description: "Soms maken we fouten bij het ingeven van data. Soms verouderen gegevens. In beide situaties willen we bestaande rijen wel bewaren, maar bepaalde kolomwaarden..."
 sidebar_position: 29
 ---
 

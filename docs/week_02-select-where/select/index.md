@@ -1,5 +1,6 @@
 ---
 title: "SELECT"
+description: "Je kan in MySQL Workbench wel rechtstreeks naar je tabellen kijken, maar om gerichter te zoeken, moet je het commando kennen dat achter de schermen wordt..."
 sidebar_position: 37
 ---
 

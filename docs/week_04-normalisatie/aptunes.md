@@ -1,5 +1,6 @@
 ---
 title: "apTunes project"
+description: "Relationele databases vormen regelmatig de ruggegraat van (web)applicaties. We zullen dat in de verdere labo-oefeningen demonstreren. Voor de verdere..."
 sidebar_position: 70
 ---
 

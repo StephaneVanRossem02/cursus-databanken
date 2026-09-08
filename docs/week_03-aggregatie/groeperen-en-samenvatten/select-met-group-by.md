@@ -1,5 +1,6 @@
 ---
 title: "SELECT met GROUP BY"
+description: "Eerst hebben we een relationele databank vooral gebruikt om individuele records bij te houden en op te vragen. Via aggregaatfuncties hebben we informatie over..."
 sidebar_position: 42
 ---
 

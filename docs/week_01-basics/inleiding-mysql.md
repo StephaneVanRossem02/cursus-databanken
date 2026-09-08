@@ -1,5 +1,6 @@
 ---
 title: "Inleiding"
+description: "MySQL is opgedeeld in een aantal deeltalen. Elke deeltaal dient voor een bepaald soort gebruik. Het is nuttig (sommige van) deze deeltalen meteen te kunnen..."
 sidebar_position: 10
 ---
 

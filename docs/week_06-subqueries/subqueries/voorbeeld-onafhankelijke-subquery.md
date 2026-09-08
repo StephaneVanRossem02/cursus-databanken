@@ -1,5 +1,6 @@
 ---
 title: "Een onafhankelijke subquery"
+description: "Onafhankelijke subqueries zijn subqueries die je op zich kan uitschrijven en uitvoeren. Dat is handig, want het maakt onafhankelijke subqueries makkelijk te..."
 sidebar_position: 73
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "Basisbegrippen"
+description: "Basisbegrippen: onderdeel van de cursus Databanken en SQL."
 sidebar_position: 116
 unlisted: true
 ---

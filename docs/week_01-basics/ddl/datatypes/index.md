@@ -1,5 +1,6 @@
 ---
 title: "Datatypes"
+description: "MySQL ondersteunt drie brede soorten datatypes, met per soort verschillende concretere vormen. Deze drie soorten zijn."
 sidebar_position: 16
 ---
 

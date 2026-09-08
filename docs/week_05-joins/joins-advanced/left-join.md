@@ -1,5 +1,6 @@
 ---
 title: "LEFT JOIN"
+description: "Als je alle personen wilt tonen ongeacht of ze een boek hebben geschreven of niet kan je een LEFT JOIN gebruiken. In tegenstelling tot bij INNER JOIN maakt het..."
 sidebar_position: 54
 ---
 

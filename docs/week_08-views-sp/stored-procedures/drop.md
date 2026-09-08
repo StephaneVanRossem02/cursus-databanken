@@ -1,5 +1,6 @@
 ---
 title: "DROP"
+description: "Met dit statement verwijder je de stored procedure uit de database."
 sidebar_position: 89
 ---
 

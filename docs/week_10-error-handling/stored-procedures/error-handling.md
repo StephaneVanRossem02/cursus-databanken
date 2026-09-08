@@ -1,5 +1,6 @@
 ---
 title: "Error handling"
+description: "Indien binnen een stored procedure zich een onverwachte fout zou voordoen is het belangrijk hierop gepast te reageren. Een fout wordt aangegeven door middel..."
 sidebar_position: 99
 ---
 

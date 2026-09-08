@@ -1,5 +1,6 @@
 ---
 title: "Oefeningen control flow"
+description: "We werken verder met de aptunes-database. Activeer deze database in elk script. Gebruik telkens het meest specifieke parametertype dat je kan toepassen...."
 sidebar_position: 107
 ---
 

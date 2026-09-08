@@ -1,5 +1,6 @@
 ---
 title: "Een databank ontwerpen"
+description: "Het is belangrijk dat wanneer een database wordt ontworpen er voldoende doordacht wordt nagedacht over de gewenste structuur van de te onwikkelen database."
 sidebar_position: 114
 unlisted: true
 ---

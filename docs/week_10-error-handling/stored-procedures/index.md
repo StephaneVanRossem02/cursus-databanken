@@ -1,5 +1,6 @@
 ---
 title: "Error Handling"
+description: "Error Handling: onderdeel van de cursus Databanken en SQL."
 sidebar_position: 1
 ---
 

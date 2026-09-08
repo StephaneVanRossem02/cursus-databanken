@@ -1,5 +1,6 @@
 ---
 title: "Stored procedures"
+description: "Helaas biedt MySQL Workbench geen ingebouwde faciliteiten om stored procedures te debuggen. Dit is wel mogelijk met externe tools, zoals MyDebugger, maar we..."
 sidebar_position: 87
 ---
 

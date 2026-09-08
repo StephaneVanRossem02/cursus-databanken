@@ -1,5 +1,6 @@
 ---
 title: "Oefeningen basisgebruik stored procedures"
+description: "We werken met de aptunes-database. Activeer deze database in elk script. Gebruik telkens het meest specifieke parametertype dat je kan toepassen. Gebruik dus..."
 sidebar_position: 106
 ---
 

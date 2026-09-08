@@ -1,5 +1,6 @@
 ---
 title: "Primaire sleutel in een nieuwe tabel"
+description: "Het is niet erg handig om telkens de primaire sleutel achteraf toe te voegen. Als je een nieuwe tabel maakt, kan je in één keer een kolom aanduiden als..."
 sidebar_position: 23
 ---
 

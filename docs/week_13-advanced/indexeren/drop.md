@@ -1,5 +1,6 @@
 ---
 title: "DROP"
+description: "Indexen belasten het systeem als deze niet nodig zijn, daarom is het raadzaam om indexen die niet (meer) nodig zijn te verwijderen. De reden van deze belasting..."
 sidebar_position: 79
 ---
 

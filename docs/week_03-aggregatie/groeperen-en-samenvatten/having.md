@@ -1,5 +1,6 @@
 ---
 title: "SELECT met HAVING"
+description: "Met de WHERE-clausule kon je voorwaarden uitdrukken voor het selecteren (of updaten of wissen) van records. Je kan met WHERE echter geen voorwaarden uitdrukken..."
 sidebar_position: 43
 ---
 

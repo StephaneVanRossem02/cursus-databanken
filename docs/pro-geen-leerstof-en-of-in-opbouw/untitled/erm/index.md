@@ -1,5 +1,6 @@
 ---
 title: "ERM"
+description: "Het entity-relationship-model of entity-relationship diagram (ERD) is een model of diagram voor het inzichtelijk maken van een conceptueel datamodel. Het is..."
 sidebar_position: 115
 unlisted: true
 ---

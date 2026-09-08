@@ -1,5 +1,6 @@
 ---
 title: "Blockchain"
+description: "Blockchain: onderdeel van de cursus Databanken en SQL."
 sidebar_position: 126
 unlisted: true
 ---

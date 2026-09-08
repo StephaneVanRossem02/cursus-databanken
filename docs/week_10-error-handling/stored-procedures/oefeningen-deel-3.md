@@ -1,5 +1,6 @@
 ﻿---
 title: "Oefeningen error handling"
+description: "We werken verder met de aptunes-database. Activeer deze database in elk script. Schrijf je stored procedures ook zoals je ze zou schrijven in het algemene..."
 sidebar_position: 110
 ---
 

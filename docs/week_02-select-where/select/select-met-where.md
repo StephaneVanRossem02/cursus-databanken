@@ -1,5 +1,6 @@
 ---
 title: "SELECT met WHERE"
+description: "In de meeste gevallen zijn we niet geïnteresseerd om alle rijen uit een tabel te selecteren. We willen over de mogelijkheid beschikken om alleen de rijen, die..."
 sidebar_position: 39
 ---
 

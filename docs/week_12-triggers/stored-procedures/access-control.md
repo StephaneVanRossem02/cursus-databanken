@@ -1,5 +1,6 @@
 ---
 title: "Object access control"
+description: "Het is meestal niet de bedoeling dat elke gebruiker van een database alle data kan opvragen, alle stored procedures kan uitvoeren, enzovoort. Iedere gebruiker..."
 sidebar_position: 105
 ---
 

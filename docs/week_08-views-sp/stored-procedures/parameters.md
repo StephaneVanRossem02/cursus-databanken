@@ -1,5 +1,6 @@
 ---
 title: "Parameters"
+description: "Het gebruik van parameters is niet weg te denken bij het gebruik van stored procedures. Juist door het gebruik van parameters wordt het gebruik van stored..."
 sidebar_position: 92
 ---
 

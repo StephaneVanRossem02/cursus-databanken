@@ -1,5 +1,6 @@
 ---
 title: "trage queries opvolgen"
+description: "Met de juiste instellingen kan je MySQL queries laten onthouden die langer duren dan een zekere drempelwaarde. Als het gaat om queries die regelmatig..."
 sidebar_position: 81
 ---
 

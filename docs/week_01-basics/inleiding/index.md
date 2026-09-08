@@ -1,5 +1,6 @@
 ﻿---
 title: "Inleiding"
+description: "Inleiding: onderdeel van de cursus Databanken en SQL."
 sidebar_position: 2
 ---
 

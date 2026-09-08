@@ -1,5 +1,6 @@
 ---
 title: "Triggers & Access Control"
+description: "Triggers & Access Control: onderdeel van de cursus Databanken en SQL."
 sidebar_position: 1
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "Waarom een databank?"
+description: "Let op: er bestaan verschillende soorten databanken en deze hebben niet allemaal dezelfde voordelen in dezelfde mate. Maar in het algemeen kan je wel stellen..."
 sidebar_position: 113
 unlisted: true
 ---

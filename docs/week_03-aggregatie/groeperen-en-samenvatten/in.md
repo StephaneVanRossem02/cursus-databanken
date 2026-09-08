@@ -1,5 +1,6 @@
 ---
 title: "IN"
+description: "Soms wordt de SQL-basissyntax wat langdradig. Een voorbeeld daarvan is als je verschillende waarden tegelijk wil onderzoeken. Het kan bijvoorbeeld zijn dat je..."
 sidebar_position: 44
 ---
 

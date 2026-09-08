@@ -1,5 +1,6 @@
 ---
 title: "Gerelateerde data invoegen"
+description: "Stored procedures komen erg van pas als we werken met verschillende records tegelijk die op een bepaalde manier verwant zijn. Bijvoorbeeld als we een nieuwe..."
 sidebar_position: 93
 ---
 

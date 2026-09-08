@@ -1,5 +1,6 @@
 ---
 title: "Labo oefeningen"
+description: "Start vanaf volgend calibratiescript, 0512Calibratie.sql."
 sidebar_position: 71
 unlisted: true
 ---

@@ -1,5 +1,6 @@
 ---
 title: "Labo oefeningen"
+description: "Onderstaand diagram is in een minder technische ERD-notatie."
 sidebar_position: 85
 unlisted: true
 ---

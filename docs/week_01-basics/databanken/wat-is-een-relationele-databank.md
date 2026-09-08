@@ -1,5 +1,6 @@
 ---
 title: "Wat is een relationele databank"
+description: "De \"relationele\" database is waarschijnlijk de meestgebruikte soort database. Dit type database is uitgewerkt in de jaren 1970 en steunt op de wiskundige..."
 sidebar_position: 11
 ---
 

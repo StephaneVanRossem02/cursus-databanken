@@ -1,5 +1,6 @@
 ---
 title: "Voorbeeld"
+description: "Voorbeeld: onderdeel van de cursus Databanken en SQL."
 sidebar_position: 122
 unlisted: true
 ---

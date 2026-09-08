@@ -1,5 +1,6 @@
 ---
 title: "MySQL Workbench"
+description: "Volg je databanken tijdens semster 2 dan gebruik je als hostname localhost. Als username en wachtwoord gebruik je root. Default schema laat je leeg.&#x20;"
 sidebar_position: 8
 ---
 

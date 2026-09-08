@@ -1,5 +1,6 @@
 ---
 title: "RIGHT EXCLUDING JOIN"
+description: "Deze query retourneert alle records in de rechtse tabel (tabel B) die niet overeenkomen met records in de linkertabel (tabel A). Deze join wordt als volgt..."
 sidebar_position: 58
 ---
 

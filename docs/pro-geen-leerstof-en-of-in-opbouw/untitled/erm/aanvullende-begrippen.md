@@ -1,5 +1,6 @@
 ---
 title: "Aanvullende begrippen"
+description: "Aggregatie in een ERM houdt in dat een relatie tussen twee entiteittypes wordt behandeld als een entiteit op zich. Aggregatie wordt oa. gebruikt om relaties..."
 sidebar_position: 120
 unlisted: true
 ---

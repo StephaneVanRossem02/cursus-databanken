@@ -1,5 +1,6 @@
 ---
 title: "DROP"
+description: "Om een database te verwijderen, gebruik je een statement van de vorm DROP DATABASE, gevolgd door de naam van de databank. Als je niet zeker bent dat deze..."
 sidebar_position: 20
 ---
 

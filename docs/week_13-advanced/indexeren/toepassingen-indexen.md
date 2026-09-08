@@ -1,5 +1,6 @@
 ---
 title: "mogelijkheden"
+description: "Indexen kunnen nuttig zijn in vaak voorkomende scenario's."
 sidebar_position: 77
 ---
 

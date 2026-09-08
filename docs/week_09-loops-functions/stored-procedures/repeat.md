@@ -1,5 +1,6 @@
 ---
 title: "REPEAT"
+description: "De REPEAT herhalingsstructuur voert code of statements achter elkaar uit tot de conditie waar (TRUE) is."
 sidebar_position: 97
 ---
 

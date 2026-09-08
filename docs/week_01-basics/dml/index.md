@@ -1,5 +1,6 @@
 ---
 title: "DML"
+description: "DML: onderdeel van de cursus Databanken en SQL."
 sidebar_position: 27
 ---
 

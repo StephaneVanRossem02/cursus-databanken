@@ -1,5 +1,6 @@
 ---
 title: "Tussentijdse Evaluatie"
+description: "Deze week is er geen nieuwe leerstof. Je krijgt een tussentijdse evaluatie over de onderwerpen uit week 1 t/m 6."
 sidebar_position: 1
 ---
 

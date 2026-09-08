@@ -1,5 +1,6 @@
 ---
 title: "Discussiepunten bij ontwerp in ERM"
+description: "Een relationship tussen meer dan twee entity sets kan steeds herleid worden tot meerdere relationship sets die binaire zijn (dwz. tussen twee entity sets)."
 sidebar_position: 119
 unlisted: true
 ---

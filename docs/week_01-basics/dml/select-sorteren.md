@@ -1,5 +1,6 @@
 ---
 title: "SELECT sorteren"
+description: "Het is niet genoeg gegevens uit een tabel te kunnen opvragen, je moet ze ook kunnen sorteren of ordenen. We willen lijsten in alfanumerieke volgorde weergeven..."
 sidebar_position: 34
 ---
 

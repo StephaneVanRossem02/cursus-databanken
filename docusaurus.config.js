@@ -139,7 +139,10 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      image: 'img/social-card.svg',
+      // Voorbeeldafbeelding bij een gedeelde link. Bewust een PNG: linkvoorbeelden in
+      // Teams, Slack, WhatsApp en LinkedIn tonen geen SVG (dan blijft het vak leeg).
+      // De PNG wordt gemaakt uit dezelfde stijl als img/social-card.svg.
+      image: 'img/social-card.png',
       colorMode: {
         respectPrefersColorScheme: true,
       },

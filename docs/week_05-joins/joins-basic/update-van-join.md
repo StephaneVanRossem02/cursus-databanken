@@ -1,5 +1,6 @@
 ---
 title: "UPDATE van JOIN"
+description: "JOIN is niet alleen handig om informatie samen te tonen. Deze operatie kan ook gebruikt worden om aanpassingen door te voeren waarvoor we informatie uit een..."
 sidebar_position: 51
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "Stored functies"
+description: "Stored functies zijn, net als stored procedures, stappenplannen om tot een bepaald resultaat te komen, maar hun doel is verschillend. Stored procedures zijn in..."
 sidebar_position: 101
 ---
 
