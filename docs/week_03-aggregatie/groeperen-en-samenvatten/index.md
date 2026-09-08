@@ -11,4 +11,3 @@ sidebar_position: 40
 - [IN](/docs/week_03-aggregatie/groeperen-en-samenvatten/in)
 - [BETWEEN](/docs/week_03-aggregatie/groeperen-en-samenvatten/between)
 - [SELECT DISTINCT](/docs/week_03-aggregatie/groeperen-en-samenvatten/distinct)
-- [Labo](/docs/week_03-aggregatie/groeperen-en-samenvatten/oefeningen-labo-groeperen)

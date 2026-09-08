@@ -1,6 +1,7 @@
 ﻿---
 title: "Labo"
 sidebar_position: 26
+unlisted: true
 ---
 
 # Labo
