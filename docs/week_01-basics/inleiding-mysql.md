@@ -1,12 +1,10 @@
 ---
-title: "Inleiding"
+title: "Structuur van MySQL"
 description: "MySQL is opgedeeld in een aantal deeltalen. Elke deeltaal dient voor een bepaald soort gebruik. Het is nuttig (sommige van) deze deeltalen meteen te kunnen..."
 sidebar_position: 10
 ---
 
-# Inleiding
-
-## Structuur van MySQL
+# Structuur van MySQL
 
 :::tip
 [Kennisclip voor deze inhoud](https://youtu.be/jGGsXvdEYyI)

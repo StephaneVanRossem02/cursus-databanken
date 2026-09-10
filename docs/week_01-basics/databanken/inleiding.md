@@ -1,10 +1,10 @@
 ---
-title: "Inleiding"
+title: "Wat is een databank"
 description: "Een database (of gegevensbank) is een gestructureerde verzameling elektronische gegevens (of data) die door één of meerdere gebruikers (of users) gelijktijdig..."
 sidebar_position: 9
 ---
 
-# Inleiding
+# Wat is een databank
 
 :::tip
 [Kennisclip voor deze inhoud](https://youtu.be/3J-dNJzip2Q)
