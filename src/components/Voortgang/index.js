@@ -19,10 +19,11 @@ const OPSLAG_SLEUTEL = 'cursus-databanken:voortgang';
 // niveaubadges (L1..L11) worden hieronder uit oefeningen.json afgeleid; dit blijft
 // de "waar lees ik de theorie"-koppeling.
 const LABOS = [
+  {n: '00', week: 1, onderwerp: 'Database aanmaken (CREATE DATABASE)', theorie: [['Installatie', '/docs/week_01-basics/installatie/']]},
   {n: '01', week: 1, onderwerp: 'Debuggen, CREATE, INSERT', theorie: [['DDL', '/docs/week_01-basics/ddl/']]},
   {n: '02', week: 1, onderwerp: 'Tabellen en datatypes kiezen', theorie: [['DDL', '/docs/week_01-basics/ddl/']]},
-  {n: '03', week: 3, onderwerp: 'CREATE en INSERT', theorie: [['DDL', '/docs/week_01-basics/ddl/']]},
-  {n: '04', week: 3, onderwerp: 'Tabellen en eerste SELECT', theorie: [['DDL', '/docs/week_01-basics/ddl/'], ['DML', '/docs/week_01-basics/dml/']]},
+  {n: '03', week: 2, onderwerp: 'CREATE en INSERT', theorie: [['DDL', '/docs/week_01-basics/ddl/']]},
+  {n: '04', week: 2, onderwerp: 'Tabellen en eerste SELECT', theorie: [['DDL', '/docs/week_01-basics/ddl/'], ['DML', '/docs/week_01-basics/dml/']]},
   {n: '05', week: 3, onderwerp: 'SELECT, DISTINCT', theorie: [['SELECT', '/docs/week_02-select-where/select/']]},
   {n: '06', week: 3, onderwerp: 'GROUP BY, HAVING, COUNT, ORDER BY', theorie: [['Groeperen en samenvatten', '/docs/week_03-aggregatie/groeperen-en-samenvatten/']]},
   {n: '07', week: 4, onderwerp: 'apTunes: normalisatie', theorie: [['apTunes', '/docs/week_04-normalisatie/aptunes']]},

@@ -158,6 +158,30 @@
   },
 
   "oefeningen": {
+    "L00": {
+      "titel": "Labo 00 - CREATE DATABASE: je eerste database",
+      "hoofdstuk": "L1",
+      "leerdoelen": [
+        "verbinden met je lokale MySQL-server via MySQL Workbench",
+        "een database aanmaken met CREATE DATABASE",
+        "je in een database positioneren met USE",
+        "een database verwijderen met DROP DATABASE",
+        "een script bewaren als .sql-bestand"
+      ],
+      "functioneleAnalyse": "De student verbindt met de lokale MySQL-server in Workbench, maakt een eigen database aan met CREATE DATABASE, positioneert zich erin met USE en leert de database verwijderen met DROP DATABASE. Ook het bewaren van scripts als .sql komt aan bod. Belangrijk: waar in labo's of modeloplossingen 'USE ApDB;' staat, moet de student dat vervangen door de naam van zijn eigen database.",
+      "schema": "Nog geen tabellen. Enkel het aanmaken, gebruiken en verwijderen van een database zelf.",
+      "letOp": "DROP DATABASE is onomkeerbaar: alle data in die database gaat verloren. Vervang 'USE ApDB;' uit voorbeelden door je eigen databasenaam.",
+      "veelgemaakteFouten": [
+        "de puntkomma aan het einde van de instructie vergeten",
+        "de navigator niet refreshen waardoor je de nieuwe database niet ziet verschijnen",
+        "denken dat USE een database aanmaakt: USE positioneert je enkel in een bestaande database"
+      ],
+      "hints": [
+        "Welke instructie maakt een nieuwe database aan? Ze begint met CREATE.",
+        "Met welk sleutelwoord positioneer je je in een bestaande database zodat je volgende instructies daar uitgevoerd worden?",
+        "Verwijderen doe je met DROP DATABASE gevolgd door de naam. Let op: dit is onomkeerbaar."
+      ]
+    },
     "L02-01": {
       "titel": "Labo 02 - Oefening 1: drie tabellen aanmaken",
       "hoofdstuk": "L2",

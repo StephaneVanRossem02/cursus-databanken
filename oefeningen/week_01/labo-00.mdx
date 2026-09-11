@@ -1,0 +1,26 @@
+---
+title: Labo 00 - CREATE DATABASE
+description: "De allereerste oefening: verbind met je MySQL-server, maak je eerste database aan met CREATE DATABASE, positioneer je met USE en verwijder met DROP DATABASE. Oefen meteen in de SQL-sandbox in je browser."
+sidebar_position: 1
+slug: /labo-00
+---
+
+# Labo 00 - CREATE DATABASE
+
+1. Zorg ervoor dat MySQL Server en de MySQL Workbench geïnstalleerd zijn (zie [Installatie van alle software](/docs/week_01-basics/installatie/)).
+2. Maak een eerste database aan:
+   1. Na het openen van de connectie met je lokale server, zal automatisch een leeg Query-venster openstaan.
+   2. Typ: `CREATE DATABASE jouw_db_naam;`
+   3. Klik op het bliksem-icoontje (execute)
+   4. In het Navigatorscherm aan de linkerkant, rechts van het woord SCHEMAS, zie je een grijs knopje met twee pijltjes. Klik hierop om de navigator te refreshen. Je ziet je nieuwe database verschijnen.
+   5. Maak het query-venster leeg.
+   6. Typ: `USE jouw_db_naam`
+   7. Klik op het bliksem-icoontje (execute)
+   8. Je merkt in de navigator dat je database nu in bold vermeld staat. Dit betekent dat je je correct in deze database gepositioneerd hebt, en dat je volgende instructies in deze database zullen uitgevoerd worden.
+   9. Wil je je database verwijderen, typ dan: `DROP DATABASE jouw_db_naam;` (en klik vervolgens op execute). Let op: dit is niet omkeerbaar!
+   10. Hou steeds goed de scripts bij die je hebt geschreven. Sla ze op in een bestand met de extensie .sql. Zo kan je je scripts op een later tijdstip steeds opnieuw uitvoeren en testen.
+3. Als je in scripts in de labo's, op de gitbook of in modeloplossingen het statement `USE ApDB;` of iets gelijkaardigs ziet staan, dan zal je ApDB moeten wijzigen naar de naam van je eigen database waarmee je wenst te werken.
+
+<SqlSandbox labo="00" leeg />
+
+<OefeningAssistent oefening="L00" hoofdstuk="L1" />
