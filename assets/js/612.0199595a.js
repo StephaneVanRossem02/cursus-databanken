@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcursus_databanken=self.webpackChunkcursus_databanken||[]).push([["612"],{13327(e,a,s){s.d(a,{createPacketServices:()=>c.$});var c=s(73263);s(4954)}}]);

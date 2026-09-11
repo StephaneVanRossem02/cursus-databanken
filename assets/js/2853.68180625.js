@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcursus_databanken=self.webpackChunkcursus_databanken||[]).push([["2853"],{90884(e,a,s){s.d(a,{createTreemapServices:()=>u.d});var u=s(16527);s(4954)}}]);

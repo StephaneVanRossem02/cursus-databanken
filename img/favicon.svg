@@ -1,0 +1,14 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Databanken">
+  <defs>
+    <linearGradient id="dbFavBg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#1e40af"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#dbFavBg)"/>
+  <g stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <ellipse cx="32" cy="18" rx="16" ry="6.5"/>
+    <path d="M16 18v11c0 3.6 7.16 6.5 16 6.5s16-2.9 16-6.5V18"/>
+    <path d="M16 29v11c0 3.6 7.16 6.5 16 6.5s16-2.9 16-6.5V29"/>
+  </g>
+</svg>

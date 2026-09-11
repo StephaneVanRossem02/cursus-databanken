@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcursus_databanken=self.webpackChunkcursus_databanken||[]).push([["2107"],{71558(e){e.exports=JSON.parse('{"name":"docusaurus-plugin-content-docs","id":"oefeningen"}')}}]);
