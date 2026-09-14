@@ -198,7 +198,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Cursus Databanken.`,
+        copyright: `Cursus Databanken en SQL · © ${new Date().getFullYear()}`,
       },
       prism: {
         theme: prismThemes.oneLight,

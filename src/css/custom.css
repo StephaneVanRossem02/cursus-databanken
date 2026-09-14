@@ -159,3 +159,40 @@ code {
   color: var(--ifm-color-emphasis-600);
   font-size: 0.95rem;
 }
+
+/* --- Footer: huisstijl-look i.p.v. de kale standaard dark footer. --- */
+.footer--dark {
+  --ifm-footer-link-color: #cbd5e1;
+  --ifm-footer-link-hover-color: #ffffff;
+  --ifm-footer-title-color: #ffffff;
+  background: linear-gradient(180deg, #0b1220 0%, #16233f 100%);
+  border-top: 3px solid var(--ifm-color-primary);
+  padding-block: 3rem 2rem;
+}
+.footer__title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #93c5fd;
+}
+.footer__link-item {
+  color: #cbd5e1;
+  transition: color 0.15s ease;
+}
+.footer__link-item:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+.footer__col {
+  margin-bottom: 1rem;
+}
+.footer__bottom {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.14);
+}
+.footer__copyright {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
