@@ -1,6 +1,6 @@
 ---
 title: "MySQL Workbench"
-description: "Volg je databanken tijdens semster 2 dan gebruik je als hostname localhost. Als username en wachtwoord gebruik je root. Default schema laat je leeg.&#x20;"
+description: "Verbind met je lokale MySQL-server in Workbench: als hostname gebruik je localhost, als username root. Default schema laat je leeg."
 sidebar_position: 8
 ---
 
@@ -21,17 +21,14 @@ Basisscherm MySQL Workbench:
 
 ![](/img/databanken/image_5_.png)
 
-**Stap 2:** Vul de juiste gegevens in.
+**Stap 2:** Vul de juiste gegevens in:
 
-Volg je databanken tijdens **semster 2** dan gebruik je als hostname localhost. Als username en wachtwoord gebruik je root. Default schema laat je leeg.&#x20;
+- **Hostname:** localhost
+- **Username:** root
 
-Volg je databanken tijdens **semester 1** dan hebruik je onderstaande gegevens.
+Default schema laat je leeg.
 
-Voor jouw gebruikersnaam en paswoord verwijzen we naar de e-mail die je hebt ontvangen van lector V. Nys.
-
-![](/img/databanken/image_6_.png)
-
-Je klikt na het invullen van de juiste gegevens op de knop "**Store in Vault**" en vult het paswoord dat je via vermelde mail hebt ontvangen in.
+Je klikt na het invullen van de juiste gegevens op de knop "**Store in Vault**" en vult het paswoord van je root-gebruiker in.
 
 ![](/img/databanken/image_3_.png)
 
