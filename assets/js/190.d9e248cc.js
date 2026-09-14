@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcursus_databanken=self.webpackChunkcursus_databanken||[]).push([["190"],{6445(e,a,s){s.d(a,{createInfoServices:()=>u.v});var u=s(54614);s(4954)}}]);
